@@ -409,6 +409,8 @@ module.exports = function (grunt) {
         }
     },
 
+    //heroku
+
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
@@ -648,7 +650,7 @@ module.exports = function (grunt) {
         'concurrent:test',
         'injector',
         'autoprefixer',
-        'karma'
+        // 'karma'
       ]);
     }
 
