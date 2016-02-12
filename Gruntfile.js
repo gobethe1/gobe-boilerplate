@@ -407,6 +407,7 @@ module.exports = function (grunt) {
           remote: 'git@heroku.com:gobethe1-production.git', //remote to push to 'heroku'
           branch: 'master', //branch to commit to
         }
+      }
     },
 
     //heroku
