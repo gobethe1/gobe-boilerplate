@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: ClientCtrl', function () {
+describe('Controller: EventCtrl', function () {
 
   // load the controller's module
   beforeEach(module('gobeApp'));
 
-  var ClientCtrl, scope;
+  var EventCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    ClientCtrl = $controller('ClientCtrl', {
+    EventCtrl = $controller('EventCtrl', {
       $scope: scope
     });
   }));

@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('ClientCtrl', function ($scope) {
+  .controller('EventCtrl', function ($scope) {
     $scope.message = 'Hello';
   });

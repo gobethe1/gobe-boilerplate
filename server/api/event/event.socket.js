@@ -4,21 +4,21 @@
 
 'use strict';
 
-var Client = require('./client.model');
+var Event = require('./event.model');
 
 exports.register = function(socket) {
-  Client.schema.post('save', function (doc) {
+  Event.schema.post('save', function (doc) {
     onSave(socket, doc);
   });
-  Client.schema.post('remove', function (doc) {
+  Event.schema.post('remove', function (doc) {
     onRemove(socket, doc);
   });
 }
 
 function onSave(socket, doc, cb) {
-  socket.emit('client:save', doc);
+  socket.emit('event:save', doc);
 }
 
 function onRemove(socket, doc, cb) {
-  socket.emit('client:remove', doc);
+  socket.emit('event:remove', doc);
 }
