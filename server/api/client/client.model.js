@@ -3,22 +3,31 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var ClientSchema = new Schema({
-  firstName: String,
-  lastName: String,
-  address: String,
-  zipCode: String,
+var ClientSchema = new Schema
+  createdAt: Date.now(),
+  updatedAt: Date.now(),
+  lastName: {type: String, required: true}
+  address: {type: String, required: true}
+  zipCode: {type: String, required: true}
   gender: String,
   age: Number,
   availability: {
-    moveInDate: Date, firstDate: Date, firstDateTime: String,
-    secondDate: Date, secondDateTime: String,
-    thirdDate: Date, thirdDateTime: String
+    moveInDate: {type: Date, required: true},
+    firstDate: {type: Date, required: true},
+    firstDateTime: {type: String, required: true}
+    secondDate: {type: Date, required: true},
+    secondDateTime: {type: String, required: true},
+    thirdDate: {type: Date, required: true},
+    thirdDateTime: {type: String, required: true}
   },
   registryUrl: String,
-  notes: String,
-  info: String,
-  active: Boolean
+  notes: String
+});
+
+ClientSchema
+ .pre('save', function(next) {
+ this.updatedAt = new Date();
+ next();
 });
 
 module.exports = mongoose.model('Client', ClientSchema);
