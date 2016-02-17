@@ -8,8 +8,8 @@
 			   <input type="text" name="firstname" ng-model="newEvent.firstName" class="form-control" required>
 			</div>
 
-			<div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
-                                           'has-error': form.firstname.$invalid && submitted }">
+			<div class="form-group" ng-class="{ 'has-success': form.lastname.$valid && submitted,
+                                           'has-error': form.lastname.$invalid  && submitted }">
 			   <label>Last Name</label>
 			   <input type="text" name="lastname" ng-model="newEvent.lastName" class="form-control" required>
 			</div>
@@ -24,7 +24,7 @@
 			<div class="form-group" ng-class="{ 'has-success': form.zipCode.$valid && submitted,
                                            'has-error': form.zipCode.$invalid && submitted }">
 			   <label>Zipcode</label>
-			   <input type="number" ng-minlength="6" ng-maxlength="6" name="zipCode" ng-model="newEvent.zipCode" class="form-control" required>
+			   <input type="number" ng-minlength="5" ng-maxlength="5" name="zipCode" ng-model="newEvent.zipCode" class="form-control" required>
 			</div>
 			<!-- gender -->
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
@@ -114,7 +114,7 @@
 			   <input type="date" name="datethree" ng-model="newEvent.availability.thirdDate" class="form-control" required>
 			</div>
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
-			                                           'has-error': form.address.$invalid && submitted }">
+			                                    'has-error': form.address.$invalid && submitted }">
 			  <label>Time 3</label><br>
 				<label class="checkbox-inline">
 				  <input name="morning" ng-model="newEvent.availability.thirdDateTime[0]" value="Morning 8am-12pm" type="checkbox">
@@ -149,8 +149,15 @@
 			</div>
 
 			<!-- end notes section -->
+			<div class="text-left">
+				<p class="text-danger">{{addEventError}}</p>
+			</div>
 			<div class="text-right">
-				<button class="btn btn-secondary btn-lg" type="submit" ng-submit="addEvent()">Finish</button>
+				<button class="btn btn-lg" type="submit" ng-submit="addEvent()"
+				ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}"
+				ng-disabled="form.$invalid">
+					Finish
+				</button>
 			</div>
 
 		</div>

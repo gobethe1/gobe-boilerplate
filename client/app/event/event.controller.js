@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('EventCtrl', function ($scope, Event, eventModel) {
+  .controller('EventCtrl', function ($scope, $state, Event, eventModel) {
 
   	$scope.listEvents = eventModel;
-  	
+
     $scope.newEvent = {};
     $scope.newEvent.availability = {};
     $scope.newEvent.availability.firstDateTime = [false, false, false];
@@ -16,12 +16,10 @@ angular.module('gobeApp')
          if(form.$valid){
              Event.save($scope.newEvent,
                function(data){
-                  console.log('we did it!');
-                  console.log(data);
+                  $state.go('event.list')
                  }),
                  function(err){
-                  console.log('nah');
-                  console.log(data);
+                 	$scope.addEventError = "Looks like something went wrong! Please try again"
                  }
                }
          else{
