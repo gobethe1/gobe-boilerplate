@@ -1,59 +1,65 @@
-<form class="form actor-overview" name="form" ng-submit="register(form)" novalidate>
+<form class="form new-event" name="form" ng-submit="addEvent(form)" novalidate>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<h3>New Client</h3>
 			<div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
-                                               'has-error': form.firstname.$invalid && submitted }">
+                                          'has-error': form.firstname.$invalid && submitted }">
 			   <label>First Name</label>
-			   <input type="text" name="firstname" ng-model="event.firstName" class="form-control" required>
+			   <input type="text" name="firstname" ng-model="newEvent.firstName" class="form-control" required>
 			   <p class="help-block" ng-show="form.firstname.$error.required && submitted">
 			     A first name is required
 			   </p>
 			</div>
+
 			<div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
-                                               'has-error': form.firstname.$invalid && submitted }">
+                                           'has-error': form.firstname.$invalid && submitted }">
 			   <label>Last Name</label>
-			   <input type="text" name="lastname" ng-model="event.lastName" class="form-control" required>
+			   <input type="text" name="lastname" ng-model="newEvent.lastName" class="form-control" required>
 			   <p class="help-block" ng-show="form.firstname.$error.required && submitted">
 			     A first name is required
 			   </p>
 			</div>
 			<!-- address -->
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
-			                                           'has-error': form.address.$invalid && submitted }">
+			                                     'has-error': form.address.$invalid && submitted }">
                <label>Move-in Address</label>
                  <input type="text" name="address" class="form-control"
-                 ng-autocomplete
-                 ng-model="event.address"
-                 options="options"
-                 details="details"
-                 ng-minlength="18"
+
                  required/>
                  <p class="help-block" ng-show="form.address.$error.required && submitted">
                   A full address is required.
                   </p>
-                   <p class="help-block"
+<!--                    <p class="help-block"
                     ng-show="form.address.$error.minlength && submitted">
                     Please include full autocomplete address.
-                 </p>
+                 </p> -->
       </div>
 			<!-- end address -->
+			<div class="form-group" ng-class="{ 'has-success': form.zipCode.$valid && submitted,
+                                           'has-error': form.zipCode.$invalid && submitted }">
+			   <label>Zipcode</label>
+			   <input type="text" name="zipCode" ng-model="newEvent.zipCode" class="form-control" required>
+			   <p class="help-block" ng-show="form.zipCode.$error.required && submitted">
+			     A first name is required
+			   </p>
+			</div>
+
 			<!-- gender -->
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
 			                                           'has-error': form.address.$invalid && submitted }">
 			    <label>Gender</label><br>
 				<label class="radio-inline">
-				  <input name="male" ng-model="event.gender" value="male" type="radio">
+				  <input name="male" ng-model="newEvent.gender" value="male" type="radio">
 				  <span class="c-indicator"></span>
 				  Male
 				</label>
 				<label class="radio-inline">
-				  <input name="female" ng-model="event.gender" value="female" type="radio">
+				  <input name="female" ng-model="newEvent.gender" value="female" type="radio">
 				  <span class="c-indicator"></span>
 				 Female
 				</label>
 				<label class="radio-inline">
-				  <input name="other" ng-model="event.gender" value="other" type="radio">
+				  <input name="other" ng-model="newEvent.gender" value="other" type="radio">
 				  <span class="c-indicator"></span>
 				 Other
 				</label>
@@ -63,7 +69,7 @@
 			<div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
                                                'has-error': form.firstname.$invalid && submitted }">
 			   <label>Move-In Date</label>
-			   <input type="date" name="moveindate" ng-model="event.moveInDate" class="form-control" required>
+			   <input type="date" name="moveindate" ng-model="newEvent.moveInDate" class="form-control" required>
 			   <p class="help-block" ng-show="form.moveindate.$error.required && submitted">
 			     A move-in date is required
 			   </p>
@@ -74,7 +80,7 @@
 			<div class="form-group" ng-class="{ 'has-success': form.firstdate.$valid && submitted,
                                                'has-error': form.firstdate.$invalid && submitted }">
 			   <label>Date 1</label>
-			   <input type="date" name="dateone" ng-model="event.firstDate" class="form-control" required>
+			   <input type="date" name="dateone" ng-model="newEvent.firstDate" class="form-control" required>
 			   <p class="help-block" ng-show="form.dateone.$error.required && submitted">
 			     A move-in date is required
 			   </p>
@@ -103,7 +109,7 @@
 			<div class="form-group" ng-class="{ 'has-success': form.datetwo.$valid && submitted,
                                                'has-error': form.datetwo.$invalid && submitted }">
 			   <label>Date 2</label>
-			   <input type="date" name="datetwo" ng-model="event.secondDate" class="form-control" required>
+			   <input type="date" name="datetwo" ng-model="newEvent.secondDate" class="form-control" required>
 			   <p class="help-block" ng-show="form.datetwo.$error.required && submitted">
 			     A move-in date is required
 			   </p>
@@ -132,14 +138,14 @@
 			<div class="form-group" ng-class="{ 'has-success': form.datethree.$valid && submitted,
                                                'has-error': form.datethree.$invalid && submitted }">
 			   <label>Date 3</label>
-			   <input type="date" name="datethree" ng-model="event.thirdDate" class="form-control" required>
+			   <input type="date" name="datethree" ng-model="newEvent.thirdDate" class="form-control" required>
 			   <p class="help-block" ng-show="form.datethree.$error.required && submitted">
 			     A move-in date is required
 			   </p>
 			</div>
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
 			                                           'has-error': form.address.$invalid && submitted }">
-			    <label>Time 3 {{thirdDateTime}}</label><br>
+			  <label>Time 3 {{thirdDateTime}}</label><br>
 				<label class="checkbox-inline">
 				  <input name="morning" ng-model="thirdDateTime[0]" value="Morning 8am-12pm" type="checkbox">
 				  <span class="c-indicator"></span>
@@ -157,6 +163,25 @@
 				</label>
 			</div>
 			<!-- end date three and time -->
+
+			<!-- registry url -->
+			<div class="form-group">
+			   <label>Registry Url (optional)</label>
+			   <input type="text" name="registryUrl" ng-model="newEvent.registryUrl" class="form-control">
+			</div>
+			<!-- end registry url -->
+
+			<!-- notes section -->
+			<div class="form-group">
+			   <label>Notes (optional)</label>
+			   <textarea type="text" rows="3" name="notes" ng-model="newEvent.notes" class="form-control"></textarea>
+			</div>
+
+			<!-- end notes section -->
+			<div class="text-right">
+				<button class="btn btn-secondary btn-lg" type="submit" ng-submit="addEvent()">Finish</button>
+			</div>
+
 		</div>
 	</div>
 </form>
