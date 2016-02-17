@@ -14,11 +14,11 @@ var EventSchema = new Schema({
   availability: {
     moveInDate: {type: Date, required: true},
     firstDate: {type: Date, required: true},
-    firstDateTime: {type: String, required: true},
+    firstDateTime: {type: Array, required: true},
     secondDate: {type: Date, required: true},
-    secondDateTime: {type: String, required: true},
+    secondDateTime: {type: Array, required: true},
     thirdDate: {type: Date, required: true},
-    thirdDateTime: {type: String, required: true}
+    thirdDateTime: {type: Array, required: true}
   },
   registryUrl: String,
   notes: String

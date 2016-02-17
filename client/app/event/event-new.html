@@ -36,24 +36,24 @@
                     ng-show="form.address.$error.minlength && submitted">
                     Please include full autocomplete address.
                  </p>
-            </div>
+      </div>
 			<!-- end address -->
 			<!-- gender -->
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
 			                                           'has-error': form.address.$invalid && submitted }">
-			    <label>Gender</label><br>                                       	
+			    <label>Gender</label><br>
 				<label class="radio-inline">
-				  <input id="radio1" name="male" ng-model="event.gender" value="male" type="radio">
+				  <input name="male" ng-model="event.gender" value="male" type="radio">
 				  <span class="c-indicator"></span>
 				  Male
 				</label>
 				<label class="radio-inline">
-				  <input id="radio2" name="female" ng-model="event.gender" value="female" type="radio">
+				  <input name="female" ng-model="event.gender" value="female" type="radio">
 				  <span class="c-indicator"></span>
 				 Female
 				</label>
 				<label class="radio-inline">
-				  <input id="radio3" name="other" ng-model="event.gender" value="other" type="radio">
+				  <input name="other" ng-model="event.gender" value="other" type="radio">
 				  <span class="c-indicator"></span>
 				 Other
 				</label>
@@ -81,19 +81,19 @@
 			</div>
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
 			                                           'has-error': form.address.$invalid && submitted }">
-			    <label>Time 1</label><br>                                       	
-				<label class="radio-inline">
-				  <input id="radio1" name="morning" ng-model="event.firstDateTime" value="Morning 8am-12pm" type="radio" required>
+			    <label>Time 1 {{firstDateTime}}</label><br>
+				<label class="checkbox-inline">
+				  <input name="morning" ng-model="firstDateTime[0]" ng-false-value="false" type="checkbox">
 				  <span class="c-indicator"></span>
 				  Morning<br> 8am-12pm
 				</label>
-				<label class="radio-inline">
-				  <input id="radio2" name="afternoon" ng-model="event.firstDateTime" value="Afternoon 12pm-5pm" type="radio">
+				<label class="checkbox-inline">
+				  <input name="afternoon" ng-model="firstDateTime[1]"type="checkbox">
 				  <span class="c-indicator"></span>
 				 Afternoon<br> 12pm-5pm
 				</label>
-				<label class="radio-inline">
-				  <input id="radio3" name="evening" ng-model="event.firstDateTime" value="Evening 5pm-10pm" type="radio">
+				<label class="checkbox-inline">
+				  <input name="evening" ng-model="firstDateTime[2]" type="checkbox">
 				  <span class="c-indicator"></span>
 				 Evening<br> 5pm-10pm
 				</label>
@@ -110,19 +110,19 @@
 			</div>
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
 			                                           'has-error': form.address.$invalid && submitted }">
-			    <label>Time 2</label><br>                                       	
-				<label class="radio-inline">
-				  <input id="radio1" name="morning" ng-model="event.secondDateTime" value="Morning 8am-12pm" type="radio" required>
+			    <label>Time 2 {{secondDateTime}}</label><br>
+				<label class="checkbox-inline">
+				  <input name="morning" ng-model="secondDateTime[0]" type="checkbox">
 				  <span class="c-indicator"></span>
 				  Morning<br> 8am-12pm
 				</label>
-				<label class="radio-inline">
-				  <input id="radio2" name="afternoon" ng-model="event.secondDateTime" value="Afternoon 12pm-5pm" type="radio">
+				<label class="checkbox-inline">
+				  <input name="afternoon" ng-model="secondDateTime[1]" type="checkbox">
 				  <span class="c-indicator"></span>
 				 Afternoon<br> 12pm-5pm
 				</label>
-				<label class="radio-inline">
-				  <input id="radio3" name="evening" ng-model="event.secondDateTime" value="Evening 5pm-10pm" type="radio">
+				<label class="checkbox-inline">
+				  <input name="evening" ng-model="secondDateTime[2]" type="checkbox">
 				  <span class="c-indicator"></span>
 				 Evening<br> 5pm-10pm
 				</label>
@@ -139,19 +139,19 @@
 			</div>
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
 			                                           'has-error': form.address.$invalid && submitted }">
-			    <label>third</label><br>                                       	
-				<label class="radio-inline">
-				  <input id="radio1" name="morning" ng-model="event.thirdDateTime" value="Morning 8am-12pm" type="radio" required>
+			    <label>Time 3 {{thirdDateTime}}</label><br>
+				<label class="checkbox-inline">
+				  <input name="morning" ng-model="thirdDateTime[0]" value="Morning 8am-12pm" type="checkbox">
 				  <span class="c-indicator"></span>
 				  Morning<br> 8am-12pm
 				</label>
-				<label class="radio-inline">
-				  <input id="radio2" name="afternoon" ng-model="event.thirdDateTime" value="Afternoon 12pm-5pm" type="radio">
+				<label class="checkbox-inline">
+				  <input name="afternoon" ng-model="thirdDateTime[1]" value="Afternoon 12pm-5pm" type="checkbox">
 				  <span class="c-indicator"></span>
 				 Afternoon<br> 12pm-5pm
 				</label>
-				<label class="radio-inline">
-				  <input id="radio3" name="evening" ng-model="event.thirdDateTime" value="Evening 5pm-10pm" type="radio">
+				<label class="checkbox-inline">
+				  <input name="evening" ng-model="thirdDateTime[2]" value="Evening 5pm-10pm" type="checkbox">
 				  <span class="c-indicator"></span>
 				 Evening<br> 5pm-10pm
 				</label>
