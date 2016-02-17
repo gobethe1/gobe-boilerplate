@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('EventCtrl', function ($scope, Event) {
-    $scope.message = 'Hello';
+  .controller('EventCtrl', function ($scope, Event, eventModel) {
+
+  	$scope.listEvents = eventModel;
+  	
     $scope.newEvent = {};
-    console.log($scope.newEvent);
-    $scope.firstDateTime = [false, false, false];
-    $scope.secondDateTime = [false, false, false];
-    $scope.thirdDateTime = [false, false, false];
+    $scope.newEvent.availability = {};
+    $scope.newEvent.availability.firstDateTime = [false, false, false];
+    $scope.newEvent.availability.secondDateTime = [false, false, false];
+    $scope.newEvent.availability.thirdDateTime = [false, false, false];
 
     $scope.addEvent = function addEvent(form) {
       $scope.submitted = true;
-          console.log(form)
-          console.log($scope.newEvent)
          if(form.$valid){
              Event.save($scope.newEvent,
                function(data){
@@ -28,5 +28,7 @@ angular.module('gobeApp')
              document.body.scrollTop = document.documentElement.scrollTop = 0;
          }
     };
+
+
 
   });

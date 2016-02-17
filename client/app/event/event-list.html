@@ -8,11 +8,13 @@
     </h2>
   </div>
 
-  <div>
-    <ul>
-      <li>
-
+  <div class="col-sm-6 col-xs-6">
+    <ul class="list-unstyled">
+      <li ng-repeat="event in listEvents">
+        <h4>{{event.firstName}} {{event.lastName}}</h4>
+        <hr>
       </li>
     </ul>
   </div>
+
 </div>

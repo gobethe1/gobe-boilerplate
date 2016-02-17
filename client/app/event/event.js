@@ -7,17 +7,32 @@ angular.module('gobeApp')
         // abstract: true,
         url: '/event',
         templateUrl: 'app/event/event.html',
-        controller: 'EventCtrl'
+        controller: 'EventCtrl',
+        resolve:{
+         eventModel: function(Event){
+           return Event.query().$promise;
+         }
+        }
       })
       .state('event.list', {
         url: '/list',
         templateUrl: 'app/event/event-list.html',
-        controller: 'EventCtrl'
+        controller: 'EventCtrl',
+        resolve:{
+         eventModel: function(Event){
+           return Event.query().$promise;
+         }
+        }
       })
       .state('event.new', {
         url: '/new',
         templateUrl: 'app/event/event-new.html',
-        controller: 'EventCtrl'
+        controller: 'EventCtrl',
+        resolve:{
+         eventModel: function(Event){
+           return Event.query().$promise;
+         }
+        }
       });
 
       $urlRouterProvider.otherwise('/');
