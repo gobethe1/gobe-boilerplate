@@ -1,0 +1,55 @@
+<form class="form new-group" name="form" ng-submit="addGroup(form)" novalidate>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-xs-12">
+      <h3>New Group</h3>
+
+        <div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
+                                          'has-error': form.firstname.$invalid && submitted }">
+            <label>Organization Name</label>
+            <input type="text" name="orgname" ng-model="newGroup.organizationName" class="form-control" required>
+        </div>
+
+      <!-- first name last name -->
+      <!-- <label>Point Person Name</label> -->
+      <div class="row">
+        <div class="col-md-6 col-xs-6">
+         <div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
+                                            'has-error': form.firstname.$invalid && submitted }">
+           <label>First Name</label>
+           <input type="text" name="firstname" ng-model="newGroup.firstName" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xs-6">
+          <div class="form-group" ng-class="{ 'has-success': form.lastname.$valid && submitted,
+                                               'has-error': form.lastname.$invalid  && submitted }">
+             <label>Last Name</label>
+             <input type="text" name="lastname" ng-model="newGroup.lastName" class="form-control" required>
+          </div>
+        </div>
+      </div>
+      <!-- first name last name end -->
+
+      <!-- email -->
+      <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                           'has-error': form.email.$invalid && submitted }">
+        <label>Point Person Email</label>
+        <input type="text" name="email" ng-model="newGroup.email" class="form-control"
+         required/>
+       </div>
+      <!-- end email -->
+
+      <!-- start zip code -->
+      <div class="form-group" ng-class="{ 'has-success': form.zipcode.$valid && submitted,
+                                           'has-error': (form.zipcode.$invalid || form.zipcode.$error.minlength) && submitted }">
+         <label> Volunteer Zipcode</label>
+         <input type="number" ng-minlength="5" name="zipcode" ng-model="newEvent.zipCode" class="form-control" required>
+      </div>
+      <p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">
+          Zipcode must be 5 numbers.
+      </p>
+      <!-- end zip code -->
+
+    </div>
+  </div>
+</form>

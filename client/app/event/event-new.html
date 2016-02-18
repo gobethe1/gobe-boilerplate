@@ -18,13 +18,14 @@
 					</div>
 				</div>
 			</div>
+
 			<!-- address -->
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
 			                                     'has-error': form.address.$invalid && submitted }">
-               <label>Move-in Address</label>
-                 <input type="text" name="address" ng-model="newEvent.address" class="form-control"
-                 required/>
-            </div>
+        <label>Move-in Address</label>
+        <input type="text" name="address" ng-model="newEvent.address" class="form-control"
+         required/>
+       </div>
 			<!-- end address -->
 			<div class="form-group" ng-class="{ 'has-success': form.zipcode.$valid && submitted,
                                            'has-error': (form.zipcode.$invalid || form.zipcode.$error.minlength) && submitted }">
@@ -34,6 +35,7 @@
 			<p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">
 			  	Zipcode must be 5 numbers.
 			</p>
+
 			<!-- gender age-->
 			<div class="row">
 				<div class="col-sm-6 col-xs-9">

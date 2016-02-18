@@ -12,17 +12,55 @@ var Event = require('../api/event/event.model');
 Event.find({}).remove(function() {
   Event.create({
     firstName: 'bob',
-    lastName: 'barker'
+    lastName: 'barker',
+    address: '1000 hello way',
+    zipCode: '90020',
+    gender: 'male',
+    availability: {
+      moveInDate: new Date("2016-02-27T00:00:00-0800"),
+      firstDate: new Date("2016-02-27T00:00:00-0800"),
+      firstDateTime: new Date("2016-02-27T00:00:00-0800"),
+      secondDate: new Date("2016-02-27T00:00:00-0800"),
+      secondDateTime: new Date("2016-02-27T00:00:00-0800"),
+      thirdDate: new Date("2016-02-27T00:00:00-0800"),
+      thirdDateTime: new Date("2016-02-27T00:00:00-0800")
+    },
+    registryUrl: 'asdfklj'
   },{
     firstName: 'ella',
-    lastName: 'stella'
+    lastName: 'stella',
+    address: '1000 hollyday ',
+    zipCode: '90028',
+    gender: 'female',
+    availability: {
+      moveInDate: new Date("2016-02-27T00:00:00-0800"),
+      firstDate: new Date("2016-02-27T00:00:00-0800"),
+      firstDateTime: new Date("2016-02-27T00:00:00-0800"),
+      secondDate: new Date("2016-02-27T00:00:00-0800"),
+      secondDateTime: new Date("2016-02-27T00:00:00-0800"),
+      thirdDate: new Date("2016-02-27T00:00:00-0800"),
+      thirdDateTime: new Date("2016-02-27T00:00:00-0800")
+    }
   },{
     firstName: 'thomas',
-    lastName: 'barners'
+    lastName: 'barners',
+    address: '1000 yo yo yo',
+    zipCode: '90020',
+    gender: 'male',
+    availability: {
+      moveInDate: new Date("2016-02-27T00:00:00-0800"),
+      firstDate: new Date("2016-02-27T00:00:00-0800"),
+      firstDateTime: new Date("2016-02-27T00:00:00-0800"),
+      secondDate: new Date("2016-02-27T00:00:00-0800"),
+      secondDateTime: new Date("2016-02-27T00:00:00-0800"),
+      thirdDate: new Date("2016-02-27T00:00:00-0800"),
+      thirdDateTime: new Date("2016-02-27T00:00:00-0800")
+    }
   }, function() {
       console.log('finished populating events');
     });
 });
+
 
 // Thing.find({}).remove(function() {
 //   Thing.create({
