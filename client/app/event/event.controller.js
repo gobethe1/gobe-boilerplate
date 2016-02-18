@@ -12,6 +12,7 @@ angular.module('gobeApp')
     $scope.newEvent.availability.thirdDateTime = [false, false, false];
 
     $scope.addEvent = function addEvent(form) {
+    	console.log(form)
       $scope.submitted = true;
          if(form.$valid){
              Event.save($scope.newEvent,
