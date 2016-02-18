@@ -8,6 +8,7 @@
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Event = require('../api/event/event.model');
+var Group = require('../api/group/group.model');
 
 Event.find({}).remove(function() {
   Event.create({
@@ -58,7 +59,28 @@ Event.find({}).remove(function() {
     }
   }, function() {
       console.log('finished populating events');
-    });
+  });
+});
+
+Group.find({}).remove(function() {
+  Group.create({
+    organizationName: 'Holly Rollers',
+    firstName: 'Sally',
+    lastName: 'Figueroa',
+    email: 'sally@hrollers.com',
+    phoneNumber: '313333333',
+    zipCode: '90017'
+  },{
+    organizationName: 'Homes for vets',
+    firstName: 'Harold',
+    lastName: 'Barnes',
+    email: 'hbarnes@hfv.com',
+    phoneNumber: '7467447474',
+    zipCode: '90015'
+  },
+  function() {
+      console.log('finished populating groups');
+  });
 });
 
 
