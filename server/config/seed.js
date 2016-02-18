@@ -7,6 +7,22 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Event = require('../api/event/event.model');
+
+Event.find({}).remove(function() {
+  Event.create({
+    lastName: 'bob',
+    firstName: 'barker'
+  },
+  {
+    lastName: 'ella',
+    firstName: 'stella'
+  },
+  {
+    firstName: 'thomas',
+    lastName: 'barners'
+  })
+});
 
 Thing.find({}).remove(function() {
   Thing.create({
