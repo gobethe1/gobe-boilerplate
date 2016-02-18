@@ -35,7 +35,7 @@
                                            'has-error': form.phoneNumber.$invalid && submitted }">
         <label>Point Person's Phone Number</label>
         <input type="text" name="phoneNumber" ng-model="newGroup.phoneNumber"
-               class="form-control" required/>
+               class="form-control" ui-mask="(999) 999-9999" required/>
        </div>
       <!-- end phoneNumber -->
 
@@ -56,7 +56,7 @@
       <div class="form-group" ng-class="{ 'has-success': form.zipcode.$valid && submitted,
                                            'has-error': (form.zipcode.$invalid || form.zipcode.$error.minlength) && submitted }">
          <label> Volunteer Zipcode</label>
-         <input type="number" ng-minlength="5" name="zipcode"
+         <input type="text" ng-minlength="5" name="zipcode" ui-mask="99999" ui-mask-placeholder-char="space"
                 ng-model="newGroup.zipCode" class="form-control" required>
       </div>
       <p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">

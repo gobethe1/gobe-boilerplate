@@ -10,6 +10,10 @@ angular.module('gobeApp')
         resolve:{
          groupModel: function(Group){
            return Group.query().$promise;
+         },
+          Confirmation: function($stateParams){
+          console.log($stateParams)
+          return $stateParams;
          }
         }
       })
@@ -30,6 +34,17 @@ angular.module('gobeApp')
         resolve:{
          groupModel: function(Group){
            return Group.query().$promise;
+         }
+        }
+      })
+      .state('group.confirmation', {
+        url: '/confirmation',
+        templateUrl: 'app/group/group-confirmation.html',
+        controller: 'GroupConfirmCtrl',
+        resolve:{
+         Confirm: function(Confirmation){
+          console.log(Confirmation)
+          return Confirmation;
          }
         }
       });

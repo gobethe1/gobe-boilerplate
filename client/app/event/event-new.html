@@ -30,7 +30,8 @@
 			<div class="form-group" ng-class="{ 'has-success': form.zipcode.$valid && submitted,
                                            'has-error': (form.zipcode.$invalid || form.zipcode.$error.minlength) && submitted }">
 			   <label> Move-in Zipcode</label>
-			   <input type="number" ng-minlength="5" name="zipcode" ng-model="newEvent.zipCode" class="form-control" required>
+			   <input type="text" ng-minlength="5" name="zipcode" ng-model="newEvent.zipCode" class="form-control" 
+			   ui-mask="99999" ui-mask-placeholder-char="space" required>
 			</div>
 			<p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">
 			  	Zipcode must be 5 numbers.
