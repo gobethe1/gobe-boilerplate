@@ -10,7 +10,7 @@
 				   <input type="text" name="firstname" ng-model="newEvent.firstName" class="form-control" required>
 				  </div>
 				</div>
-				<div class="col-md-6 col-xs-6">		
+				<div class="col-md-6 col-xs-6">
 					<div class="form-group" ng-class="{ 'has-success': form.lastname.$valid && submitted,
 		                                           'has-error': form.lastname.$invalid  && submitted }">
 					   <label>Last Name</label>
@@ -173,7 +173,7 @@
 			<div class="text-right">
 				<button class="btn btn-lg" type="submit" ng-submit="addEvent()"
 				ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}"
-				ng-disabled="form.$invalid">
+				>
 					Finish
 				</button>
 			</div>
