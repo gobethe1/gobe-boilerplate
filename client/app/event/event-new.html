@@ -1,17 +1,22 @@
 <form class="form new-event" name="form" ng-submit="addEvent(form)" novalidate>
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-6 col-md-offset-3 col-xs-12">
 			<h3>New Client</h3>
-			<div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
-                                          'has-error': form.firstname.$invalid && submitted }">
-			   <label>First Name</label>
-			   <input type="text" name="firstname" ng-model="newEvent.firstName" class="form-control" required>
-			</div>
-
-			<div class="form-group" ng-class="{ 'has-success': form.lastname.$valid && submitted,
-                                           'has-error': form.lastname.$invalid  && submitted }">
-			   <label>Last Name</label>
-			   <input type="text" name="lastname" ng-model="newEvent.lastName" class="form-control" required>
+			<div class="row">
+				<div class="col-md-6 col-xs-6">
+				 <div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
+	                                          'has-error': form.firstname.$invalid && submitted }">
+				   <label>First Name</label>
+				   <input type="text" name="firstname" ng-model="newEvent.firstName" class="form-control" required>
+				  </div>
+				</div>
+				<div class="col-md-6 col-xs-6">		
+					<div class="form-group" ng-class="{ 'has-success': form.lastname.$valid && submitted,
+		                                           'has-error': form.lastname.$invalid  && submitted }">
+					   <label>Last Name</label>
+					   <input type="text" name="lastname" ng-model="newEvent.lastName" class="form-control" required>
+					</div>
+				</div>
 			</div>
 			<!-- address -->
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
@@ -21,32 +26,45 @@
                  required/>
             </div>
 			<!-- end address -->
-			<div class="form-group" ng-class="{ 'has-success': form.zipCode.$valid && submitted,
-                                           'has-error': form.zipCode.$invalid && submitted }">
-			   <label>Zipcode</label>
-			   <input type="number" ng-minlength="5" ng-maxlength="5" name="zipCode" ng-model="newEvent.zipCode" class="form-control" required>
+			<div class="form-group" ng-class="{ 'has-success': form.zipcode.$valid && submitted,
+                                           'has-error': (form.zipcode.$invalid || form.zipcode.$error.minlength) && submitted }">
+			   <label> Move-in Zipcode</label>
+			   <input type="number" ng-minlength="5" name="zipcode" ng-model="newEvent.zipCode" class="form-control" required>
 			</div>
-			<!-- gender -->
-			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
-			                                           'has-error': form.address.$invalid && submitted }">
-			    <label>Gender</label><br>
-				<label class="radio-inline">
-				  <input name="male" ng-model="newEvent.gender" value="male" type="radio">
-				  <span class="c-indicator"></span>
-				  Male
-				</label>
-				<label class="radio-inline">
-				  <input name="female" ng-model="newEvent.gender" value="female" type="radio">
-				  <span class="c-indicator"></span>
-				 Female
-				</label>
-				<label class="radio-inline">
-				  <input name="other" ng-model="newEvent.gender" value="other" type="radio">
-				  <span class="c-indicator"></span>
-				 Other
-				</label>
+			<p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">
+			  	Zipcode must be 5 numbers.
+			</p>
+			<!-- gender age-->
+			<div class="row">
+				<div class="col-sm-6 col-xs-9">
+					<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
+					                                    'has-error': form.address.$invalid && submitted }">
+					    <label>Gender</label><br>
+						<label class="radio-inline">
+						  <input name="male" ng-model="newEvent.gender" value="male" type="radio">
+						  <span class="c-indicator"></span>
+						  Male
+						</label>
+						<label class="radio-inline">
+						  <input name="female" ng-model="newEvent.gender" value="female" type="radio">
+						  <span class="c-indicator"></span>
+						 Female
+						</label>
+						<label class="radio-inline">
+						  <input name="other" ng-model="newEvent.gender" value="other" type="radio">
+						  <span class="c-indicator"></span>
+						 Other
+						</label>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-3">
+					<div class="form-group">
+					   <label>Age (optional)</label>
+					   <input type="number" name="age" ng-model="newEvent.age" class="form-control">
+					</div>
+				</div>
 			</div>
-			<!-- gender -->
+			<!-- gender age-->
 			<!-- date movedin -->
 			<div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
                                                'has-error': form.firstname.$invalid && submitted }">
