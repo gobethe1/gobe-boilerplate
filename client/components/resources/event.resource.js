@@ -8,4 +8,13 @@ angular.module('gobeApp')
                  method: 'PUT'
              }
   });
+})
+
+  .factory('Group', function ($resource) {
+    return $resource('api/groups/:id', { id: '@_id' },
+          {
+             update: {
+                 method: 'PUT'
+             }
+  });
 });
