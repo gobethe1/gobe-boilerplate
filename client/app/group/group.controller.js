@@ -5,13 +5,21 @@ angular.module('gobeApp')
     $scope.listGroups = groupModel;
 
     $scope.newGroup = {};
+    $scope.emailList = [];
+
+    $scope.addEmail = function addEmail(){
+      $scope.emailList.push($scope.email)
+      console.log('emailList');
+      console.log($scope.emailList);
+    };
+
 
     $scope.addGroup = function addGroup(form) {
+    $scope.emailList = $scope.newGroup.emailList;
       console.log(form)
       console.log("newGroup")
       console.log($scope.newGroup)
       $scope.newGroup = $scope.newGroup
-      // $stateParams.firstName = $scope.newGroup.firstName;
       console.log("stateParams")
       console.log($stateParams)
 
@@ -20,7 +28,7 @@ angular.module('gobeApp')
          if(form.$valid){
              Group.save($scope.newGroup,
                function(data){
-                  $state.go('group.confirmation', 
+                  $state.go('group.confirmation',
                     {confirm: [$scope.newGroup.organizationName, $scope.newGroup.firstName,
                                $scope.newGroup.lastName, $scope.newGroup.phoneNumber,
                                $scope.newGroup.email, $scope.newGroup.zipCode]})
