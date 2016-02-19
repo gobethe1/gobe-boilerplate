@@ -3,19 +3,18 @@
 angular.module('gobeApp')
   .controller('GroupCtrl', function ($scope, $state, Group, groupModel, $stateParams) {
     $scope.listGroups = groupModel;
-
     $scope.newGroup = {};
-    $scope.emailList = [];
+    $scope.newGroup.emailList = [];
+    $scope.emailList = $scope.newGroup.emailList;
 
     $scope.addEmail = function addEmail(){
-      $scope.emailList.push($scope.email)
+      $scope.newGroup.emailList.push($scope.email);
       console.log('emailList');
-      console.log($scope.emailList);
+      console.log($scope.newGroup.emailList);
     };
 
 
     $scope.addGroup = function addGroup(form) {
-    $scope.emailList = $scope.newGroup.emailList;
       console.log(form)
       console.log("newGroup")
       console.log($scope.newGroup)

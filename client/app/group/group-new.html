@@ -10,7 +10,7 @@
         </div>
 
       <!-- first name last name -->
-      <!-- <label>Point Person Name</label> -->
+      <label>Point Person Name</label>
       <div class="row">
         <div class="col-md-6 col-xs-6">
          <div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
@@ -59,34 +59,45 @@
          <input type="text" ng-minlength="5" name="zipcode" ui-mask="99999" ui-mask-placeholder-char="space"
                 ng-model="newGroup.zipCode" class="form-control" required>
       </div>
+
       <p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">
           Zipcode must be 5 numbers.
       </p>
       <!-- end zip code -->
 
       <!-- add user email -->
-        <div>
-          <label>Invite Friends</label>
-          <div class="row">
+        <label>Invite Friends</label>
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="text" ng-model="email" class="form-control">
+          </div>
 
-            <div class="col-sm-6">
-              <input type="text" ng-model="email">
-            </div>
+          <div class="col-sm-4">
+            <button type="button" class="btn btn-primary" ng-click="addEmail()">
+            Add Email
+            </button>
+          </div>
+        </div>
+      <!-- end add user email -->
+<!--
+        <div class="col-md-6 col-xs-6">
+         <div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
+                                            'has-error': form.firstname.$invalid && submitted }">
+           <label>First Name</label>
+           <input type="text" name="firstname" ng-model="newGroup.firstName" class="form-control" required>
+          </div>
+        </div> -->
 
-            <div class="col-sm-4">
-              <button type="button" class="btn btn-primary" ng-click="addEmail()">
-              Add Email
-              </button>
-            </div>
-
-<!--             <ul>
-              <li ng-repeat="email in emails"> {{group.emailList}} </li>
-            </ul> -->
+      <!-- emails in emailList -->
+        <div class="row">
+          <div class="col-sm-8">
+            <ul class="list-unstyled" ng-repeat="email in emailList track by $index">
+              <li>{{email}}</li>
+            </ul>
 
           </div>
         </div>
-
-      <!-- end add user email -->
+      <!-- end emails in emaillist -->
 
       <div class="text-left">
         <p class="text-danger">{{addGroupError}}</p>
