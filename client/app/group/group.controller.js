@@ -11,6 +11,7 @@ angular.module('gobeApp')
       $scope.newGroup.emailList.push($scope.email);
       console.log('emailList');
       console.log($scope.newGroup.emailList);
+      $scope.email = null;
     };
 
 
@@ -45,6 +46,10 @@ angular.module('gobeApp')
 
 
   .controller('GroupConfirmCtrl', function ($scope, $state, $stateParams, groupModel) {
-    console.log("firing")
+    console.log("GroupConfirmCtrl")
+      console.log($stateParams.confirm)
      $scope.confirmValues = $stateParams.confirm;
+
+     console.log($scope.confirmValues[6].split(","))
+     $scope.confirmEmails = $scope.confirmValues[6].split(",");
   });

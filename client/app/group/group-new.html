@@ -68,9 +68,13 @@
       <!-- add user email -->
         <label>Invite Friends</label>
         <div class="row">
-          <div class="col-sm-6">
-            <input type="text" ng-model="email" class="form-control">
+          <div class="col-sm-6 form-group">
+            <input type="text" ng-model="email" name="addEmail" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+            <p class="text-danger" ng-show="form.addEmail.$error.pattern">
+              Please enter a valid email.
+            </p>
           </div>
+
 
           <div class="col-sm-4">
             <button type="button" class="btn btn-primary" ng-click="addEmail()">
@@ -79,15 +83,7 @@
           </div>
         </div>
       <!-- end add user email -->
-<!--
-        <div class="col-md-6 col-xs-6">
-         <div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
-                                            'has-error': form.firstname.$invalid && submitted }">
-           <label>First Name</label>
-           <input type="text" name="firstname" ng-model="newGroup.firstName" class="form-control" required>
-          </div>
-        </div> -->
-
+        <br>
       <!-- emails in emailList -->
         <div class="row">
           <div class="col-sm-8">
