@@ -30,7 +30,8 @@ angular.module('gobeApp')
                   $state.go('group.confirmation',
                     {confirm: [$scope.newGroup.organizationName, $scope.newGroup.firstName,
                                $scope.newGroup.lastName, $scope.newGroup.phoneNumber,
-                               $scope.newGroup.email, $scope.newGroup.zipCode]})
+                               $scope.newGroup.email, $scope.newGroup.zipCode,
+                               $scope.newGroup.emailList]})
                  }),
                  function(err){
                   $scope.addGroupError = "Looks like something went wrong! Please try again"
@@ -43,8 +44,7 @@ angular.module('gobeApp')
   })
 
 
-  .controller('GroupConfirmCtrl', function ($scope, $state, $stateParams) {
+  .controller('GroupConfirmCtrl', function ($scope, $state, $stateParams, groupModel) {
     console.log("firing")
-
      $scope.confirmValues = $stateParams.confirm;
   });
