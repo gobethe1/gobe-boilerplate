@@ -34,14 +34,16 @@ angular.module('gobeApp')
          }
         }
       })
+       
        .state('event.show', {
         url: '/:id/show',
         templateUrl: 'app/event/event-show.html',
         controller: 'EventShowCtrl',
       })
+
        .state('event.edit', {
         url: '/:id/edit',
-        templateUrl: 'app/event/event-new.html',
+        templateUrl: 'app/event/event-edit.html',
         controller: 'EventEditCtrl',
         resolve:{
          eventTest: function(Event, $stateParams){

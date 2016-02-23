@@ -14,14 +14,17 @@
 </div> -->
 
 <div class="row">
-  <div class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-xs-12">
+  <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xs-12">
     <table class="table table-sm">
       <thead>
         <tr>
           <th class="col-sm-6">
-              <h3>{{event.firstName | capitalize}} {{event.lastName | capitalize}}</h3>
+              <h3 class="no-margin">{{event.firstName | capitalize}} {{event.lastName | capitalize}}</h3>
           </th>
-          <th class="col-sm-6">
+          <th class="col-sm-5">
+          <!--     <a ui-sref="event.edit({id: event._id})">Edit</a> -->
+          </th>
+          <th class="col-sm-1">
               <a ui-sref="event.edit({id: event._id})">Edit</a>
           </th>
         </tr>
@@ -45,7 +48,7 @@
           </tr>
           <tr>
               <th>Date moved in:</th>
-              <td>{{event.dateMovedIn}}</td>
+              <td>{{event.availability.moveInDate | date:"MM/dd/yyyy" }}</td>
           </tr>
           <tr>
               <th>Date 1:</th>
