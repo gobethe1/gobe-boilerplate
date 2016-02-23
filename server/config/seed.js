@@ -20,13 +20,13 @@ Event.find({}).remove(function() {
     availability: {
       moveInDate: new Date("2016-02-27T00:00:00-0800"),
       firstDate: new Date("2016-02-27T00:00:00-0800"),
-      firstDateTime: new Date("2016-02-27T00:00:00-0800"),
+      firstDateTime: [true, true, false],
       secondDate: new Date("2016-02-27T00:00:00-0800"),
-      secondDateTime: new Date("2016-02-27T00:00:00-0800"),
+      secondDateTime: [true, true, true],
       thirdDate: new Date("2016-02-27T00:00:00-0800"),
-      thirdDateTime: new Date("2016-02-27T00:00:00-0800")
+      thirdDateTime: [true, false, false]
     },
-    registryUrl: 'asdfklj'
+    registryUrl: 'test string'
   },{
     firstName: 'ella',
     lastName: 'stella',
@@ -36,11 +36,11 @@ Event.find({}).remove(function() {
     availability: {
       moveInDate: new Date("2016-02-27T00:00:00-0800"),
       firstDate: new Date("2016-02-27T00:00:00-0800"),
-      firstDateTime: new Date("2016-02-27T00:00:00-0800"),
+      firstDateTime: [true, true, true],
       secondDate: new Date("2016-02-27T00:00:00-0800"),
-      secondDateTime: new Date("2016-02-27T00:00:00-0800"),
+      secondDateTime: [true, false, false],
       thirdDate: new Date("2016-02-27T00:00:00-0800"),
-      thirdDateTime: new Date("2016-02-27T00:00:00-0800")
+      thirdDateTime: [true, true, false]
     }
   },{
     firstName: 'thomas',
@@ -51,11 +51,11 @@ Event.find({}).remove(function() {
     availability: {
       moveInDate: new Date("2016-02-27T00:00:00-0800"),
       firstDate: new Date("2016-02-27T00:00:00-0800"),
-      firstDateTime: new Date("2016-02-27T00:00:00-0800"),
+      firstDateTime: [true, false, false],
       secondDate: new Date("2016-02-27T00:00:00-0800"),
-      secondDateTime: new Date("2016-02-27T00:00:00-0800"),
+      secondDateTime: [true, true, false],
       thirdDate: new Date("2016-02-27T00:00:00-0800"),
-      thirdDateTime: new Date("2016-02-27T00:00:00-0800")
+      thirdDateTime: [true, true, true]
     }
   }, function() {
       console.log('finished populating events');
@@ -83,30 +83,6 @@ Group.find({}).remove(function() {
   });
 });
 
-
-// Thing.find({}).remove(function() {
-//   Thing.create({
-//     name : 'Development Tools',
-//     info : 'Integration with popular tools such as Bower, Grunt, Karma, Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, Stylus, Sass, CoffeeScript, and Less.'
-//   }, {
-//     name : 'Server and Client integration',
-//     info : 'Built with a powerful and fun stack: MongoDB, Express, AngularJS, and Node.'
-//   }, {
-//     name : 'Smart Build System',
-//     info : 'Build system ignores `spec` files, allowing you to keep tests alongside code. Automatic injection of scripts and styles into your index.html'
-//   },  {
-//     name : 'Modular Structure',
-//     info : 'Best practice client and server structures allow for more code reusability and maximum scalability'
-//   },  {
-//     name : 'Optimized Build',
-//     info : 'Build process packs up your templates as a single JavaScript payload, minifies your scripts/css/images, and rewrites asset names for caching.'
-//   },{
-//     name : 'Deployment Ready',
-//     info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
-//   }, function() {
-//       console.log('finished populating things');
-//     });
-// });
 
 User.find({}).remove(function() {
   User.create({

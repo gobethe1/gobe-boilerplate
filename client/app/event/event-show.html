@@ -1,85 +1,85 @@
-<h2>{{event.firstName}} {{event.lastName}}</h2>
+
 
 <div class="row">
-  <div class="col-sm-6 col-md-6 col-xs-12">
-<table class="table table-sm">
-  <thead>
-    <tr>
-      <th class="col-sm-6"></th>
-      <th class="col-sm-6"></th>
-    </tr>
-  </thead>
-    <tbody>
-      <tr>
-          <th>Move in address:</th>
-          <td>{{event.address}}</td>
-      </tr>
-      <tr>
-          <th>Move in zip:</th>
-          <td>{{event.zipCode}}</td>
-      </tr>
-      <tr>
-          <th>Gender:</th>
-          <td>{{event.gender}}</td>
-      </tr>
-      <tr>
-          <th>Age:</th>
-          <td>{{event.age}}</td>
-      </tr>
-      <tr>
-          <th>Date moved in:</th>
-          <td>{{event.dateMovedIn}}</td>
-      </tr>
-      <tr>
-          <th>Date 1:</th>
-          <td>{{event.availability.firstDate | date:"MM/dd/yyyy"}}</td>
-      </tr>
+  <div class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-xs-12">
+    <h2>{{event.firstName | capitalize}} {{event.lastName | capitalize}}</h2>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th class="col-sm-6"></th>
+          <th class="col-sm-6"></th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr>
+              <th>Move in address:</th>
+              <td>{{event.address | capitalize}}</td>
+          </tr>
+          <tr>
+              <th>Move in zip:</th>
+              <td>{{event.zipCode}}</td>
+          </tr>
+          <tr>
+              <th>Gender:</th>
+              <td>{{event.gender | capitalize }}</td>
+          </tr>
+          <tr>
+              <th>Age:</th>
+              <td>{{event.age}}</td>
+          </tr>
+          <tr>
+              <th>Date moved in:</th>
+              <td>{{event.dateMovedIn}}</td>
+          </tr>
+          <tr>
+              <th>Date 1:</th>
+              <td>{{event.availability.firstDate | date:"MM/dd/yyyy"}}</td>
+          </tr>
 
-      <tr ng-repeat="time in event.availability.firstDateTime
-          track by $index">
-        <th ></th>
-        <td >
-          {{checkTime(time, $index)}}
-        </td>
-      </tr>
+          <tr ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
+            <th ></th>
+            <td class="time">
+              {{checkTime(time, $index)}}
+            </td>
+          </tr>
 
-      <tr>
-          <th>Date 2:</th>
-          <td>{{event.availability.secondDate | date:"MM/dd/yyyy"}}</td>
-      </tr>
+          <tr>
+              <th>Date 2:</th>
+              <td>{{event.availability.secondDate | date:"MM/dd/yyyy"}}</td>
+          </tr>
 
-      <tr ng-repeat="time in event.availability.secondDateTime track by $index">
-        <th></th>
-        <td >
-          {{checkTime(time, $index)}}
-        </td>
-      </tr>
+          <tr ng-repeat="time in event.availability.secondDateTime track by $index" ng-if="time">
+            <th></th>
+            <td class="time">
+              {{checkTime(time, $index)}}
+            </td>
+          </tr>
 
-      <tr>
-          <th>Date 3:</th>
-          <td>{{event.availability.thirdDate | date:"MM/dd/yyyy"}}</td>
-      </tr>
+          <tr>
+              <th>Date 3:</th>
+              <td>{{event.availability.thirdDate | date:"MM/dd/yyyy"}}</td>
+          </tr>
 
-      <tr ng-repeat="time in event.availability.thirdDateTime track by $index">
-        <th></th>
-        <td >
-          {{checkTime(time, $index)}}
-        </td>
-      </tr>
+          <tr ng-repeat="time in event.availability.thirdDateTime track by $index" ng-if="time">
+            <th></th>
+            <td class="time">
+              {{checkTime(time, $index)}}
+            </td>
+          </tr>
 
-      <tr>
-          <th>Registry Url:</th>
-          <td>{{event.registryUrl}}</td>
-      </tr>
+          <tr>
+              <th>Registry Url:</th>
+              <td>{{event.registryUrl}}</td>
+          </tr>
 
-      <tr>
-          <th>Notes:</th>
-          <td>{{event.notes}}</td>
-      </tr>
+          <tr>
+              <th>Notes:</th>
+              <td>{{event.notes}}</td>
+          </tr>
 
-    </tbody>
+        </tbody>
 
-</table>
+    </table>
 
   </div>
 </div>

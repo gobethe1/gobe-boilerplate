@@ -14,10 +14,10 @@
 <div class="row">
   <div class="col-sm-6 col-md-6 col-xs-12">
     <ul class="list-unstyled">
-      <li>Organization Name: {{confirmValues[0]}}</li>
-      <li>Point Person Name: {{confirmValues[1]}} {{confirmValues[2]}}</li>
-      <li>Point Person Phone: {{confirmValues[3]}}</li>
-      <li>Point Person Email {{confirmValues[4]}}</li>
+      <li>Organization Name: {{confirmValues[0] | capitalize }}</li>
+      <li>Point Person Name: {{confirmValues[1]}} {{confirmValues[2] | capitalize }}</li>
+      <li>Point Person Phone: {{confirmValues[3] | tel }}</li>
+      <li>Point Person Email {{confirmValues[4] | capitalize }}</li>
       <li>Zip of Volunteer Area: {{confirmValues[5]}}</li>
       <li>Friends: </li>
       <span ng-repeat="value in confirmEmails track by $index">

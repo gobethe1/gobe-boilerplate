@@ -11,7 +11,7 @@
   <div class="col-sm-6 col-xs-6">
     <ul class="list-unstyled">
       <li ng-repeat="group in listGroups">
-        <h4>{{group.organizationName}}, {{group.firstName}} {{group.lastName}}</h4>
+        <h4>{{group.organizationName | capitalize }}, {{group.firstName | capitalize }} {{group.lastName | capitalize }}</h4>
         <hr>
       </li>
     </ul>
