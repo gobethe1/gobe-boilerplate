@@ -33,6 +33,11 @@ angular.module('gobeApp')
            return Event.query().$promise;
          }
         }
+      })
+       .state('event.show', {
+        url: '/:id/show',
+        templateUrl: 'app/event/event-show.html',
+        controller: 'EventShowCtrl',
       });
 
       $urlRouterProvider.otherwise('/');
