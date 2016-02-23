@@ -24,7 +24,6 @@ exports.show = function(req, res) {
 // Creates a new event in the DB.
 exports.create = function(req, res) {
   Event.create(req.body, function(err, event) {
-    console.log(err);
     if(err) { return handleError(res, err); }
     return res.status(201).json(event);
   });
@@ -36,19 +35,11 @@ exports.update = function(req, res) {
   Event.findById(req.params.id, function (err, event) {
     if (err) { return handleError(res, err); }
     if(!event) { return res.status(404).send('Not Found'); }
-    console.log("err")
-    console.log(err)
-    console.log("event")
-    console.log(event)
-    console.log("req body")
-    console.log(req.body)
     var updated = _.merge(event, req.body);
-    console.log("updated")
-    console.log(updated)
+    updated.markModified('availability.firstDateTime');
+    updated.markModified('availability.secondDateTime');
+    updated.markModified('availability.thirdDateTime');
     updated.save(function (err) {
-      console.log(err)
-      console.log("event inside")
-      console.log(event)
       if (err) { return handleError(res, err); }
       return res.status(200).json(event);
     });

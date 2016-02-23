@@ -12,16 +12,11 @@ angular.module('gobeApp')
 
 
     $scope.updateEvent = function addEvent(form) {
-      console.log("updateEvent")
-      console.log($scope.newEvent)
       var data = $scope.newEvent;
-    	console.log(data)
       $scope.submitted = true;
          if(form.$valid){
              Event.update({id: $stateParams.id }, data,
                function(data){
-                console.log("data")
-                 console.log(data)
                   $state.go('event.list')
                  }),
                  function(err){
