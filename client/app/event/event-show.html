@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-sm-6 col-md-6 col-xs-12">
-<table class="table">
+<table class="table table-sm">
   <thead>
     <tr>
       <th class="col-sm-6"></th>
@@ -35,8 +35,9 @@
           <td>{{event.availability.firstDate | date:"MM/dd/yyyy"}}</td>
       </tr>
 
-      <tr ng-repeat="time in event.availability.firstDateTime track by $index">
-        <th></th>
+      <tr ng-repeat="time in event.availability.firstDateTime
+          track by $index">
+        <th ></th>
         <td >
           {{checkTime(time, $index)}}
         </td>
