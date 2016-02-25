@@ -67,14 +67,28 @@ Group.find({}).remove(function() {
     organizationName: 'Holly Rollers',
     firstName: 'Sally',
     lastName: 'Figueroa',
-    email: 'sally@hrollers.com',
+    email: 'midgetllamas182@yahoo.com',
     phoneNumber: '313333333',
-    zipCode: '90017'
+    zipCode: '90028'
   },{
     organizationName: 'Homes for vets',
-    firstName: 'Harold',
-    lastName: 'Barnes',
-    email: 'hbarnes@hfv.com',
+    firstName: 'Casper',
+    lastName: 'P',
+    email: 'cassie.purtlebaugh@gmail.com',
+    phoneNumber: '7467447474',
+    zipCode: '90028'
+  },{
+    organizationName: 'Greg Rocks',
+    firstName: 'Greg',
+    lastName: 'Rock',
+    email: 'grock006@gmail.com',
+    phoneNumber: '7467447474',
+    zipCode: '90017'
+  },{
+    organizationName: 'Feed The Homeless',
+    firstName: 'Patty',
+    lastName: 'Malone',
+    email: 'pmalone@gmail.com',
     phoneNumber: '7467447474',
     zipCode: '90015'
   },
