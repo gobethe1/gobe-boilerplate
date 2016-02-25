@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    emailer = require('./event.zipcodeMatch.emailer');
 
 var EventSchema = new Schema({
   createdAt: {type: Date, default: Date.now()},
@@ -30,5 +31,11 @@ EventSchema
  this.updatedAt = new Date();
  next();
 });
+
+ EventSchema
+  .pre('save', function(next) {
+  emailer.matchZipCode(this);
+  next();
+ });
 
 module.exports = mongoose.model('Event', EventSchema);
