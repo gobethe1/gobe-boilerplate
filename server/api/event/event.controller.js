@@ -23,6 +23,11 @@ exports.show = function(req, res) {
 
 // Creates a new event in the DB.
 exports.create = function(req, res) {
+  console.log(req)
+  console.log(req.headers.host)
+  console.log("controller req")
+  req.body.host = req.headers.host
+  // mongoose.set('host', req.headers.host)
   Event.create(req.body, function(err, event) {
     if(err) { return handleError(res, err); }
     return res.status(201).json(event);

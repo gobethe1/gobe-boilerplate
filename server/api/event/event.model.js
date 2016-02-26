@@ -23,7 +23,11 @@ var EventSchema = new Schema({
     thirdDateTime: {type: Array, required: true}
   },
   registryUrl: String,
-  notes: String
+  notes: String,
+  host: String,
+  confirmGroup: {type: mongoose.Schema.Types.ObjectId, ref: 'Group'},
+  confirmDate: Date,
+  confirmTime: String
 });
 
 EventSchema
@@ -34,6 +38,7 @@ EventSchema
 
  EventSchema
   .pre('save', function(next) {
+    // console.log(this)
   emailer.matchZipCode(this);
   next();
  });

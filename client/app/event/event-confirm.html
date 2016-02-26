@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+		<h4>Pick a time to party</h4>
+
+		 <ul class="list-unstyled">
+		   <li ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
+			    <a href="#">{{event.availability.firstDate | date:"MMMM, d, yyyy" }} between {{checkTime(time, $index)}}</a>
+		   </li>
+
+	      <li ng-repeat="time in event.availability.secondDateTime track by $index" ng-if="time">
+	   	    <a href="#">{{event.availability.secondDate | date:"MMMM, d, yyyy" }} between {{checkTime(time, $index)}}</a>
+	      </li>
+
+          <li ng-repeat="time in event.availability.thirdDateTime track by $index" ng-if="time">
+      	    <a href="#" ng-click="confirmGroupTime(event.availability.thirdDate, checkTime(time, $index))">
+      	    	{{event.availability.thirdDate | date:"MMMM, d, yyyy" }} between {{checkTime(time, $index)}}</a>
+          </li>
+
+          <li><a href="#">None of these dates and times work</a></li>
+		
+		</ul>
+	
+	</div>
+</div>

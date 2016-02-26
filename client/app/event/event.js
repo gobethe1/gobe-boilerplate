@@ -46,11 +46,22 @@ angular.module('gobeApp')
         templateUrl: 'app/event/event-edit.html',
         controller: 'EventEditCtrl',
         resolve:{
-         eventTest: function(Event, $stateParams){
+         eventEdit: function(Event, $stateParams){
            return Event.get({id: $stateParams.id}).$promise;
          }
         }
-      }); 
+      })
+
+        .state('event.confirm', {
+         url: '/:event_id/confirm/:group_id',
+         templateUrl: 'app/event/event-confirm.html',
+         controller: 'EventConfirmCtrl',
+         resolve:{
+          eventConfirm: function(Event, $stateParams){
+            return Event.get({id: $stateParams.event_id}).$promise;
+          }
+         }
+       }); 
 
 
       $urlRouterProvider.otherwise('/');

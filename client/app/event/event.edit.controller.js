@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('EventEditCtrl', function ($scope, $state, $stateParams, Event, eventTest) {
+  .controller('EventEditCtrl', function ($scope, $state, $stateParams, Event, eventEdit) {
 
 
-    $scope.newEvent = eventTest;
+    $scope.newEvent = eventEdit;
     $scope.newEvent.availability.moveInDate = new Date($scope.newEvent.availability.moveInDate)
     $scope.newEvent.availability.firstDate = new Date($scope.newEvent.availability.firstDate )
     $scope.newEvent.availability.secondDate = new Date($scope.newEvent.availability.secondDate)

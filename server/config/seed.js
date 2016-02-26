@@ -17,6 +17,7 @@ Event.find({}).remove(function() {
     address: '1000 hello way',
     zipCode: '90020',
     gender: 'male',
+    host: "localhost:9000",
     availability: {
       moveInDate: new Date("2016-02-27T00:00:00-0800"),
       firstDate: new Date("2016-02-27T00:00:00-0800"),
@@ -33,6 +34,7 @@ Event.find({}).remove(function() {
     address: '1000 hollyday ',
     zipCode: '90028',
     gender: 'female',
+    host: "localhost:9000",
     availability: {
       moveInDate: new Date("2016-02-27T00:00:00-0800"),
       firstDate: new Date("2016-02-27T00:00:00-0800"),
@@ -48,6 +50,7 @@ Event.find({}).remove(function() {
     address: '1000 yo yo yo',
     zipCode: '90020',
     gender: 'male',
+    host: "localhost:9000",
     availability: {
       moveInDate: new Date("2016-02-27T00:00:00-0800"),
       firstDate: new Date("2016-02-27T00:00:00-0800"),
@@ -67,28 +70,28 @@ Group.find({}).remove(function() {
     organizationName: 'Holly Rollers',
     firstName: 'Sally',
     lastName: 'Figueroa',
-    email: 'midgetllamas182@yahoo.com',
+    email: 'sally@example.com', //'midgetllamas182@yahoo.com',
     phoneNumber: '313333333',
     zipCode: '90028'
   },{
     organizationName: 'Homes for vets',
     firstName: 'Casper',
     lastName: 'P',
-    email: 'cassie.purtlebaugh@gmail.com',
+    email: 'cassie@example.com', //'cassie.purtlebaugh@gmail.com',
     phoneNumber: '7467447474',
     zipCode: '90028'
   },{
     organizationName: 'Greg Rocks',
     firstName: 'Greg',
     lastName: 'Rock',
-    email: 'grock006@gmail.com',
+    email: 'greg@example.com', //'grock006@gmail.com',
     phoneNumber: '7467447474',
     zipCode: '90017'
   },{
     organizationName: 'Feed The Homeless',
     firstName: 'Patty',
     lastName: 'Malone',
-    email: 'pmalone@gmail.com',
+    email: 'pmalone@example.com',
     phoneNumber: '7467447474',
     zipCode: '90015'
   },
