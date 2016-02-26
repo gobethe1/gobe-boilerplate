@@ -27,6 +27,8 @@ angular.module('gobeApp')
     //update the event model
     //confirmedDate, confirmedTime, confirmedGroup
 
+    //function or conditional for none of these work
+
     $scope.confirmGroupTime = function(date, time){
       console.log(date)
       console.log(time.replace(" and ", "-"))
@@ -36,6 +38,7 @@ angular.module('gobeApp')
       $scope.event.confirmDate = date;
       $scope.event.confirmTime = confirmTime;
 
+      //if confirmGroup, Date, Time, doesn't exist
       Event.update({id: $stateParams.event_id }, $scope.event,
         function(data){
           console.log("data")

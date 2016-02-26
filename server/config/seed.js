@@ -36,12 +36,12 @@ Event.find({}).remove(function() {
     gender: 'female',
     host: "localhost:9000",
     availability: {
-      moveInDate: new Date("2016-02-27T00:00:00-0800"),
+      moveInDate: new Date("2016-02-25T00:00:00-0800"),
       firstDate: new Date("2016-02-27T00:00:00-0800"),
       firstDateTime: [true, true, true],
-      secondDate: new Date("2016-02-27T00:00:00-0800"),
+      secondDate: new Date("2016-02-28T00:00:00-0800"),
       secondDateTime: [true, false, false],
-      thirdDate: new Date("2016-02-27T00:00:00-0800"),
+      thirdDate: new Date("2016-02-29T00:00:00-0800"),
       thirdDateTime: [true, true, false]
     }
   },{

@@ -56,6 +56,9 @@ function matchZipCode(event){
 		    //   // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 		    // });
 		
+			//save the sentEmails to the array
+			//would need to check group.emails against event sentEmails array before they are sent
+
 		});
 
 	    done('done');
