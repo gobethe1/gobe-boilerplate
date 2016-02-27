@@ -1,10 +1,10 @@
 <div class="row">
-	<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-hide="showTimes">
+	<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-hide="showTimes || sorryTaken || confirmGroup">
 		<h4>Pick a time to party</h4>
 
 		 <ul class="list-unstyled">
 		   <li ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
-			  <a href="#" ng-click="confirmGroupTime(event.availability.thirdDate, checkTime(time, $index))">
+			  <a href="#" ng-click="confirmGroupTime(event.availability.firstDate, checkTime(time, $index))">
 			   {{event.availability.firstDate | date:"MMMM, d, yyyy" }} between {{checkTime(time, $index)}}</a>
 		   </li>
 
@@ -25,7 +25,19 @@
 		</ul>
 	</div>
 	 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="showTimes">
-		<h4>Sorry!</h4>
-		
+		<h4>Thank You</h4>
+		<p>New dates in your area are constantly being added. We'll keep you in the loop of
+			the next volunteer opportunity.</p>
+
+	</div>
+	 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="sorryTaken">
+		<h4>Sorry</h4>
+		<p>Sorry, we just filled that opportunity! You'll be added to the waitlist in case anything changes.</p>
+		<p>Don't worry new dates in your area are constantly being added. We'll keep you in the loop of the next volunteer opportunity</p>
+	</div>
+	 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="confirmGroup">
+		<h4>Awesome!</h4>
+		<p>We can't wait to see you at the party. Here's a link to the registry, please bring an item with you to the party</p>
+		<p><a href="{{event.registryUrl}}">{{ (event.registryUrl).replace("https://", "")}}</a></p>
 	</div>
 </div>

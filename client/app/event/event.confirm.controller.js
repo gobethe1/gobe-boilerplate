@@ -4,8 +4,14 @@ angular.module('gobeApp')
   .controller('EventConfirmCtrl', function ($scope, $state, $stateParams, Event, eventConfirm) {
     console.log("EventConfirmCtrl")
     console.log(eventConfirm)
+    console.log(eventConfirm.confirmGroup)
 
-    $scope.event = eventConfirm;
+    if(!eventConfirm.confirmGroup){
+      $scope.event = eventConfirm;
+    }
+    else{
+      $scope.sorryTaken = true;
+    }
 
     var timeArray = ["8am and 12pm", "12pm and 5pm", "5pm and 8pm"];
 
@@ -43,6 +49,7 @@ angular.module('gobeApp')
         function(data){
           console.log("data")
           console.log(data)
+          $scope.confirmGroup = true;
            // $state.go('event.list')
           }),
           function(err){

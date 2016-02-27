@@ -27,7 +27,7 @@ Event.find({}).remove(function() {
       thirdDate: new Date("2016-02-27T00:00:00-0800"),
       thirdDateTime: [true, false, false]
     },
-    registryUrl: 'test string'
+    registryUrl: 'https://www.myregistry.com/public/gobe'
   },{
     firstName: 'ella',
     lastName: 'stella',
@@ -43,7 +43,8 @@ Event.find({}).remove(function() {
       secondDateTime: [true, false, false],
       thirdDate: new Date("2016-02-29T00:00:00-0800"),
       thirdDateTime: [true, true, false]
-    }
+    },
+    registryUrl: 'https://www.myregistry.com/public/gobe'
   },{
     firstName: 'thomas',
     lastName: 'barners',
@@ -59,7 +60,8 @@ Event.find({}).remove(function() {
       secondDateTime: [true, true, false],
       thirdDate: new Date("2016-02-27T00:00:00-0800"),
       thirdDateTime: [true, true, true]
-    }
+    },
+    registryUrl: 'https://www.myregistry.com/public/gobe'
   }, function() {
       console.log('finished populating events');
   });
