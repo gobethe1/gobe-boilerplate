@@ -33,26 +33,6 @@ var EventSchema = new Schema({
   sentEmails: Array
 });
 
-// var finZip = function(next){
-
-//   var promise = emailer.findZip(this)
-//   promise.then(function(jedis){
-//     var emails = [];
-//     console.log(jedis)
-//      jedis.forEach(function(jedi){
-//         console.log("jedi email")
-//         console.log(jedi.email);
-//         emails.push(jedi.email)
-//      })
-
-//      console.log("emails")
-//      console.log(emails)
-//      return emails
-//      // this.sentEmails = emails;
-//    })
-//   this.sentEmails = emails;
-//   next()
-// }
 
 EventSchema
  .pre('save', function(next) {
@@ -62,45 +42,24 @@ EventSchema
  next()
 });
 
- // EventSchema
- //  .pre('save', function(next) {
 
- // });
+ EventSchema
+  .pre('save', function(next) {
+    // var event = this;
+    // var emailSent = [];
+    // Group.find({ zipCode: event.zipCode }, function(err, group) {
+    //   if (!group) {}
+    //   group.map(function(group){
+    //     console.log('post save email')
+    //     console.log(group.email)
+    //     emailSent.push(group.email)
+    //     console.log(emailSent)
+    //     event.sentEmails = emailSent
+    //   })
+    //   next()
+    // });
 
- // EventSchema
- //    .pre('save', finZip)
+ });
 
-//  EventSchema
-//   .pre('save', function(next) {
-//     // emailer.matchZipCode(this);
-//     // // next();
-//     // // how can this go after
-//     // var event = this;
-//     // var emailSent = [];
-
-// // setTimeout(function(){
-// //     Group.find({ zipCode: event.zipCode }, function(err, group) {
-// //       if (!group) {}
-// //       group.map(function(group){
-// //         console.log('post save email')
-// //         console.log(group.email)
-// //         emailSent.push(group.email)
-// //         console.log(emailSent)
-// //         event.sentEmails = emailSent
-// //       })
-    
-// //       next()
-// //     });
-// //  }, 10000)
-
-//  });
-
- // EventSchema.methods = {
- //    // matchZip: function(event){
- //    //    var test = Group.find({ zipCode: event.zipCode })
- //    //    return test;
- //    // }
-
- // } 
 
 module.exports = mongoose.model('Event', EventSchema);

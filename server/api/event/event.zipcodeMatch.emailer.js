@@ -10,58 +10,7 @@ var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 
 
-
-function testZip(event){
-	Group.find({ zipCode: event.zipCode }, function(err, group) {
-	  if (!group) {
-	  	// console.log(err)
-	    // return res.status(404).send('There are no zipcode matches.');
-	  }
-	  return group;
-	});
-	return "hello"
-}
-
-function findZip(event){
-	var test = Group.find({ zipCode: event.zipCode }).exec()
-	return test;
-};
-
-function checkZip(event){
-	var sentEmails = [];
-	// console.log("checkZip")
-	// console.log(event)
-
-	var promise = findZip(event);
-	
-	promise.then(function(jedis){
-	   jedis.forEach(function(jedi){
-	   	  // console.log("jedi email")
-	      // console.log(jedi.email);
-	      sentEmails.push(jedi.email)
-
-
-	   });
-	 // console.log("sentEmails")
-	 // console.log(sentEmails)
-	 // console.log(event._id)  
-	 // Event.update({id: event._id}, {sentEmails:[1,2,3]}, function(error){
-	 // 	if(error){console.log(error)}
-	 // 	else console.log("success")
-	 // })
-	 // var updated = _.merge(event, {sentEmails: sentEmails})
-	
-	 // updated.save().exec()
-
-	})
-
-	// return sentEmails; 
-}
-
 function matchZipCode(event){
-
-	// console.log("testZip")
-	// console.log(findZip(event))
 
 	async.waterfall([
 	  function(done) {
@@ -74,18 +23,6 @@ function matchZipCode(event){
 	    });
 	  },
 	  function(group, done) {
-	  	//if value.email !==
-	  // 	console.log("sentEmails")
-	 	// console.log(event.sentEmails)//array
-	 	// var bazinga = _.filter(group, { 'email': 'sally@example.com' });
-	 	// console.log('bazinga')
-	 	// console.log(bazinga)
-	 	//
-
-	 	// _.forEach(group, function(value){
-	 	// 	console.log("inner each")
-	 	// 	console.log(value)
-	 	// })
 
 	    group.map(function(value){
 
@@ -105,8 +42,6 @@ function matchZipCode(event){
 		        pass: GodaddyPassword
 		      }
 		    });
-
-		    //need to check value.email against event.sentEmails array and only allow items not in the sentEmails array
 		    
 		    var mailOptions = {
 		      to: value.email,  //'cassie.purtlebaugh@gmail.com',
@@ -126,28 +61,7 @@ function matchZipCode(event){
 		    });
 			}
 
-		    // console.log("value email")
-		    // console.log(value.email)
-		    // var emailArr = []
-		    // sentEmails.push(value.email);
-		    // event.sentEmails = emailArr;
-		 
-		    // event.save(function (err) {
-		    //   if (err) { return err; }
-		    // });
-		
-		
-			//save the sentEmails to the array
-			//would need to check group.emails against event sentEmails array before they are sent
-
 		});
-
-		// event.sentEmails = sentEmails;
-		
-		// event.save(function (err) {
-		//   if (err) { return err; }
-		//   done();
-		// });
 
 	    done('done');
 
@@ -155,16 +69,10 @@ function matchZipCode(event){
 	  },
 	], function(err) {
 	  // if (err) return next(err);
-	  // console.log("last error")
-	  // console.log(err)
-	  // res.redirect('/forgot');
+	  console.log("last error")
+	  console.log(err)
 	});
-
-
-
 
 }
 
-exports.checkZip = checkZip;
-exports.findZip = findZip;
 exports.matchZipCode = matchZipCode;
