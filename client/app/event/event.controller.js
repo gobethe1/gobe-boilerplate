@@ -30,6 +30,17 @@ angular.module('gobeApp')
          }
     };
 
+    $scope.deleteEvent = function deleteEvent(id){
 
+      angular.forEach($scope.listEvents, function(e, i) {
+        console.log('e')
+        console.log(e)
+         if (e._id === id) {
+           $scope.listEvents.splice(i, 1);
+         }
+       });
 
-  });
+      Event.remove({id: id });
+    };
+
+});
