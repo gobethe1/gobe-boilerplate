@@ -32,7 +32,7 @@ function matchZipCode(event){
 	    	console.log(value.email)
 	    	console.log(index)
 	    	
-	    	// console.log('http://' + event.host + '/event/' + event._id + '/confirm/' + value._id)
+	    	var link = 'http://' + event.host + '/event/' + event._id + '/confirm/' + value._id;
 		    
 		    var transporter = nodemailer.createTransport({
 		      host: GodaddySMTP,
@@ -47,18 +47,27 @@ function matchZipCode(event){
 		      to: value.email,  //'cassie.purtlebaugh@gmail.com',
 		      from: 'hello@gobethe1.com',
 		      subject: 'Are You Available?',
-		      text: 'Hello ' + value.firstName + ', we matched you with a move-in party of a homeless vet in your neighborhood!\n\n' +
-		        'Check out the dates and times and let us know if you are available:\n\n' +
-		        'http://' + event.host + '/event/' + event._id + '/confirm/' + value._id
+		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +  
+		    '<td align="center"><h5 style="font-size:16px;font-family:sans-serif;">Hello ' + value.firstName + ', we matched you with a move-in party of a homeless vet in your neighborhood!</h5>' +
+		    '<h5 style="font-size:16px;font-family:sans-serif;">Check out the dates and times and let us know if you are available:</h5>' +
+		    '<a href=' + link +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a></td>' +
+		    '</tr></table>'
+		       
 		    };
+
+	
+
+		    // '<h5>Hello ' + value.firstName + ', we matched you with a move-in party of a homeless vet in your neighborhood!</h5>\n\n' +
+		    // 		        '<h5>Check out the dates and times and let us know if you are available:</h5>\n\n' +
+		    // 		      	'<a href=' + link +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a><br>'  
 		
 			if(index === -1){
-		    transporter.sendMail(mailOptions, function(err) {
-		    	// console.log(mailOptions)
-		    	console.log("inside sendMail error")
-		    	console.log(err)
-		      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
-		    });
+			    transporter.sendMail(mailOptions, function(err) {
+			    	// console.log(mailOptions)
+			    	console.log("inside sendMail error")
+			    	console.log(err)
+			      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
+			    });
 			}
 
 		});

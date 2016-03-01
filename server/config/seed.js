@@ -27,8 +27,7 @@ Event.find({}).remove(function() {
       thirdDate: new Date("2016-02-27T00:00:00-0800"),
       thirdDateTime: [true, false, false]
     },
-    registryUrl: 'https://www.myregistry.com/public/gobe',
-    sentEmails: ['greg@example.com', 'sally@example.com']
+    registryUrl: 'https://www.myregistry.com/public/gobe'
   },{
     firstName: 'ella',
     lastName: 'stella',
