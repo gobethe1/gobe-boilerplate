@@ -8,7 +8,44 @@ var Group = require('../group/group.model');
 var nodemailer = require('nodemailer');
 var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
-var sentEmails = [];
+
+
+
+function findZip(event){
+	var test = Group.find({ zipCode: event.zipCode }).exec()
+	return test;
+};
+
+function checkZip(event){
+	var sentEmails = [];
+	// console.log("checkZip")
+	// console.log(event)
+
+	var promise = findZip(event);
+	
+	promise.then(function(jedis){
+	   jedis.forEach(function(jedi){
+	   	  // console.log("jedi email")
+	      // console.log(jedi.email);
+	      sentEmails.push(jedi.email)
+
+
+	   });
+	 console.log("sentEmails")
+	 console.log(sentEmails)
+	 console.log(event._id)  
+	 Event.update({id: event._id}, {sentEmails:[1,2,3]}, function(error){
+	 	if(error){console.log(error)}
+	 	else console.log("success")
+	 })
+	 // var updated = _.merge(event, {sentEmails: sentEmails})
+	
+	 // updated.save().exec()
+
+	})
+
+	// return sentEmails; 
+}
 
 function matchZipCode(event){
 
@@ -94,4 +131,6 @@ function matchZipCode(event){
 
 }
 
+exports.checkZip = checkZip;
+exports.findZip = findZip;
 exports.matchZipCode = matchZipCode;
