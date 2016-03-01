@@ -15,7 +15,7 @@ Event.find({}).remove(function() {
     firstName: 'bob',
     lastName: 'barker',
     address: '1000 hello way',
-    zipCode: '90020',
+    zipCode: '90017',
     gender: 'male',
     host: "localhost:9000",
     availability: {
@@ -27,7 +27,8 @@ Event.find({}).remove(function() {
       thirdDate: new Date("2016-02-27T00:00:00-0800"),
       thirdDateTime: [true, false, false]
     },
-    registryUrl: 'https://www.myregistry.com/public/gobe'
+    registryUrl: 'https://www.myregistry.com/public/gobe',
+    sentEmails: ['greg@example.com', 'sally@example.com']
   },{
     firstName: 'ella',
     lastName: 'stella',
@@ -49,7 +50,7 @@ Event.find({}).remove(function() {
     firstName: 'thomas',
     lastName: 'barners',
     address: '1000 yo yo yo',
-    zipCode: '90020',
+    zipCode: '90015',
     gender: 'male',
     host: "localhost:9000",
     availability: {
@@ -74,19 +75,19 @@ Group.find({}).remove(function() {
     lastName: 'Figueroa',
     email: 'sally@example.com', //'midgetllamas182@yahoo.com',
     phoneNumber: '313333333',
-    zipCode: '90028'
+    zipCode: '90017'
   },{
     organizationName: 'Homes for vets',
     firstName: 'Casper',
     lastName: 'P',
     email: 'cassie@example.com', //'cassie.purtlebaugh@gmail.com',
     phoneNumber: '7467447474',
-    zipCode: '90028'
+    zipCode: '90017'
   },{
     organizationName: 'Greg Rocks',
     firstName: 'Greg',
     lastName: 'Rock',
-    email: 'greg@example.com', //'grock006@gmail.com',
+    email: 'greg@example.com',//'grock006@gmail.com',
     phoneNumber: '7467447474',
     zipCode: '90017'
   },{
@@ -95,7 +96,7 @@ Group.find({}).remove(function() {
     lastName: 'Malone',
     email: 'pmalone@example.com',
     phoneNumber: '7467447474',
-    zipCode: '90015'
+    zipCode: '90000'
   },
   function() {
       console.log('finished populating groups');

@@ -11,6 +11,17 @@ var GodaddySMTP = process.env.GODADDY_SMTP;
 
 
 
+function testZip(event){
+	Group.find({ zipCode: event.zipCode }, function(err, group) {
+	  if (!group) {
+	  	// console.log(err)
+	    // return res.status(404).send('There are no zipcode matches.');
+	  }
+	  return group;
+	});
+	return "hello"
+}
+
 function findZip(event){
 	var test = Group.find({ zipCode: event.zipCode }).exec()
 	return test;
@@ -31,13 +42,13 @@ function checkZip(event){
 
 
 	   });
-	 console.log("sentEmails")
-	 console.log(sentEmails)
-	 console.log(event._id)  
-	 Event.update({id: event._id}, {sentEmails:[1,2,3]}, function(error){
-	 	if(error){console.log(error)}
-	 	else console.log("success")
-	 })
+	 // console.log("sentEmails")
+	 // console.log(sentEmails)
+	 // console.log(event._id)  
+	 // Event.update({id: event._id}, {sentEmails:[1,2,3]}, function(error){
+	 // 	if(error){console.log(error)}
+	 // 	else console.log("success")
+	 // })
 	 // var updated = _.merge(event, {sentEmails: sentEmails})
 	
 	 // updated.save().exec()
@@ -48,6 +59,9 @@ function checkZip(event){
 }
 
 function matchZipCode(event){
+
+	// console.log("testZip")
+	// console.log(findZip(event))
 
 	async.waterfall([
 	  function(done) {
@@ -60,11 +74,28 @@ function matchZipCode(event){
 	    });
 	  },
 	  function(group, done) {
-	 	
+	  	//if value.email !==
+	  // 	console.log("sentEmails")
+	 	// console.log(event.sentEmails)//array
+	 	// var bazinga = _.filter(group, { 'email': 'sally@example.com' });
+	 	// console.log('bazinga')
+	 	// console.log(bazinga)
+	 	//
+
+	 	// _.forEach(group, function(value){
+	 	// 	console.log("inner each")
+	 	// 	console.log(value)
+	 	// })
 
 	    group.map(function(value){
+
+	    	var index = _.indexOf(event.sentEmails, value.email)
+	    	console.log("index")
+	    	console.log(event.sentEmails)
+	    	console.log(value.email)
+	    	console.log(index)
 	    	
-	    	console.log('http://' + event.host + '/event/' + event._id + '/confirm/' + value._id)
+	    	// console.log('http://' + event.host + '/event/' + event._id + '/confirm/' + value._id)
 		    
 		    var transporter = nodemailer.createTransport({
 		      host: GodaddySMTP,
@@ -86,17 +117,20 @@ function matchZipCode(event){
 		        'http://' + event.host + '/event/' + event._id + '/confirm/' + value._id
 		    };
 		
+			if(index === -1){
 		    transporter.sendMail(mailOptions, function(err) {
-		    	console.log("inside sendMail err")
+		    	// console.log(mailOptions)
+		    	console.log("inside sendMail error")
 		    	console.log(err)
 		      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 		    });
+			}
 
-		    console.log("value email")
-		    console.log(value.email)
-		    var emailArr = []
-		    sentEmails.push(value.email);
-		    event.sentEmails = emailArr;
+		    // console.log("value email")
+		    // console.log(value.email)
+		    // var emailArr = []
+		    // sentEmails.push(value.email);
+		    // event.sentEmails = emailArr;
 		 
 		    // event.save(function (err) {
 		    //   if (err) { return err; }
@@ -121,8 +155,8 @@ function matchZipCode(event){
 	  },
 	], function(err) {
 	  // if (err) return next(err);
-	  console.log("last error")
-	  console.log(err)
+	  // console.log("last error")
+	  // console.log(err)
 	  // res.redirect('/forgot');
 	});
 

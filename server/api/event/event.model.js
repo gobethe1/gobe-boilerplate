@@ -3,7 +3,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     emailer = require('./event.zipcodeMatch.emailer'),
-    Group = require('../group/group.model');
+    Group = require('../group/group.model'),
+    _ = require('lodash');
 
 var EventSchema = new Schema({
   createdAt: {type: Date, default: Date.now()},
@@ -32,59 +33,74 @@ var EventSchema = new Schema({
   sentEmails: Array
 });
 
-var finZip = function(next){
+// var finZip = function(next){
 
-  var promise = emailer.findZip(this)
-  promise.then(function(jedis){
-    var emails = [];
-    console.log(jedis)
-     jedis.forEach(function(jedi){
-        console.log("jedi email")
-        console.log(jedi.email);
-        emails.push(jedi.email)
-     })
+//   var promise = emailer.findZip(this)
+//   promise.then(function(jedis){
+//     var emails = [];
+//     console.log(jedis)
+//      jedis.forEach(function(jedi){
+//         console.log("jedi email")
+//         console.log(jedi.email);
+//         emails.push(jedi.email)
+//      })
 
-     console.log("emails")
-     console.log(emails)
-     return emails
-     // this.sentEmails = emails;
-   })
-  this.sentEmails = emails;
-  next()
-}
+//      console.log("emails")
+//      console.log(emails)
+//      return emails
+//      // this.sentEmails = emails;
+//    })
+//   this.sentEmails = emails;
+//   next()
+// }
 
 EventSchema
  .pre('save', function(next) {
  this.updatedAt = new Date();
  next();
+ emailer.matchZipCode(this);
+ next()
 });
+
+ // EventSchema
+ //  .pre('save', function(next) {
+
+ // });
 
  // EventSchema
  //    .pre('save', finZip)
 
- EventSchema
-  .post('save', function() {
-   // this.matchZip(this) 
-   // console.log(this.matchZip(this))
-    // console.log(this)
-  // emailer.matchZipCode(this);
-  // this.sentEmails = emailer.addSentEmail(this, next)
-  // emailer.saveSentEmails(this, next)
-  // var test = emailer.addSentEmail(this, next)
-  // console.log("test")
-  // console.log(test.tree)
-  emailer.checkZip(this);
-  // console.log("pre save hook")
-  // console.log(emailer.checkZip(this))
-  // next();
- });
+//  EventSchema
+//   .pre('save', function(next) {
+//     // emailer.matchZipCode(this);
+//     // // next();
+//     // // how can this go after
+//     // var event = this;
+//     // var emailSent = [];
 
- EventSchema.methods = {
-    matchZip: function(event){
-       var test = Group.find({ zipCode: event.zipCode })
-       return test;
-    }
+// // setTimeout(function(){
+// //     Group.find({ zipCode: event.zipCode }, function(err, group) {
+// //       if (!group) {}
+// //       group.map(function(group){
+// //         console.log('post save email')
+// //         console.log(group.email)
+// //         emailSent.push(group.email)
+// //         console.log(emailSent)
+// //         event.sentEmails = emailSent
+// //       })
+    
+// //       next()
+// //     });
+// //  }, 10000)
 
- } 
+//  });
+
+ // EventSchema.methods = {
+ //    // matchZip: function(event){
+ //    //    var test = Group.find({ zipCode: event.zipCode })
+ //    //    return test;
+ //    // }
+
+ // } 
 
 module.exports = mongoose.model('Event', EventSchema);

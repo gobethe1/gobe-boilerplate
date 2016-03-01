@@ -6,7 +6,6 @@ var Event = require('./event.model');
 // Get list of events
 exports.index = function(req, res) {
   Event.find(function (err, events) {
-    console.log(err)
     if(err) { return handleError(res, err); }
     return res.status(200).json(events);
   });
@@ -23,9 +22,6 @@ exports.show = function(req, res) {
 
 // Creates a new event in the DB.
 exports.create = function(req, res) {
-  console.log(req)
-  console.log(req.headers.host)
-  console.log("controller req")
   req.body.host = req.headers.host
   // mongoose.set('host', req.headers.host)
   Event.create(req.body, function(err, event) {
