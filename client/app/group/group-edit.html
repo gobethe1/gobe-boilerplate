@@ -1,1 +1,110 @@
-group-edit.html
+<form class="form new-group" name="form" ng-submit="updateGroup(form)" novalidate>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-xs-12">
+      <h3>Update Group</h3>
+
+        <div class="form-group" ng-class="{ 'has-success': form.organizationName.$valid && submitted,
+                                          'has-error': form.organizationName.$invalid && submitted }">
+            <label>Organization Name</label>
+            <input type="text" name="orgname" ng-model="newGroup.organizationName" class="form-control" required>
+        </div>
+
+      <!-- first name last name -->
+      <label>Point Person Name</label>
+      <div class="row">
+        <div class="col-md-6 col-xs-6">
+         <div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
+                                            'has-error': form.firstname.$invalid && submitted }">
+           <label>First Name</label>
+           <input type="text" name="firstname" ng-model="newGroup.firstName" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xs-6">
+          <div class="form-group" ng-class="{ 'has-success': form.lastname.$valid && submitted,
+                                               'has-error': form.lastname.$invalid  && submitted }">
+             <label>Last Name</label>
+             <input type="text" name="lastname" ng-model="newGroup.lastName" class="form-control" required>
+          </div>
+        </div>
+      </div>
+      <!-- first name last name end -->
+
+      <!-- phoneNumber -->
+      <div class="form-group" ng-class="{ 'has-success': form.phoneNumber.$valid && submitted,
+                                           'has-error': form.phoneNumber.$invalid && submitted }">
+        <label>Point Person's Phone Number</label>
+        <input type="text" name="phoneNumber" ng-model="newGroup.phoneNumber"
+               class="form-control" ui-mask="(999) 999-9999" required/>
+       </div>
+      <!-- end phoneNumber -->
+
+      <!-- email -->
+      <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                           'has-error': form.email.$invalid && submitted }">
+        <label>Point Person Email</label>
+        <input type="text" name="email" ng-model="newGroup.email"
+               class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+               required/>
+          <p class="text-danger" ng-show="form.email.$error.pattern && submitted">
+            Please enter a valid email.
+          </p>
+       </div>
+      <!-- end email -->
+
+      <!-- start zip code -->
+      <div class="form-group" ng-class="{'has-success': form.zipcode.$valid && submitted,
+                                           'has-error': (form.zipcode.$invalid || form.zipcode.$error.minlength) && submitted }">
+         <label> Volunteer Zipcode</label>
+         <input type="text" ng-minlength="5" name="zipcode" ui-mask="99999" ui-mask-placeholder-char="space"
+                ng-model="newGroup.zipCode" class="form-control" required>
+      </div>
+
+      <p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">
+          Zipcode must be 5 numbers.
+      </p>
+      <!-- end zip code -->
+
+      <!-- add user email -->
+        <label>Invite Friends</label>
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <input type="text" ng-model="email" name="addEmail" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+            <p class="text-danger" ng-show="form.addEmail.$error.pattern">
+              Please enter a valid email.
+            </p>
+          </div>
+
+
+          <div class="col-sm-4">
+            <button type="button" class="btn btn-primary" ng-click="addEmail()">
+            Add Email
+            </button>
+          </div>
+        </div>
+      <!-- end add user email -->
+        <br>
+      <!-- emails in emailList -->
+        <div class="row">
+          <div class="col-sm-8">
+            <ul class="list-unstyled" ng-repeat="email in emailList track by $index">
+              <li>{{email}}</li>
+            </ul>
+          </div>
+        </div>
+      <!-- end emails in emaillist -->
+
+      <div class="text-left">
+        <p class="text-danger">{{addGroupError}}</p>
+      </div>
+      <div class="text-right">
+        <button class="btn btn-lg" type="submit" ng-submit="updateGroup()"
+        ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}"
+        >
+          Finish
+        </button>
+      </div>
+
+    </div>
+  </div>
+</form>
