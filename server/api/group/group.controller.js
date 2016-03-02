@@ -36,6 +36,9 @@ exports.update = function(req, res) {
     if (err) { return handleError(res, err); }
     if(!group) { return res.status(404).send('Not Found'); }
     var updated = _.merge(group, req.body);
+    updated.markModified('emailList');
+    updated.markModified('emailList');
+    updated.markModified('emailList');
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(group);
