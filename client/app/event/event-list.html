@@ -9,7 +9,7 @@
   </div>
 
   <div class="col-sm-6 col-xs-12">
-    <ul class="list-unstyled">
+    <ul class="list-unstyled event-list">
       <li ng-repeat="event in listEvents">
         <div class="row">
           <span class="col-sm-11 col-xs-11">
@@ -18,7 +18,8 @@
             </a>
           </span>
           <span class="col-sm-1 col-xs-1">
-            <a ng-click="deleteEvent(event._id)">
+            <a ng-click="deleteEvent(event._id)" ng-class="{'hidden-sm': hover, 'hidden-md': hover, 'hidden-lg': hover}"
+               ng-mouseover="hover = !hover">
               <i class="fa fa-times"></i>
             </a>
           </span>

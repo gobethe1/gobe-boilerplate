@@ -1,5 +1,5 @@
 .table > tbody > tr > th, .table > tbody > tr > td {
-	border-top: 0px solid transparent;	
+	border-top: 0px solid transparent;
 }
 
 .table > thead > tr > th {
@@ -11,5 +11,9 @@
 }
 
 .no-margin{
-	margin: 0px;	
+	margin: 0px;
+}
+
+.event-list li a:hover {
+  display: inline-block;
 }
