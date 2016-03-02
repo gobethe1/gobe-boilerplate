@@ -41,6 +41,17 @@ angular.module('gobeApp')
         groupShow: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;
          }
+        }
+      })
+       .state('group.edit', {
+        url: '/:id/edit',
+        templateUrl: 'app/group/group-edit.html',
+        controller: 'GroupEditCtrl',
+        resolve:{
+         groupEdit: function(Group, $stateParams){
+           return Group.get({id: $stateParams.id}).$promise;
+         }
+        }
       })
       .state('group.confirmation', {
         url: '/confirmation/:confirm',
