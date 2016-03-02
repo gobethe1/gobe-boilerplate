@@ -13,6 +13,15 @@ angular.module('gobeApp')
       $scope.email = null;
     };
 
+    $scope.deleteEmail = function deleteEmail(email){
+      console.log('email')
+      console.log(email)
+     if(confirm('Are you sure you want to delete this email?')){
+        var email = $scope.emailList.indexOf(email);
+          $scope.emailList.splice(email, 1);
+      };
+    };
+
     $scope.updateGroup = function addGroup(form) {
       var data = $scope.newGroup;
       $scope.submitted = true;
