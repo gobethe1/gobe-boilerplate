@@ -37,7 +37,7 @@
 </div> -->
 
 <div class="row">
-  <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xs-12">
+  <div class="col-sm-6 col-xs-12">
     <table class="table table-sm">
       <thead>
         <tr>
@@ -70,27 +70,16 @@
               <td>{{group.zipCode}}</td>
           </tr>
 
-          <tr ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
-            <th ></th>
-            <td class="time">
-              {{checkTime(time, $index)}}
-            </td>
-          </tr>
-
           <tr>
-              <th>Date 2:</th>
-              <td>{{event.availability.secondDate | date:"MM/dd/yyyy"}}</td>
+            <th>Friends:</th>
           </tr>
 
-          <tr ng-repeat="time in event.availability.secondDateTime track by $index" ng-if="time">
+          <tr ng-repeat="email in group.emailList track by $index">
             <th></th>
-            <td class="time">
-              {{checkTime(time, $index)}}
+            <td>
+              {{email}}
             </td>
           </tr>
-
-
-
         </tbody>
 
     </table>
