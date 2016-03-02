@@ -74,28 +74,32 @@ Group.find({}).remove(function() {
     lastName: 'Figueroa',
     email: 'sally@example.com', //'midgetllamas182@yahoo.com',
     phoneNumber: '313333333',
-    zipCode: '90017'
+    zipCode: '90017',
+    emailList: ['bob@bob.com', 'sue@sue.com', 'sam@same.com', 'tom@tom.com']
   },{
     organizationName: 'Homes for vets',
     firstName: 'Casper',
     lastName: 'P',
     email: 'cassie@example.com', //'cassie.purtlebaugh@gmail.com',
     phoneNumber: '7467447474',
-    zipCode: '90017'
+    zipCode: '90017',
+    emailList: ['bob@bob.com', 'sue@sue.com', 'sam@same.com', 'tom@tom.com']
   },{
     organizationName: 'Greg Rocks',
     firstName: 'Greg',
     lastName: 'Rock',
     email: 'greg@example.com',//'grock006@gmail.com',
     phoneNumber: '7467447474',
-    zipCode: '90017'
+    zipCode: '90017',
+    emailList: ['bob@bob.com', 'sue@sue.com', 'sam@same.com', 'tom@tom.com']
   },{
     organizationName: 'Feed The Homeless',
     firstName: 'Patty',
     lastName: 'Malone',
     email: 'pmalone@example.com',
     phoneNumber: '7467447474',
-    zipCode: '90000'
+    zipCode: '90000',
+    emailList: ['bob@bob.com', 'sue@sue.com', 'sam@same.com', 'tom@tom.com']
   },
   function() {
       console.log('finished populating groups');

@@ -10,10 +10,12 @@
 
   <div class="col-sm-6 col-xs-6">
     <ul class="list-unstyled">
-      <li ng-repeat="group in listGroups">
-        <h4>{{group.organizationName | capitalize }}, {{group.firstName | capitalize }} {{group.lastName | capitalize }}</h4>
-        <hr>
-      </li>
+        <li ng-repeat="group in listGroups">
+      <a ui-sref="group.show({id: group._id})">
+          <h4>{{group.organizationName | capitalize }}, {{group.firstName | capitalize }} {{group.lastName | capitalize }}</h4>
+      </a>
+          <hr>
+        </li>
     </ul>
   </div>
 

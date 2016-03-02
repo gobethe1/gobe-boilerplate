@@ -1,0 +1,99 @@
+<!-- <div class="row">
+  <div class="col-sm-6 col-md-6 col-xs-12">
+    <h3>{{group.organizationName}}</h3>
+    <br>
+  </div>
+  <div class="col-sm-6 col-md-6 col-xs-12">
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-md-6 col-xs-12">
+    <ul class="list-unstyled">
+      <li class="row">
+        <span class="col-sm-6 col-md-4 col-lg-4 text-right">Point Person Name: </span>
+        <span class="col-sm-6 col-md-4 col-lg-4 text-right">{{group.firstName}} {{group.lastName | capitalize }}</span>
+      </li>
+      <li class="row">
+        <span class="col-sm-6 col-md-4 col-lg-4 text-right">Point Person Phone:</span>
+        <span class="col-sm-6 col-md-4 col-lg-4 text-right">{{group.phoneNumber | tel }}</span>
+      </li>
+      <li class="row">
+        <span class="col-sm-6 col-md-4 col-lg-4 text-right">Point Person Email:</span>
+        <span class="col-sm-6 col-md-4 col-lg-4 text-right">{{group.email}}</span>
+      </li>
+      <li class="row">
+        <span class="col-sm-6 col-md-4 col-lg-4 text-right">Zip of Volunteer Area:</span>
+        <span class="col-sm-6 col-md-4 col-lg-4 text-right">{{group.zipCode}}</span>
+      </li>
+      <li>Friends: </li>
+      <span class="col-xs-11 col-xs-offset-1" ng-repeat="email in group.emailList track by $index">
+        <li>{{email}}</li>
+      </span>
+    </ul>
+  </div>
+
+</div> -->
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xs-12">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th class="col-sm-4">
+              <h3 class="no-margin">{{group.organizationName | capitalize}}</h3>
+          </th>
+          <th class="col-sm-4">
+
+          </th>
+          <th class="col-sm-1">
+              <a ui-sref="group.edit({id: group._id})">Edit</a>
+          </th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr>
+              <th>Point Person Name:</th>
+              <td>{{group.firstName | capitalize}} {{group.lastName | capitalize}}</td>
+          </tr>
+          <tr>
+              <th>Point Person Number:</th>
+              <td>{{group.phoneNumber | tel }}</td>
+          </tr>
+          <tr>
+              <th>Point Person Email:</th>
+              <td>{{group.email}}</td>
+          </tr>
+          <tr>
+              <th>Zip of volunteer group:</th>
+              <td>{{group.zipCode}}</td>
+          </tr>
+
+          <tr ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
+            <th ></th>
+            <td class="time">
+              {{checkTime(time, $index)}}
+            </td>
+          </tr>
+
+          <tr>
+              <th>Date 2:</th>
+              <td>{{event.availability.secondDate | date:"MM/dd/yyyy"}}</td>
+          </tr>
+
+          <tr ng-repeat="time in event.availability.secondDateTime track by $index" ng-if="time">
+            <th></th>
+            <td class="time">
+              {{checkTime(time, $index)}}
+            </td>
+          </tr>
+
+
+
+        </tbody>
+
+    </table>
+
+  </div>
+</div>

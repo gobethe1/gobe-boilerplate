@@ -33,6 +33,15 @@ angular.module('gobeApp')
          }
         }
       })
+      .state('group.show', {
+        url: '/:id/show',
+        templateUrl: 'app/group/group-show.html',
+        controller: 'GroupShowCtrl',
+        resolve:{
+        groupShow: function(Group, $stateParams){
+           return Group.get({id: $stateParams.id}).$promise;
+         }
+      })
       .state('group.confirmation', {
         url: '/confirmation/:confirm',
         templateUrl: 'app/group/group-confirmation.html',
