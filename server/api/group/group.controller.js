@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Group = require('./group.model');
+var groupEmailer = require('../group/group.emailer');
 
 // Get list of groups
 exports.index = function(req, res) {
@@ -42,6 +43,16 @@ exports.update = function(req, res) {
     });
   });
 };
+
+// send out matching event to groups and save event
+exports.send = function(req, res) {
+  Group.create(req.body, function(err, group) {
+    if(err) { return handleError(res, err); }
+    groupEmailer.matchZipCode(group);
+    return res.status(201).json(group);
+  });
+};
+
 
 // Deletes a group from the DB.
 exports.destroy = function(req, res) {

@@ -26,7 +26,7 @@ angular.module('gobeApp')
 
       $scope.submitted = true;
          if(form.$valid){
-             Group.save($scope.newGroup,
+             Group.send($scope.newGroup,
                function(data){
                   $state.go('group.confirmation',
                     {confirm: [$scope.newGroup.organizationName, $scope.newGroup.firstName,
