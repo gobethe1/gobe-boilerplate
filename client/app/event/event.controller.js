@@ -19,7 +19,6 @@ angular.module('gobeApp')
       }
     }
 
-
     $scope.addEvent = function addEvent(form) {
     	console.log(form)
       $scope.submitted = true;

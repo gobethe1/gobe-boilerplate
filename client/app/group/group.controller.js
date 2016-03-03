@@ -20,7 +20,6 @@ angular.module('gobeApp')
       $scope.email = null;
     };
 
-
     $scope.addGroup = function addGroup(form) {
       console.log(form)
       console.log("newGroup")
