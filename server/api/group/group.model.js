@@ -12,7 +12,8 @@ var GroupSchema = new Schema({
   lastName: {type: String, required: true},
   email: {type: String, required: true},
   phoneNumber: {type: String, required: true},
-  zipCode: {type: String, required: true}
+  zipCode: {type: String, required: true},
+  emailList: Array
 });
 
 /*

@@ -6,6 +6,13 @@ angular.module('gobeApp')
     $scope.newGroup = {};
     $scope.newGroup.emailList = [];
     $scope.emailList = $scope.newGroup.emailList;
+    $state.hover = true;
+
+    $scope.cancelGroup = function cancelGroup(){
+      if(confirm("Are you sure you want to cancel this new group?")){
+        $state.go('group.list');
+      }
+    }
 
     $scope.addEmail = function addEmail(){
       $scope.newGroup.emailList.push($scope.email);
@@ -13,7 +20,6 @@ angular.module('gobeApp')
       console.log($scope.newGroup.emailList);
       $scope.email = null;
     };
-
 
     $scope.addGroup = function addGroup(form) {
       console.log(form)
@@ -42,6 +48,20 @@ angular.module('gobeApp')
              document.body.scrollTop = document.documentElement.scrollTop = 0;
          }
     };
+
+    $scope.deleteGroup = function deleteGroup(id){
+      if(confirm('Are you sure you want to delete this client?')){
+        angular.forEach($scope.listGroups, function(e, i) {
+          console.log('e')
+          console.log(e)
+           if (e._id === id) {
+             $scope.listGroups.splice(i, 1);
+           }
+         });
+
+        Group.remove({id: id });
+      };
+    }
   })
 
 
