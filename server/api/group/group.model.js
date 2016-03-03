@@ -15,14 +15,12 @@ var GroupSchema = new Schema({
   zipCode: {type: String, required: true}
 });
 
-/*
+
 GroupSchema
  .pre('save', function(next) {
  this.updatedAt = new Date();
- //next()
- emailer.matchZipCode(this);
  next();
 });
-*/
+
 
 module.exports = mongoose.model('Group', GroupSchema);

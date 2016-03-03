@@ -48,7 +48,7 @@ exports.update = function(req, res) {
 exports.send = function(req, res) {
   Group.create(req.body, function(err, group) {
     if(err) { return handleError(res, err); }
-    groupEmailer.matchZipCode(group);
+    groupEmailer.matchZipCode(group, req.headers.host);
     return res.status(201).json(group);
   });
 };

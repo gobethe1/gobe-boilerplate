@@ -50,15 +50,12 @@ exports.update = function(req, res) {
 
 // send out matching event to groups and save event
 exports.send = function(req, res) {
-  req.body.host = req.headers.host
   Event.create(req.body, function(err, event) {
     if(err) { return handleError(res, err); }
-    eventEmailer.matchZipCode(event);
+    eventEmailer.matchZipCode(event, req.headers.host);
     return res.status(201).json(event);
   });
 };
-
-
 
 // Deletes a event from the DB.
 exports.destroy = function(req, res) {

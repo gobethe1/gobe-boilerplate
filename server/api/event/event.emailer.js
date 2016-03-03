@@ -8,8 +8,8 @@ var nodemailer = require('nodemailer');
 var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 
-function matchZipCode(event){
-
+function matchZipCode(event, host){
+  console.log(host)
   async.waterfall([
 	  function(done) {
 	    Group.find({ zipCode: event.zipCode }, function(err, group) {
@@ -26,7 +26,8 @@ function matchZipCode(event){
 
 	    	var index = _.indexOf(event.sentEmails, value.email)
 
-	    	var link = 'http://' + event.host + '/event/' + event._id + '/confirm/' + value._id;
+	    	var link = 'http://' + host + '/event/' + event._id + '/confirm/' + value._id;
+	    	var capFirstName = _.capitalize(value.firstName);
 
 		    var transporter = nodemailer.createTransport({
 		      host: GodaddySMTP,
@@ -42,7 +43,7 @@ function matchZipCode(event){
 		      from: 'hello@gobethe1.com',
 		      subject: 'Are You Available?',
 		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
-		    '<td align="center"><h5 style="font-size:16px;font-family:sans-serif;">Hello ' + value.firstName + ', we matched you with a move-in party of a homeless vet in your neighborhood!</h5>' +
+		    '<td align="center"><h5 style="font-size:16px;font-family:sans-serif;">Hello ' + capFirstName + ', we matched you with a move-in party of a homeless vet in your neighborhood!</h5>' +
 		    '<h5 style="font-size:16px;font-family:sans-serif;">Check out the dates and times and let us know if you are available:</h5>' +
 		    '<a href=' + link +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a></td>' +
 		    '</tr></table>'
