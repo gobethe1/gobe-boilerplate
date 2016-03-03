@@ -31,13 +31,12 @@ exports.create = function(req, res) {
 
 // Updates an existing group in the DB.
 exports.update = function(req, res) {
+  console.log(req)
   if(req.body._id) { delete req.body._id; }
   Group.findById(req.params.id, function (err, group) {
     if (err) { return handleError(res, err); }
     if(!group) { return res.status(404).send('Not Found'); }
     var updated = _.merge(group, req.body);
-    updated.markModified('emailList');
-    updated.markModified('emailList');
     updated.markModified('emailList');
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
