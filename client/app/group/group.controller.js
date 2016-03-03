@@ -7,6 +7,12 @@ angular.module('gobeApp')
     $scope.newGroup.emailList = [];
     $scope.emailList = $scope.newGroup.emailList;
 
+    $scope.cancelGroup = function cancelGroup(){
+      if(confirm("Are you sure you want to cancel this new group?")){
+        $state.go('group.list');
+      }
+    }
+
     $scope.addEmail = function addEmail(){
       $scope.newGroup.emailList.push($scope.email);
       console.log('emailList');

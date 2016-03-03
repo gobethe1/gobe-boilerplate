@@ -98,6 +98,7 @@
         <p class="text-danger">{{addGroupError}}</p>
       </div>
       <div class="text-right">
+        <a ng-click="cancelGroup()">Cancel</a> &nbsp;&nbsp;
         <button class="btn btn-lg" type="submit" ng-submit="addGroup()"
         ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}"
         >

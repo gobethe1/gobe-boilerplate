@@ -13,6 +13,12 @@ angular.module('gobeApp')
     $scope.newEvent.availability.secondDateTime = [false, false, false];
     $scope.newEvent.availability.thirdDateTime = [false, false, false];
 
+    $scope.cancelClient = function cancelClient(){
+      if(confirm("Are you sure you want to cancel this new client?")){
+        $state.go('event.list');
+      }
+    }
+
 
     $scope.addEvent = function addEvent(form) {
     	console.log(form)
