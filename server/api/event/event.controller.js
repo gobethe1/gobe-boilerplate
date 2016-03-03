@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Event = require('./event.model');
+var eventEmailer = require('../event/event.emailer');
 
 // Get list of events
 exports.index = function(req, res) {
@@ -46,6 +47,18 @@ exports.update = function(req, res) {
     });
   });
 };
+
+// send out matching event to groups and save event
+exports.send = function(req, res) {
+  req.body.host = req.headers.host
+  Event.create(req.body, function(err, event) {
+    if(err) { return handleError(res, err); }
+    eventEmailer.matchZipCode(event);
+    return res.status(201).json(event);
+  });
+};
+
+
 
 // Deletes a event from the DB.
 exports.destroy = function(req, res) {

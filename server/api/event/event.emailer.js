@@ -9,7 +9,6 @@ var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 
 function matchZipCode(event){
-  //console.log("the group is:", Group);
 
   async.waterfall([
 	  function(done) {
@@ -66,7 +65,6 @@ function matchZipCode(event){
 	  },
 	], function(err) {
 	  if (err) return (err);
-	  console.log("last error")
 	});
 
 }

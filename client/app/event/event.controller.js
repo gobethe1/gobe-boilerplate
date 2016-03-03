@@ -18,8 +18,9 @@ angular.module('gobeApp')
     	console.log(form)
       $scope.submitted = true;
          if(form.$valid){
-             Event.save($scope.newEvent,
+             Event.send($scope.newEvent,
                function(data){
+                  console.log(data)
                   $state.go('event.list')
                  }),
                  function(err){
