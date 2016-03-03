@@ -57,7 +57,12 @@ angular.module('gobeApp')
         url: '/confirmation/:confirm',
         templateUrl: 'app/group/group-confirmation.html',
         controller: 'GroupConfirmCtrl',
-        params: {confirm: {array: true, squash: true}},
+        params: confirm,
+        resolve:{
+        groupShow: function(Group, $stateParams){
+           return Group.get({id: $stateParams.confirm}).$promise;
+         }
+        }
       });
 
       $urlRouterProvider.otherwise('/');
