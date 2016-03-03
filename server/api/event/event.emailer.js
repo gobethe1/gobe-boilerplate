@@ -53,7 +53,7 @@ function matchZipCode(event){
 			if(index === -1){
 			    transporter.sendMail(mailOptions, function(err) {
 			    	console.log("inside sendMail error")
-			    	console.log(mailOptions.to)
+			    	console.log(err)
 			      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 			    });
 			}
@@ -64,10 +64,9 @@ function matchZipCode(event){
 
 
 	  },
-	], function(err, done) {
+	], function(err) {
 	  if (err) return (err);
 	  console.log("last error")
-	  console.log(done)
 	});
 
 }

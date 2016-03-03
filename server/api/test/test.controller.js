@@ -6,7 +6,9 @@ var Group = require('../group/group.model');
 var groupEmailer = require('../group/group.emailer');
 var eventEmailer = require('../event/event.emailer');
 
-// Get list of things
+// new group is created
+//passing in all the groups
+//still sending email to matching groups
 exports.groups = function(req, res) {
 	Group.find({}, function (err, groups) {
     	_.forEach(groups, function(group) {

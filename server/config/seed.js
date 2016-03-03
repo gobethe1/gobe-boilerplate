@@ -53,7 +53,7 @@ q.fcall(function() {
           firstName: 'thomas',
           lastName: 'barners',
           address: '1000 yo yo yo',
-          zipCode: '90015',
+          zipCode: '90012',
           gender: 'male',
           host: "localhost:9000",
           availability: {
@@ -106,21 +106,21 @@ q.fcall(function() {
           lastName: 'Figueroa',
           email: 'sally@example.com', //'midgetllamas182@yahoo.com',
           phoneNumber: '313333333',
-          zipCode: '90017'
+          zipCode: '90000'
         },{
           organizationName: 'Homes for vets',
           firstName: 'Casper',
           lastName: 'P',
           email: 'grock006@example.com', //'cassie.purtlebaugh@gmail.com',
           phoneNumber: '7467447474',
-          zipCode: '90017'
+          zipCode: '90000'
         },{
           organizationName: 'Greg Rocks',
           firstName: 'Greg',
           lastName: 'Rock',
           email: 'gregorysaul7@example.com',
           phoneNumber: '7467447474',
-          zipCode: '90017'
+          zipCode: '90000'
         },{
           organizationName: 'Feed The Homeless',
           firstName: 'Patty',

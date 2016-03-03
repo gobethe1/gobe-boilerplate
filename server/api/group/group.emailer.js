@@ -9,26 +9,25 @@ var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 
 function matchZipCode(group){
-	//console.log("the event is:", Event);
 
 	 async.waterfall([
 	   function(done) {
 	     Event.find({ zipCode: group.zipCode }, function(err, event) {
-	       if (!group) {
+	       if (!event) {
 	       	 console.log(err)
-	         return res.status(404).send('There are no zipcode matches.');
+	       	 console.log("no zipcode matches")
+	         // return res.status(404).send('There are no zipcode matches.');
 	       }
-	       console.log(group)
-	        done(err, group);
+	        done(err, event);
 	     });
 	   },
-	   function(group, done) {
+	   function(event, done) {
 
-	     group.map(function(value){
+	     event.map(function(event){
 
 	     	// var index = _.indexOf(event.sentEmails, value.email)
 
-	     	var link = 'http://' + event.host + '/event/' + event._id + '/confirm/' + value._id;
+	     	var link = 'http://' + event.host + '/event/' + event._id + '/confirm/' + group._id;
 
 		     var transporter = nodemailer.createTransport({
 		       host: GodaddySMTP,
@@ -40,11 +39,11 @@ function matchZipCode(group){
 		     });
 
 		     var mailOptions = {
-		       to: value.email,
+		       to: group.email,
 		       from: 'hello@gobethe1.com',
 		       subject: 'Are You Available?',
 		       html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
-		     '<td align="center"><h5 style="font-size:16px;font-family:sans-serif;">Hello ' + value.firstName + ', we matched you with a move-in party of a homeless vet in your neighborhood!</h5>' +
+		     '<td align="center"><h5 style="font-size:16px;font-family:sans-serif;">Hello ' + group.firstName + ', we matched you with a move-in party of a homeless vet in your neighborhood!</h5>' +
 		     '<h5 style="font-size:16px;font-family:sans-serif;">Check out the dates and times and let us know if you are available:</h5>' +
 		     '<a href=' + link +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a></td>' +
 		     '</tr></table>'
@@ -55,6 +54,7 @@ function matchZipCode(group){
 		 	    transporter.sendMail(mailOptions, function(err) {
 		 	    	console.log("inside sendMail error")
 		 	    	console.log(mailOptions.to)
+		 	    	console.log(event.firstName)
 		 	      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 		 	    });
 		 	// }
