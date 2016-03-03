@@ -9,13 +9,24 @@
   </div>
 
   <div class="col-sm-6 col-xs-6">
-    <ul class="list-unstyled">
-        <li ng-repeat="group in listGroups">
-      <a ui-sref="group.show({id: group._id})">
-          <h4>{{group.organizationName | capitalize }}, {{group.firstName | capitalize }} {{group.lastName | capitalize }}</h4>
-      </a>
-          <hr>
-        </li>
+    <ul class="list-unstyled event-list">
+      <li ng-repeat="group in listGroups"
+          ng-mouseenter="hover = false"
+          ng-mouseleave="hover = true">
+        <div class="row">
+          <span class="col-sm-11 col-xs-11">
+            <a ui-sref="group.show({id: group._id})">
+              <h4>{{group.organizationName | capitalize }}, {{group.firstName | capitalize }} {{group.lastName | capitalize }}</h4>
+            </a>
+          </span>
+          <span class="col-sm-1 col-xs-1">
+            <a ng-click="deleteGroup(group._id)" ng-class="{'hidden-sm': hover, 'hidden-md': hover, 'hidden-lg': hover}">
+              <i class="fa fa-times"></i>
+            </a>
+          </span>
+        </div>
+        <hr>
+      </li>
     </ul>
   </div>
 
