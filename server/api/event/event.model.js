@@ -2,8 +2,6 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    emailer = require('./event.zipcodeMatch.emailer'),
-    //Group = require('../group/group.model'),
     _ = require('lodash');
 
 var EventSchema = new Schema({
@@ -59,6 +57,5 @@ EventSchema
 //       next()
 //     });
 //  });
-
 
 module.exports = mongoose.model('Event', EventSchema);

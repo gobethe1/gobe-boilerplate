@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    emailer = require('./groupemailer');
+    emailer = require('./group.emailer');
 
 var GroupSchema = new Schema({
   createdAt: {type: Date, default: Date.now()},
