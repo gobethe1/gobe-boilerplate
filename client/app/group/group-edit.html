@@ -87,17 +87,19 @@
       <!-- emails in emailList -->
         <div class="row">
           <div class="col-sm-8">
-            <ul class="list-unstyled" ng-repeat="email in newGroup.emailList track by $index">
-              <li>
+            <ul class="list-unstyled event-list">
+              <li ng-repeat="email in newGroup.emailList track by $index"
+               ng-mouseenter="hover = false"
+               ng-mouseleave="hover = true">
                 <div class="row">
                   <span class="col-xs-11">
                    {{email}}
                   </span>
                   <span class="col-sm-1 col-xs-1">
-                    <a ng-click="deleteEmail(email)">
+                    <a ng-click="deleteEmail(email)"
+                       ng-class="{'hidden-sm': hover, 'hidden-md': hover, 'hidden-lg': hover}">
                       <i class="fa fa-times"></i>
                     </a>
-                    <!-- ng-class="{'hidden-sm': hover, 'hidden-md': hover, 'hidden-lg': hover}" -->
                   </span>
                 </div>
               </li>
