@@ -11,6 +11,16 @@
 
 var _ = require('lodash');
 var Thing = require('./thing.model');
+var Event = require('../event/event.model');
+
+// Get list of things
+exports.test = function(req, res) {
+  Event.find(function (err, events) {
+    //if(err) { return handleError(res, err); }
+    //return res.status(200).json(things);
+    res.status(200);
+  });
+};
 
 // Get list of things
 exports.index = function(req, res) {

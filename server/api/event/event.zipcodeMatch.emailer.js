@@ -3,15 +3,17 @@
 var mongoose = require('mongoose');
 var async = require('async');
 var _     = require('lodash');
-var Event = require('./event.model');
+//var Event = require('./event.model');
 var Group = require('../group/group.model');
 var nodemailer = require('nodemailer');
 var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 
+//console.log("the event is:", Event);
+//console.log("the group is:", Group);
 
 function matchZipCode(event){
-
+	//console.log(Group);
 	async.waterfall([
 	  function(done) {
 	    Group.find({ zipCode: event.zipCode }, function(err, group) {
@@ -54,7 +56,7 @@ function matchZipCode(event){
 			if(index === -1){
 			    transporter.sendMail(mailOptions, function(err) {
 			    	console.log("inside sendMail error")
-			    	console.log(err)
+			    	console.log(mailOptions.to)
 			      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 			    });
 			}
@@ -73,4 +75,4 @@ function matchZipCode(event){
 
 }
 
-exports.matchZipCode = matchZipCode;
+module.exports.matchZipCode = matchZipCode;

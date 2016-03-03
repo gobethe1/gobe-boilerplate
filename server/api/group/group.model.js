@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    emailer = require('./groupemailer');
 
 var GroupSchema = new Schema({
   createdAt: {type: Date, default: Date.now()},
@@ -14,11 +15,14 @@ var GroupSchema = new Schema({
   zipCode: {type: String, required: true}
 });
 
+/*
 GroupSchema
  .pre('save', function(next) {
  this.updatedAt = new Date();
+ //next()
+ emailer.matchZipCode(this);
  next();
 });
-
+*/
 
 module.exports = mongoose.model('Group', GroupSchema);

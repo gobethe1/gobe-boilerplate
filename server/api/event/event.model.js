@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     emailer = require('./event.zipcodeMatch.emailer'),
-    Group = require('../group/group.model'),
+    //Group = require('../group/group.model'),
     _ = require('lodash');
 
 var EventSchema = new Schema({
@@ -33,14 +33,15 @@ var EventSchema = new Schema({
   sentEmails: Array
 });
 
-
+/*
 EventSchema
  .pre('save', function(next) {
  this.updatedAt = new Date();
- next();
+ //next();
  emailer.matchZipCode(this);
  next()
 })
+*/
 
 // EventSchema
 //   .pre('save', function(next) {
