@@ -2,8 +2,6 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    emailer = require('./event.zipcodeMatch.emailer'),
-    Group = require('../group/group.model'),
     _ = require('lodash');
 
 var EventSchema = new Schema({
@@ -37,27 +35,7 @@ var EventSchema = new Schema({
 EventSchema
  .pre('save', function(next) {
  this.updatedAt = new Date();
- next();
- emailer.matchZipCode(this);
  next()
 })
-
-// EventSchema
-//   .pre('save', function(next) {
-//     var event = this;
-//     var emailSent = [];
-//     Group.find({ zipCode: event.zipCode }, function(err, group) {
-//       if (!group) {}
-//       group.map(function(group){
-//         console.log('post save email')
-//         console.log(group.email)
-//         emailSent.push(group.email)
-//         console.log(emailSent)
-//         event.sentEmails = emailSent
-//       })
-//       next()
-//     });
-//  });
-
 
 module.exports = mongoose.model('Event', EventSchema);

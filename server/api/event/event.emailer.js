@@ -3,16 +3,14 @@
 var mongoose = require('mongoose');
 var async = require('async');
 var _     = require('lodash');
-var Event = require('./event.model');
 var Group = require('../group/group.model');
 var nodemailer = require('nodemailer');
 var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 
-
-function matchZipCode(event){
-
-	async.waterfall([
+function matchZipCode(event, host){
+  console.log(host)
+  async.waterfall([
 	  function(done) {
 	    Group.find({ zipCode: event.zipCode }, function(err, group) {
 	      if (!group) {
@@ -27,13 +25,10 @@ function matchZipCode(event){
 	    group.map(function(value){
 
 	    	var index = _.indexOf(event.sentEmails, value.email)
-	    	console.log("index")
-	    	console.log(event.sentEmails)
-	    	console.log(value.email)
-	    	console.log(index)
-	    	
-	    	var link = 'http://' + event.host + '/event/' + event._id + '/confirm/' + value._id;
-		    
+
+	    	var link = 'http://' + host + '/event/' + event._id + '/confirm/' + value._id;
+	    	var capFirstName = _.capitalize(value.firstName);
+
 		    var transporter = nodemailer.createTransport({
 		      host: GodaddySMTP,
 		      port: 25,
@@ -42,28 +37,21 @@ function matchZipCode(event){
 		        pass: GodaddyPassword
 		      }
 		    });
-		    
+
 		    var mailOptions = {
-		      to: value.email,  //'cassie.purtlebaugh@gmail.com',
+		      to: value.email,
 		      from: 'hello@gobethe1.com',
 		      subject: 'Are You Available?',
-		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +  
-		    '<td align="center"><h5 style="font-size:16px;font-family:sans-serif;">Hello ' + value.firstName + ', we matched you with a move-in party of a homeless vet in your neighborhood!</h5>' +
+		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
+		    '<td align="center"><h5 style="font-size:16px;font-family:sans-serif;">Hello ' + capFirstName + ', we matched you with a move-in party of a homeless vet in your neighborhood!</h5>' +
 		    '<h5 style="font-size:16px;font-family:sans-serif;">Check out the dates and times and let us know if you are available:</h5>' +
 		    '<a href=' + link +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a></td>' +
 		    '</tr></table>'
-		       
+
 		    };
 
-	
-
-		    // '<h5>Hello ' + value.firstName + ', we matched you with a move-in party of a homeless vet in your neighborhood!</h5>\n\n' +
-		    // 		        '<h5>Check out the dates and times and let us know if you are available:</h5>\n\n' +
-		    // 		      	'<a href=' + link +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a><br>'  
-		
 			if(index === -1){
 			    transporter.sendMail(mailOptions, function(err) {
-			    	// console.log(mailOptions)
 			    	console.log("inside sendMail error")
 			    	console.log(err)
 			      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
@@ -74,14 +62,12 @@ function matchZipCode(event){
 
 	    done('done');
 
-	  
+
 	  },
 	], function(err) {
-	  // if (err) return next(err);
-	  console.log("last error")
-	  console.log(err)
+	  if (err) return (err);
 	});
 
 }
 
-exports.matchZipCode = matchZipCode;
+module.exports.matchZipCode = matchZipCode;

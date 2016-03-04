@@ -6,6 +6,12 @@ angular.module('gobeApp')
           {
              update: {
                  method: 'PUT'
-             }
+             },
+             send:{
+             	method: 'POST',
+             	params: {
+             	  id:'send'
+             	}
+             },
   });
 });

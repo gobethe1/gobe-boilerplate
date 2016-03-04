@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    emailer = require('./group.emailer');
 
 var GroupSchema = new Schema({
   createdAt: {type: Date, default: Date.now()},
@@ -14,6 +15,7 @@ var GroupSchema = new Schema({
   zipCode: {type: String, required: true},
   emailList: Array
 });
+
 
 GroupSchema
  .pre('save', function(next) {
