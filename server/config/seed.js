@@ -21,7 +21,6 @@ q.fcall(function() {
           address: '1000 hello way',
           zipCode: '90017',
           gender: 'male',
-          host: "localhost:9000",
           availability: {
             moveInDate: new Date("2016-02-27T00:00:00-0800"),
             firstDate: new Date("2016-02-27T00:00:00-0800"),
@@ -38,7 +37,6 @@ q.fcall(function() {
           address: '1000 hollyday ',
           zipCode: '90028',
           gender: 'female',
-          host: "localhost:9000",
           availability: {
             moveInDate: new Date("2016-02-25T00:00:00-0800"),
             firstDate: new Date("2016-02-27T00:00:00-0800"),
@@ -55,7 +53,6 @@ q.fcall(function() {
           address: '1000 yo yo yo',
           zipCode: '90012',
           gender: 'male',
-          host: "localhost:9000",
           availability: {
             moveInDate: new Date("2016-02-27T00:00:00-0800"),
             firstDate: new Date("2016-02-27T00:00:00-0800"),

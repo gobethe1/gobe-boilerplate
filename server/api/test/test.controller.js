@@ -12,7 +12,7 @@ var eventEmailer = require('../event/event.emailer');
 exports.groups = function(req, res) {
 	Group.find({}, function (err, groups) {
     	_.forEach(groups, function(group) {
-    		groupEmailer.matchZipCode(group);
+    		groupEmailer.matchZipCode(group, "localhost:9000");
     	})
     });
 	res.status(200).send('Groups Done');
@@ -21,7 +21,7 @@ exports.groups = function(req, res) {
 exports.events = function(req, res) {
   Event.find({}, function (err, events) {
     _.forEach(events, function(event) {
-      eventEmailer.matchZipCode(event, req.headers.host);
+      eventEmailer.matchZipCode(event, "localhost:9000");
     })
   });
   res.status(200).send('bingo');

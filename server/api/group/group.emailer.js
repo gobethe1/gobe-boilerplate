@@ -9,10 +9,10 @@ var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 
 function matchZipCode(group, host){
-
+		
 	 async.waterfall([
 	   function(done) {
-	     Event.find({ zipCode: group.zipCode }, function(err, event) {
+	     Event.find({ zipCode: group.zipCode, confirmGroup:null }, function(err, event) {
 	       if (!event) {
 	       	 console.log(err)
 	       	 console.log("no zipcode matches")
