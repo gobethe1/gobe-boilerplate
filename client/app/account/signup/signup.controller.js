@@ -4,6 +4,20 @@ angular.module('gobeApp')
   .controller('SignupCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};
+    $scope.tab = 1;
+
+    console.log($scope.tab)
+
+
+    $scope.setTab = function (tabId) {
+        $scope.tab = tabId;
+      console.log($scope.tab)
+    };
+
+    $scope.isSet = function (tabId) {
+
+        return $scope.tab === tabId;
+    };
 
     $scope.register = function(form) {
       $scope.submitted = true;
