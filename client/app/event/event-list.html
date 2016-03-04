@@ -4,14 +4,15 @@
   </div>
   <div class="col-sm-6 col-xs-6">
     <h2>
-        <button ui-sref="event.new" class="btn btn-secondary btn-lg">+ Add Client</button>
+        <button ui-sref="event.new" class="btn btn-secondary btn-lg">Add Client</button>
     </h2>
   </div>
 
   <div class="col-sm-6 col-xs-12">
     <ul class="list-unstyled event-list">
-      <li ng-repeat="event in listEvents"  ng-mouseenter="hover = false"
-               ng-mouseleave="hover = true">
+      <li ng-repeat="event in listEvents"
+          ng-mouseenter="hover = false"
+          ng-mouseleave="hover = true">
         <div class="row">
           <span class="col-sm-11 col-xs-10">
             <a ui-sref="event.show({id: event._id})">

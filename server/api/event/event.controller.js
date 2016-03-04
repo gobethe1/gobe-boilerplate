@@ -38,9 +38,7 @@ exports.update = function(req, res) {
     if (err) { return handleError(res, err); }
     if(!event) { return res.status(404).send('Not Found'); }
     var updated = _.merge(event, req.body);
-    updated.markModified('availability.firstDateTime');
-    updated.markModified('availability.secondDateTime');
-    updated.markModified('availability.thirdDateTime');
+    updated.availability = req.body.availability;
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(event);

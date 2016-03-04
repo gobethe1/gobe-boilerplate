@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-sm-6 col-xs-12">
+    <!-- back button -->
+    <a ui-sref="group.list">
+      <i class="fa fa-arrow-left fa-2x"></i>
+    </a>
+    <!-- end back button -->
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th class="col-sm-4">
+              <h3 class="no-margin">{{group.organizationName | capitalize}}</h3>
+          </th>
+          <th class="col-sm-4">
+
+          </th>
+          <th class="col-sm-1">
+              <a ui-sref="group.edit({id: group._id})">Edit</a>
+          </th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr>
+              <th>Point Person Name:</th>
+              <td>{{group.firstName | capitalize}} {{group.lastName | capitalize}}</td>
+          </tr>
+          <tr>
+              <th>Point Person Number:</th>
+              <td>{{group.phoneNumber | tel }}</td>
+          </tr>
+          <tr>
+              <th>Point Person Email:</th>
+              <td>{{group.email}}</td>
+          </tr>
+          <tr>
+              <th>Zip of volunteer group:</th>
+              <td>{{group.zipCode}}</td>
+          </tr>
+
+          <tr>
+            <th>Friends:</th>
+          </tr>
+
+          <tr ng-repeat="email in group.emailList track by $index">
+            <th></th>
+            <td>
+              {{email}}
+            </td>
+          </tr>
+        </tbody>
+
+    </table>
+
+  </div>
+</div>
+

@@ -1,7 +1,7 @@
-<form class="form new-group" name="form" ng-submit="addGroup(form)" novalidate>
+<form class="form new-group" name="form" ng-submit="updateGroup(form)" novalidate>
   <div class="row">
     <div class="col-md-6 col-md-offset-3 col-xs-12">
-      <h3>New Group</h3>
+      <h3>Update Group</h3>
 
         <div class="form-group" ng-class="{ 'has-success': form.organizationName.$valid && submitted,
                                           'has-error': form.organizationName.$invalid && submitted }">
@@ -69,15 +69,15 @@
         <label>Invite Friends</label>
         <div class="row">
           <div class="col-sm-6 form-group">
-            <input type="text" ng-model="email" name="addEmail" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
-            <p class="text-danger" ng-show="form.addEmail.$error.pattern">
+            <input type="text" ng-model="email" name="updateEmail" class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+            <p class="text-danger" ng-show="form.updateEmail.$error.pattern">
               Please enter a valid email.
             </p>
           </div>
 
 
           <div class="col-sm-4">
-            <button type="button" class="btn btn-primary" ng-click="addEmail()">
+            <button type="button" class="btn btn-primary" ng-click="updateEmail()">
             Add Email
             </button>
           </div>
@@ -87,8 +87,22 @@
       <!-- emails in emailList -->
         <div class="row">
           <div class="col-sm-8">
-            <ul class="list-unstyled" ng-repeat="email in emailList track by $index">
-              <li>{{email}}</li>
+            <ul class="list-unstyled">
+              <li ng-repeat="email in newGroup.emailList track by $index"
+               ng-mouseenter="hover = false"
+               ng-mouseleave="hover = true">
+                <div class="row">
+                  <span class="col-xs-11">
+                   <h5>{{email}}</h5>
+                  </span>
+                  <span class="col-sm-1 col-xs-1">
+                    <a ng-click="deleteEmail(email)"
+                       ng-class="{'hidden-sm': hover, 'hidden-md': hover, 'hidden-lg': hover}">
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </span>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -98,8 +112,7 @@
         <p class="text-danger">{{addGroupError}}</p>
       </div>
       <div class="text-right">
-        <a ng-click="cancelGroup()">Cancel</a> &nbsp;&nbsp;
-        <button class="btn btn-lg" type="submit" ng-submit="addGroup()"
+        <button class="btn btn-lg" type="submit" ng-submit="updateGroup()"
         ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}"
         >
           Finish
