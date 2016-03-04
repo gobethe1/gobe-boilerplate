@@ -62,11 +62,15 @@ angular.module('gobeApp')
   })
 
 
-  .controller('GroupConfirmCtrl', function ($scope, $state, $stateParams, groupModel, groupShow) {
+  .controller('GroupConfirmCtrl', function ($scope, $state, $stateParams, groupModel, groupShow, $location) {
     console.log("GroupConfirmCtrl")
     console.log(groupShow);
 
     $scope.group = groupShow;
+
+    $scope.confirm = $location.path().indexOf('/group/confirmation') > -1 ? true : false;
+    console.log($scope.confirm)
+    console.log($stateParams)
      //  console.log($stateParams.confirm)
      // $scope.confirm = $stateParams.confirm;
      // Group.get({id: $stateParams.confirm[0])

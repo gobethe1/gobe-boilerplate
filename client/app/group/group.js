@@ -55,7 +55,7 @@ angular.module('gobeApp')
       })
       .state('group.confirmation', {
         url: '/confirmation/:confirm',
-        templateUrl: 'app/group/group-confirmation.html',
+        templateUrl: 'app/group/group-show.html',
         controller: 'GroupConfirmCtrl',
         params: confirm,
         resolve:{
