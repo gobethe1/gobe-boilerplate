@@ -6,7 +6,7 @@ angular.module('gobeApp')
     $scope.newGroup = {};
     $scope.newGroup.emailList = [];
     $scope.emailList = $scope.newGroup.emailList;
-    $state.hover = true;
+    $scope.hover = true;
 
     $scope.cancelGroup = function cancelGroup(){
       if(confirm("Are you sure you want to cancel this new group?")){
