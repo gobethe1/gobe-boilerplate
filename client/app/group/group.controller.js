@@ -35,10 +35,7 @@ angular.module('gobeApp')
              Group.save($scope.newGroup,
                function(data){
                   $state.go('group.confirmation',
-                    {confirm: [$scope.newGroup.organizationName, $scope.newGroup.firstName,
-                               $scope.newGroup.lastName, $scope.newGroup.phoneNumber,
-                               $scope.newGroup.email, $scope.newGroup.zipCode,
-                               $scope.newGroup.emailList]})
+                    {confirm: data._id})
                  }),
                  function(err){
                   $scope.addGroupError = "Looks like something went wrong! Please try again"
@@ -65,11 +62,19 @@ angular.module('gobeApp')
   })
 
 
-  .controller('GroupConfirmCtrl', function ($scope, $state, $stateParams, groupModel) {
+  .controller('GroupConfirmCtrl', function ($scope, $state, $stateParams, groupModel, groupShow, $location) {
     console.log("GroupConfirmCtrl")
-      console.log($stateParams.confirm)
-     $scope.confirmValues = $stateParams.confirm;
+    console.log(groupShow);
 
-     console.log($scope.confirmValues[6].split(","))
-     $scope.confirmEmails = $scope.confirmValues[6].split(",");
+    $scope.group = groupShow;
+
+    $scope.confirm = $location.path().indexOf('/group/confirmation') > -1 ? true : false;
+    console.log($scope.confirm)
+    console.log($stateParams)
+     //  console.log($stateParams.confirm)
+     // $scope.confirm = $stateParams.confirm;
+     // Group.get({id: $stateParams.confirm[0])
+
+     // console.log($scope.confirmValues[6].split(","))
+     // $scope.confirmEmails = $scope.confirmValues[6].split(",");
   });

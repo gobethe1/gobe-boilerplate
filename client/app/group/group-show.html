@@ -1,7 +1,22 @@
+<div ng-if="confirm">
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-xs-12">
+      <h2>Thank You!</h2>
+      <br>
+      <h4>Thank you for joining the movement and making a difference for veterans and their communities!</h4>
+    </div>
+    <div class="col-sm-6 col-md-6 col-xs-12">
+     <!--  <h2>
+          <button ui-sref="group.new" class="btn btn-secondary btn-lg">+ Add Group</button>
+      </h2> -->
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-sm-6 col-xs-12">
     <!-- back button -->
-    <a ui-sref="group.list">
+    <a ui-sref="group.list" ng-if="!confirm" >
       <i class="fa fa-arrow-left fa-2x"></i>
     </a>
     <!-- end back button -->
@@ -15,7 +30,7 @@
 
           </th>
           <th class="col-sm-1">
-              <a ui-sref="group.edit({id: group._id})">Edit</a>
+              <a ng-if="!confirm" ui-sref="group.edit({id: group._id})">Edit</a>
           </th>
         </tr>
       </thead>
