@@ -25,7 +25,7 @@ var EventSchema = new Schema({
   registryUrl: String,
   notes: String,
   host: String,
-  confirmGroup: {type: mongoose.Schema.Types.ObjectId, ref: 'Group'},
+  confirmGroup: {type: mongoose.Schema.Types.ObjectId, ref: 'Group', default:null},
   confirmDate: Date,
   confirmTime: String,
   sentEmails: Array

@@ -50,6 +50,7 @@ exports.update = function(req, res) {
 exports.send = function(req, res) {
   Event.create(req.body, function(err, event) {
     if(err) { return handleError(res, err); }
+    console.log(event.confirmGroup)
     eventEmailer.matchZipCode(event, req.headers.host);
     return res.status(201).json(event);
   });
