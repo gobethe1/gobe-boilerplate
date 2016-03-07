@@ -26,11 +26,12 @@ angular.module('gobeApp')
         Auth.createUser({
           name: $scope.user.name,
           email: $scope.user.email,
-          password: $scope.user.password
+          password: $scope.user.password,
+          zipCode: $scope.user.zipCode
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/');
+          $location.path('/group/new');
         })
         .catch( function(err) {
           err = err.data;

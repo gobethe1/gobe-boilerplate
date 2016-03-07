@@ -28,8 +28,8 @@ angular.module('gobeApp')
         templateUrl: 'app/group/group-new.html',
         controller: 'GroupCtrl',
         resolve:{
-         groupModel: function(Group){
-           return Group.query().$promise;
+         groupModel: function(Group, $stateParams){
+           return Group.get({id: $stateParams.id}).$promise;
          }
         }
       })

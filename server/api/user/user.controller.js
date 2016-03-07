@@ -1,9 +1,11 @@
 'use strict';
 
 var User = require('./user.model');
+var Group = require('../group/group.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var _ = require('lodash');
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -29,6 +31,24 @@ exports.create = function (req, res, next) {
   newUser.role = 'user';
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
+    // create new group associated w/ user
+    var newGroup = new Group({ownedBy: user._id, email: user.email,
+                              zipCode: user.zipCode});
+    console.log('newGroup')
+    console.log(newGroup)
+
+    newGroup.save(function(err, group){
+      // save groupID to currentUser
+      console.log('new group 2')
+      console.log(newGroup)
+      var updated = _.merge(user, {groupId: newGroup._id});
+      // updated.ownedBy = req.body.ownedBy;
+      console.log('updated')
+      console.log(updated)
+      updated.save(function (err){
+      })
+    })
+
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
   });

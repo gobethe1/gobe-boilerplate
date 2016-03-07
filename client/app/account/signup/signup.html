@@ -31,7 +31,7 @@
                                             'has-error': form.name.$invalid && submitted }">
 
           <input type="text" name="name" class="form-control" ng-model="user.name"
-                 required/>
+                 placeholder="Full name" required/>
           <p class="help-block" ng-show="form.name.$error.required && submitted">
             A name is required
           </p>
@@ -43,6 +43,7 @@
                                             'has-error': form.email.$invalid && submitted }">
 
           <input type="email" name="email" class="form-control" ng-model="user.email"
+                 placeholder="Email"
                  required
                  mongoose-error/>
           <p class="help-block" ng-show="form.email.$error.email && submitted">
@@ -64,6 +65,7 @@
           <input type="password" name="password" class="form-control" ng-model="user.password"
                  ng-minlength="3"
                  required
+                 placeholder="Password"
                  mongoose-error/>
           <p class="help-block"
              ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
@@ -75,10 +77,28 @@
         </div>
         <!-- end password -->
 
+        <!-- zip code -->
+        <div class="form-group" ng-class="{ 'has-success': form.zipCode.$valid && submitted,
+                                            'has-error': form.zipCode.$invalid && submitted }">
+
+          <input type="zipCode" name="zipCode" class="form-control" ng-model="user.zipCode"
+                 required
+                 placeholder="Zip Code of where you'd like to volunteer"
+                 mongoose-error/>
+          <p class="help-block"
+             ng-show="(form.zipCode.$error.minlength || form.zipCode.$error.required) && submitted">
+            Zipcode must be at least 3 characters.
+          </p>
+          <p class="help-block" ng-show="form.zipCode.$error.mongoose">
+            {{ errors.zipCode }}
+          </p>
+        </div>
+        <!-- end zip code -->
+
         <!-- submit button -->
         <div>
           <button class="btn btn-inverse btn-lg btn-login" type="submit">
-            Start Creating Change
+            Sign up
           </button>
         </div>
         <!-- end submit button -->
@@ -142,7 +162,7 @@
         <!-- submit button -->
         <div>
           <button class="btn btn-inverse btn-lg btn-login" type="submit">
-            Start Creating Change
+            Sign up
           </button>
         </div>
         <!-- end submit button -->
