@@ -27,7 +27,7 @@ angular.module('gobeApp')
         })
         .then( function() {
           // Logged in, redirect to home
-          $location.path('/');
+          $location.path('/group/:id/show');
         })
         .catch( function(err) {
           $scope.errors.other = err.message;

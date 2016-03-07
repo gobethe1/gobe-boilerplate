@@ -10,7 +10,10 @@ angular.module('gobeApp')
         resolve:{
          groupModel: function(Group){
            return Group.query().$promise;
-         }
+         },
+         currentUser: function(Auth){
+            return Auth.getCurrentUser().$promise;
+         },
         }
       })
       .state('group.list', {
@@ -28,8 +31,8 @@ angular.module('gobeApp')
         templateUrl: 'app/group/group-new.html',
         controller: 'GroupCtrl',
         resolve:{
-         groupModel: function(Group, $stateParams){
-           return Group.get({id: $stateParams.id}).$promise;
+         groupModel: function(Group){
+           return Group.query().$promise;
          }
         }
       })
@@ -40,6 +43,19 @@ angular.module('gobeApp')
         resolve:{
         groupShow: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;
+         }
+        }
+      })
+      .state('group.profile', {
+        url: '/:id/profile',
+        templateUrl: 'app/group/group-show.html',
+        controller: 'GroupProfileCtrl',
+        resolve:{
+        groupProfile: function(Group, currentUser){
+            console.log(currentUser._id)
+            // find group id through currentUser id
+            return;
+            // return Group.get({ownedBy: currentUser._id}).$promise;
          }
         }
       })

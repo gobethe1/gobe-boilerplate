@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Group = require('./group.model');
+var User = require('../user/user.model')
 
 // Get list of groups
 exports.index = function(req, res) {
@@ -25,6 +26,21 @@ exports.create = function(req, res) {
   Group.create(req.body, function(err, group) {
     console.log(err);
     if(err) { return handleError(res, err); }
+    console.log("req body")
+    console.log(req.body.ownedBy)
+    User.findById(req.body.ownedBy, function(err, user){
+      if (err) { return handleError(res, err); }
+        var updated = _.merge(user, {groupId: req.body.ownedBy})
+        console.log("user findById")
+        console.log(user)
+        updated.save(function (err) {
+          if (err) { return handleError(res, err); }
+        });
+    })
+    //group.ownedBy is the currentUser id
+    // find currentUser id
+    //find on the User model with the currentUser id
+    // and update User.ownedBy with the group id
     return res.status(201).json(group);
   });
 };

@@ -27,7 +27,7 @@ angular.module('gobeApp')
           name: $scope.user.name,
           email: $scope.user.email,
           password: $scope.user.password,
-          zipCode: $scope.user.zipCode
+          // zipCode: $scope.user.zipCode
         })
         .then( function() {
           // Account created, redirect to home
