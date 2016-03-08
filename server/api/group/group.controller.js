@@ -27,8 +27,6 @@ exports.create = function(req, res) {
 
   Group.create(req.body, function(err, group) {
     if(err) { return handleError(res, err); }
-    console.log('headers host')
-    console.log(req.headers.host)
     User.findById(req.body.ownedBy, function(err, user){
       if (err) { return handleError(res, err); }
         var updated = _.merge(user, {groupId: group._id})
