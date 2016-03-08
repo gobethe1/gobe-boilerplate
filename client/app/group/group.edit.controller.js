@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('GroupEditCtrl', function ($scope, $state, $stateParams, Group, groupEdit) {
+  .controller('GroupEditCtrl', function ($scope, $state, $stateParams, Group, groupEdit, currentProfile) {
     $scope.newGroup = groupEdit;
     $scope.emailList = $scope.newGroup.emailList;
     $scope.hover = true;
+    // console.log(groupEdit._id)
+    // console.log(currentProfile._id)
 
 
     $scope.updateEmail = function updateEmail(){
@@ -27,7 +29,13 @@ angular.module('gobeApp')
          if(form.$valid){
              Group.update({id: $stateParams.id }, data,
                function(data){
-                  $state.go('group.list');
+                console.log(currentProfile)
+                if(currentProfile.groupId === $scope.newGroup._id){
+                    $state.go('group.profile');
+                  }
+                  else {
+                    $state.go('group.list');
+                  }
                  }),
                  function(err){
                   $scope.addEventError = "Looks like something went wrong! Please try again";

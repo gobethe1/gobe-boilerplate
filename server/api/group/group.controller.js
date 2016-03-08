@@ -28,9 +28,13 @@ exports.create = function(req, res) {
     if(err) { return handleError(res, err); }
     console.log("req body")
     console.log(req.body.ownedBy)
+    console.log('group id')
+    console.log(group._id)
     User.findById(req.body.ownedBy, function(err, user){
       if (err) { return handleError(res, err); }
-        var updated = _.merge(user, {groupId: req.body.ownedBy})
+        console.log('body id 2')
+        console.log(req.body._id)
+        var updated = _.merge(user, {groupId: group._id})
         console.log("user findById")
         console.log(user)
         updated.save(function (err) {
@@ -47,7 +51,7 @@ exports.create = function(req, res) {
 
 // Updates an existing group in the DB.
 exports.update = function(req, res) {
-  console.log(req)
+  // console.log(req)
   if(req.body._id) { delete req.body._id; }
   Group.findById(req.params.id, function (err, group) {
     if (err) { return handleError(res, err); }
