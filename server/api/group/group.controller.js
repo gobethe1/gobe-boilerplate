@@ -24,27 +24,14 @@ exports.show = function(req, res) {
 // Creates a new group in the DB.
 exports.create = function(req, res) {
   Group.create(req.body, function(err, group) {
-    console.log(err);
     if(err) { return handleError(res, err); }
-    console.log("req body")
-    console.log(req.body.ownedBy)
-    console.log('group id')
-    console.log(group._id)
     User.findById(req.body.ownedBy, function(err, user){
       if (err) { return handleError(res, err); }
-        console.log('body id 2')
-        console.log(req.body._id)
         var updated = _.merge(user, {groupId: group._id})
-        console.log("user findById")
-        console.log(user)
         updated.save(function (err) {
           if (err) { return handleError(res, err); }
         });
     })
-    //group.ownedBy is the currentUser id
-    // find currentUser id
-    //find on the User model with the currentUser id
-    // and update User.ownedBy with the group id
     return res.status(201).json(group);
   });
 };
@@ -58,8 +45,6 @@ exports.update = function(req, res) {
     if(!group) { return res.status(404).send('Not Found'); }
     var updated = _.merge(group, req.body);
     updated.emailList = req.body.emailList;
-    console.log(updated)
-    // updated.markModified('emailList');
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(group);

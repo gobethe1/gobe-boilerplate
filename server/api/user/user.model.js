@@ -7,6 +7,9 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
   name: String,
+  firstName: String,
+  lastName: String,
+  groupName: String,
   email: { type: String, lowercase: true },
   groupId: {type: mongoose.Schema.Types.ObjectId,
                ref: 'Group'

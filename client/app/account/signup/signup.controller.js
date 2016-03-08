@@ -19,15 +19,19 @@ angular.module('gobeApp')
         return $scope.tab === tabId;
     };
 
-    $scope.register = function(form) {
+    $scope.signup = function(form) {
       $scope.submitted = true;
-
+      console.log(form)
+      console.log("signup firing")
+      console.log(form.$valid)
       if(form.$valid) {
         Auth.createUser({
-          name: $scope.user.name,
+          firstName: $scope.user.firstName,
+          lastName: $scope.user.lastName,
+          groupName: $scope.user.groupName,
           email: $scope.user.email,
           password: $scope.user.password,
-          // zipCode: $scope.user.zipCode
+          zipCode: $scope.user.zipCode
         })
         .then( function() {
           // Account created, redirect to home

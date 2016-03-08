@@ -27,28 +27,15 @@ exports.index = function(req, res) {
  */
 exports.create = function (req, res, next) {
   var newUser = new User(req.body);
+  console.log(req.body)
   newUser.provider = 'local';
   newUser.role = 'user';
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
-    // create new group associated w/ user
-    // var newGroup = new Group({ownedBy: user._id, email: user.email,
-    //                           zipCode: user.zipCode});
-    // console.log('newGroup')
-    // console.log(newGroup)
-
-    // newGroup.save(function(err, group){
-    //   // save groupID to currentUser
-    //   console.log('new group 2')
-    //   console.log(newGroup)
-    //   var updated = _.merge(user, {groupId: newGroup._id});
-    //   // updated.ownedBy = req.body.ownedBy;
-    //   console.log('updated')
-    //   console.log(updated)
-    //   updated.save(function (err){
-    //   })
-    // })
-
+    console.log("err")
+    console.log(err)
+    console.log("user")
+    console.log(user)
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
   });
