@@ -13,6 +13,15 @@ angular.module('gobeApp')
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupCtrl'
       })
+      .state('redirect', {
+        url: '/redirect',
+        controller: 'RedirectCtrl',
+        resolve: {
+          currentUser: function(Auth){
+            return Auth.getCurrentUser().$promise;
+          }
+        }
+      })
       .state('settings', {
         url: '/settings',
         templateUrl: 'app/account/settings/settings.html',

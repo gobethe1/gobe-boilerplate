@@ -4,6 +4,18 @@ angular.module('gobeApp')
   .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};
+    $scope.tab = 1;
+    console.log($scope.tab)
+
+
+    $scope.setTab = function (tabId) {
+        $scope.tab = tabId;
+      console.log($scope.tab)
+    };
+
+    $scope.isSet = function (tabId) {
+        return $scope.tab === tabId;
+    };
 
     $scope.login = function(form) {
       $scope.submitted = true;
@@ -15,7 +27,7 @@ angular.module('gobeApp')
         })
         .then( function() {
           // Logged in, redirect to home
-          $location.path('/');
+          $location.path('/redirect');
         })
         .catch( function(err) {
           $scope.errors.other = err.message;

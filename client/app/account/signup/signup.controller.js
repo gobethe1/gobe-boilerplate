@@ -4,19 +4,38 @@ angular.module('gobeApp')
   .controller('SignupCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};
+    $scope.tab = 1;
 
-    $scope.register = function(form) {
+    console.log($scope.tab)
+
+
+    $scope.setTab = function (tabId) {
+        $scope.tab = tabId;
+      console.log($scope.tab)
+    };
+
+    $scope.isSet = function (tabId) {
+
+        return $scope.tab === tabId;
+    };
+
+    $scope.signup = function(form) {
       $scope.submitted = true;
-
+      console.log(form)
+      console.log("signup firing")
+      console.log(form.$valid)
       if(form.$valid) {
         Auth.createUser({
-          name: $scope.user.name,
+          firstName: $scope.user.firstName,
+          lastName: $scope.user.lastName,
+          groupName: $scope.user.groupName,
           email: $scope.user.email,
-          password: $scope.user.password
+          password: $scope.user.password,
+          zipCode: $scope.user.zipCode
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/');
+          $location.path('/group/new');
         })
         .catch( function(err) {
           err = err.data;
