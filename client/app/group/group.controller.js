@@ -8,6 +8,7 @@ angular.module('gobeApp')
     $scope.emailList = $scope.newGroup.emailList;
     $state.hover = true;
     $scope.newGroup.ownedBy = currentUser._id;
+    // $scope.currentUser.groupId = $scope.newGroup.ownedBy;
 
 
     $scope.cancelGroup = function cancelGroup(){
@@ -25,7 +26,7 @@ angular.module('gobeApp')
       $scope.newGroup = $scope.newGroup
       $scope.submitted = true;
          if(form.$valid){
-             Group.send($scope.newGroup,
+             Group.save($scope.newGroup,
                function(data){
                   $state.go('group.confirmation',
                     {confirm: data._id})
@@ -57,5 +58,5 @@ angular.module('gobeApp')
 
     $scope.group = groupShow;
     $scope.confirm = $location.path().indexOf('/group/confirmation') > -1 ? true : false;
-  
+
   });

@@ -24,8 +24,11 @@ exports.show = function(req, res) {
 
 // Creates a new group in the DB.
 exports.create = function(req, res) {
+
   Group.create(req.body, function(err, group) {
     if(err) { return handleError(res, err); }
+    console.log('headers host')
+    console.log(req.headers.host)
     User.findById(req.body.ownedBy, function(err, user){
       if (err) { return handleError(res, err); }
         var updated = _.merge(user, {groupId: group._id})
@@ -33,6 +36,7 @@ exports.create = function(req, res) {
           if (err) { return handleError(res, err); }
         });
     })
+    groupEmailer.matchZipCode(group, req.headers.host);
     return res.status(201).json(group);
   });
 };
@@ -54,13 +58,13 @@ exports.update = function(req, res) {
 };
 
 // send out matching event to groups and save event
-exports.send = function(req, res) {
-  Group.create(req.body, function(err, group) {
-    if(err) { return handleError(res, err); }
-    groupEmailer.matchZipCode(group, req.headers.host);
-    return res.status(201).json(group);
-  });
-};
+// exports.send = function(req, res) {
+//   Group.create(req.body, function(err, group) {
+//     if(err) { return handleError(res, err); }
+//     groupEmailer.matchZipCode(group, req.headers.host);
+//     return res.status(201).json(group);
+//   });
+// };
 
 
 // Deletes a group from the DB.

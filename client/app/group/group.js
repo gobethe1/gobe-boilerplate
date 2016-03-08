@@ -53,6 +53,8 @@ angular.module('gobeApp')
         resolve:{
         groupProfile: function(Group, currentUser){
             console.log(currentUser._id)
+            console.log('current user groupid')
+            console.log(currentUser.groupId)
             return Group.get({id: currentUser.groupId}).$promise;
          }
         }
