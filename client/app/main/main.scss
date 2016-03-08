@@ -46,5 +46,28 @@
 
 .main-buttons{
     position: absolute;
-    bottom: 15vh;
+    bottom: 18vh;
 }
+
+a.login-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: white;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.btn.dark-blue{
+    &:hover {
+        color: white;
+    }
+}
+
+// main page media query for button vh
+@media only screen and (min-width: $screen-sm) {
+    .main-buttons{
+        position: absolute;
+        bottom: 40vh;
+    }
+}
+
