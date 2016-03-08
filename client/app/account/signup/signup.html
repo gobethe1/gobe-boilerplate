@@ -105,9 +105,9 @@
 
           <input type="zipCode" name="zipCode" class="form-control" ng-model="user.zipCode"
                  ui-mask="99999" ui-mask-placeholder-char="space"
-                 placeholder="Zip"
                  ng-minlength="5"
                  required
+                 placeholder="Zip"
                  mongoose-error/>
           <p class="help-block"
              ng-show="(form.zipCode.$error.minlength || form.zipCode.$error.required) && submitted">

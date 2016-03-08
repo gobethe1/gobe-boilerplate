@@ -5,6 +5,7 @@ angular.module('gobeApp')
     $scope.user = {};
     $scope.errors = {};
     $scope.tab = 1;
+    $scope.zipCode = "99999";
 
     console.log($scope.tab)
 
