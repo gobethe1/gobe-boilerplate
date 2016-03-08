@@ -11,23 +11,42 @@
 
     <!-- group / volunteer tab  -->
     <div class="col-sm-12">
-      <ul class="nav nav-pils nav-justified">
-        <li ng-class="{active:isSet(1)}">
-          <a data-toggle="tab" ng-click="setTab(1)">Group</a>
-        </li>
-        <li ng-class="{active:isSet(2)}">
-          <a data-toggle="tab" ng-click="setTab(2)">Volunteer</a>
-        </li>
-      </ul>
+      <div class="row">
+        <div class="col-xs-6">
+          <button class="btn btn-lg btn-primary btn-block" ng-class="{active:isSet(2)}" ng-click="setTab(2)">Volunteer</button>
+        </div>
+        <div class="col-xs-6">
+          <button class="btn btn-lg btn-primary btn-block" ng-class="{active:isSet(1)}" ng-click="setTab(1)">Group</button>
+        </div>
+      </div>
     </div>
+    <hr>
     <!-- end group / volunteer tab -->
 
     <!-- group signup -->
     <div class="col-sm-12" ng-show="isSet(1)">
       <form class="form" name="form" ng-submit="register(form)" novalidate>
+        <div class="row">
+          <!-- first name -->
+          <div class="col-md-6 col-xs-6">
+           <div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
+                                              'has-error': form.firstname.$invalid && submitted }">
+             <input type="text" name="firstname" ng-model="newEvent.firstName" class="form-control"       placeholder="First Name" required>
+            </div>
+          </div>
+          <!-- end first name -->
+          <!-- last name -->
+          <div class="col-md-6 col-xs-6">
+            <div class="form-group" ng-class="{ 'has-success': form.lastname.$valid && submitted,
+                                                 'has-error': form.lastname.$invalid  && submitted }">
+               <input type="text" name="lastname" ng-model="newEvent.lastName" class="form-control"       placeholder="Last name" required>
+            </div>
+          </div>
+        </div>
+        <!-- end last name -->
 
-        <!-- name -->
-        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
+        <!-- first name -->
+<!--         <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
                                             'has-error': form.name.$invalid && submitted }">
 
           <input type="text" name="name" class="form-control" ng-model="user.name"
@@ -35,8 +54,20 @@
           <p class="help-block" ng-show="form.name.$error.required && submitted">
             A name is required
           </p>
-        </div>
-        <!-- end name -->
+        </div> -->
+        <!-- end first name -->
+
+        <!-- last name -->
+<!--         <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
+                                            'has-error': form.name.$invalid && submitted }">
+
+          <input type="text" name="name" class="form-control" ng-model="user.name"
+                 placeholder="Full name" required/>
+          <p class="help-block" ng-show="form.name.$error.required && submitted">
+            A name is required
+          </p>
+        </div> -->
+        <!-- end last name -->
 
         <!-- email -->
         <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
@@ -65,7 +96,7 @@
           <input type="password" name="password" class="form-control" ng-model="user.password"
                  ng-minlength="3"
                  required
-                 placeholder="Password"
+                 placeholder="Choose a password"
                  mongoose-error/>
           <p class="help-block"
              ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
@@ -83,7 +114,7 @@
 
           <input type="zipCode" name="zipCode" class="form-control" ng-model="user.zipCode"
                  required
-                 placeholder="Zip Code of where you'd like to volunteer"
+                 placeholder="Zip of where your group would like to volunteer"
                  mongoose-error/>
           <p class="help-block"
              ng-show="(form.zipCode.$error.minlength || form.zipCode.$error.required) && submitted">
