@@ -68,11 +68,11 @@ q.fcall(function() {
             resolve();
         });
       });
-      
+
   });
 
   }).then(function() {
-    
+
     return q.Promise(function(resolve,reject,notify) {
       User.find({}).remove(function() {
         User.create({
@@ -84,7 +84,7 @@ q.fcall(function() {
           provider: 'local',
           role: 'admin',
           name: 'Admin',
-          email: 'admin@admin.com',
+          email: 'cassie.purtlebaugh@gmail.com',
           password: 'admin'
         }, function() {
             console.log('finished populating users');
@@ -94,7 +94,7 @@ q.fcall(function() {
     });
 
   }).then(function() {
-    
+
     return q.Promise(function(resolve,reject,notify) {
         Group.find({}).remove(function() {
         Group.create({
@@ -133,5 +133,5 @@ q.fcall(function() {
 
     });
 
-    
+
   });

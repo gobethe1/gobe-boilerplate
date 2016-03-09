@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('EventCtrl', function ($scope, $state, $stateParams, Event, eventModel) {
-
+  .controller('EventCtrl', function ($scope, $state, $stateParams, Event, eventModel, currentUser) {
+    console.log(currentUser)
   	$scope.listEvents = eventModel;
     $scope.hover = true;
 
@@ -12,6 +12,7 @@ angular.module('gobeApp')
     $scope.newEvent.availability.firstDateTime = [false, false, false];
     $scope.newEvent.availability.secondDateTime = [false, false, false];
     $scope.newEvent.availability.thirdDateTime = [false, false, false];
+    $scope.newEvent.userId = currentUser._id;
 
     $scope.cancelClient = function cancelClient(){
       if(confirm("Are you sure you want to cancel this new client?")){
@@ -20,7 +21,6 @@ angular.module('gobeApp')
     }
 
     $scope.addEvent = function addEvent(form) {
-    	console.log(form)
       $scope.submitted = true;
          if(form.$valid){
              Event.send($scope.newEvent,
