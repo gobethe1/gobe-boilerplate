@@ -28,17 +28,8 @@ angular.module('gobeApp')
         }
     };
 
-    //ng-click submit on a tag
-    //function to confirm the group and time 
-    //update the event model
-    //confirmedDate, confirmedTime, confirmedGroup
-
-    //function or conditional for none of these work
 
     $scope.confirmGroupTime = function(date, time){
-      console.log(date)
-      console.log(time.replace(" and ", "-"))
-      console.log($stateParams.group_id)
       var confirmTime = time.replace(" and ", "-");
       $scope.event.confirmGroup = $stateParams.group_id;
       $scope.event.confirmDate = date;
@@ -58,43 +49,6 @@ angular.module('gobeApp')
 
     }
 
-    //firstDate
-    //ng-repeat over firstDateTime
-
-    //secondDate
-    //ng-repeat over secondDateTime
-
-    //thirdDate
-    //ng-repeat over thirdDateTime
-
-
-
-  	// $scope.listEvents = eventModel;
-
-   //  $scope.newEvent = {};
-   //  $scope.newEvent.availability = {};
-
-   //  $scope.newEvent.availability.firstDateTime = [false, false, false];
-   //  $scope.newEvent.availability.secondDateTime = [false, false, false];
-   //  $scope.newEvent.availability.thirdDateTime = [false, false, false];
-
-
-   //  $scope.addEvent = function addEvent(form) {
-   //  	console.log(form)
-   //    $scope.submitted = true;
-   //       if(form.$valid){
-   //           Event.save($scope.newEvent,
-   //             function(data){
-   //                $state.go('event.list')
-   //               }),
-   //               function(err){
-   //               	$scope.addEventError = "Looks like something went wrong! Please try again"
-   //               }
-   //             }
-   //       else{
-   //           document.body.scrollTop = document.documentElement.scrollTop = 0;
-   //       }
-   //  };
 
 
 
