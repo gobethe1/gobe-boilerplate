@@ -3,11 +3,16 @@
 var mongoose = require('mongoose');
 var async = require('async');
 var _     = require('lodash');
+var fs    = require('fs');
 var Group = require('../group/group.model');
 var nodemailer = require('nodemailer');
 var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 var GoogleAPIKey = process.env.GOOGLE_API_KEY;
+
+String.prototype.capitalize = function() {
+    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
 
 function matchZipCode(event, host){
   
@@ -58,6 +63,7 @@ function matchZipCode(event, host){
 			    transporter.sendMail(mailOptions, function(err) {
 			    	console.log("inside sendMail error")
 			    	console.log(err)
+			    	console.log(mailOptions.to)
 			      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 			    });
 			}
@@ -74,4 +80,77 @@ function matchZipCode(event, host){
 
 }
 
+function confirmGroup(event){
+		  console.log("confirmGroup")
+		  console.log(event.confirmGroup)
+		  async.waterfall([
+			  function(done) {
+			    Group.findById( event.confirmGroup, function(err, group) {
+			      if (!group) {
+			      	console.log(err)
+			        // return res.status(404).send('There are no zipcode matches.');
+			      }
+			       console.log("waterfall group")
+			       console.log(group)
+			       done(err, group);
+			    });
+			  },
+			  function(group, done) {
+
+			  	    	var capFirstName = _.capitalize(event.firstName);
+			  	    	var capLastName = _.capitalize(event.lastName);
+			  	    	var dateString = event.confirmDate.toString()
+			  	      	var finalDate = dateString.slice(0, 10)
+			  	      	var capOrgName = group.organizationName.capitalize();
+
+			  		    var transporter = nodemailer.createTransport({
+			  		      host: GodaddySMTP,
+			  		      port: 25,
+			  		      auth: {
+			  		        user: 'hello@gobethe1.com',
+			  		        pass: GodaddyPassword
+			  		      }
+			  		    });
+
+			  		    var mailOptions = {
+			  		      to: 'gobethe1dev@gmail.com', //admin annie email
+			  		      from: 'hello@gobethe1.com',
+			  		      subject: capFirstName + '\'s Move-In Party',
+			  		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
+			  		    '<td>' +
+			  		    '<p style="font-size:14px;font-family:sans-serif;">Phase One is complete. The ' + capOrgName + ', have confirmed their attendance</p>' + 
+			  		    '<p style="font-size:14px;font-family:sans-serif;">for the move-in party of <span style="text-transform:underline">' + capFirstName + ' ' + capLastName + ' </span>' +
+			  		    'on: <span style="font-weight:bold">' + finalDate + ' from ' + event.confirmTime + '</span>.</p>' +
+			  		 	'<p style="font-size:14px;font-family:sans-serif;">The invites have been sent to their list of members, when the guest list is complete we will send it over.</p>' +
+			  		 	'<p style="font-size:14px;font-family:sans-serif;">Get ready to party,</p>' +
+			  		 	'<img src="cid:confirmlogo">' +
+			  		 	'</td>' +
+			  		    '</tr></table>',
+			  		    attachments:[{
+			  		    	filename: 'confirm-email-logo.png',
+			  		    	path: './client/assets/images/confirm-email-logo.png',
+			  		    	cid: 'confirmlogo'
+			  		    }]
+
+			  		    };
+
+			  		    transporter.sendMail(mailOptions, function(err) {
+			  		    	console.log("inside sendMail error")
+			  		    	console.log(err)
+			  		      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
+			  		    });	
+
+			    done('done');
+
+
+			  },
+			], function(err) {
+			  if (err) return (err);
+			});
+
+	  
+
+}
+
+module.exports.confirmGroup = confirmGroup;
 module.exports.matchZipCode = matchZipCode;

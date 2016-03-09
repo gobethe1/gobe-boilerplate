@@ -41,6 +41,9 @@ exports.update = function(req, res) {
     updated.availability = req.body.availability;
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
+      if(event.confirmGroup !== null){
+      eventEmailer.confirmGroup(event);
+      }
       return res.status(200).json(event);
     });
   });
