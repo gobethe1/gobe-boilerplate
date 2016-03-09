@@ -6,7 +6,7 @@ angular.module('gobeApp')
     $scope.newGroup = {};
     $scope.newGroup.emailList = [];
     $scope.emailList = $scope.newGroup.emailList;
-    $state.hover = true;
+    $scope.hover = true;
     $scope.newGroup.ownedBy = currentUser._id;
     // $scope.currentUser.groupId = $scope.newGroup.ownedBy;
 
