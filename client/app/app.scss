@@ -16,6 +16,10 @@ body {
   font-family: $font-family-sans-serif;
 }
 
+.navbar.navbar-default {
+  background-color: white !important;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
