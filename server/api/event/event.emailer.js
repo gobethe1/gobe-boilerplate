@@ -10,7 +10,6 @@ var nodemailer = require('nodemailer');
 var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 var GoogleAPIKey = process.env.GOOGLE_API_KEY;
-var EMAIL_LOGO = process.env.EMAIL_LOGO;
 
 String.prototype.capitalize = function() {
     return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
@@ -138,7 +137,7 @@ function confirmGroup(event){
 			  		    '</tr></table>',
 			  		    attachments:[{
 			  		    	filename: 'confirm-email-logo.png',
-			  		    	path: EMAIL_LOGO,
+			  		    	path: 'https://s3-us-west-1.amazonaws.com/gobethe1/confirm-email-logo.png',
 			  		    	cid: 'confirmlogo'
 			  		    }]
 
