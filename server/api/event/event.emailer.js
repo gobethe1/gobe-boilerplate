@@ -5,6 +5,7 @@ var async = require('async');
 var _     = require('lodash');
 var fs    = require('fs');
 var Group = require('../group/group.model');
+var User = require('../user/user.model');
 var nodemailer = require('nodemailer');
 var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
@@ -15,7 +16,7 @@ String.prototype.capitalize = function() {
 };
 
 function matchZipCode(event, host){
-  
+
   async.waterfall([
 	  function(done) {
 	    Group.find({ zipCode: event.zipCode }, function(err, group) {
@@ -34,7 +35,7 @@ function matchZipCode(event, host){
 
 	    	var link = 'http://' + host + '/event/' + event._id + '/confirm/' + value._id;
 	    	var capFirstName = _.capitalize(value.firstName);
-	    	var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey 
+	    	var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey
 
 		    var transporter = nodemailer.createTransport({
 		      host: GodaddySMTP,
@@ -46,7 +47,7 @@ function matchZipCode(event, host){
 		    });
 
 		    var mailOptions = {
-		      to: value.email,
+		      to:  value.email,
 		      from: 'hello@gobethe1.com',
 		      subject: 'Are You Available?',
 		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
@@ -77,7 +78,6 @@ function matchZipCode(event, host){
 	], function(err) {
 	  if (err) return (err);
 	});
-
 }
 
 function confirmGroup(event){
@@ -95,8 +95,19 @@ function confirmGroup(event){
 			       done(err, group);
 			    });
 			  },
-			  function(group, done) {
+			  function(group, done){
+			  	User.findById( event.userId, function(err, user) {
+			  		if (!user) {
+			      	console.log(err)
+			        // return res.status(404).send('There are no zipcode matches.');
+			      }
 
+			       done(err, user, group);
+			  	});
+			  },
+			  function(user, group, done) {
+
+			  	      var groupContact = user.email;
 			  	    	var capFirstName = _.capitalize(event.firstName);
 			  	    	var capLastName = _.capitalize(event.lastName);
 			  	    	var dateString = event.confirmDate.toString()
@@ -113,18 +124,17 @@ function confirmGroup(event){
 			  		    });
 
 			  		    var mailOptions = {
-			  		      to: 'gobethe1dev@gmail.com', //admin annie email
+			  		      to: groupContact, //admin annie email
 			  		      from: 'hello@gobethe1.com',
 			  		      subject: capFirstName + '\'s Move-In Party',
 			  		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
 			  		    '<td>' +
-			  		    '<p style="font-size:14px;font-family:sans-serif;">Phase One is complete. The ' + capOrgName + ', have confirmed their attendance</p>' + 
+			  		    '<p style="font-size:14px;font-family:sans-serif;">We\'ve got a match! The ' + capOrgName + ', have confirmed their attendance</p>' +
 			  		    '<p style="font-size:14px;font-family:sans-serif;">for the move-in party of <span style="text-transform:underline">' + capFirstName + ' ' + capLastName + ' </span>' +
-			  		    'on: <span style="font-weight:bold">' + finalDate + ' from ' + event.confirmTime + '</span>.</p>' +
-			  		 	'<p style="font-size:14px;font-family:sans-serif;">The invites have been sent to their list of members, when the guest list is complete we will send it over.</p>' +
-			  		 	'<p style="font-size:14px;font-family:sans-serif;">Get ready to party,</p>' +
-			  		 	'<img src="cid:confirmlogo">' +
-			  		 	'</td>' +
+			  		    'on <span style="font-weight:bold">' + finalDate + ' from ' + event.confirmTime + '</span>.</p>' +
+			  		 		'<p style="font-size:14px;font-family:sans-serif;">Party on,</p>' +
+			  		 		'<img src="cid:confirmlogo">' +
+			  		 		'</td>' +
 			  		    '</tr></table>',
 			  		    attachments:[{
 			  		    	filename: 'confirm-email-logo.png',
@@ -138,7 +148,7 @@ function confirmGroup(event){
 			  		    	console.log("inside sendMail error")
 			  		    	console.log(err)
 			  		      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
-			  		    });	
+			  		    });
 
 			    done('done');
 
@@ -147,8 +157,6 @@ function confirmGroup(event){
 			], function(err) {
 			  if (err) return (err);
 			});
-
-	  
 
 }
 

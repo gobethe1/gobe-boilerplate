@@ -12,6 +12,16 @@ var User = require('../api/user/user.model');
 var Event = require('../api/event/event.model');
 var Group = require('../api/group/group.model');
 
+// function seedEventUser(userEmail, firstName){
+//   User.findOne({email: userEmail}), function(err, user){
+//     Event.findOneAndUpdate({organizationName: eventName}, {$set: {userId: user._id}}, {new: true}),
+//     function(err, event){
+//       console.log(event)
+//       console.log(err)
+//     }
+//   }
+// }
+
 q.fcall(function() {
   return q.Promise(function(resolve,reject,notify) {
       Event.find({}).remove(function() {
@@ -68,23 +78,23 @@ q.fcall(function() {
             resolve();
         });
       });
-      
+
   });
 
   }).then(function() {
-    
+
     return q.Promise(function(resolve,reject,notify) {
       User.find({}).remove(function() {
         User.create({
           provider: 'local',
           name: 'Test User',
-          email: 'test@test.com',
+          email: 'gobethe1dev@gmail.com',
           password: 'test'
         }, {
           provider: 'local',
           role: 'admin',
           name: 'Admin',
-          email: 'admin@admin.com',
+          email: 'cassie.purtlebaugh@gmail.com', //admin@admin.com',
           password: 'admin'
         }, function() {
             console.log('finished populating users');
@@ -94,7 +104,7 @@ q.fcall(function() {
     });
 
   }).then(function() {
-    
+
     return q.Promise(function(resolve,reject,notify) {
         Group.find({}).remove(function() {
         Group.create({
@@ -108,7 +118,7 @@ q.fcall(function() {
           organizationName: 'Homes for vets',
           firstName: 'Casper',
           lastName: 'P',
-          email: 'gobethe1dev@gmail.com', //'cassie.purtlebaugh@gmail.com',
+          email: 'cassie.purtlebaugh@gmail.com', //'gobethe1dev@gmail.com',
           phoneNumber: '7467447474',
           zipCode: '90017'
         },{
@@ -133,5 +143,9 @@ q.fcall(function() {
 
     });
 
-    
+
   });
+
+// .then(function(){
+//       seedEventUser('gobethe1dev@gmail.com', 'bob');
+//   })

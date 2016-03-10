@@ -7,7 +7,7 @@ angular.module('gobeApp')
     console.log(currentUser.groupId)
 
     if(currentUser.role === "admin"){
-      $state.go('group.list');
+      $state.go('event.list');
     }
     else if(currentUser.role === "user"){
       $state.go('group.profile')

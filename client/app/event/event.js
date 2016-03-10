@@ -11,7 +11,10 @@ angular.module('gobeApp')
         resolve:{
          eventModel: function(Event){
            return Event.query().$promise;
-         }
+         },
+         currentUser: function(Auth){
+            return Auth.getCurrentUser().$promise;
+         },
         }
       })
       .state('event.list', {
@@ -34,7 +37,7 @@ angular.module('gobeApp')
          }
         }
       })
-       
+
        .state('event.show', {
         url: '/:id/show',
         templateUrl: 'app/event/event-show.html',
@@ -61,7 +64,7 @@ angular.module('gobeApp')
             return Event.get({id: $stateParams.event_id}).$promise;
           }
          }
-       }); 
+       });
 
 
       $urlRouterProvider.otherwise('/');
