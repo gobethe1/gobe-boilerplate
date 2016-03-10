@@ -83,6 +83,8 @@ function matchZipCode(event, host){
 function confirmGroup(event){
 		  console.log("confirmGroup")
 		  console.log(event.confirmGroup)
+		  console.log('event')
+		  console.log(event)
 		  async.waterfall([
 			  function(done) {
 			    Group.findById( event.confirmGroup, function(err, group) {
@@ -96,12 +98,9 @@ function confirmGroup(event){
 			    });
 			  },
 			  function(group, done){
+			  	console.log('user')
+			  	console.log(User)
 			  	User.findById( event.userId, function(err, user) {
-			  		if (!user) {
-			      	console.log(err)
-			        // return res.status(404).send('There are no zipcode matches.');
-			      }
-
 			       done(err, user, group);
 			  	});
 			  },
@@ -138,7 +137,7 @@ function confirmGroup(event){
 			  		    '</tr></table>',
 			  		    attachments:[{
 			  		    	filename: 'confirm-email-logo.png',
-			  		    	path: './client/assets/images/confirm-email-logo.png',
+			  		    	path: './client/assets/images/confirm-email-logo.png' || './public/assets/images/confirm-email-logo.png',
 			  		    	cid: 'confirmlogo'
 			  		    }]
 
