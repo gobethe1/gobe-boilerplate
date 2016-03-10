@@ -101,16 +101,13 @@ function confirmGroup(event){
 			      	console.log(err)
 			        // return res.status(404).send('There are no zipcode matches.');
 			      }
-			       console.log("waterfall user")
-			       console.log(user)
+
 			       done(err, user, group);
 			  	});
 			  },
 			  function(user, group, done) {
 
 			  	      var groupContact = user.email;
-			  	      console.log('group contact')
-			  	      console.log(groupContact)
 			  	    	var capFirstName = _.capitalize(event.firstName);
 			  	    	var capLastName = _.capitalize(event.lastName);
 			  	    	var dateString = event.confirmDate.toString()
@@ -132,13 +129,12 @@ function confirmGroup(event){
 			  		      subject: capFirstName + '\'s Move-In Party',
 			  		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
 			  		    '<td>' +
-			  		    '<p style="font-size:14px;font-family:sans-serif;">Phase One is complete. The ' + capOrgName + ', have confirmed their attendance</p>' +
+			  		    '<p style="font-size:14px;font-family:sans-serif;">We\'ve got a match! The ' + capOrgName + ', have confirmed their attendance</p>' +
 			  		    '<p style="font-size:14px;font-family:sans-serif;">for the move-in party of <span style="text-transform:underline">' + capFirstName + ' ' + capLastName + ' </span>' +
-			  		    'on: <span style="font-weight:bold">' + finalDate + ' from ' + event.confirmTime + '</span>.</p>' +
-			  		 	'<p style="font-size:14px;font-family:sans-serif;">The invites have been sent to their list of members, when the guest list is complete we will send it over.</p>' +
-			  		 	'<p style="font-size:14px;font-family:sans-serif;">Get ready to party,</p>' +
-			  		 	'<img src="cid:confirmlogo">' +
-			  		 	'</td>' +
+			  		    'on <span style="font-weight:bold">' + finalDate + ' from ' + event.confirmTime + '</span>.</p>' +
+			  		 		'<p style="font-size:14px;font-family:sans-serif;">Party on,</p>' +
+			  		 		'<img src="cid:confirmlogo">' +
+			  		 		'</td>' +
 			  		    '</tr></table>',
 			  		    attachments:[{
 			  		    	filename: 'confirm-email-logo.png',
@@ -161,8 +157,6 @@ function confirmGroup(event){
 			], function(err) {
 			  if (err) return (err);
 			});
-
-
 
 }
 
