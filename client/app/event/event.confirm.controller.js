@@ -16,7 +16,7 @@ angular.module('gobeApp')
     var timeArray = ["8am and 12pm", "12pm and 5pm", "5pm and 8pm"];
 
     $scope.checkTime = function(time, index) {
-      
+
         if(time && (index === 0)){
           return timeArray[0];
         }

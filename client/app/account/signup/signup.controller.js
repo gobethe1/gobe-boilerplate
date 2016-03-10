@@ -6,17 +6,22 @@ angular.module('gobeApp')
     $scope.errors = {};
     $scope.tab = 1;
     $scope.zipCode = "99999";
+    $scope.user.position;
 
     console.log($scope.tab)
 
 
     $scope.setTab = function (tabId) {
         $scope.tab = tabId;
-      console.log($scope.tab)
+        console.log($scope.tab)
+        // 1 group, 2 volunteer
+        // set user role
+        if (tabId === 1){$scope.user.position = "group"}
+        else if (tabId === 2){$scope.user.position = "volunteer"}
+        console.log($scope.user.position)
     };
 
     $scope.isSet = function (tabId) {
-
         return $scope.tab === tabId;
     };
 
@@ -27,12 +32,9 @@ angular.module('gobeApp')
       console.log(form.$valid)
       if(form.$valid) {
         Auth.createUser({
-          firstName: $scope.user.firstName,
-          lastName: $scope.user.lastName,
-          groupName: $scope.user.groupName,
           email: $scope.user.email,
           password: $scope.user.password,
-          zipCode: $scope.user.zipCode
+          position: $scope.user.position
         })
         .then( function() {
           // Account created, redirect to home

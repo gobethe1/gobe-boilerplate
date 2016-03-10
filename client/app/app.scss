@@ -69,6 +69,16 @@ footer{
   color: white;
 }
 
+.btn.active-signup{
+  background-color: white;
+  color: black;
+  border-color: white;
+}
+
+.btn:active, .btn.active{
+  background-color: white;
+}
+
 /* End Signup Styles */
 
 @media only screen and (max-width: $screen-xs) {
