@@ -15,6 +15,11 @@ $font-family-sans-serif: "Helvetica", sans-serif !important;
 $white: white;
 $black: black;
 
+// button borders pulled from bootstrap-sass variables
+$border-radius-base:        9px !important;
+$border-radius-large:       9px !important;
+$border-radius-small:       9px !important;
+
 body {
   font-family: $font-family-sans-serif;
 }
@@ -63,8 +68,9 @@ footer{
 }
 
 .signup-header{
+  padding-bottom: 2%;
   h2,h5{
-    color: $white;
+    color: $black;
   }
 }
 
@@ -79,16 +85,33 @@ footer{
 //   border-color: white;
 // }
 
-.btn:active, .btn.active{
-  background-color: $white;
+.btn:focus{
+  color: $primary-blue;
 }
 
+.btn:active, .btn.active {
+  background-color: $white;
+  box-shadow: none;
+  color: $primary-blue;
+  border: 1px solid $primary-blue;
+}
+
+.btn.active.focus, .btn.active:focus,
+.btn.focus, .btn:active.focus,
+.btn:active:focus, .btn:focus {
+   outline: 0;
+}
 /* End Signup Styles */
 
 @media only screen and (max-width: $screen-xs) {
 	body{
 		font-size: 13px;
 	}
+}
+@media only screen and (max-width: $screen-sm) {
+  .signup-header {
+    padding-bottom: 5%;
+  }
 }
 
 // Component styles are injected through grunt
