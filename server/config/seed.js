@@ -88,14 +88,14 @@ q.fcall(function() {
         User.create({
           provider: 'local',
           name: 'Test User',
-          email: 'gobethe1dev@gmail.com',
+          email: 'test@test.com',
           password: 'test',
           position: 'group'
         }, {
           provider: 'local',
           role: 'admin',
           name: 'Admin',
-          email: 'admin@admin.com',
+          email: 'gobethe1dev@gmail.com',
           password: 'admin',
           position: 'admin'
         }, function() {

@@ -31,7 +31,7 @@ function matchZipCode(event, host){
 
 	    group.map(function(value){
 
-	    	var index = _.indexOf(event.sentEmails, value.email)
+	    	// var index = _.indexOf(event.sentEmails, value.email)
 
 	    	var link = 'http://' + host + '/confirm/' + event._id + '/' + value._id;
 	    	var capFirstName = _.capitalize(value.firstName);
@@ -60,14 +60,14 @@ function matchZipCode(event, host){
 
 		    };
 
-			if(index === -1){
+			// if(index === -1){
 			    transporter.sendMail(mailOptions, function(err) {
-			    	// console.log("inside sendMail error")
-			    	// console.log(err)
-			    	// console.log(mailOptions.to)
+			    	console.log("inside sendMail error")
+			    	console.log(err)
+			    	console.log(mailOptions.to)
 			      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 			    });
-			}
+			// }
 
 		});
 
@@ -94,7 +94,7 @@ function confirmGroup(event){
 			      }
 			       // console.log("waterfall group")
 			       // console.log(group)
-			       // done(err, group);
+			       done(err, group);
 			    });
 			  },
 			  function(group, done){
@@ -146,6 +146,7 @@ function confirmGroup(event){
 			  		    transporter.sendMail(mailOptions, function(err) {
 			  		    	console.log("inside sendMail error")
 			  		    	console.log(err)
+			  		    	console.log(mailOptions.to)
 			  		      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 			  		    });
 
