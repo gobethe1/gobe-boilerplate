@@ -62,9 +62,9 @@ function matchZipCode(event, host){
 
 			if(index === -1){
 			    transporter.sendMail(mailOptions, function(err) {
-			    	console.log("inside sendMail error")
-			    	console.log(err)
-			    	console.log(mailOptions.to)
+			    	// console.log("inside sendMail error")
+			    	// console.log(err)
+			    	// console.log(mailOptions.to)
 			      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 			    });
 			}
@@ -81,10 +81,10 @@ function matchZipCode(event, host){
 }
 
 function confirmGroup(event){
-		  console.log("confirmGroup")
-		  console.log(event.confirmGroup)
-		  console.log('event')
-		  console.log(event)
+		  // console.log("confirmGroup")
+		  // console.log(event.confirmGroup)
+		  // console.log('event')
+		  // console.log(event)
 		  async.waterfall([
 			  function(done) {
 			    Group.findById( event.confirmGroup, function(err, group) {
@@ -92,15 +92,15 @@ function confirmGroup(event){
 			      	console.log(err)
 			        // return res.status(404).send('There are no zipcode matches.');
 			      }
-			       console.log("waterfall group")
-			       console.log(group)
-			       done(err, group);
+			       // console.log("waterfall group")
+			       // console.log(group)
+			       // done(err, group);
 			    });
 			  },
 			  function(group, done){
-			  	console.log('user')
+			  	// console.log('user')
 			  	User.findById( event.userId, function(err, user) {
-			  		console.log(user)
+			  		// console.log(user)
 			       done(err, user, group);
 			  	});
 			  },
