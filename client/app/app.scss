@@ -10,14 +10,17 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 
 $bg-blue: #4a90e2;
 $dark-blue: #152940;
+$primary-blue: #4A90E2;
 $font-family-sans-serif: "Helvetica", sans-serif !important;
+$white: white;
+$black: black;
 
 body {
   font-family: $font-family-sans-serif;
 }
 
 .navbar.navbar-default {
-  background-color: white !important;
+  background-color: $white !important;
 }
 
 .browsehappy {
@@ -48,35 +51,36 @@ footer{
 /* Signup Styles */
 
 .signup-bg{
-  background-color: $bg-blue;
+  background-color: $white;
   margin-top: -20px;
   height:100vh;
   width: 100vw;
 }
 
 .signup .well{
-  background-color: white;
+  background-color: $white;
+  border-color: $primary-blue;
 }
 
 .signup-header{
   h2,h5{
-    color: white;
+    color: $white;
   }
 }
 
 .dark-blue{
-  background-color: $dark-blue;
-  color: white;
+  background-color: $primary-blue;
+  color: $white;
 }
 
-.btn.active-signup{
-  background-color: white;
-  color: black;
-  border-color: white;
-}
+// .btn.active-signup{
+//   background-color: white;
+//   color: black;
+//   border-color: white;
+// }
 
 .btn:active, .btn.active{
-  background-color: white;
+  background-color: $white;
 }
 
 /* End Signup Styles */

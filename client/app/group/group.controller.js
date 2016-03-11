@@ -8,7 +8,7 @@ angular.module('gobeApp')
     $scope.emailList = $scope.newGroup.emailList;
     $scope.hover = true;
     $scope.newGroup.ownedBy = currentUser._id;
-    // $scope.currentUser.groupId = $scope.newGroup.ownedBy;
+    $scope.newGroup.email   = currentUser.email;
 
 
     $scope.cancelGroup = function cancelGroup(){
