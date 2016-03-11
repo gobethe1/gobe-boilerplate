@@ -6,16 +6,13 @@ angular.module('gobeApp')
     $scope.errors = {};
     $scope.tab = 1;
     $scope.zipCode = "99999";
-    $scope.user.position;
+    $scope.user.position = "group";
 
     console.log($scope.tab)
 
 
     $scope.setTab = function (tabId) {
         $scope.tab = tabId;
-        console.log($scope.tab)
-        // 1 group, 2 volunteer
-        // set user role
         if (tabId === 1){$scope.user.position = "group"}
         else if (tabId === 2){$scope.user.position = "volunteer"}
         console.log($scope.user.position)
@@ -27,9 +24,6 @@ angular.module('gobeApp')
 
     $scope.signup = function(form) {
       $scope.submitted = true;
-      console.log(form)
-      console.log("signup firing")
-      console.log(form.$valid)
       if(form.$valid) {
         Auth.createUser({
           email: $scope.user.email,
@@ -37,8 +31,12 @@ angular.module('gobeApp')
           position: $scope.user.position
         })
         .then( function() {
-          // Account created, redirect to home
-          $location.path('/group/new');
+          if($scope.user.position === "group"){
+              $location.path('/group/new');
+            }
+           else if($scope.user.position === 'volunteer'){
+            $location.path('volunteer/profile');
+           } 
         })
         .catch( function(err) {
           err = err.data;

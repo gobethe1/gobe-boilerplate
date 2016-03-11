@@ -55,8 +55,8 @@ angular.module('gobeApp')
         }
       })
 
-        .state('event.confirm', {
-         url: '/:event_id/confirm/:group_id',
+        .state('confirm', {
+         url: '/confirm/:event_id/:group_id',
          templateUrl: 'app/event/event-confirm.html',
          controller: 'EventConfirmCtrl',
          resolve:{

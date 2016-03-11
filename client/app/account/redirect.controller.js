@@ -9,7 +9,13 @@ angular.module('gobeApp')
     if(currentUser.role === "admin"){
       $state.go('event.list');
     }
-    else if(currentUser.role === "user"){
-      $state.go('group.profile')
+    else if((currentUser.position === "group") && currentUser.groupId){
+      $state.go('group.profile');
+    }
+    else if((currentUser.position === "group") && !currentUser.groupId){
+      $state.go('group.new');
+    }
+    else if(currentUser.position === "volunteer"){
+      $state.go('volunteer.profile');
     }
   });

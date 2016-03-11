@@ -33,7 +33,7 @@ function matchZipCode(event, host){
 
 	    	var index = _.indexOf(event.sentEmails, value.email)
 
-	    	var link = 'http://' + host + '/event/' + event._id + '/confirm/' + value._id;
+	    	var link = 'http://' + host + '/confirm/' + event._id + '/' + value._id;
 	    	var capFirstName = _.capitalize(value.firstName);
 	    	var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey
 
@@ -99,8 +99,8 @@ function confirmGroup(event){
 			  },
 			  function(group, done){
 			  	console.log('user')
-			  	console.log(User)
 			  	User.findById( event.userId, function(err, user) {
+			  		console.log(user)
 			       done(err, user, group);
 			  	});
 			  },

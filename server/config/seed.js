@@ -89,13 +89,15 @@ q.fcall(function() {
           provider: 'local',
           name: 'Test User',
           email: 'gobethe1dev@gmail.com',
-          password: 'test'
+          password: 'test',
+          position: 'group'
         }, {
           provider: 'local',
           role: 'admin',
           name: 'Admin',
-          email: 'cassie.purtlebaugh@gmail.com', //admin@admin.com',
-          password: 'admin'
+          email: 'admin@admin.com',
+          password: 'admin',
+          position: 'admin'
         }, function() {
             console.log('finished populating users');
             resolve();
@@ -118,7 +120,7 @@ q.fcall(function() {
           organizationName: 'Homes for vets',
           firstName: 'Casper',
           lastName: 'P',
-          email: 'cassie.purtlebaugh@gmail.com', //'gobethe1dev@gmail.com',
+          email: 'cassie.purtlebaugh@example.com', //'gobethe1dev@gmail.com',
           phoneNumber: '7467447474',
           zipCode: '90017'
         },{
@@ -127,7 +129,7 @@ q.fcall(function() {
           lastName: 'Rock',
           email: 'gregorysaul7@example.com',
           phoneNumber: '7467447474',
-          zipCode: '90012'
+          zipCode: '90017'
         },{
           organizationName: 'Feed The Homeless',
           firstName: 'Patty',

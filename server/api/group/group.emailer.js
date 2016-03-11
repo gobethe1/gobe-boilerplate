@@ -28,7 +28,7 @@ function matchZipCode(group, host){
 
 	     	// var index = _.indexOf(event.sentEmails, value.email)
 
-	     	var link = 'http://' + host + '/event/' + event._id + '/confirm/' + group._id;
+	     	var link = 'http://' + host + '/confirm/' + event._id + '/' + group._id;
 	     	var capFirstName = _.capitalize(group.firstName);
 	     	var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey 
 	     	
