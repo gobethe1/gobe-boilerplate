@@ -5,12 +5,12 @@ angular.module('gobeApp')
     $scope.user = {};
     $scope.errors = {};
     $scope.tab = 1;
-    console.log($scope.tab)
+    // console.log($scope.tab)
 
 
     $scope.setTab = function (tabId) {
         $scope.tab = tabId;
-      console.log($scope.tab)
+      // console.log($scope.tab)
     };
 
     $scope.isSet = function (tabId) {

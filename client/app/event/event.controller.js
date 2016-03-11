@@ -2,7 +2,7 @@
 
 angular.module('gobeApp')
   .controller('EventCtrl', function ($scope, $state, $stateParams, Event, eventModel, currentUser) {
-    console.log(currentUser)
+    // console.log(currentUser)
   	$scope.listEvents = eventModel;
     $scope.hover = true;
 
@@ -25,7 +25,7 @@ angular.module('gobeApp')
          if(form.$valid){
              Event.send($scope.newEvent,
                function(data){
-                  console.log(data)
+                  // console.log(data)
                   $state.go('event.list')
                  }),
                  function(err){
@@ -41,7 +41,7 @@ angular.module('gobeApp')
       if(confirm('Are you sure you want to delete this client?')){
         angular.forEach($scope.listEvents, function(e, i) {
           console.log('e')
-          console.log(e)
+          // console.log(e)
            if (e._id === id) {
              $scope.listEvents.splice(i, 1);
            }

@@ -8,14 +8,14 @@ angular.module('gobeApp')
     $scope.zipCode = "99999";
     $scope.user.position = "group";
 
-    console.log($scope.tab)
+    // console.log($scope.tab)
 
 
     $scope.setTab = function (tabId) {
         $scope.tab = tabId;
         if (tabId === 1){$scope.user.position = "group"}
         else if (tabId === 2){$scope.user.position = "volunteer"}
-        console.log($scope.user.position)
+        // console.log($scope.user.position)
     };
 
     $scope.isSet = function (tabId) {
@@ -36,7 +36,7 @@ angular.module('gobeApp')
             }
            else if($scope.user.position === 'volunteer'){
             $location.path('volunteer/profile');
-           } 
+           }
         })
         .catch( function(err) {
           err = err.data;
