@@ -42,7 +42,7 @@ exports.update = function(req, res) {
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       if(event.confirmGroup !== null){
-      eventEmailer.confirmGroup(event);
+      eventEmailer.confirmGroup(event, req.headers.host);
       }
       return res.status(200).json(event);
     });
