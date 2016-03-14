@@ -4,7 +4,6 @@ angular.module('gobeApp')
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('event', {
-        // abstract: true,
         url: '/event',
         templateUrl: 'app/event/event.html',
         controller: 'EventCtrl',
@@ -53,19 +52,8 @@ angular.module('gobeApp')
            return Event.get({id: $stateParams.id}).$promise;
          }
         }
-      })
+      });
 
-        .state('confirm', {
-         url: '/confirm/:event_id/:group_id',
-         templateUrl: 'app/event/event-confirm.html',
-         controller: 'EventConfirmCtrl',
-         resolve:{
-          eventConfirm: function(Event, $stateParams){
-            return Event.get({id: $stateParams.event_id}).$promise;
-          }
-         }
-       });
-
-
+        
       $urlRouterProvider.otherwise('/');
   });
