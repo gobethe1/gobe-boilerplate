@@ -95,7 +95,7 @@ function volunteerMatch(event, host){
 		    });
 		  },
 		  function(group, done) {
-		  	
+
 		  	var capFirstName = _.capitalize(group.firstName);
 	  		var capLastName = _.capitalize(group.lastName);
 	  		var dateString = event.confirmDate.toString()
@@ -111,8 +111,8 @@ function volunteerMatch(event, host){
 		    	console.log(value)
 		    	// var index = _.indexOf(event.sentEmails, value.email)
 
-		    	var linkConfirm = 'http://' + host + '/volunteer/' + event._id + '/' + value + '/yes';
-		    	var linkReject =  'http://' + host + '/volunteer/' + event._id + '/' + value + '/no';
+		    	var linkConfirm = 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ event._id + '/' + value + '/yes';
+		    	var linkReject =  'http://' + host + '/confirm/volunteer/' + group._id + '/'+ event._id + '/' + value + '/no';
 		    	console.log("link")
 		    	console.log(linkConfirm)
 			    var transporter = nodemailer.createTransport({
@@ -135,7 +135,7 @@ function volunteerMatch(event, host){
 			    '<p style="font-size:14px;font-family:sans-serif;">in party in your area on  <span style="font-weight:bold"> ' + finalDate + ' at ' + event.confirmTime + '</span>.</p>' +
 			    '<p style="font-size:14px;font-family:sans-serif;">Can you make it?</p>' +
 			    '<a href=' + linkConfirm +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br>' +
-			    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a></td>' +		    
+			    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a></td>' +
 			    '<td align="left" width="50%">' +
 			    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">What\'s this invite about?</p>' +
 			    '<p style="font-size:14px;font-family:sans-serif;">Someone just moved off the streets and it\'s</p>' +
@@ -240,7 +240,7 @@ function confirmGroup(event, host){
 			  		      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 			  		    });
 
-			  	volunteerMatch(event, host);		    
+			  	volunteerMatch(event, host);
 			    done('done');
 
 
@@ -250,7 +250,7 @@ function confirmGroup(event, host){
 			});
 
 
-		
+
 
 }
 

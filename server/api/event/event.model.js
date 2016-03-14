@@ -31,7 +31,8 @@ var EventSchema = new Schema({
   confirmGroup: {type: mongoose.Schema.Types.ObjectId, ref: 'Group', default:null},
   confirmDate: Date,
   confirmTime: String,
-  sentEmails: Array
+  // sentEmails: Array,
+  confirmedEmails: Array
 });
 
 

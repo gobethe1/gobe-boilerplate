@@ -39,6 +39,7 @@ exports.update = function(req, res) {
     if(!event) { return res.status(404).send('Not Found'); }
     var updated = _.merge(event, req.body);
     updated.availability = req.body.availability;
+    updated.confirmedEmails = req.body.confirmedEmails;
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       if(event.confirmGroup !== null){
