@@ -134,13 +134,13 @@ function volunteerMatch(event, host){
 			    '<p style="font-size:14px;font-family:sans-serif;">join the rest of the ' + capOrgName + ' for the move</p>' +
 			    '<p style="font-size:14px;font-family:sans-serif;">in party in your area on  <span style="font-weight:bold"> ' + finalDate + ' at ' + event.confirmTime + '</span>.</p>' +
 			    '<p style="font-size:14px;font-family:sans-serif;">Can you make it?</p>' +
-			    '<a href=' + linkConfirm +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br>' +
-			    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a></td>' +
+			    '<div style="text-align:center"><a href=' + linkConfirm +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br>' +
+			    '<br><a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a></div></td>' +
 			    '<td align="left" width="50%">' +
 			    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">What\'s this invite about?</p>' +
 			    '<p style="font-size:14px;font-family:sans-serif;">Someone just moved off the streets and it\'s</p>' +
 			   	'<p style="font-size:14px;font-family:sans-serif;">time to party! This person now lives in your</p>' +
-			   	'<p style="font-size:14px;font-family:sans-serif;">and you have been invited to help</p>' +
+			   	'<p style="font-size:14px;font-family:sans-serif;">area and you have been invited to help</p>' +
 			   	'<p style="font-size:14px;font-family:sans-serif;">welcome them home! Ready to make a difference?</p>' +
 			   	'<p style="font-size:14px;font-family:sans-serif;">Simply, accept the invite, ask your group leader</p>' +
 			   	'<p style="font-size:14px;font-family:sans-serif;">what items you can bring, and bring the items</p>' +

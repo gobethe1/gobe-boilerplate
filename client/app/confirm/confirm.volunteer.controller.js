@@ -6,21 +6,41 @@ angular.module('gobeApp')
     $scope.group = groupConfirm;
 
     var confirmedEmails = eventConfirm.confirmedEmails;
-    // console.log('confirmedEmails')
-    // console.log(confirmedEmails)
+    var rejectedEmails = eventConfirm.rejectedEmails;
+    $scope.confirm = false;
+    $scope.reject = false;
+
+    console.log('confirmedEmails')
+    console.log(confirmedEmails)
+    console.log("stateParams response")
+    console.log($stateParams.response)
+
 
     console.log($stateParams.email)
-    if($stateParams.email){
+    if($stateParams.email && ($stateParams.response === 'yes')){
+      // check the confirmedEmails array if the current email already exists in array
       confirmedEmails.push($stateParams.email)
-      $scope.event.confirmedEmails = confirmedEmails;
-      console.log(confirmedEmails)
+      $scope.confirm = true;
+      var uniqueConfirmed = _.uniq(confirmedEmails)
+      $scope.event.confirmedEmails = uniqueConfirmed;
+      console.log( $scope.event.confirmedEmails)
       Event.update({id: $stateParams.event_id}, $scope.event, function(data){
         console.log('data');
         console.log(data);
       })
     }
-    else{
-      $scope.sorryTaken = true;
+    else if($stateParams.email && ($stateParams.response === 'no')){
+      // check the rejectedEmails array if current email already exists in array
+
+      rejectedEmails.push($stateParams.email)
+      var uniqueRejected = _.uniq(rejectedEmails)
+      $scope.reject = true;
+      $scope.event.rejectedEmails = uniqueRejected;
+      console.log($scope.event.rejectedEmails)
+      Event.update({id: $stateParams.event_id}, $scope.event, function(data){
+        console.log('data');
+        console.log(data);
+      })
     }
 
 

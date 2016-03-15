@@ -42,6 +42,7 @@ exports.update = function(req, res) {
     var updated = _.merge(event, req.body);
     updated.availability = req.body.availability;
     event.markModified('confirmedEmails');
+    event.markModified('rejectedEmails');
     // console.log('updated');
     // console.log(updated.confirmedEmails);
     updated.save(function (err) {

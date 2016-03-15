@@ -32,7 +32,8 @@ var EventSchema = new Schema({
   confirmDate: Date,
   confirmTime: String,
   // sentEmails: Array,
-  confirmedEmails: Array
+  confirmedEmails: Array,
+  rejectedEmails: Array
 });
 
 
