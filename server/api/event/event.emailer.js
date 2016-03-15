@@ -113,8 +113,8 @@ function volunteerMatch(event, host){
 
 		    	var linkConfirm = 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ event._id + '/' + value + '/yes';
 		    	var linkReject =  'http://' + host + '/confirm/volunteer/' + group._id + '/'+ event._id + '/' + value + '/no';
-		    	console.log("link")
-		    	console.log(linkConfirm)
+		    	// console.log("link")
+		    	// console.log(linkConfirm)
 			    var transporter = nodemailer.createTransport({
 			      host: GodaddySMTP,
 			      port: 25,
@@ -153,7 +153,7 @@ function volunteerMatch(event, host){
 				    transporter.sendMail(mailOptions, function(err) {
 				    	console.log("inside sendMail")
 				    	console.log(err)
-				    	console.log(mailOptions.to)
+							console.log(mailOptions.to)
 				      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 				    });
 				// }
