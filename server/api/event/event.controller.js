@@ -35,18 +35,28 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   Event.findById(req.params.id, function (err, event) {
+    console.log('req body')
+    console.log(req.body)
     if (err) { return handleError(res, err); }
     if(!event) { return res.status(404).send('Not Found'); }
     var updated = _.merge(event, req.body);
     updated.availability = req.body.availability;
-    updated.confirmedEmails = req.body.confirmedEmails;
+    event.markModified('confirmedEmails');
+    // console.log('updated');
+    // console.log(updated.confirmedEmails);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      if(event.confirmGroup !== null){
+      console.log('if evaluation')
+      console.log((event.confirmGroup !== null) && (event.confirmedEmails.length === 0))
+      if((event.confirmGroup !== null) && (event.confirmedEmails.length === 0)){
       eventEmailer.confirmGroup(event, req.headers.host);
       }
+      console.log('outside if');
+      console.log(updated.confirmedEmails);
       return res.status(200).json(event);
     });
+      console.log('outside update');
+      console.log(updated.confirmedEmails);
   });
 };
 

@@ -222,15 +222,9 @@ function confirmGroup(event, host){
 			  		    '<p style="font-size:14px;font-family:sans-serif;">for the move-in party of <span style="text-transform:underline">' + capFirstName + ' ' + capLastName + ' </span>' +
 			  		    'on <span style="font-weight:bold">' + finalDate + ' from ' + event.confirmTime + '</span>.</p>' +
 			  		 		'<p style="font-size:14px;font-family:sans-serif;">Party on,</p>' +
-			  		 		'<img src="cid:confirmlogo">' +
+			  		 		'<img src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png">' +
 			  		 		'</td>' +
-			  		    '</tr></table>',
-			  		    attachments:[{
-			  		    	filename: 'confirm-email-logo.png',
-			  		    	path: 'https://s3-us-west-1.amazonaws.com/gobethe1/confirm-email-logo.png',
-			  		    	cid: 'confirmlogo'
-			  		    }]
-
+			  		    '</tr></table>'
 			  		    };
 
 			  		    transporter.sendMail(mailOptions, function(err) {

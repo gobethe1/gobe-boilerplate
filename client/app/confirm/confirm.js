@@ -33,11 +33,7 @@ angular.module('gobeApp')
       return Group.get({id: $stateParams.group_id}).$promise;
      }
     }
-  })
-    .state('test', {
-    url: '/test',
-    templateUrl: 'app/confirm/welcome-kit.pdf'
-  })
+  });
 
 
 

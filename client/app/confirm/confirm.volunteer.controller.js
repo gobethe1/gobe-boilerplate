@@ -6,10 +6,15 @@ angular.module('gobeApp')
     $scope.group = groupConfirm;
 
     var confirmedEmails = [];
+    // console.log('confirmedEmails')
+    // console.log(confirmedEmails)
 
+    console.log($stateParams.email)
     if($stateParams.email){
       confirmedEmails.push($stateParams.email)
-      Event.update({id: $stateParams.event_id}, {confirmedEmails: confirmedEmails}, function(data){
+      $scope.event.confirmedEmails = confirmedEmails;
+      console.log(confirmedEmails)
+      Event.update({id: $stateParams.event_id}, $scope.event, function(data){
         console.log('data');
         console.log(data);
       })
