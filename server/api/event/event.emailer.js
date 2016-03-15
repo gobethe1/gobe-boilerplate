@@ -133,7 +133,7 @@ function volunteerMatch(event, host){
 			    '<p style="font-size:14px;font-family:sans-serif;">You have been invited by ' + capFirstName + ' ' + capLastName + ' to  <br>' +
 			    'join the rest of the ' + capOrgName + ' for the move <br>' +
 			    'in party in your area on  <span style="font-weight:bold"> ' + finalDate + ' at ' + event.confirmTime + '</span>. <br>' +
-			    'Can you make it? <br>' +
+			    'Can you make it? <br><br>' +
 			    '<a href=' + linkConfirm +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +
 			    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a></p></td>' +
 			    '<td align="center" width="50%">' +
@@ -218,7 +218,7 @@ function confirmGroup(event, host){
 			  		      subject: capFirstName + '\'s Move-In Party',
 			  		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
 			  		    '<td>' +
-			  		    '<p style="font-size:14px;font-family:sans-serif;">We\'ve got a match! The ' + capOrgName + ', have confirmed their attendance' +
+			  		    '<p style="font-size:14px;font-family:sans-serif;">We\'ve got a match! The ' + capOrgName + ', have confirmed their attendance ' +
 			  		    'for the <br> move-in party of <span style="text-transform:underline">' + capFirstName + ' ' + capLastName + ' </span>' +
 			  		    'on <span style="font-weight:bold">' + finalDate + ' from ' + event.confirmTime + '</span>. </p>' +
 			  		 		'<p style="font-size:14px;font-family:sans-serif;">Party on, </p>' +
