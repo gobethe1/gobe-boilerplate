@@ -129,22 +129,22 @@ function volunteerMatch(event, host){
 			      from: 'hello@gobethe1.com',
 			      subject: 'Are you available to volunteer?',
 			      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
-			    '<td align="left" width="50%">' +
-			    '<p style="font-size:14px;font-family:sans-serif;">You have been invited by ' + capFirstName + ' ' + capLastName + ' to </p>' +
-			    '<p style="font-size:14px;font-family:sans-serif;">join the rest of the ' + capOrgName + ' for the move</p>' +
-			    '<p style="font-size:14px;font-family:sans-serif;">in party in your area on  <span style="font-weight:bold"> ' + finalDate + ' at ' + event.confirmTime + '</span>.</p>' +
-			    '<p style="font-size:14px;font-family:sans-serif;">Can you make it?</p>' +
-			    '<div style="text-align:center"><a href=' + linkConfirm +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br>' +
-			    '<br><a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a></div></td>' +
-			    '<td align="left" width="50%">' +
+			    '<td align="center" width="50%">' +
+			    '<p style="font-size:14px;font-family:sans-serif;">You have been invited by ' + capFirstName + ' ' + capLastName + ' to  <br>' +
+			    'join the rest of the ' + capOrgName + ' for the move <br>' +
+			    'in party in your area on  <span style="font-weight:bold"> ' + finalDate + ' at ' + event.confirmTime + '</span>. <br>' +
+			    'Can you make it? <br>' +
+			    '<a href=' + linkConfirm +  ' style="background-color:#0700FC;border:1px solid #0700FC ;border-radius:3px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +
+			    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a></p></td>' +
+			    '<td align="center" width="50%">' +
 			    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">What\'s this invite about?</p>' +
-			    '<p style="font-size:14px;font-family:sans-serif;">Someone just moved off the streets and it\'s</p>' +
-			   	'<p style="font-size:14px;font-family:sans-serif;">time to party! This person now lives in your</p>' +
-			   	'<p style="font-size:14px;font-family:sans-serif;">area and you have been invited to help</p>' +
-			   	'<p style="font-size:14px;font-family:sans-serif;">welcome them home! Ready to make a difference?</p>' +
-			   	'<p style="font-size:14px;font-family:sans-serif;">Simply, accept the invite, ask your group leader</p>' +
-			   	'<p style="font-size:14px;font-family:sans-serif;">what items you can bring, and bring the items</p>' +
-			   	'<p style="font-size:14px;font-family:sans-serif;">with you to the party!</p></td>' +
+			    '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s <br>' +
+			   	'time to party! This person now lives in your <br>' +
+			   	'area and you have been invited to help <br>' +
+			   	'welcome them home! Ready to make a difference? <br>' +
+			   	'Simply, accept the invite, ask your group leader <br>' +
+			   	'what items you can bring, and bring the items <br>' +
+			   	'with you to the party!</p></td>' +
 			    '</tr></table>'
 
 			    };
@@ -218,10 +218,10 @@ function confirmGroup(event, host){
 			  		      subject: capFirstName + '\'s Move-In Party',
 			  		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
 			  		    '<td>' +
-			  		    '<p style="font-size:14px;font-family:sans-serif;">We\'ve got a match! The ' + capOrgName + ', have confirmed their attendance</p>' +
-			  		    '<p style="font-size:14px;font-family:sans-serif;">for the move-in party of <span style="text-transform:underline">' + capFirstName + ' ' + capLastName + ' </span>' +
-			  		    'on <span style="font-weight:bold">' + finalDate + ' from ' + event.confirmTime + '</span>.</p>' +
-			  		 		'<p style="font-size:14px;font-family:sans-serif;">Party on,</p>' +
+			  		    '<p style="font-size:14px;font-family:sans-serif;">We\'ve got a match! The ' + capOrgName + ', have confirmed their attendance' +
+			  		    'for the <br> move-in party of <span style="text-transform:underline">' + capFirstName + ' ' + capLastName + ' </span>' +
+			  		    'on <span style="font-weight:bold">' + finalDate + ' from ' + event.confirmTime + '</span>. </p>' +
+			  		 		'<p style="font-size:14px;font-family:sans-serif;">Party on, </p>' +
 			  		 		'<img src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png">' +
 			  		 		'</td>' +
 			  		    '</tr></table>'

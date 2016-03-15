@@ -45,7 +45,7 @@ q.fcall(function() {
           firstName: 'ella',
           lastName: 'stella',
           address: '1000 hollyday ',
-          zipCode: '90028',
+          zipCode: '90000',
           gender: 'female',
           availability: {
             moveInDate: new Date("2016-02-25T00:00:00-0800"),
