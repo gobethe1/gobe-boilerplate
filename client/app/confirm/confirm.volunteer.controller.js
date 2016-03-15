@@ -5,7 +5,7 @@ angular.module('gobeApp')
     $scope.event = eventConfirm;
     $scope.group = groupConfirm;
 
-    var confirmedEmails = [];
+    var confirmedEmails = eventConfirm.confirmedEmails;
     // console.log('confirmedEmails')
     // console.log(confirmedEmails)
 
