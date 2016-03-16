@@ -20,10 +20,30 @@
 
 i {
   color: black;
-  margin-top: 15px;
+  margin-top: 0;
   margin-bottom: 10px;
 }
 
 .event-confirm li{
     padding: 10px 0px;
+}
+
+.input-group-btn {
+   position: relative;
+   font-size: 0;
+   white-space: nowrap;
+}
+
+.input-group-btn {
+   width: 1%;
+   white-space: nowrap;
+   vertical-align: middle;
+}
+
+.input-group-btn i {
+   display: table-cell;
+  color: black;
+  margin-top: 0;
+  margin-bottom: 0;
+
 }
