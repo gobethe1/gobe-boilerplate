@@ -2,6 +2,8 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3 col-xs-12">
 			<h3>Edit Client</h3>
+
+			<!-- edit client name -->
 			<div class="row">
 				<div class="col-md-6 col-xs-6">
 				 <div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
@@ -18,6 +20,16 @@
 					</div>
 				</div>
 			</div>
+			<!-- end client name -->
+
+			<!-- phone number  -->
+      <div class="form-group" ng-class="{ 'has-success': form.phoneNumber.$valid && submitted,
+                                           'has-error': form.phoneNumber.$invalid && submitted }">
+        <label>Client's Phone Number</label>
+        <input type="text" name="phoneNumber" ng-model="newEvent.phoneNumber"
+               class="form-control" ui-mask="(999) 999-9999"/>
+      </div>
+			<!-- end phone number -->
 
 			<!-- address -->
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
@@ -30,7 +42,7 @@
 			<div class="form-group" ng-class="{ 'has-success': form.zipcode.$valid && submitted,
                                            'has-error': (form.zipcode.$invalid || form.zipcode.$error.minlength) && submitted }">
 			   <label> Move-in Zipcode</label>
-			   <input type="text" ng-minlength="5" name="zipcode" ng-model="newEvent.zipCode" class="form-control" 
+			   <input type="text" ng-minlength="5" name="zipcode" ng-model="newEvent.zipCode" class="form-control"
 			   ui-mask="99999" ui-mask-placeholder-char="space" required>
 			</div>
 			<p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">
