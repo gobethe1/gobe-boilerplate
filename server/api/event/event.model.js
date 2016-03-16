@@ -12,6 +12,7 @@ var EventSchema = new Schema({
         },
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
+  phoneNumber: String,
   address: {type: String, required: true},
   zipCode: {type: String, required: true},
   gender: String,
