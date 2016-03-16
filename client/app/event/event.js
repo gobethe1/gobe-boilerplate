@@ -41,6 +41,19 @@ angular.module('gobeApp')
         url: '/:id/show',
         templateUrl: 'app/event/event-show.html',
         controller: 'EventShowCtrl',
+        resolve:{
+          eventShow: function(Event, $stateParams){
+            return Event.get({id: $stateParams.id}).$promise;
+          },
+          eventGroup: function(Group, eventShow){
+            if(eventShow.confirmGroup){
+              return Group.get({id: eventShow.confirmGroup }).$promise;
+            }
+            else{
+              return null;
+            }
+          }
+        }
       })
 
        .state('event.edit', {

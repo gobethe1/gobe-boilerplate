@@ -129,8 +129,8 @@ q.fcall(function() {
           lastName: 'Rock',
           email: 'gobethe1dev@gmail.com',
           phoneNumber: '7467447474',
-          zipCode: '90017',
-          emailList: ['gobethe1dev@gmail.com', 'grock006@gmail.com', 'cassie.purtlebaugh@gmail.com']
+          zipCode: '90210',
+          emailList: ['gobethe1dev@gmail.com', 'grock006@example.com', 'cassie.purtlebaugh@example.com']
         },{
           organizationName: 'Feed The Homeless',
           firstName: 'Patty',

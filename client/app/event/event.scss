@@ -41,9 +41,35 @@ i {
 }
 
 .input-group-btn i {
-   display: table-cell;
+  display: table-cell;
   color: black;
   margin-top: 0;
   margin-bottom: 0;
+}
 
+.table-responsive {
+    border: 0px solid transparent;
+}
+.status-bar{
+    height:30px;
+    width: 100%;
+    color: white;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    padding: 6px 25px;
+}
+
+.pending-bar{
+  background-color: gray;
+}
+
+.confirmed-bar{
+  background-color: green;
+}
+
+@media only screen and (max-width: $screen-xs) {
+  .status-bar{
+      height: 30px;
+      padding: 6px 25px;
+  }
 }

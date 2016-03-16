@@ -1,21 +1,36 @@
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xs-12">
+    <!-- party status -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 no-pad">
+        <div class="status-bar" ng-class="{'pending-bar': !event.confirmGroup, 'confirmed-bar': event.confirmGroup}">
+        <!--   Status: Party Pending --> Status: {{partyStatus(event)}}
+          <span style="float:right" ng-if="event.confirmGroup">Guests: {{group.organizationName}}</span> 
+          <!-- create function that runs on event.confirmGroup and returns party status -->
+        </div>
+      </div>
+    </div>
+    <!-- end party status -->
     <!-- back button -->
-    <a ui-sref="event.list">
-      <i class="fa fa-arrow-left fa-2x"></i>
-    </a>
+    <div class="row">
+      <div class="col-xs-6 col-sm-6">
+      <a ui-sref="event.list">
+        <i class="fa fa-long-arrow-left fa-2x" style="padding-left:10px;"></i>
+      </a>
+      </div>
+      <div class="col-xs-6 col-sm-6 text-right">
+        <a ui-sref="event.edit({id: event._id})" style="padding-right:10px;">Edit</a>
+      </div>
+    </div>
     <!-- end back button -->
+    <div class="table-responsive">
     <table class="table table-sm">
       <thead>
         <tr>
-          <th class="col-sm-6">
+          <th class="col-sm-6 col-xs-6">
               <h3 class="no-margin">{{event.firstName | capitalize}} {{event.lastName | capitalize}}</h3>
           </th>
-          <th class="col-sm-5">
-          <!--     <a ui-sref="event.edit({id: event._id})">Edit</a> -->
-          </th>
-          <th class="col-sm-1">
-              <a ui-sref="event.edit({id: event._id})">Edit</a>
+          <th class="col-sm-6 col-xs-6">
           </th>
         </tr>
       </thead>
@@ -89,6 +104,6 @@
         </tbody>
 
     </table>
-
+  </div>
   </div>
 </div>

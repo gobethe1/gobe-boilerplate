@@ -89,8 +89,6 @@ function volunteerMatch(event, host){
 		      	// console.log(err)
 		        // return res.status(404).send('There are no zipcode matches.');
 		      }
-		       console.log("volunteer group")
-		       console.log(group)
 		       done(err, group);
 		    });
 		  },
@@ -103,12 +101,12 @@ function volunteerMatch(event, host){
 	  	  	var capOrgName = group.organizationName.capitalize();
 
 
-		  	console.log("group emailList")
-		  	console.log(group.emailList)
+		  	// console.log("group emailList")
+		  	// console.log(group.emailList)
 
 		    group.emailList.map(function(value){
-		    	console.log("email value")
-		    	console.log(value)
+		    	// console.log("email value")
+		    	// console.log(value)
 		    	// var index = _.indexOf(event.sentEmails, value.email)
 
 		    	var linkConfirm = 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ event._id + '/' + value + '/yes';
@@ -153,7 +151,7 @@ function volunteerMatch(event, host){
 				    transporter.sendMail(mailOptions, function(err) {
 				    	console.log("inside sendMail")
 				    	console.log(err)
-							console.log(mailOptions.to)
+						console.log(mailOptions.to)
 				      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 				    });
 				// }
