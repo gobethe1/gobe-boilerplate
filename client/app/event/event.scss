@@ -67,6 +67,19 @@ i {
   background-color: green;
 }
 
+.btn-transparent{
+  background-color: transparent;
+  border: 1px solid transparent;
+  font-size: 14px;
+  padding-top: 17px;
+  padding-left:0px;
+  text-decoration: underline;
+  &:hover, &:focus{
+    background-color: transparent;
+    border: 1px solid transparent;
+  }
+}
+
 @media only screen and (max-width: $screen-xs) {
   .status-bar{
       height: 30px;

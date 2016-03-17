@@ -28,6 +28,12 @@ angular.module('gobeApp')
          }
     };
 
+    $scope.cancelClient = function cancelClient(){
+         if(confirm("Are you sure you want to cancel? All changes will be lost.")){
+           $state.go('event.list');
+         }
+       }
+
 
 
   });

@@ -5,9 +5,6 @@ angular.module('gobeApp')
     $scope.newGroup = groupEdit;
     $scope.emailList = $scope.newGroup.emailList;
     $scope.hover = true;
-    // console.log(groupEdit._id)
-    // console.log(currentProfile._id)
-
 
     $scope.updateEmail = function updateEmail(){
       $scope.emailList.push($scope.email);
@@ -21,6 +18,12 @@ angular.module('gobeApp')
           $scope.newGroup.emailList = $scope.emailList;
       };
     };
+
+    $scope.cancelGroup = function cancelGroup(){
+      if(confirm("Are you sure you want to cancel? All changes will be lost.")){
+        $state.go('group.list');
+      }
+    }
 
 
     $scope.updateGroup = function addGroup(form) {

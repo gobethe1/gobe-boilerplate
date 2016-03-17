@@ -12,7 +12,7 @@ angular.module('gobeApp')
 
 
     $scope.cancelGroup = function cancelGroup(){
-      if(confirm("Are you sure you want to cancel this new group?")){
+      if(confirm("Are you sure you want to cancel? All changes will be lost.")){
         $state.go('group.list');
       }
     }

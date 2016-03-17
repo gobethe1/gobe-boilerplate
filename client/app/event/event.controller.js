@@ -14,7 +14,7 @@ angular.module('gobeApp')
     $scope.newEvent.userId = currentUser._id;
 
     $scope.cancelClient = function cancelClient(){
-      if(confirm("Are you sure you want to cancel this new client?")){
+      if(confirm("Are you sure you want to cancel? All changes will be lost.")){
         $state.go('event.list');
       }
     }

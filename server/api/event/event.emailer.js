@@ -135,7 +135,7 @@ function volunteerMatch(event, host){
 			    '<a href=' + linkConfirm +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:40%;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +
 			    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a></p></td>' +
 			    '<td align="left" width="50%">' +
-			    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold;margin-top:-10px">What\'s this invite about?</p>' +
+			    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold;margin-top:0px">What\'s this invite about?</p>' +
 			    '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s <br>' +
 			   	'time to party! This person now lives in your <br>' +
 			   	'area and you have been invited to help <br>' +
