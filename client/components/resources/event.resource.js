@@ -13,7 +13,13 @@ angular.module('gobeApp')
              	  id:'send'
              	}
              },
+             updateSend:{
+                method: 'POST',
+                params: {
+                    id:'updatesend'
+                }
+             }
   });
 })
 
-  
+

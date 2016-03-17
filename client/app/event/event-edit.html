@@ -206,12 +206,17 @@
 			</div>
 
 			<div class="row">
-				<div class="col-xs-6 col-sm-6 text-left">
+				<div class="col-xs-2 col-sm-4 text-left">
 					<button class="btn btn-lg btn-transparent" ng-click="cancelClient()">
 						Cancel
 					</button>
 				</div>
-				<div class="col-xs-6 col-sm-6 text-right">
+				<div class="col-xs-6 col-sm-4 text-center">
+						<button class="btn btn-lg btn-primary" type="submit" ng-click="publishEvent()">
+							Save For Later
+						</button>
+					</div>
+				<div class="col-xs-4 col-sm-4 text-right">
 					<button class="btn btn-lg" type="submit" ng-submit="addEvent()"
 					ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}">
 						Finish

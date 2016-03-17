@@ -19,22 +19,40 @@ angular.module('gobeApp')
       }
     }
 
-    $scope.addEvent = function addEvent(form) {
-      $scope.submitted = true;
-         if(form.$valid){
-             Event.send($scope.newEvent,
-               function(data){
-                  // console.log(data)
-                  $state.go('event.list')
-                 }),
-                 function(err){
-                 	$scope.addEventError = "Looks like something went wrong! Please try again"
-                 }
-               }
-         else{
-             document.body.scrollTop = document.documentElement.scrollTop = 0;
-         }
+    $scope.publishEvent = function publishEvent(){
+      $scope.newEvent.published = false;
+      $scope.submitted = false;
+      console.log('new event published');
+      console.log($scope.newEvent.published)
+      Event.save($scope.newEvent, function(data){
+        $state.go('event.list');
+      }),
+      function(err){
+        $scope.addEventError = "Looks like something went wrong! Please try again"
+      }
     };
+
+    $scope.addEvent = function addEvent(form) {
+      console.log(form)
+        console.log('published')
+        $scope.newEvent.published = true;
+        $scope.submitted = true;
+        console.log($scope.newEvent.published);
+           if(form.$valid){
+               Event.send($scope.newEvent,
+                 function(data){
+                    // console.log(data)
+                    $state.go('event.list')
+                   }),
+                   function(err){
+                   	$scope.addEventError = "Looks like something went wrong! Please try again"
+                   }
+                 }
+           else{
+               document.body.scrollTop = document.documentElement.scrollTop = 0;
+           }
+    };
+
 
     $scope.deleteEvent = function deleteEvent(id){
       if(confirm('Are you sure you want to delete this client?')){

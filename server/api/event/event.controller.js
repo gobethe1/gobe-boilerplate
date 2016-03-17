@@ -62,6 +62,21 @@ exports.send = function(req, res) {
   });
 };
 
+exports.updateSend = function(req, res) {
+  if(req.body._id) { delete req.body._id; }
+  Event.findById(req.params.id, function (err, event) {
+    if (err) { return handleError(res, err); }
+    if(!event) { return res.status(404).send('Not Found'); }
+    var updated = _.merge(event, req.body);
+    updated.availability = req.body.availability;
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      eventEmailer.matchZipCode(event, req.headers.host);
+      return res.status(200).json(event);
+    });
+  });
+};
+
 // Deletes a event from the DB.
 exports.destroy = function(req, res) {
   Event.findById(req.params.id, function (err, event) {

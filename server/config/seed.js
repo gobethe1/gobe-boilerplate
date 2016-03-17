@@ -122,7 +122,7 @@ q.fcall(function() {
           lastName: 'P',
           email: 'cassie.purtlebaugh@example.com', //'gobethe1dev@gmail.com',
           phoneNumber: '7467447474',
-          zipCode: '90000'
+          zipCode: '90017'
         },{
           organizationName: 'Greg Rocks',
           firstName: 'Greg',
