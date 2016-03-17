@@ -1,7 +1,11 @@
 angular.module('gobeApp')
-  .controller('EventShowCtrl', function ($scope, $stateParams, Event) {
+  .controller('EventShowCtrl', function ($scope, $stateParams, Event, eventShow, Group, eventGroup) {
     
-    $scope.event = Event.get({id: $stateParams.id});
+    $scope.event = eventShow;
+
+    if(eventGroup){
+      $scope.group = eventGroup;
+    }
 
     var timeArray = ["8am-12pm", "12pm-5pm", "5pm-8pm"];
 
@@ -17,6 +21,15 @@ angular.module('gobeApp')
           return timeArray[2];
         }
     };
+
+    $scope.partyStatus = function(event){
+      if(!event.confirmGroup){
+        return "Pending"
+      }
+      else if(event.confirmGroup){
+        return "Party On"
+      }
+    }
 
   
   });

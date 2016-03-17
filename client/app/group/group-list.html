@@ -8,13 +8,13 @@
     </h2>
   </div>
 
-  <div class="col-sm-6 col-xs-6">
+  <div class="col-sm-6 col-xs-12">
     <ul class="list-unstyled event-list">
       <li ng-repeat="group in listGroups"
           ng-mouseenter="hover = false"
           ng-mouseleave="hover = true">
         <div class="row">
-          <span class="col-sm-11 col-xs-11">
+          <span class="col-sm-11 col-xs-10">
             <a ui-sref="group.show({id: group._id})">
               <h4>{{group.organizationName | capitalize }}, {{group.firstName | capitalize }} {{group.lastName | capitalize }}</h4>
             </a>
