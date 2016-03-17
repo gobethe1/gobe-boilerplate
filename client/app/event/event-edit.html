@@ -25,7 +25,7 @@
 			<!-- phone number  -->
       <div class="form-group" ng-class="{ 'has-success': form.phoneNumber.$valid && submitted,
                                            'has-error': form.phoneNumber.$invalid && submitted }">
-        <label>Client's Phone Number</label>
+        <label>Client Phone Number (optional)</label>
         <input type="text" name="phoneNumber" ng-model="newEvent.phoneNumber"
                class="form-control" ui-mask="(999) 999-9999"/>
       </div>
@@ -54,7 +54,7 @@
 				<div class="col-sm-6 col-xs-9">
 					<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
 					                                    'has-error': form.address.$invalid && submitted }">
-					    <label>Gender</label><br>
+					    <label>Gender (optional)</label><br>
 						<label class="radio-inline">
 						  <input name="male" ng-model="newEvent.gender" value="male" type="radio">
 						  <span class="c-indicator"></span>
@@ -88,16 +88,16 @@
 			</div>
 			<!-- date movedin -->
 			<!-- date one and time -->
-			<label>Please Choose 3 Available Dates and Times</label>
+			<label>Please Choose 3 Available Dates and Times</label><br>
 			<label>Date & Time 1</label>
 			<div class="row">
-				<div class="col-xs-4 col-sm-5">
+				<div class="col-xs-12 col-sm-5">
 					<div class="form-group" ng-class="{ 'has-success': form.dateone.$valid && submitted,
 		                                               'has-error': form.dateone.$invalid && submitted }">
 					   <input type="date" name="dateone" ng-model="newEvent.availability.firstDate" class="form-control" required>
 					</div>
 				</div>
-				<div class="col-xs-8 col-sm-7">
+				<div class="col-xs-12 col-sm-7">
 					<div class="form-group" ng-class="{ 'has-success': newEvent.availability.firstDateTime[0] && newEvent.availability.firstDateTime[1] && 										 newEvent.availability.firstDateTime[2] && submitted,
 					                                     'has-error': !newEvent.availability.firstDateTime[0] && !newEvent.availability.firstDateTime[1] && !newEvent.availability.firstDateTime[2] && submitted }">
 						<label class="checkbox-inline">
@@ -124,29 +124,29 @@
 			<!-- date two and time -->
 			<label>Date & Time 2</label>
 			<div class="row">
-				<div class="col-xs-4 col-sm-5">
+				<div class="col-xs-12 col-sm-5">
 					<div class="form-group" ng-class="{ 'has-success': form.datetwo.$valid && submitted,
 		                                               'has-error': form.datetwo.$invalid && submitted }">
 					  <input type="date" name="datetwo" ng-model="newEvent.availability.secondDate" class="form-control" required>
 					</div>
 				</div>
-				<div class="col-xs-8 col-sm-7">
+				<div class="col-xs-12 col-sm-7">
 					<div class="form-group" ng-class="{ 'has-success': newEvent.availability.secondDateTime[0] && newEvent.availability.secondDateTime[1] &&                                    newEvent.availability.secondDateTime[2] && submitted,
 					                                    'has-error': !newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2] && submitted }">
 						<label class="checkbox-inline">
 						  <input name="morning" ng-model="newEvent.availability.secondDateTime[0]" type="checkbox"  ng-required="!newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2]">
 						  <span class="c-indicator"></span>
-						  Morning<br> 8am-12pm
+						  Morning<br>8-12
 						</label>
 						<label class="checkbox-inline">
 						  <input name="afternoon" ng-model="newEvent.availability.secondDateTime[1]" type="checkbox"  ng-required="!newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2]">
 						  <span class="c-indicator"></span>
-						 Afternoon<br> 12pm-5pm
+						 Afternoon<br> 12-5
 						</label>
 						<label class="checkbox-inline">
-						  <input name="evening" ng-model="newEvent.availability.secondDateTime[2]" type="checkbox" ng-required="!newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2]">
+						  <input name="evening" ng-model="newEvent.availability.secondDateTime[2]" type="checkbox" ng-required="!newEvent.availability.secondDateTime[0&& !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2]">
 						  <span class="c-indicator">
-						  Evening<br> 5pm-10pm
+						  Evening<br> 5-10
 						</span>
 						</label>
 					</div>
@@ -156,29 +156,29 @@
 			<!-- date three and time -->
 			<label>Date & Time 3</label>
 			<div class="row">
-				<div class="col-xs-4 col-sm-5">
+				<div class="col-xs-12 col-sm-5">
 					<div class="form-group" ng-class="{ 'has-success': form.datethree.$valid && submitted,
 		                                               'has-error': form.datethree.$invalid && submitted }">
 					   <input type="date" name="datethree" ng-model="newEvent.availability.thirdDate" class="form-control" required>
 					</div>
 				</div>
-				<div class="col-xs-8 col-sm-7">
+				<div class="col-xs-12 col-sm-7">
 					<div class="form-group" ng-class="{ 'has-success': newEvent.availability.thirdDateTime[0] && newEvent.availability.thirdDateTime[1] && 										newEvent.availability.thirdDateTime[2] && submitted,
 					                                    'has-error': !newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2] && submitted }">
 						<label class="checkbox-inline">
 						  <input name="morning" ng-model="newEvent.availability.thirdDateTime[0]" value="Morning 8am-12pm" type="checkbox"  ng-required="!newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2]">
 						  <span class="c-indicator"></span>
-						  Morning<br> 8am-12pm
+						  Morning<br> 8-12
 						</label>
 						<label class="checkbox-inline">
 						  <input name="afternoon" ng-model="newEvent.availability.thirdDateTime[1]" value="Afternoon 12pm-5pm" type="checkbox" ng-required="!newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2]">
 						  <span class="c-indicator"></span>
-						 Afternoon<br> 12pm-5pm
+						 Afternoon<br> 12-5
 						</label>
 						<label class="checkbox-inline">
 						  <input name="evening" ng-model="newEvent.availability.thirdDateTime[2]" value="Evening 5pm-10pm" type="checkbox" ng-required="!newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2]">
 						  <span class="c-indicator"></span>
-						 Evening<br> 5pm-10pm
+						 Evening<br> 5-10
 						</label>
 					</div>
 
