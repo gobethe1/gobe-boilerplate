@@ -1,28 +1,130 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-hide="showTimes || sorryTaken || confirmGroup">
-		<h4>Pick a time to party</h4>
+		<h4 class="text-center">Schedule Party {{event.confirmDate}} {{event.confirmTime}}</h4>
+		<p>Please choose the date your group is available for the party.<br> 
+			Move-ins are usually about an hour.</p>
 
-		 <ul class="list-unstyled event-confirm">
+	  <form name="form" ng-submit="confirmGroupTime(form)">
+		<div class="form-group col-xs-10 col-offset-xs-1" 
+				ng-class="{ 'has-success': form.address.$valid && submitted,
+		       				'has-error': form.address.$invalid && submitted }">
+
+		    <!-- date time one  -->
+   			<div class="row">
+   			 <div class="col-xs-6 col-sm-6">
+				<label class="radio">
+				  <input name="male" ng-model="event.confirmDate" value="{{event.availability.firstDate}}" 
+				  ng-change="resetTime('dateOne')"
+				  type="radio">
+				  <span class="c-indicator"></span>
+				 	{{event.availability.firstDate | date:"MMMM, d, yyyy" }} 
+				</label>
+			 </div>
+			
+			 <div class="col-xs-6 col-sm-6">
+			  <select class="form-control"
+			  	  type="radio"
+			      ng-model="event.confirmTimeOne"
+			      ng-options="obj as obj for obj in checkTime(event.availability.firstDateTime);"			      >
+			    <option value="" disabled selected>Choose Time</option>
+			  </select>
+			</div>
+			</div>
+			<!-- end date time one -->
+
+		
+			<!-- date time two -->
+			<div class="row">
+   			 <div class="col-xs-6 col-sm-6">
+			   <label class="radio">
+				  <input name="female" ng-model="event.confirmDate" value="{{event.availability.secondDate}}" 
+				    ng-change="resetTime('dateTwo')" type="radio">
+				  <span class="c-indicator"></span>
+				 	{{event.availability.secondDate | date:"MMMM, d, yyyy" }} 
+				</label>
+			</div>
+			 <div class="col-xs-6 col-sm-6">
+			  <select class="form-control"
+			      type="radio"
+			      ng-model="event.confirmTimeTwo"
+			      ng-options="obj as obj for obj in checkTime(event.availability.secondDateTime);"
+			      >
+			    <option value="" disabled selected>Choose Time</option>
+			  </select>
+			 </div>
+		    </div>
+			<!-- end date time two -->
+
+			<!-- date time three -->
+			<div class="row">
+			   <div class="col-xs-6 col-sm-6">
+				<label class="radio">
+				  <input name="other" ng-model="event.confirmDate" value="{{event.availability.thirdDate}}" 
+				    ng-change="resetTime('dateThree')" type="radio">
+				  <span class="c-indicator"></span>
+				 	{{event.availability.thirdDate | date:"MMMM, d, yyyy" }} 
+				</label>
+			</div>
+			 <div class="col-xs-6 col-sm-6">
+			  <select class="form-control"
+			  type="radio"
+			      ng-model="event.confirmTimeThree"
+			      ng-options="obj as obj for obj in checkTime(event.availability.thirdDateTime);"
+			      >
+			    <option value="" disabled selected>Choose Time</option>
+			  </select>
+			 </div>
+		    </div>
+			<!-- end date time three -->
+			<!-- no times -->
+			<div class="row">
+				<div class="col-xs-12 col-sm-12">
+					<label class="radio">
+					  <input name="other" ng-model="event.confirmDate" value="null" 
+					    ng-change="resetTime('none')" type="radio" ng-click="showTimes = true">
+					  <span class="c-indicator"></span>
+					 	None of these dates and times work
+					</label>
+
+				</div>
+			</div>
+			<!-- end no times -->
+			<!-- rsvp -->
+			<div class="text-right">
+				<button class="btn btn-lg" type="submit"
+				ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}">
+					Send RSVP
+				</button>
+			</div>
+			<!-- end rsvp -->
+
+		</div>
+	</form>		
+
+		<!--  <ul class="list-unstyled event-confirm">
 		   <li ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
 			  <a href="#" ng-click="confirmGroupTime(event.availability.firstDate, checkTime(time, $index))">
-			   {{event.availability.firstDate | date:"MMMM, d, yyyy" }} between {{checkTime(time, $index)}}</a>
+			   {{event.availability.firstDate | date:"MMMM, d, yyyy" }} 
+			   between {{checkTime(time, $index)}}</a>
 		   </li>
 
 	      <li ng-repeat="time in event.availability.secondDateTime track by $index" ng-if="time">
 	   	    <a href="#" ng-click="confirmGroupTime(event.availability.secondDate, checkTime(time, $index))">
-	   	      {{event.availability.secondDate | date:"MMMM, d, yyyy" }} between {{checkTime(time, $index)}}</a>
+	   	      {{event.availability.secondDate | date:"MMMM, d, yyyy" }} 
+	   	      between {{checkTime(time, $index)}}</a>
 	      </li>
 
           <li ng-repeat="time in event.availability.thirdDateTime track by $index" ng-if="time">
       	    <a href="#" ng-click="confirmGroupTime(event.availability.thirdDate, checkTime(time, $index))">
-      	    	{{event.availability.thirdDate | date:"MMMM, d, yyyy" }} between {{checkTime(time, $index)}}</a>
+      	    	{{event.availability.thirdDate | date:"MMMM, d, yyyy" }} 
+      	    	between {{checkTime(time, $index)}}</a>
           </li>
 
           <li>
           	<a href="#" ng-click="showTimes = true">
           	    None of these dates and times work</a></li>
 		
-		</ul>
+		</ul> -->
 	</div>
 	 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="showTimes">
 		<h4>Thank You</h4>
