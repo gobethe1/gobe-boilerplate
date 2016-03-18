@@ -5,10 +5,21 @@ angular.module('gobeApp')
 
 
     $scope.newEvent = eventEdit;
-    $scope.newEvent.availability.moveInDate = new Date($scope.newEvent.availability.moveInDate)
-    $scope.newEvent.availability.firstDate = new Date($scope.newEvent.availability.firstDate )
-    $scope.newEvent.availability.secondDate = new Date($scope.newEvent.availability.secondDate)
-    $scope.newEvent.availability.thirdDate =  new Date($scope.newEvent.availability.thirdDate)
+    if ($scope.newEvent.availability.moveInDate){
+      $scope.newEvent.availability.moveInDate = new Date($scope.newEvent.availability.moveInDate);
+    };
+
+    if($scope.newEvent.availability.firstDate){
+      $scope.newEvent.availability.firstDate = new Date($scope.newEvent.availability.firstDate);
+    };
+
+    if($scope.newEvent.availability.secondDate){
+       $scope.newEvent.availability.secondDate = new Date($scope.newEvent.availability.secondDate);
+    };
+
+    if($scope.newEvent.availability.thirdDate){
+      $scope.newEvent.availability.thirdDate =  new Date($scope.newEvent.availability.thirdDate);
+    };
 
     $scope.updateEvent = function updateEvent(){
       $scope.newEvent.published = false;
@@ -17,14 +28,14 @@ angular.module('gobeApp')
       console.log('new event published');
       console.log($scope.newEvent.published)
         Event.update({id: $stateParams.id}, data,
-             function(data){
-                console.log('data')
-                console.log(data)
-                  $state.go('event.list')
-                 }),
-             function(err){
-              $scope.addEventError = "Looks like something went wrong! Please try again"
-             }
+           function(data){
+              console.log('data')
+              console.log(data)
+                $state.go('event.list')
+               }),
+           function(err){
+            $scope.addEventError = "Looks like something went wrong! Please try again"
+           }
     };
 
     $scope.publishEvent = function publishEvent(form) {
