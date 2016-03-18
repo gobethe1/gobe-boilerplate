@@ -13,6 +13,15 @@ angular.module('gobeApp')
     $scope.newEvent.availability.thirdDateTime = [false, false, false];
     $scope.newEvent.userId = currentUser._id;
 
+    $scope.confirmGroupStatus = function(event){
+      if(!event.confirmGroup){
+        return false;
+      }
+      else if(event.confirmGroup){
+        return true;
+      }
+    };
+
     $scope.cancelClient = function cancelClient(form){
       if(form.$pristine){
         $state.go('event.list');

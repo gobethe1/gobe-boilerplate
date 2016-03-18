@@ -10,12 +10,13 @@ angular.module('gobeApp')
     $scope.newEvent.availability.secondDate = new Date($scope.newEvent.availability.secondDate)
     $scope.newEvent.availability.thirdDate =  new Date($scope.newEvent.availability.thirdDate)
 
-    $scope.updateEvent = function updateEvent(form){
+    $scope.updateEvent = function updateEvent(){
       $scope.newEvent.published = false;
       $scope.submitted = false;
+      var data = $scope.newEvent;
       console.log('new event published');
       console.log($scope.newEvent.published)
-        Event.save({id: $stateParams.id},
+        Event.update({id: $stateParams.id}, data,
              function(data){
                 console.log('data')
                 console.log(data)

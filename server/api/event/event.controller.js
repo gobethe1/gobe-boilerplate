@@ -33,6 +33,7 @@ exports.create = function(req, res) {
 
 // Updates an existing event in the DB.
 exports.update = function(req, res) {
+  console.log(req.body)
   if(req.body._id) { delete req.body._id; }
   Event.findById(req.params.id, function (err, event) {
     if (err) { return handleError(res, err); }
@@ -45,7 +46,7 @@ exports.update = function(req, res) {
     // console.log(updated.confirmedEmails);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      if((event.confirmGroup !== null) && (event.confirmedEmails.length === 0)){
+      if((event.published) && ((event.confirmGroup !== null) && (event.confirmedEmails.length === 0))){
       eventEmailer.confirmGroup(event, req.headers.host);
       }
       return res.status(200).json(event);
