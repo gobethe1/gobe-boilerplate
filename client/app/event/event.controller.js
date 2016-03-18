@@ -13,9 +13,13 @@ angular.module('gobeApp')
     $scope.newEvent.availability.thirdDateTime = [false, false, false];
     $scope.newEvent.userId = currentUser._id;
 
-    $scope.cancelClient = function cancelClient(){
-      if(confirm("Are you sure you want to cancel? All changes will be lost.")){
+    $scope.cancelClient = function cancelClient(form){
+      if(form.$pristine){
         $state.go('event.list');
+      } else {
+        if(confirm("Are you sure you want to cancel? All changes will be lost.")){
+          $state.go('event.list');
+        }
       }
     }
 
