@@ -62,7 +62,8 @@ exports.send = function(req, res) {
   });
 };
 
-exports.updateSend = function(req, res) {
+exports.sendupdate = function(req, res) {
+  console.log(req.body)
   if(req.body._id) { delete req.body._id; }
   Event.findById(req.params.id, function (err, event) {
     if (err) { return handleError(res, err); }

@@ -2,7 +2,7 @@
 
 angular.module('gobeApp')
  .factory('Event', function ($resource) {
-    return $resource('api/events/:id', { id: '@_id' },
+    return $resource('api/events/:id/:controller', { id: '@_id' },
           {
              update: {
                  method: 'PUT'
@@ -13,10 +13,10 @@ angular.module('gobeApp')
              	  id:'send'
              	}
              },
-             updateSend:{
-                method: 'POST',
+             sendupdate:{
+                method: 'PUT',
                 params: {
-                    id:'updatesend'
+                  controller:'sendupdate'
                 }
              }
   });

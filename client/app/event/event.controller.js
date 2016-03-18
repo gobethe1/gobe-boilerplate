@@ -19,7 +19,7 @@ angular.module('gobeApp')
       }
     }
 
-    $scope.publishEvent = function publishEvent(){
+    $scope.addEvent = function addEvent(){
       $scope.newEvent.published = false;
       $scope.submitted = false;
       console.log('new event published');
@@ -32,7 +32,7 @@ angular.module('gobeApp')
       }
     };
 
-    $scope.addEvent = function addEvent(form) {
+    $scope.publishEvent = function publishEvent(form) {
       console.log(form)
         console.log('published')
         $scope.newEvent.published = true;
@@ -45,7 +45,7 @@ angular.module('gobeApp')
                     $state.go('event.list')
                    }),
                    function(err){
-                   	$scope.addEventError = "Looks like something went wrong! Please try again"
+                   	$scope.publishEventError = "Looks like something went wrong! Please try again"
                    }
                  }
            else{
