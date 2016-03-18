@@ -18,6 +18,7 @@
             <a ui-sref="event.show({id: event._id})">
               <h4>{{event.firstName | capitalize }} {{event.lastName | capitalize }}</h4>
             </a>
+            <p>Confirmed: {{event.published}}</p>
           </span>
           <span class="col-sm-1 col-xs-2">
             <a ng-click="deleteEvent(event._id)" ng-class="{'hidden-sm': hover, 'hidden-md': hover, 'hidden-lg': hover}">

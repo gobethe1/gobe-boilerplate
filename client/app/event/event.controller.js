@@ -21,7 +21,7 @@ angular.module('gobeApp')
           $state.go('event.list');
         }
       }
-    }
+    };
 
     $scope.addEvent = function addEvent(){
       $scope.newEvent.published = false;
