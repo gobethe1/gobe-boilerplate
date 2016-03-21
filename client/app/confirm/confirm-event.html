@@ -3,9 +3,9 @@
 		<h4 class="text-center">Schedule Party</h4>
 		<p>Please choose the date your group is available for the party. 
 			Move-ins are usually about an hour.</p>
-
+	  <br>
 	  <form name="form" ng-submit="confirmGroupTime(form)" novalidate>
-		<div class="form-group col-xs-10 col-offset-xs-1" >
+		<div class="form-group col-xs-11 col-offset-xs-1" >
 		    <!-- date time one  -->
    			<div class="row" ng-class="{'has-error': form.dateone.$invalid && submitted}">
    			 <div class="col-xs-6 col-sm-6">
@@ -31,7 +31,7 @@
 			</div>
 			<!-- end date time one -->
 
-		
+			<br>
 			<!-- date time two -->
 			<div class="row" ng-class="{ 'has-error': form.datetwo.$invalid && submitted}">
    			 <div class="col-xs-6 col-sm-6">
@@ -55,7 +55,7 @@
 			 </div>
 		    </div>
 			<!-- end date time two -->
-
+			<br>
 			<!-- date time three -->
 			<div class="row" ng-class="{'has-error': form.datethree.$invalid && submitted}">
 			   <div class="col-xs-6 col-sm-6">
@@ -79,6 +79,7 @@
 			 </div>
 		    </div>
 			<!-- end date time three -->
+			<br>
 			<!-- no times -->
 			<div class="row" ng-class="{'has-error': form.dateone.$invalid && submitted}">
 				<div class="col-xs-12 col-sm-12">
@@ -92,6 +93,7 @@
 				</div>
 			</div>
 			<!-- end no times -->
+			<br>
 			<!-- rsvp -->
 			<div class="text-right">
 				<button class="btn btn-lg" type="submit"
