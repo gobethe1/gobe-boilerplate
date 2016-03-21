@@ -50,23 +50,24 @@ function matchZipCode(event, host){
 		      to:  value.email,
 		      from: 'hello@gobethe1.com',
 		      subject: 'Are You Available?',
-		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
-		    '<td align="center">' +
-		    '<img src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png">' +
-		    '<img src=' + mapLink + '>' +
-		    '<h5 style="font-size:14px;font-family:sans-serif;">Hello ' + capFirstName + ', we matched you with a move-in party of a homeless vet in your neighborhood!</h5>' +
-		    '<h5 style="font-size:14px;font-family:sans-serif;">Check out the dates and times and let us know if you are available:</h5>' +
-		    '<a href=' + link +  ' style="background-color:#4A90E2;border:1px solid #4A90E2 ;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:20%;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a></td>' +
-		    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold;">What\'s this invite about?</p>' +
-			  '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s <br>' +
-			  'time to party! This person now lives in your <br>' +
-			  'area and you have been invited to help <br>' +
-			  'welcome them home! Ready to make a difference? <br>' +
-			  'Simply, accept the invite, ask your group leader <br>' +
-			  'what items you can bring, and bring the items <br>' +
-			  'with you to the party!</p></td>' +
-		    '</tr></table>'
-
+		      html:
+		         '<table width="100%" border="0" cellspacing="0" cellpadding="0">' +
+				     '<tr>' +
+				     '<td align="center"><img src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
+				     '<img src=' + mapLink + '></td><br>' +
+				     '</tr>' +
+				     '<tr>' +
+				     '<td align="left" valign="top">' +
+				     '<p style="font-size:14px;font-family:sans-serif;">Hello ' + capFirstName + ', we matched you with a move-in party of a homeless vet in your neighborhood! Check out the dates and times and let us know if you are available:</p>' +
+				     '<div style="text-align:center"><a href=' + link +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a></div><br>' +
+				     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold;">What\'s this invite about?</p>' +
+						 '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s' +
+						 'time to party! This person now lives in your area and you have been invited to help welcome them home! Ready to make a difference?' +
+						 'Simply, accept the invite, ask your group leader what items you can bring, and bring the items with you to the party!</p>' +
+						 '<p style="font-size:14px;font-family:sans-serif;">We hope to see you there,</p>' +
+			       '<p style="font-size:14px;font-family:sans-serif;">GOBE team</p>' +
+						 '</td>' +
+				     '</tr></table>'
 		    };
 
 			// if(index === -1){
