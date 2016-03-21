@@ -1,20 +1,28 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-hide="showTimes || sorryTaken || confirmGroup">
-		<h4 class="text-center">Schedule Party {{event.confirmDate}} {{event.confirmTime}}</h4>
-		<p>Please choose the date your group is available for the party.<br> 
+		<h4 class="text-center">Schedule Party</h4>
+		<p>Please choose the date your group is available for the party. 
 			Move-ins are usually about an hour.</p>
 
-	  <form name="form" ng-submit="confirmGroupTime(form)">
-		<div class="form-group col-xs-10 col-offset-xs-1" 
-				ng-class="{ 'has-success': form.address.$valid && submitted,
-		       				'has-error': form.address.$invalid && submitted }">
-
+	  <form name="form" ng-submit="confirmGroupTime(form)" novalidate>
+<!-- 	  	<h4>Form Valid: {{form.$valid}}</h4>
+	  	<h4>confirmDate: {{event.confirmDate}}</h4> -->
+<!-- 	  	<h4>confirmTime: {{event.confirmTime}}</h4>
+	  	<h4>Timeone Model Value: {{form.timeone.$modelValue}}</h4>
+	  	<h4>confirmTimeOne: {{event.confirmTimeOne}}</h4> -->
+<!-- 	  	<h4>date one invalid: {{form.dateone.$invalid}}</h4>
+	  	<h4>time one invalid: {{form.timeone.$invalid}}</h4>
+	  	<h4>submitted: {{submitted}}</h4> -->
+<!-- 	  	<h4>ng-required time: {{!event.confirmTime}}</h4>
+	   <h4>time isempty: {{form.timeone.$isEmpty()}}</h4> -->
+		<div class="form-group col-xs-10 col-offset-xs-1" >
 		    <!-- date time one  -->
-   			<div class="row">
+   			<div class="row" ng-class="{'has-error': form.dateone.$invalid && submitted}">
    			 <div class="col-xs-6 col-sm-6">
 				<label class="radio">
-				  <input name="male" ng-model="event.confirmDate" value="{{event.availability.firstDate}}" 
+				  <input name="dateone" ng-model="event.confirmDate" value="{{event.availability.firstDate}}" 
 				  ng-change="resetTime('dateOne')"
+				  ng-required="!event.confirmDate"
 				  type="radio">
 				  <span class="c-indicator"></span>
 				 	{{event.availability.firstDate | date:"MMMM, d, yyyy" }} 
@@ -23,9 +31,10 @@
 			
 			 <div class="col-xs-6 col-sm-6">
 			  <select class="form-control"
-			  	  type="radio"
 			      ng-model="event.confirmTimeOne"
-			      ng-options="obj as obj for obj in checkTime(event.availability.firstDateTime);"			      >
+			      name="timeone"
+			      ng-change="event.confirmTime = event.confirmTimeOne"
+			      ng-options="obj as obj for obj in checkTime(event.availability.firstDateTime);">
 			    <option value="" disabled selected>Choose Time</option>
 			  </select>
 			</div>
@@ -34,11 +43,12 @@
 
 		
 			<!-- date time two -->
-			<div class="row">
+			<div class="row" ng-class="{ 'has-error': form.datetwo.$invalid && submitted}">
    			 <div class="col-xs-6 col-sm-6">
 			   <label class="radio">
-				  <input name="female" ng-model="event.confirmDate" value="{{event.availability.secondDate}}" 
-				    ng-change="resetTime('dateTwo')" type="radio">
+				  <input name="datetwo" ng-model="event.confirmDate" value="{{event.availability.secondDate}}" 
+				    ng-change="resetTime('dateTwo')" type="radio"
+				    ng-required="!event.confirmDate">
 				  <span class="c-indicator"></span>
 				 	{{event.availability.secondDate | date:"MMMM, d, yyyy" }} 
 				</label>
@@ -47,6 +57,7 @@
 			  <select class="form-control"
 			      type="radio"
 			      ng-model="event.confirmTimeTwo"
+			      ng-change="event.confirmTime = event.confirmTimeTwo"
 			      ng-options="obj as obj for obj in checkTime(event.availability.secondDateTime);"
 			      >
 			    <option value="" disabled selected>Choose Time</option>
@@ -56,11 +67,12 @@
 			<!-- end date time two -->
 
 			<!-- date time three -->
-			<div class="row">
+			<div class="row" ng-class="{'has-error': form.datethree.$invalid && submitted}">
 			   <div class="col-xs-6 col-sm-6">
 				<label class="radio">
-				  <input name="other" ng-model="event.confirmDate" value="{{event.availability.thirdDate}}" 
-				    ng-change="resetTime('dateThree')" type="radio">
+				  <input name="datethree" ng-model="event.confirmDate" value="{{event.availability.thirdDate}}" 
+				    ng-change="resetTime('dateThree')" type="radio"
+				      ng-required="!event.confirmDate">
 				  <span class="c-indicator"></span>
 				 	{{event.availability.thirdDate | date:"MMMM, d, yyyy" }} 
 				</label>
@@ -69,6 +81,7 @@
 			  <select class="form-control"
 			  type="radio"
 			      ng-model="event.confirmTimeThree"
+			      ng-change="event.confirmTime = event.confirmTimeThree"
 			      ng-options="obj as obj for obj in checkTime(event.availability.thirdDateTime);"
 			      >
 			    <option value="" disabled selected>Choose Time</option>
@@ -77,7 +90,7 @@
 		    </div>
 			<!-- end date time three -->
 			<!-- no times -->
-			<div class="row">
+			<div class="row" ng-class="{'has-error': form.dateone.$invalid && submitted}">
 				<div class="col-xs-12 col-sm-12">
 					<label class="radio">
 					  <input name="other" ng-model="event.confirmDate" value="null" 
@@ -101,30 +114,7 @@
 		</div>
 	</form>		
 
-		<!--  <ul class="list-unstyled event-confirm">
-		   <li ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
-			  <a href="#" ng-click="confirmGroupTime(event.availability.firstDate, checkTime(time, $index))">
-			   {{event.availability.firstDate | date:"MMMM, d, yyyy" }} 
-			   between {{checkTime(time, $index)}}</a>
-		   </li>
-
-	      <li ng-repeat="time in event.availability.secondDateTime track by $index" ng-if="time">
-	   	    <a href="#" ng-click="confirmGroupTime(event.availability.secondDate, checkTime(time, $index))">
-	   	      {{event.availability.secondDate | date:"MMMM, d, yyyy" }} 
-	   	      between {{checkTime(time, $index)}}</a>
-	      </li>
-
-          <li ng-repeat="time in event.availability.thirdDateTime track by $index" ng-if="time">
-      	    <a href="#" ng-click="confirmGroupTime(event.availability.thirdDate, checkTime(time, $index))">
-      	    	{{event.availability.thirdDate | date:"MMMM, d, yyyy" }} 
-      	    	between {{checkTime(time, $index)}}</a>
-          </li>
-
-          <li>
-          	<a href="#" ng-click="showTimes = true">
-          	    None of these dates and times work</a></li>
-		
-		</ul> -->
+	
 	</div>
 	 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="showTimes">
 		<h4>Thank You</h4>

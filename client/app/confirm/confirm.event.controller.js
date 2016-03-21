@@ -5,11 +5,16 @@ angular.module('gobeApp')
     // console.log("EventConfirmCtrl")
     // console.log(eventConfirm)
     // console.log(eventConfirm.confirmGroup)
-
+    $scope.submitted = false;
 
     if(!eventConfirm.confirmGroup){
       $scope.event = eventConfirm;
       $scope.event.confirmDate;
+      $scope.event.confirmTime = false
+      $scope.event.confirmTimeOne = false
+      $scope.event.confirmTimeTwo = false
+      $scope.event.confirmTimeThree = false
+
     }
     else{
       $scope.sorryTaken = true;
@@ -56,40 +61,52 @@ angular.module('gobeApp')
        if(date === 'dateOne'){
         $scope.event.confirmTimeTwo = null
         $scope.event.confirmTimeThree = null
+        // $scope.event.confirmTime = $scope.event.confirmTimeOne;
        }
        if(date === 'dateTwo'){
         $scope.event.confirmTimeOne = null
         $scope.event.confirmTimeThree = null
+        // $scope.event.confirmTime = $scope.event.confirmTimeTwo;
        }
       if(date === 'dateThree'){
         $scope.event.confirmTimeOne = null
         $scope.event.confirmTimeTwo = null
+        // $scope.event.confirmTime = $scope.event.confirmTimeThree;
        }
        if(date === 'none'){
          $scope.event.confirmTimeOne = null
          $scope.event.confirmTimeTwo = null
          $scope.event.confirmTimeThree = null
+         $scope.event.confirmTime =  null;
+         $scope.event.confirmGroup = null;
       }
     }
 
 
     $scope.confirmGroupTime = function(form){
+      $scope.submitted = true;
       // var confirmTime = time.replace(" and ", "-");
       $scope.event.confirmGroup = $stateParams.group_id;
       // $scope.event.confirmDate = date;
-      $scope.event.confirmTime =  $scope.event.confirmTimeOne ||  $scope.event.confirmTimeTwo ||  $scope.event.confirmTimeThree ;
+      console.log($scope.event.confirmDate)
       console.log($scope.event.confirmTime)
-      //if confirmGroup, Date, Time, doesn't exist
-      Event.update({id: $stateParams.event_id }, $scope.event,
-        function(data){
-          console.log("data")
-          console.log(data)
-          $scope.confirmGroup = true;
-           // $state.go('event.list')
-          }),
-          function(err){
-            // $scope.addEventError = "Looks like something went wrong! Please try again"
-          }
+      console.log("form valid")
+      console.log(form)
+      console.log(form.$valid)
+      console.log("confirmTime")
+      console.log($scope.event.confirmTime === true)
+      if(form.$valid && $scope.event.confirmTime){
+        Event.update({id: $stateParams.event_id }, $scope.event,
+          function(data){
+            console.log("data")
+            console.log(data)
+            $scope.confirmGroup = true;
+             // $state.go('event.list')
+            }),
+            function(err){
+              // $scope.addEventError = "Looks like something went wrong! Please try again"
+            }
+      }
 
     }
 

@@ -96,8 +96,9 @@
 		                                               'has-error': form.dateone.$invalid && submitted }">
 					   <input type="date" name="dateone" ng-model="newEvent.availability.firstDate" class="form-control" required>
 					</div>
-					<div class="form-group" ng-class="{ 'has-success': newEvent.availability.firstDateTime[0] && newEvent.availability.firstDateTime[1] && 										 newEvent.availability.firstDateTime[2] && submitted,
-					                                     'has-error': !newEvent.availability.firstDateTime[0] && !newEvent.availability.firstDateTime[1] && !newEvent.availability.firstDateTime[2] && submitted }">
+					<div class="form-group" ng-class="{ 'has-success': newEvent.availability.firstDateTime[0] && newEvent.availability.firstDateTime[1] && newEvent.availability.firstDateTime[2] && submitted,
+					                                     'has-error': !newEvent.availability.firstDateTime[0] && !newEvent.availability.firstDateTime[1] && !newEvent.availability.firstDateTime[2] 
+					                                     && submitted }">
 
 					</div>
 				</div>
