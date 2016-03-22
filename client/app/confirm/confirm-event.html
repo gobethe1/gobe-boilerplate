@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-hide="showTimes || sorryTaken || confirmGroup">
 		<h4 class="text-center">Schedule Party</h4>
-		<p>Please choose the date your group is available for the party. 
+		<p>Please choose the date your group is available for the party.
 			Move-ins are usually about an hour.</p>
 	  <br>
 	  <form name="form" ng-submit="confirmGroupTime(form)" novalidate>
@@ -10,17 +10,17 @@
    			<div class="row" ng-class="{'has-error': form.dateone.$invalid && submitted}">
    			 <div class="col-xs-6 col-sm-6">
 				<label class="radio">
-				  <input name="dateone" ng-model="event.confirmDate" value="{{event.availability.firstDate}}" 
+				  <input name="dateone" ng-model="event.confirmDate" value="{{event.availability.firstDate}}"
 				  ng-change="resetTime('dateOne')"
 				  ng-required="!event.confirmDate"
 				  type="radio">
 				  <span class="c-indicator"></span>
-				 	{{event.availability.firstDate | date:"MMMM, d, yyyy" }} 
+				 	{{event.availability.firstDate | date:"MMMM, d, yyyy" }}
 				</label>
 			 </div>
-			
+
 			 <div class="col-xs-6 col-sm-6" ng-class="{'has-error': !event.confirmTime && submitted}">
-			  <select class="form-control" 
+			  <select class="form-control"
 			      ng-model="event.confirmTimeOne"
 			      name="timeone"
 			      ng-change="event.confirmTime = event.confirmTimeOne"
@@ -36,11 +36,11 @@
 			<div class="row" ng-class="{ 'has-error': form.datetwo.$invalid && submitted}">
    			 <div class="col-xs-6 col-sm-6">
 			   <label class="radio">
-				  <input name="datetwo" ng-model="event.confirmDate" value="{{event.availability.secondDate}}" 
+				  <input name="datetwo" ng-model="event.confirmDate" value="{{event.availability.secondDate}}"
 				    ng-change="resetTime('dateTwo')" type="radio"
 				    ng-required="!event.confirmDate">
 				  <span class="c-indicator"></span>
-				 	{{event.availability.secondDate | date:"MMMM, d, yyyy" }} 
+				 	{{event.availability.secondDate | date:"MMMM, d, yyyy" }}
 				</label>
 			</div>
 			 <div class="col-xs-6 col-sm-6" ng-class="{'has-error': !event.confirmTime && submitted}">
@@ -60,11 +60,11 @@
 			<div class="row" ng-class="{'has-error': form.datethree.$invalid && submitted}">
 			   <div class="col-xs-6 col-sm-6">
 				<label class="radio">
-				  <input name="datethree" ng-model="event.confirmDate" value="{{event.availability.thirdDate}}" 
+				  <input name="datethree" ng-model="event.confirmDate" value="{{event.availability.thirdDate}}"
 				    ng-change="resetTime('dateThree')" type="radio"
 				      ng-required="!event.confirmDate">
 				  <span class="c-indicator"></span>
-				 	{{event.availability.thirdDate | date:"MMMM, d, yyyy" }} 
+				 	{{event.availability.thirdDate | date:"MMMM, d, yyyy" }}
 				</label>
 			</div>
 			 <div class="col-xs-6 col-sm-6" ng-class="{'has-error': !event.confirmTime && submitted}">
@@ -84,7 +84,7 @@
 			<div class="row" ng-class="{'has-error': form.dateone.$invalid && submitted}">
 				<div class="col-xs-12 col-sm-12">
 					<label class="radio">
-					  <input name="other" ng-model="event.confirmDate" value="null" 
+					  <input name="other" ng-model="event.confirmDate" value="null"
 					    ng-change="resetTime('none')" type="radio" ng-click="showTimes = true">
 					  <span class="c-indicator"></span>
 					 	None of these dates and times work
@@ -104,9 +104,9 @@
 			<!-- end rsvp -->
 
 		</div>
-	</form>		
+	</form>
 
-	
+
 	</div>
 	 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="showTimes">
 		<h4>Thank You</h4>
@@ -120,8 +120,8 @@
 		<p>Don't worry new dates in your area are constantly being added. We'll keep you in the loop of the next volunteer opportunity</p>
 	</div>
 	 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="confirmGroup">
-		<h4>Awesome!</h4>
-		<p>We can't wait to see you at the party. Here's a link to the registry, please bring an item with you to the party</p>
+		<h4>Get ready to party!</h4>
+		<p>We are sending you an email with the event details.</p>
 		<p><a href="{{event.registryUrl}}">{{ (event.registryUrl).replace("https://", "")}}</a></p>
 	</div>
 </div>
