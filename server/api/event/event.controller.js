@@ -47,7 +47,7 @@ exports.update = function(req, res) {
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       if((event.published) && ((event.confirmGroup !== null) && (event.confirmedEmails.length === 0))){
-      eventEmailer.detailsToEventCreator(event, req.headers.host);
+      eventEmailer.detailsToGroupLeader(event, req.headers.host);
       }
       return res.status(200).json(event);
     });
