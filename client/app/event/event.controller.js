@@ -8,6 +8,12 @@ angular.module('gobeApp')
     $scope.newEvent = {};
     $scope.newEvent.availability = {};
 
+    $scope.sort = {};
+    $scope.all = {};
+    $scope.matched = {'confirmGroup': !null};
+    $scope.pending =  {'published': false};
+    $scope.unpublished = {'published': true};
+
     $scope.newEvent.availability.firstDateTime = [false, false, false];
     $scope.newEvent.availability.secondDateTime = [false, false, false];
     $scope.newEvent.availability.thirdDateTime = [false, false, false];

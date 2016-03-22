@@ -84,6 +84,31 @@ i {
   font-size: 14px !important;
 }
 
+.event-list-sub-nav{
+    text-decoration:none;
+    border-bottom: 5px solid transparent;
+    text-align: center;
+    padding-bottom: 5px;
+    a{
+      color: $gray;
+      font-weight: normal;
+    }
+}
+
+.active-sub{
+  border-bottom: 5px solid $bg-blue;
+  text-align: center;
+  padding-bottom: 5px;
+  a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    &:hover, &:focus, &:visited{
+       text-decoration: none;
+    }
+  }
+}
+
 @media only screen and (max-width: $screen-xs) {
   .status-bar{
       height: 30px;

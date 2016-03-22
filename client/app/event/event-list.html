@@ -1,3 +1,16 @@
+<div class="container">
+  <div class="row">
+    <!-- <div class="col-sm-6 col-xs-12"> -->
+      <div class="row event-list-sub-nav">
+        <div class="col-xs-2" ng-class="{'active-sub': sort === all}"><a href="" ng-click="sort = all">All</a></div>
+        <div class="col-xs-3" ng-class="{'active-sub': sort === matched}"><a href=""  ng-click="sort = matched">Matched</a></div>
+        <div class="col-xs-3" ng-class="{'active-sub': sort === pending}"><a href="" ng-click="sort = pending">Pending</a></div>
+        <div class="col-xs-4" ng-class="{'active-sub': sort === unpublished}"><a href="" ng-click="sort = unpublished">Unpublished</a></div>
+      </div>
+  <!--   </div> -->
+  </div>
+</div>
+
 <div class="row">
   <div class="col-sm-6 col-xs-6">
     <h2>Clients</h2>
@@ -10,7 +23,7 @@
 
   <div class="col-sm-6 col-xs-12">
     <ul class="list-unstyled event-list">
-      <li ng-repeat="event in listEvents"
+      <li ng-repeat="event in listEvents | filter:sort "
           ng-mouseenter="hover = false"
           ng-mouseleave="hover = true">
         <div class="row">

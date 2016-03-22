@@ -40,6 +40,7 @@ q.fcall(function() {
             thirdDate: new Date("2016-02-28T00:00:00-0800"),
             thirdDateTime: [true, false, false]
           },
+          published: false,
           registryUrl: 'https://www.myregistry.com/public/gobe'
         },{
           firstName: 'ella',
@@ -56,6 +57,7 @@ q.fcall(function() {
             thirdDate: new Date("2016-02-29T00:00:00-0800"),
             thirdDateTime: [true, true, false]
           },
+          published: false,
           registryUrl: 'https://www.myregistry.com/public/gobe'
         },{
           firstName: 'thomas',
@@ -72,7 +74,8 @@ q.fcall(function() {
             thirdDate: new Date("2016-02-27T00:00:00-0800"),
             thirdDateTime: [true, true, true]
           },
-          registryUrl: 'https://www.myregistry.com/public/gobe'
+          registryUrl: 'https://www.myregistry.com/public/gobe',
+          published: true
         }, function() {
             console.log('finished populating events');
             resolve();
