@@ -1,19 +1,19 @@
 <div class="container">
   <div class="row">
-    <!-- <div class="col-sm-6 col-xs-12"> -->
+    <div class="col-sm-6 col-xs-12">
       <div class="row event-list-sub-nav">
         <div class="col-xs-2" ng-class="{'active-sub': sort === all}"><a href="" ng-click="sort = all">All</a></div>
-        <div class="col-xs-3" ng-class="{'active-sub': sort === matched}"><a href=""  ng-click="sort = matched">Matched</a></div>
+        <div class="col-xs-3" ng-class="{'active-sub': sort == matched}"><a href=""  ng-click="sort = matched">Matched</a></div>
         <div class="col-xs-3" ng-class="{'active-sub': sort === pending}"><a href="" ng-click="sort = pending">Pending</a></div>
         <div class="col-xs-4" ng-class="{'active-sub': sort === unpublished}"><a href="" ng-click="sort = unpublished">Unpublished</a></div>
       </div>
-  <!--   </div> -->
+    </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-6 col-xs-6">
-    <h2>Clients</h2>
+    <h3>Clients</h3>
   </div>
   <div class="col-sm-6 col-xs-6">
     <h2>
@@ -33,6 +33,7 @@
             </a>
             <p>Published: {{event.published}}</p>
             <p>Matched: {{confirmGroupStatus(event)}}</p>
+            <p>{{event.confirmGroup.length}}</p>
           </span>
           <span class="col-sm-1 col-xs-2">
             <a ng-click="deleteEvent(event._id)" ng-class="{'hidden-sm': hover, 'hidden-md': hover, 'hidden-lg': hover}">
