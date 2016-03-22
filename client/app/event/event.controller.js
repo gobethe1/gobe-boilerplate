@@ -10,7 +10,7 @@ angular.module('gobeApp')
 
     $scope.sort = {};
     $scope.all = {};
-    $scope.matched = {'confirmGroup': !null};
+    $scope.matched = {'confirmGroup': "!!"};
     $scope.pending =  {'published': true};
     $scope.unpublished = {'published': false};
 
