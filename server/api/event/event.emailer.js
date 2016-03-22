@@ -268,7 +268,6 @@ function detailsToGroupLeader(event, host){
 	    });
 	  },
 	  function(group, done) {
-	  					console.log('group', group)
 	    	// var index = _.indexOf(event.sentEmails, value.email)
 
 	    	// var link = 'http://' + host + '/confirm/' + event._id + '/' + value._id;

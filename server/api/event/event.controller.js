@@ -33,7 +33,6 @@ exports.create = function(req, res) {
 
 // Updates an existing event in the DB.
 exports.update = function(req, res) {
-  console.log(req.body)
   if(req.body._id) { delete req.body._id; }
   Event.findById(req.params.id, function (err, event) {
     if (err) { return handleError(res, err); }
