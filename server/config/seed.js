@@ -31,6 +31,7 @@ q.fcall(function() {
           address: '1000 hello way',
           zipCode: '90017',
           gender: 'male',
+          phoneNumber: '1112223333',
           availability: {
             moveInDate: new Date("2016-02-25T00:00:00-0800"),
             firstDate: new Date("2016-02-26T00:00:00-0800"),
