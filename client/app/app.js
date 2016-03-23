@@ -7,7 +7,8 @@ angular.module('gobeApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'ui.mask'
+  'ui.mask',
+  'ui.bootstrap.datetimepicker'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
