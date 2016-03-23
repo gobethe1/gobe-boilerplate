@@ -109,6 +109,12 @@ i {
   }
 }
 
+.sub{
+  border-bottom: 2px solid grey;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
 @media only screen and (max-width: $screen-xs) {
   .status-bar{
       height: 30px;
