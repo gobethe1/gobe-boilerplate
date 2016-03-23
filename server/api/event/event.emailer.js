@@ -59,12 +59,12 @@ function matchZipCode(event, host){
 				     '<tr>' +
 				     '<td align="left" valign="top">' +
 				     '<p style="font-size:14px;font-family:sans-serif;">Hello ' + capFirstName + ',<br>' +
-				     'we matched you with a move-in party of a homeless vet in your neighborhood! Check out the dates ' +
+				     'We matched you with a move-in party of a homeless vet in your neighborhood! Check out the dates ' +
 				     'and times and let us know if you are available:</p>' +
 				     '<div style="text-align:center"><a href=' + link +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a></div><br>' +
 				     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold;">What\'s this invite about?</p>' +
 						 '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s' +
-						 'time to party! This person now lives in your area and you have been invited to help welcome them home! Ready to make a difference?' +
+						 'time to party! This person now lives in your area and you have been invited to help welcome them home! Ready to make a difference? ' +
 						 'Simply, accept the invite and start recruiting your friends.</p>' +
 						 '<p style="font-size:14px;font-family:sans-serif;">We hope to see you there,</p>' +
 			       '<p style="font-size:14px;font-family:sans-serif;">GOBE team</p>' +
@@ -314,9 +314,9 @@ function detailsToGroupLeader(event, host){
 		      			    '</td>' +
 		      			    '<td align="left" width="50%">' +
 		      			    '<p style="font-size:14px;font-family:sans-serif;font-weight:bolder">Some nice touches</p>' +
-		      			    '<p style="font-size:14px;font-family:sans-serif">Check out instagram <a href="https://www.instagram.com/gobethe1/" target="_blank">@GOBETHE1</a> for good ideas<br>' +
-		      			   	'from previous parties. Try to think of things you typically find <br>' +
-		      			   	'at a party like food and drinks. Things such as welcome home banners <br>' +
+		      			    '<p style="font-size:14px;font-family:sans-serif">Check out instagram <a href="https://www.instagram.com/gobethe1/" target="_blank">@GOBETHE1</a> for good ideas' +
+		      			   	'from previous parties. Try to think of things you typically find' +
+		      			   	'at a party like food and drinks. Things such as welcome home banners' +
 		      			   	'and posters make each party an extra special event!<p>' +
 		      			   	'</td>' +
 		      			    '</tr></table>'
