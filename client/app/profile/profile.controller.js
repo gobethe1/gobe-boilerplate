@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('ProfileCtrl', function ($scope) {
-    $scope.message = 'Hello';
+  .controller('ProfileCtrl', function ($scope, currentUser) {
+    $scope.user = currentUser;
   });
