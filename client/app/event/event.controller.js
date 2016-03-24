@@ -1,13 +1,15 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('EventCtrl', function ($scope, $state, $stateParams, Event, eventModel, currentUser, Auth) {
+  .controller('EventCtrl', function ($scope, $state, $stateParams, Event, eventModel, currentUser, Auth, Path) {
     // console.log(currentUser)
   	$scope.listEvents = eventModel;
     $scope.hover = true;
     $scope.newEvent = {};
     $scope.newEvent.availability = {};
     $scope.isAdmin = Auth.isAdmin;
+    $scope.path = Path.transitionToPath;
+    $scope.showLink = 'event.show';
 
     $scope.sort = {};
     $scope.all = {};
