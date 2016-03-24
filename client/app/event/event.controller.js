@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('EventCtrl', function ($scope, $state, $stateParams, Event, eventModel, currentUser) {
+  .controller('EventCtrl', function ($scope, $state, $stateParams, Event, eventModel, currentUser, Auth) {
     // console.log(currentUser)
   	$scope.listEvents = eventModel;
     $scope.hover = true;
     $scope.newEvent = {};
     $scope.newEvent.availability = {};
+    $scope.isAdmin = Auth.isAdmin;
 
     $scope.sort = {};
     $scope.all = {};
@@ -156,7 +157,7 @@ angular.module('gobeApp')
   tomorrow.setDate(tomorrow.getDate() + 1);
   var afterTomorrow = new Date();
   afterTomorrow.setDate(tomorrow.getDate() + 1);
-  
+
   // $scope.events = [
   //   {
   //     date: tomorrow,
