@@ -2,14 +2,15 @@
  <div class="container">
   <div class="row">
     <!-- header -->
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center signup-header">
+   <!--  <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center signup-header">
       <h2>Sign up</h2>
       <h5>How will you help create change?</h5>
-    </div>
+    </div> -->
+    <div ng-include="'components/templates/logo-wrapper.html'"></div>
     <!-- end header -->
 
     <!-- group / volunteer tab  -->
-    <div class="row">
+<!--     <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <div class="row">
         <div class="col-xs-6">
@@ -23,12 +24,13 @@
       </div>
     </div>
    </div>
-    <br>
+    <br> -->
     <!-- end group / volunteer tab -->
 
     <!-- group signup -->
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3 well" ng-show="isSet(1)">
-      <form class="form" name="form" ng-submit="signup(form)" novalidate>
+  <form class="form" name="form" ng-submit="signup(form)" novalidate>
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4 well" ng-show="isSet(1)">
+
 
         <!-- email -->
         <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
@@ -68,25 +70,26 @@
           </p>
         </div>
         <!-- end password -->
-
+        </div>
         <!-- submit button -->
-        <div>
+      
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
           <button class="btn btn-inverse btn-lg btn-login btn-block" type="submit"
           ng-class="{ 'dark-blue': form.$valid, 'btn-secondary': form.$invalid}">
             Sign up
           </button>
         </div>
-        <!-- end submit button -->
       </form>
-    </div>
+        <!-- end submit button -->
+
     <!-- eng group signup -->
 
     <!-- volunteer signup -->
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3 well" ng-show="isSet(2)">
-      <form class="form" name="form" ng-submit="signup(form)" novalidate>
+    <!-- <div class="col-xs-12 col-sm-6 col-sm-offset-3 well" ng-show="isSet(2)">
+      <form class="form" name="form" ng-submit="signup(form)" novalidate> -->
 
         <!-- email -->
-        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+       <!--  <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
                                             'has-error': form.email.$invalid && submitted }">
 
           <input type="email" name="email" class="form-control" ng-model="user.email"
@@ -102,11 +105,11 @@
           <p class="help-block" ng-show="form.email.$error.mongoose">
             {{ errors.email }}
           </p>
-        </div>
+        </div> -->
         <!-- end email -->
 
         <!-- password -->
-        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
+       <!--  <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
                                             'has-error': form.password.$invalid && submitted }">
 
           <input type="password" name="password" class="form-control" ng-model="user.password"
@@ -121,19 +124,19 @@
           <p class="help-block" ng-show="form.password.$error.mongoose">
             {{ errors.password }}
           </p>
-        </div>
+        </div> -->
         <!-- end password -->
 
         <!-- submit button -->
-        <div>
+       <!--  <div>
           <button class="btn btn-inverse btn-lg btn-login btn-block" type="submit"
           ng-class="{ 'dark-blue': form.$valid, 'btn-secondary': form.$invalid}">
             Sign up
           </button>
-        </div>
+        </div> -->
         <!-- end submit button -->
-      </form>
-    </div>
+  <!--     </form>
+    </div> -->
     <!-- end volunteer signup -->
   </div>
  </div>

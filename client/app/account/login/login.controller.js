@@ -18,6 +18,8 @@ angular.module('gobeApp')
     };
 
     $scope.login = function(form) {
+      console.log(form)
+      console.log("firing")
       $scope.submitted = true;
 
       if(form.$valid) {

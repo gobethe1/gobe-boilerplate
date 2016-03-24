@@ -42,7 +42,7 @@
 }
 
 .main-logo{
-    padding-top: 10vh;
+    padding-top: 7vh;
 }
 
 .signup-div {
@@ -59,7 +59,7 @@ a.login-link {
     display: inline-block;
     // margin-top: 20px;
     color: $black;
-    font-size: 18px;
+    font-size: 14px;
     text-decoration: underline;
 }
 
@@ -67,6 +67,15 @@ a.login-link {
     &:hover {
         color: $white;
     }
+}
+
+p.main-text{
+    margin: 20px 0px;
+}
+
+p.blue-text{
+   color: $bg-blue;
+   font-weight: bolder;
 }
 
 // main page media query for button vh

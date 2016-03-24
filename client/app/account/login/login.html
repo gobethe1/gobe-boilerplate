@@ -3,14 +3,16 @@
   <div class="row">
 
     <!-- header -->
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center signup-header">
+ <!--    <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center signup-header">
       <h2>Login</h2>
-    </div>
+    </div> -->
+    <div ng-include="'components/templates/logo-wrapper.html'"></div>
     <!-- end header -->
 
     <!-- group login -->
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3 well">
+
       <form class="form" name="form" ng-submit="login(form)" novalidate>
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4 well">
         <!-- start email -->
         <div class="form-group">
           <input type="email" name="email" class="form-control" ng-model="user.email"
@@ -36,15 +38,18 @@
           <p class="help-block">{{ errors.other }}</p>
         </div>
 
-        <div>
+
+        </div>
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
           <button class="btn btn-inverse btn-lg btn-login btn-block" type="submit"
                   ng-class="{ 'dark-blue': form.$valid, 'btn-secondary': form.$invalid}">
             Login
           </button>
         </div>
 
+      
       </form>
-    </div>
+
 
     </div>
   </div>
