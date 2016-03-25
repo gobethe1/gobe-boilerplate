@@ -24,6 +24,7 @@ $border-radius-small:       9px !important;
 
 body {
   font-family: $font-family-sans-serif;
+  margin: 0;
 }
 
 .navbar.navbar-default {
@@ -58,15 +59,20 @@ body {
 
 
 .navbar-default {
-  border-color: $footer-black !important;
+  border-color: $black !important;
   background-color: $white !important;
 
 }
 
+.secondary-footer {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
 footer{
-  // margin-bottom: 5vh;
+  margin-top: 5vh;
   padding-top: 0px;
-  border-top: 1px solid $footer-black;
+  border-top: 1px solid $black;
 
     .fa {
       padding-top: 5px;
@@ -87,8 +93,8 @@ footer{
       }
     }
     .group-button {
-      border-right: 1px solid $footer-black;
-      border-left: 1px solid $footer-black;
+      border-right: 1px solid $black;
+      border-left: 1px solid $black;
 
     }
 

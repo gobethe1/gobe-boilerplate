@@ -9,7 +9,6 @@ angular.module('gobeApp')
     // $scope.getCurrentUser = Auth.getCurrentUser;
 
     $scope.causesLink = function(){
-      console.log('hello')
       if(Auth.isAdmin()){
         $state.go('event.list');
       } else {
