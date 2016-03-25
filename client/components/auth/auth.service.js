@@ -136,6 +136,10 @@ angular.module('gobeApp')
         return currentUser.role === 'admin';
       },
 
+      isGroup: function() {
+        return currentUser.position === 'group';
+      },
+
       /**
        * Get auth token
        */

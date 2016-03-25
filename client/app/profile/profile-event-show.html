@@ -1,9 +1,21 @@
-<h3>Move-in of {{event.firstName}} {{event.lastName}}</h3>
-<p><strong>What's this cause about?</strong></p>
-<p>You have a new neighbor! Someone just moved off the streets into your nearby area and it’s time to party! Make a difference in their lives by throwing them a Welcome Home Party! To get started, simply select “Accept Cause” and it will send the invitation to the rest of your group.</p>
-<p> Before the party, your group is responsible for putting together a <a href="https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf" target="_blank" style="text-decoration:underline">Welcome Home Kit</a> to make this apartment a HOME! Please be sure your group has a full box ready to go, and it’s Party Time!</p>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+	<h3>Move-in of {{event.firstName | capitalize}} {{event.lastName | capitalize}}</h3>
+		<p><strong>What's this cause about?</strong></p>
+		<p>You have a new neighbor! Someone just moved off the streets into your nearby area and it’s time to party! Make a difference in their lives by throwing them a Welcome Home Party! To get started, simply select “Accept Cause” and it will send the invitation to the rest of your group.</p>
+		<p> Before the party, your group is responsible for putting together a <a href="https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf" target="_blank" style="text-decoration:underline">Welcome Home Kit</a> to make this apartment a HOME! Please be sure your group has a full box ready to go, and it’s Party Time!</p>
 
-<div ng-include="'components/templates/events/event-show.html'"></div>
+		<div ng-include="'components/templates/events/event-show.html'"></div>
 
-<!-- conditional based on matched or not -->
-<button ng-hide="matchedZipCode" class="btn btn-primary btn-large">Organize Cause</button>
+		<!-- conditional based on matched or not -->
+		<div class="row">
+		 <div class="col-xs-12 text-center">
+			<button ng-show="matchedZipCodeId !== event.confirmGroup" 
+				ui-sref="confirm.group({event_id: event._id , group_id: group._id })"
+				class="btn btn-primary btn-lg">
+				Organize Cause
+			</button>
+		 </div>
+		</div>
+  </div>
+</div>

@@ -5,7 +5,7 @@ angular.module('gobeApp')
 
     return {
       transitionToPath: function(path, id){
-        return $state.go(path, {'id': id});
+        return $state.go(path, {'id': id}); //return $state.go(path, {'id': id});
       }
     };
 

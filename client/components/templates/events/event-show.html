@@ -10,72 +10,78 @@
         </tr>
       </thead>
         <tbody>
-          <tr>
+          <tr ng-show="isAdmin();">
               <th>Client Phone Number:</th>
               <td>{{event.phoneNumber | tel}}</td>
           </tr>
-          <tr>
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
               <th>Move in address:</th>
               <td>{{event.address | capitalize}}</td>
           </tr>
-          <tr>
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
               <th>Move in zip:</th>
               <td>{{event.zipCode}}</td>
           </tr>
-          <tr>
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
               <th>Gender:</th>
               <td>{{event.gender | capitalize }}</td>
           </tr>
-          <tr>
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
               <th>Age:</th>
               <td>{{event.age}}</td>
           </tr>
-          <tr>
+     
+          <tr ng-show="isAdmin()">
               <th>Date moved in:</th>
               <td>{{event.availability.moveInDate | date:"MM/dd/yyyy" }}</td>
           </tr>
-          <tr>
+
+          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
               <th>Date 1:</th>
               <td>{{event.availability.firstDate | date:"MM/dd/yyyy"}}</td>
           </tr>
 
-          <tr ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
-            <th ></th>
+          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
+            <th></th>
             <td class="time">
-              {{checkTime(time, $index)}}
+              <span ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
+                   {{$first ? '' : $last ? ' , ' : ', '}}{{checkTime(time, $index)}} 
+             </span> 
             </td>
           </tr>
 
-          <tr>
+          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
               <th>Date 2:</th>
               <td>{{event.availability.secondDate | date:"MM/dd/yyyy"}}</td>
           </tr>
 
-          <tr ng-repeat="time in event.availability.secondDateTime track by $index" ng-if="time">
+          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
             <th></th>
             <td class="time">
-              {{checkTime(time, $index)}}
+              <span ng-repeat="time in event.availability.secondDateTime track by $index" ng-if="time">
+                 {{$first ? '' : $last ? ' , ' : ', '}}{{checkTime(time, $index)}} </span>
             </td>
           </tr>
 
-          <tr>
+          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
               <th>Date 3:</th>
               <td>{{event.availability.thirdDate | date:"MM/dd/yyyy"}}</td>
           </tr>
 
-          <tr ng-repeat="time in event.availability.thirdDateTime track by $index" ng-if="time">
+          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
             <th></th>
             <td class="time">
-              {{checkTime(time, $index)}}
+             <span ng-repeat="time in event.availability.thirdDateTime track by $index" ng-if="time">
+               {{$first ? '' : $last ? ', ' : ', '}}{{checkTime(time, $index)}} </span>
             </td>
           </tr>
 
-          <tr>
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
               <th>Registry Url:</th>
               <td>{{event.registryUrl}}</td>
           </tr>
 
-          <tr>
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
               <th>Notes:</th>
               <td>{{event.notes}}</td>
           </tr>

@@ -1,5 +1,5 @@
 angular.module('gobeApp')
-  .controller('EventShowCtrl', function ($scope, $stateParams, Event, eventShow, Group, eventGroup) {
+  .controller('EventShowCtrl', function ($scope, $stateParams, Event, eventShow, Group, eventGroup, Auth) {
     
     $scope.event = eventShow;
 

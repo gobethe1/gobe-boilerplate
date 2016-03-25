@@ -42,8 +42,13 @@ angular.module('gobeApp')
         controller: 'ProfileEventCtrl',
       })
       .state('profile.event.show', {
-        url: '/show',
+        url: '/:id/show',
         templateUrl: 'app/profile/profile-event-show.html',
-        controller: 'ProfileEventCtrl',
+        controller: 'ProfileEventShowCtrl',
+        resolve:{
+           eventShow: function(Event, $stateParams){
+            return Event.get({id: $stateParams.id}).$promise;
+          }
+        }
       });
   });

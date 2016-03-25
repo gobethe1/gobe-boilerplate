@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 no-pad">
         <div class="status-bar" ng-class="{'pending-bar': !event.confirmGroup, 'confirmed-bar': event.confirmGroup}">
-        <!--   Status: Party Pending --> Status: {{partyStatus(event)}}
+        <!--   Status: Party Pending --> Status: {{partyStatus(event)}} 
           <span style="float:right" ng-if="event.confirmGroup">Guests: {{group.organizationName}}</span>
           <!-- create function that runs on event.confirmGroup and returns party status -->
         </div>
