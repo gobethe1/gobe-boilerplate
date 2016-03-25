@@ -15,6 +15,7 @@ $font-family-sans-serif: "Helvetica", sans-serif !important;
 $white: white;
 $black: black;
 $gray: #979797;
+$footer-black: #ffffff;
 
 // button borders pulled from bootstrap-sass variables
 $border-radius-base:        9px !important;
@@ -57,7 +58,7 @@ body {
 
 
 .navbar-default {
-  border-color: $black !important;
+  border-color: $footer-black !important;
   background-color: $white !important;
 
 }
@@ -65,7 +66,7 @@ body {
 footer{
   // margin-bottom: 5vh;
   padding-top: 0px;
-  border-top: 1px solid $black;
+  border-top: 1px solid $footer-black;
 
     .fa {
       padding-top: 5px;
@@ -86,8 +87,8 @@ footer{
       }
     }
     .group-button {
-      border-right: 1px solid $black;
-      border-left: 1px solid $black;
+      border-right: 1px solid $footer-black;
+      border-left: 1px solid $footer-black;
 
     }
 

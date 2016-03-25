@@ -34,27 +34,9 @@
         <div ui-view="">
         </div>
 <!--       </div> -->
+      <div ng-include="'components/footer/footer.html'"></div>
 
-      <footer class="navbar-default navbar-fixed-bottom">
-        <div class="container-fluid">
-          <div class="col-sm-4 col-xs-4 text-center">
-            <a href=""><i class="fa fa-user"></i>
-              <p>Profile</p>
-            </a>
-          </div>
-          <div class="col-sm-4 col-xs-4 text-center group-button">
-            <a href=""><i class="fa fa-users"></i>
-              <p>Groups</p>
-            </a>
-          </div>
-          <div class="col-sm-4 col-xs-4 text-center">
-            <a href=""><i class="fa fa-heart"></i>
-              <p>Causes</p>
-            </a>
-          </div>
-        </div>
 
-      </footer>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -127,6 +109,7 @@
           <script src="components/auth/path.service.js"></script>
           <script src="components/auth/user.service.js"></script>
           <script src="components/filters/filters.js"></script>
+          <script src="components/footer/footer.controller.js"></script>
           <script src="components/modal/modal.service.js"></script>
           <script src="components/mongoose-error/mongoose-error.directive.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>
