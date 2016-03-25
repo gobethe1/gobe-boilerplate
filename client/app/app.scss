@@ -28,8 +28,31 @@ body {
 }
 
 .navbar.navbar-default {
-  background-color: $white !important;
+  background-color: $bg-blue !important;
+  border-color: transparent !important;
 }
+
+.navbar-default {
+  .navbar-toggle {
+    &:hover {
+      background-color: $white;
+      .icon-bar {
+        background-color: $bg-blue;
+      }
+    }
+      .icon-bar {
+        background-color: $white;
+      }
+    }
+  .navbar-brand {
+      color: $white !important;
+  }
+  .navbar-nav > li > a {
+      color: $white;
+  }
+}
+
+
 
 .no-pad{
   padding: 0px;
