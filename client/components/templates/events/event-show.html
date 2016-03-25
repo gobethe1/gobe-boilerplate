@@ -10,7 +10,7 @@
         </tr>
       </thead>
         <tbody>
-          <tr ng-show="isAdmin();">
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
               <th>Client Phone Number:</th>
               <td>{{event.phoneNumber | tel}}</td>
           </tr>
@@ -30,7 +30,7 @@
               <th>Age:</th>
               <td>{{event.age}}</td>
           </tr>
-     
+
           <tr ng-show="isAdmin()">
               <th>Date moved in:</th>
               <td>{{event.availability.moveInDate | date:"MM/dd/yyyy" }}</td>
@@ -45,8 +45,8 @@
             <th></th>
             <td class="time">
               <span ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
-                   {{$first ? '' : $last ? ' , ' : ', '}}{{checkTime(time, $index)}} 
-             </span> 
+                   {{$first ? '' : $last ? ' , ' : ', '}}{{checkTime(time, $index)}}
+             </span>
             </td>
           </tr>
 
