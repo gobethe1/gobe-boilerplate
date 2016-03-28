@@ -1,14 +1,13 @@
-<div class="row">
-  <div class="col-sm-6 col-xs-6">
-    <h2>Groups</h2>
-  </div>
-  <div class="col-sm-6 col-xs-6">
-    <h2>
-        <button ui-sref="group.new" class="btn btn-secondary btn-lg">Add Group</button>
-    </h2>
-  </div>
 
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+        <button ui-sref="event.new" class="btn btn-secondary btn-lg pull-right">Add Group</button>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-sm-6 col-xs-12">
+    <br>
     <ul class="list-unstyled event-list">
       <li ng-repeat="group in listGroups"
           ng-mouseenter="hover = false"

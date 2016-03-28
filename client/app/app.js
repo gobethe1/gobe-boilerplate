@@ -43,7 +43,9 @@ angular.module('gobeApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, $location, Auth, $state) {
+    // $rootScope.currentLocation = $location
+    $rootScope.currentLocation = $location
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {

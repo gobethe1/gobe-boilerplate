@@ -1,19 +1,12 @@
-<div ng-show="isAdmin()" class="col-sm-6 col-xs-6">
-  <h3>Causes</h3>
-</div>
-<div ng-hide="isAdmin()" class="col-sm-12 col-xs-12">
-  <h3>Causes</h3>
-</div>
 <div class="row">
-
-
-  <div ng-show="isAdmin()" class="col-sm-6 col-xs-6">
-    <h2>
-        <button ui-sref="event.new" class="btn btn-secondary btn-lg">Add Cause</button>
-    </h2>
+  <div ng-show="isAdmin()" class="col-xs-12 col-sm-12">
+        <button ui-sref="event.new" class="btn btn-secondary btn-lg pull-right">Add Cause</button>
   </div>
+</div>
 
+<div class="row">
   <div class="col-sm-6 col-xs-12">
+    <br>
     <ul class="list-unstyled event-list">
       <li ng-repeat="event in listEvents | filter:sort "
           ng-mouseenter="hover = false"

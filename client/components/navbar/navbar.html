@@ -1,14 +1,20 @@
 <div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
   <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+<!--     <div class="navbar-header">
       <a href="/" class="navbar-brand">GOBE</a>
+    </div> -->
+    <button class="navbar-toggle navbar-toggle-position" type="button" ng-click="isCollapsed = !isCollapsed">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+      <div class="nav-arrow">
+      <a href="" ng-click="goBack()"> <i style="color:white" class="fa fa-long-arrow-left fa-2x"></i></a>
     </div>
+    <ul class="nav navbar-nav title-navbar-nav">
+      <li class="current-location"><h4>{{navTitle(currentLocation)}}</h4></li>
+    </ul>
     <div collapse="isCollapsed" class="navbar-collapse" ng-class="{'collapse': isCollapsed}" id="navbar-main">
 <!--       <ul class="nav navbar-nav">
         <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
@@ -18,13 +24,15 @@
       </ul> -->
 
       <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
-        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
-        <li ng-show="isAdmin()" ng-class="{active: isActive('/event/list')}"> <a ui-sref="event.list">Clients</a> </li>
+        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}">
+          <a ng-click="isCollapsed = !isCollapsed" href="/signup">Sign up</a></li>
+        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}">
+          <a ng-click="isCollapsed = !isCollapsed" href="/login">Login</a></li>
+      <!--   <li ng-show="isAdmin()" ng-class="{active: isActive('/event/list')}"> <a ui-sref="event.list">Clients</a> </li> -->
 <!--    <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li> -->
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}">
-          <a href="" ng-click="logout()">Logout</a>
+          <a ng-click="isCollapsed = !isCollapsed" href="" ng-click="logout()">Logout</a>
         </li>
       </ul>
     </div>

@@ -5,4 +5,6 @@ angular.module('gobeApp')
     $scope.user = currentUser;
     $scope.isAdmin = Auth.isAdmin;
     $scope.path = Path.transitionToPath;
+    // $scope.currentTitle = "Profile"
+    // console.log($scope.currentTitle)
   });
