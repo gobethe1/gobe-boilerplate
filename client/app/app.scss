@@ -53,10 +53,10 @@ body {
   }
 }
 
-.navbar-toggle-position{
-  position:absolute;
-  right:0px;
-}
+// .navbar-toggle-position{
+//   position:absolute;
+//   right:0px;
+// }
 
 li.current-location{
   float:none;
@@ -214,6 +214,21 @@ footer{
 @media only screen and (max-width: $screen-sm) {
   .signup-header {
     padding-bottom: 5%;
+  }
+}
+@media only screen and (min-width: $screen-sm) {
+  .title-navbar-nav {
+    position: absolute;
+    left: 45%;
+  }
+
+li.current-location{
+    h4 {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 }
 

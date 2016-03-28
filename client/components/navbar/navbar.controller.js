@@ -11,6 +11,7 @@ angular.module('gobeApp')
     $scope.currentUrl = $location.path();
 
     $scope.logout = function() {
+      console.log('ahhhhh')
       Auth.logout();
       $location.path('/login');
     };
@@ -23,13 +24,13 @@ angular.module('gobeApp')
        if(path === 'event'){return "Causes"}
     }
 
-    $scope.goBack = function() {
-      window.history.back();
-    };
+    // $scope.goBack = function() {
+    //   window.history.back();
+    // };
 
     $scope.isActive = function(route) {
       return route === $location.path();
     };
-  
+
 
   });
