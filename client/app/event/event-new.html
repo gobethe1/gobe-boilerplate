@@ -3,6 +3,41 @@
 		<div class="col-md-6 col-md-offset-3 col-xs-12">
 			<h3>New Client</h3>
 
+		<!-- add cause type -->
+			<div class="form-group" ng-class="{ 'has-success': form.causeType.$valid && submitted,
+                                          'has-error': form.causeType.$invalid && submitted }">
+				<label>Select Cause</label>
+			  <select class="form-control"
+			  		name="causeType"
+			      ng-model="newEvent.causeType"
+			      ng-options="obj as obj for obj in causeArray;"
+			      required
+			      >
+			    <option value="" disabled selected>Choose Cause</option>
+			  </select>
+			 </div>
+			<!-- end cause type -->
+
+		<!-- veteran section -->
+
+
+
+		<!-- end veteran section -->
+
+		<div ng-show="newEvent.causeType">
+			<div class="form-group" ng-show="newEvent.causeType === 'Homeless Move-in'">
+			  <label>Is this client a veteran?</label><br>
+				<label class="radio-inline">
+				  <input name="veteranYes" ng-model="newEvent.veteran" value="true" type="radio">
+				  <span class="c-indicator"></span>
+				  Yes
+				</label>
+				<label class="radio-inline">
+				  <input name="veteranNo" ng-model="newEvent.veteran" value="false" type="radio">
+				  <span class="c-indicator"></span>
+				 No
+				</label>
+			</div>
 			<!-- client name -->
 			<div class="row">
 				<div class="col-md-6 col-xs-6">
@@ -79,8 +114,8 @@
 				</div>
 			</div>
 			<!-- gender age-->
-			<!-- date movedin -->
 
+			<!-- date movedin -->
 			<div class="form-group" ng-class="{ 'has-success': form.moveindate.$valid && submitted,
                                                'has-error': form.moveindate.$invalid && submitted }">
 			  <label>Move-In Date</label>
@@ -112,8 +147,8 @@
 
 
 				<div class="col-xs-12 col-sm-7">
-				  <div class="form-group" ng-class="{ 'has-success': newEvent.availability.firstDateTime[0] && newEvent.availability.firstDateTime[1] && 
-					newEvent.availability.firstDateTime[2] && submitted, 'has-error': !newEvent.availability.firstDateTime[0] && !newEvent.availability.firstDateTime[1] && 
+				  <div class="form-group" ng-class="{ 'has-success': newEvent.availability.firstDateTime[0] && newEvent.availability.firstDateTime[1] &&
+					newEvent.availability.firstDateTime[2] && submitted, 'has-error': !newEvent.availability.firstDateTime[0] && !newEvent.availability.firstDateTime[1] &&
 					!newEvent.availability.firstDateTime[2] && submitted }">
 					<label class="checkbox-inline">
 					  <input name="morning" ng-model="newEvent.availability.firstDateTime[0]" type="checkbox"
@@ -255,6 +290,8 @@
 						</button>
 					</div>
 				</div>
+
+			</div>
 
 		</div>
 	</div>

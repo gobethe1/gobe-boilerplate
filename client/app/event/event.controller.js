@@ -10,6 +10,7 @@ angular.module('gobeApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.path = Path.transitionToPath;
     $scope.showLink = 'event.show';
+    $scope.causeArray = ["Homeless Move-in", "Other"];
 
     $scope.sort = {};
     $scope.all = {};

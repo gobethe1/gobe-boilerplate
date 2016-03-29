@@ -18,6 +18,8 @@ var EventSchema = new Schema({
   zipCode: String,
   gender: String,
   age: Number,
+  causeType: String,
+  veteran: Boolean,
   availability: {
     moveInDate: Date,
     firstDate: Date,
