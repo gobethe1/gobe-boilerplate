@@ -4,27 +4,24 @@
 			<h3>New Client</h3>
 
 		<!-- add cause type -->
-			<div class="form-group" ng-class="{ 'has-success': form.causeType.$valid && submitted,
-                                          'has-error': form.causeType.$invalid && submitted }">
-				<label>Select Cause</label>
-			  <select class="form-control"
-			  		name="causeType"
-			      ng-model="newEvent.causeType"
-			      ng-options="obj as obj for obj in causeArray;"
-			      required
-			      >
-			    <option value="" disabled selected>Choose Cause</option>
-			  </select>
-			 </div>
-			<!-- end cause type -->
+		<div class="form-group" ng-class="{ 'has-success': form.causeType.$valid && submitted,
+                                        'has-error': form.causeType.$invalid && submitted }">
+			<label>Select Cause</label>
+		  <select class="form-control"
+		  		name="causeType"
+		      ng-model="newEvent.causeType"
+		      ng-options="obj as obj for obj in causeArray;"
+		      required
+		      >
+		    <option value="" disabled selected>Choose Cause</option>
+		  </select>
+		</div>
+		<!-- end cause type -->
 
-		<!-- veteran section -->
-
-
-
-		<!-- end veteran section -->
-
+		<!-- ng-show once cause type is selected -->
 		<div ng-show="newEvent.causeType">
+
+			<!-- veteran section -->
 			<div class="form-group" ng-show="newEvent.causeType === 'Homeless Move-in'">
 			  <label>Is this client a veteran?</label><br>
 				<label class="radio-inline">
@@ -38,6 +35,8 @@
 				 No
 				</label>
 			</div>
+		  <!-- end veteran section -->
+
 			<!-- client name -->
 			<div class="row">
 				<div class="col-md-6 col-xs-6">
@@ -72,17 +71,20 @@
         <label>Move-in Address</label>
         <input type="text" name="address" ng-model="newEvent.address" class="form-control"
          required/>
-       </div>
+      </div>
 			<!-- end address -->
+
+			<!-- zipcode -->
 			<div class="form-group" ng-class="{ 'has-success': form.zipcode.$valid && submitted,
                                            'has-error': (form.zipcode.$invalid || form.zipcode.$error.minlength) && submitted }">
 			   <label> Move-in Zipcode</label>
 			   <input type="text" ng-minlength="5" name="zipcode" ng-model="newEvent.zipCode" class="form-control"
 			   ui-mask="99999" ui-mask-placeholder-char="space" required>
 			</div>
-			<p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">
-			  	Zipcode must be 5 numbers.
-			</p>
+				<p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">
+				  	Zipcode must be 5 numbers.
+				</p>
+			<!-- end zipCode -->
 
 			<!-- gender age-->
 			<div class="row">
@@ -127,7 +129,6 @@
 		        </p>
 			</div>
 
-			<!-- date movedin -->
 			<!-- date one and time -->
 			<label>Please Choose 3 Available Dates and Times</label><br>
 			<label>Date & Time 1</label>
@@ -143,9 +144,6 @@
 			        </p>
 					</div>
 				</div>
-
-
-
 				<div class="col-xs-12 col-sm-7">
 				  <div class="form-group" ng-class="{ 'has-success': newEvent.availability.firstDateTime[0] && newEvent.availability.firstDateTime[1] &&
 					newEvent.availability.firstDateTime[2] && submitted, 'has-error': !newEvent.availability.firstDateTime[0] && !newEvent.availability.firstDateTime[1] &&
@@ -168,8 +166,7 @@
 					</label>
 				  </div>
 				</div>
-
-				</div>
+			</div>
 			<!-- end date one and time -->
 
 			<!-- date two and time -->
@@ -178,7 +175,6 @@
 				<div class="col-xs-12 col-sm-5">
 					<div class="form-group" ng-class="{ 'has-success': form.datetwo.$valid && submitted,
 		                                               'has-error': form.datetwo.$invalid && submitted }">
-<!-- 					  <input type="date" name="datetwo" ng-model="newEvent.availability.secondDate" class="form-control" required> -->
 		        <p class="input-group">
 		          <input type="text" class="form-control" name="datetwo" uib-datepicker-popup="{{format}}" ng-model="newEvent.availability.secondDate" is-open="popup3.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
 		          <span class="input-group-btn">
@@ -187,7 +183,6 @@
 	        	</p>
 					</div>
 				</div>
-
 				<div class="col-xs-12 col-sm-7">
 					<div class="form-group" ng-class="{ 'has-success': newEvent.availability.secondDateTime[0] && newEvent.availability.secondDateTime[1] &&                                    newEvent.availability.secondDateTime[2] && submitted,
 					                                    'has-error': !newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2] && submitted }">
@@ -215,7 +210,6 @@
 
 			<!-- date three and time -->
 			<label>Date & Time 3</label>
-
 			<div class="row">
 				<div class="col-xs-12 col-sm-5">
 					<div class="form-group" ng-class="{ 'has-success': form.datethree.$valid && submitted,
@@ -226,7 +220,6 @@
 		            <button type="button" class="btn btn-default" ng-click="open4()"><i class="glyphicon glyphicon-calendar"></i></button>
 		          </span>
         		</p>
-<!-- 					  <input type="date" name="datethree" ng-model="newEvent.availability.thirdDate" class="form-control" required> -->
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-7">
@@ -248,7 +241,6 @@
 						 Evening<br> 5-10
 						</label>
 					</div>
-
 				</div>
 			</div>
 			<!-- end date three and time -->
@@ -268,6 +260,7 @@
 			</div>
 			<!-- end notes section -->
 
+			<!-- save publish cancel buttons -->
 				<div class="text-left">
 					<p class="text-danger">{{addEventError}}</p>
 				</div>
@@ -290,11 +283,14 @@
 						</button>
 					</div>
 				</div>
+			<!-- end save publish cancel buttons -->
 
 			</div>
-
+			<!-- end show hide once cause is selected -->
 		</div>
+		<!-- end col spacing -->
 	</div>
+	<!-- end row -->
 
 </form>
 
