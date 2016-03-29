@@ -11,7 +11,7 @@ angular.module('gobeApp')
     $scope.currentUrl = $location.path();
 
     $scope.logout = function() {
-      console.log('ahhhhh')
+      $scope.isCollapsed = !$scope.isCollapsed
       Auth.logout();
       $location.path('/login');
     };

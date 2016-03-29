@@ -53,9 +53,8 @@ body {
   }
 }
 
-// .navbar-toggle-position{
-//   position:absolute;
-//   right:0px;
+// .navbar-toggle{
+//   margin-right: 0px;
 // }
 
 li.current-location{
@@ -67,6 +66,8 @@ li.current-location{
 .navbar-nav.title-navbar-nav{
   text-align:center;
   min-height: 36px;
+  // position: absolute;
+  // left: 45%;
 }
 
 .nav-arrow{
@@ -210,6 +211,12 @@ footer{
 	body{
 		font-size: 13px;
 	}
+  .navbar-nav.title-navbar-nav{
+    margin-left: 15vw;
+  }
+  .navbar-toggle{
+    margin-right: 0px;
+  }
 }
 @media only screen and (max-width: $screen-sm) {
   .signup-header {

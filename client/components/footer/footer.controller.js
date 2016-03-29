@@ -18,9 +18,14 @@ angular.module('gobeApp')
     };
 
     $scope.isActive = function(route) {
-      var currentLocation = $location.path().replace(/^\/([^\/]*).*$/, '$1');
-      var path = route.replace(/^\/([^\/]*).*$/, '$1');
-      // console.log('route', route, 'current location', currentLocation, 'path', path)
-      return currentLocation === path;
+      if(route === '/profile/event/list' || route === '/profile/details'){
+         return route === $location.path();
+      }
+      else{
+        var currentLocation = $location.path().replace(/^\/([^\/]*).*$/, '$1');
+        var path = route.replace(/^\/([^\/]*).*$/, '$1');
+        return currentLocation === path;
+      }
     };
+  
   });
