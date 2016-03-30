@@ -32,6 +32,7 @@ angular.module('gobeApp')
         url: '/new',
         templateUrl: 'app/event/event-new.html',
         controller: 'EventCtrl',
+        adminProtected: true,
         resolve:{
          eventModel: function(Event){
            return Event.query().$promise;
@@ -43,6 +44,7 @@ angular.module('gobeApp')
         url: '/:id/show',
         templateUrl: 'app/event/event-show.html',
         controller: 'EventShowCtrl',
+        adminProtected: true,
         resolve:{
           eventShow: function(Event, $stateParams){
             return Event.get({id: $stateParams.id}).$promise;
@@ -62,6 +64,7 @@ angular.module('gobeApp')
         url: '/:id/edit',
         templateUrl: 'app/event/event-edit.html',
         controller: 'EventEditCtrl',
+        adminProtected: true,
         resolve:{
          eventEdit: function(Event, $stateParams){
            return Event.get({id: $stateParams.id}).$promise;

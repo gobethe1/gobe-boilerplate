@@ -6,12 +6,14 @@ angular.module('gobeApp')
       .state('login', {
         url: '/login',
         templateUrl: 'app/account/login/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        loginPrevent: true
       })
       .state('signup', {
         url: '/signup',
         templateUrl: 'app/account/signup/signup.html',
-        controller: 'SignupCtrl'
+        controller: 'SignupCtrl',
+        loginPrevent: true
       })
       .state('redirect', {
         url: '/redirect',
