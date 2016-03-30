@@ -28,6 +28,7 @@ q.fcall(function() {
         Event.create({
           firstName: 'bob',
           lastName: 'barker',
+          causeType: 'Homeless Move-in',
           address: '1000 hello way',
           zipCode: '90017',
           gender: 'male',
@@ -46,9 +47,11 @@ q.fcall(function() {
         },{
           firstName: 'ella',
           lastName: 'stella',
+          causeType: 'Homeless Move-in',
           address: '1000 hollyday ',
           zipCode: '90017',
           gender: 'female',
+          phoneNumber: '1112223333',
           availability: {
             moveInDate: new Date("2016-02-25T00:00:00-0800"),
             firstDate: new Date("2016-02-27T00:00:00-0800"),
@@ -63,9 +66,11 @@ q.fcall(function() {
         },{
           firstName: 'thomas',
           lastName: 'barners',
+          causeType: 'Homeless Move-in',
           address: '1000 yo yo yo',
           zipCode: '90012',
           gender: 'male',
+          phoneNumber: '1112223333',
           availability: {
             moveInDate: new Date("2016-02-27T00:00:00-0800"),
             firstDate: new Date("2016-02-27T00:00:00-0800"),
@@ -77,7 +82,48 @@ q.fcall(function() {
           },
           registryUrl: 'https://www.myregistry.com/public/gobe',
           published: true
-        }, function() {
+        },{
+          causeType: 'Other',
+          address: '57 A St',
+          eventName: 'Feed Da Poor',
+          organizerFirstName: 'Cynthia',
+          organizerLastName: 'Pickles',
+          organizerEmail: 'cassie.purtlebaugh@gmail.com',
+          zipCode: '90012',
+          organizerPhoneNumber: '1112223333',
+          notes: 'Let\'s help save the world and make a difference',
+          availability: {
+            moveInDate: new Date("2016-02-27T00:00:00-0800"),
+            firstDate: new Date("2016-02-27T00:00:00-0800"),
+            firstDateTime: [true, false, false],
+            secondDate: new Date("2016-02-27T00:00:00-0800"),
+            secondDateTime: [true, true, false],
+            thirdDate: new Date("2016-02-27T00:00:00-0800"),
+            thirdDateTime: [true, true, true]
+          },
+          published: true
+        },{
+          causeType: 'Other',
+          address: '5000 freedom ave',
+          eventName: 'Music for Kids',
+          organizerFirstName: 'Sandra',
+          organizerLastName: 'B',
+          organizerEmail: 'cassie.purtlebaugh@gmail.com',
+          organizerPhoneNumber: '1112223333',
+          notes: 'Let\'s help save the world and make a difference',
+          zipCode: '90017',
+          availability: {
+            moveInDate: new Date("2016-02-23T00:00:00-0800"),
+            firstDate: new Date("2016-02-24T00:00:00-0800"),
+            firstDateTime: [true, false, false],
+            secondDate: new Date("2016-02-25T00:00:00-0800"),
+            secondDateTime: [true, true, false],
+            thirdDate: new Date("2016-02-26T00:00:00-0800"),
+            thirdDateTime: [true, true, true]
+          },
+          published: true
+        },
+        function() {
             console.log('finished populating events');
             resolve();
         });

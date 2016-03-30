@@ -2,15 +2,35 @@
     <table class="table table-sm">
       <thead>
         <tr>
+        <h3>{{event.firstName | capitalize}} {{event.lastName | capitalize}} {{event.eventName}}</h3>
+
+        <!-- move in description -->
+        <div ng-hide="event.causeType !== 'Homeless Move-in'">
+          <strong><p>What is this cause about?</strong></p>
+          <p>What’s this cause about? Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group.
+
+          You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each memeber what they are responsible for. And get ready to party!</p>
+        </div>
+        <!-- end move-in description -->
+
+        <!-- other description -->
+        <div ng-show="event.causeType !== 'Homeless Move-in'">
+          <strong><p>What is this cause about?</strong></p>
+          <p>{{event.notes}}</p>
+        </div>
+        <!-- end other description -->
           <th class="col-sm-6 col-xs-6">
-              <h3 class="no-margin">{{event.firstName | capitalize}} {{event.lastName | capitalize}}</h3>
           </th>
           <th class="col-sm-6 col-xs-6">
-          </th>
         </tr>
       </thead>
         <tbody>
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
+<!--           <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
+              <th>What is this cause about?</th>
+              <td></td>
+          </tr> -->
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
               <th>Client Phone Number:</th>
               <td>{{event.phoneNumber | tel}}</td>
           </tr>
@@ -18,20 +38,24 @@
               <th>Move in address:</th>
               <td>{{event.address | capitalize}}</td>
           </tr>
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
               <th>Move in zip:</th>
               <td>{{event.zipCode}}</td>
           </tr>
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
               <th>Gender:</th>
               <td>{{event.gender | capitalize }}</td>
           </tr>
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
               <th>Age:</th>
               <td>{{event.age}}</td>
           </tr>
 
-          <tr ng-show="isAdmin()">
+          <tr ng-show="isAdmin()"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
               <th>Date moved in:</th>
               <td>{{event.availability.moveInDate | date:"MM/dd/yyyy" }}</td>
           </tr>
@@ -76,14 +100,34 @@
             </td>
           </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+              ng-hide="eventNew.causeType !== 'Homeless Move-in'">
               <th>Registry Url:</th>
               <td>{{event.registryUrl}}</td>
           </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+              ng-hide="eventNew.causeType !== 'Homeless Move-in'">
               <th>Notes:</th>
               <td>{{event.notes}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+              ng-show="eventNew.causeType !== 'Homeless Move-in'">
+              <th>Organizer:</th>
+              <td>{{event.organizerFirstName}} {{event.organizerLastName}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+              ng-show="eventNew.causeType !== 'Homeless Move-in'">
+              <th>Email:</th>
+              <td>{{event.organizerEmail}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+              ng-show="eventNew.causeType !== 'Homeless Move-in'">
+              <th>Phone Number:</th>
+              <td>{{event.organizerPhoneNumber}}</td>
           </tr>
 
         </tbody>
