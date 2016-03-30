@@ -7,7 +7,6 @@ angular.module('gobeApp')
         url: '/group',
         templateUrl: 'app/group/group.html',
         controller: 'GroupCtrl',
-        adminProtected: true,
         resolve:{
          groupModel: function(Group){
            return Group.query().$promise;
@@ -21,7 +20,6 @@ angular.module('gobeApp')
         url: '/list',
         templateUrl: 'app/group/group-list.html',
         controller: 'GroupCtrl',
-        adminProtected: true,
         resolve:{
          groupModel: function(Group){
            return Group.query().$promise;
@@ -32,7 +30,6 @@ angular.module('gobeApp')
         url: '/new',
         templateUrl: 'app/group/group-new.html',
         controller: 'GroupCtrl',
-        adminProtected: true,
         resolve:{
          groupModel: function(Group){
            return Group.query().$promise;
@@ -43,7 +40,6 @@ angular.module('gobeApp')
         url: '/:id/show',
         templateUrl: 'app/group/group-show.html',
         controller: 'GroupShowCtrl',
-        adminProtected: true,
         resolve:{
         groupShow: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;
@@ -54,7 +50,6 @@ angular.module('gobeApp')
         url: '/profile',
         templateUrl: 'app/group/group-show.html',
         controller: 'GroupProfileCtrl',
-        adminProtected: true,
         resolve:{
         groupProfile: function(Group, currentUser){
             console.log(currentUser._id)
@@ -68,7 +63,6 @@ angular.module('gobeApp')
         url: '/:id/edit',
         templateUrl: 'app/group/group-edit.html',
         controller: 'GroupEditCtrl',
-        adminProtected: true,
         resolve:{
          groupEdit: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;
@@ -82,7 +76,6 @@ angular.module('gobeApp')
         url: '/confirmation/:confirm',
         templateUrl: 'app/group/group-show.html',
         controller: 'GroupConfirmCtrl',
-        adminProtected: true,
         params: confirm,
         resolve:{
         groupShow: function(Group, $stateParams){

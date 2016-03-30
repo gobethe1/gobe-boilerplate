@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('GroupCtrl', function ($scope, $state, Group, groupModel, $stateParams, currentUser) {
+  .controller('GroupCtrl', function ($scope, $state, Group, groupModel, $stateParams, currentUser, Auth) {
     $scope.listGroups = groupModel;
     $scope.newGroup = {};
     $scope.newGroup.emailList = [];
@@ -9,6 +9,13 @@ angular.module('gobeApp')
     $scope.hover = true;
     $scope.newGroup.ownedBy = currentUser._id;
     $scope.newGroup.email   = currentUser.email;
+    var isAdmin = Auth.isAdmin();
+    console.log("!isAdmin")
+    console.log(!isAdmin)
+
+    if(!isAdmin){
+    $scope.groupUserFilter = {'ownedBy': currentUser._id}
+    }
 
 
     $scope.cancelGroup = function cancelGroup(){
