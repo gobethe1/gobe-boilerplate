@@ -13,11 +13,11 @@
 		</div>
 		<!-- end cause type -->
 
-		<!-- ng-show once cause type is selected -->
-		<div ng-show="newEvent.causeType">
+		<!-- ng-if once cause type is selected -->
+		<div ng-if="newEvent.causeType">
 
 			<!-- veteran section -->
-			<div class="form-group" ng-show="newEvent.causeType === 'Homeless Move-in'">
+			<div class="form-group" ng-if="newEvent.causeType === 'Homeless Move-in'">
 			  <label>Is this client a veteran?</label><br>
 				<label class="radio-inline">
 				  <input name="veteranYes" ng-model="newEvent.veteran" value="true" type="radio">
@@ -33,7 +33,7 @@
 		  <!-- end veteran section -->
 
 			<!-- client name -->
-			<div ng-show="newEvent.causeType === 'Homeless Move-in'">
+			<div ng-if="newEvent.causeType === 'Homeless Move-in'">
 				<div class="row">
 					<div class="col-md-6 col-xs-6">
 					 <div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
@@ -61,7 +61,14 @@
 		      </div>
 				<!-- end phone number -->
 			</div>
-
+			<!-- event name -->
+			<div class="form-group" ng-if="newEvent.causeType === 'Other'" ng-class="{ 'has-success': form.eventName.$valid && submitted,
+			                                     'has-error': form.eventName.$invalid && submitted }">
+        <label>Event Name</label>
+        <input type="text" name="eventName" ng-model="newEvent.eventName" class="form-control"
+         required/>
+      </div>
+			<!-- end event name -->
 			<!-- address -->
 			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
 			                                     'has-error': form.address.$invalid && submitted }">
@@ -78,13 +85,13 @@
 			   <input type="text" ng-minlength="5" name="zipcode" ng-model="newEvent.zipCode" class="form-control"
 			   ui-mask="99999" ui-mask-placeholder-char="space" required>
 			</div>
-				<p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">
+				<p class="text-danger" ng-if="form.zipcode.$error.minlength && submitted">
 				  	Zipcode must be 5 numbers.
 				</p>
 			<!-- end zipCode -->
 
 			<!-- gender age-->
-			<div class="row" ng-show="newEvent.causeType === 'Homeless Move-in'">
+			<div class="row" ng-if="newEvent.causeType === 'Homeless Move-in'">
 				<div class="col-sm-6 col-xs-9">
 					<div class="form-group">
 					    <label>Gender (optional)</label><br>
@@ -243,7 +250,7 @@
 			<!-- end date three and time -->
 
 			<!-- registry url -->
-			<div class="form-group" ng-show="newEvent.causeType === 'Homeless Move-in'">
+			<div class="form-group" ng-if="newEvent.causeType === 'Homeless Move-in'">
 			   <label>Registry Url (optional)</label>
 			   <input type="text" name="registryUrl" ng-model="newEvent.registryUrl" class="form-control">
 			</div>
@@ -259,45 +266,45 @@
 
 			<!-- organizer section -->
 				<!-- client name -->
-				<div ng-show="newEvent.causeType === 'Other'">
+				<div>
 					<br>
 					<label>Organizer Information</label>
 					<div class="row">
 						<div class="col-md-6 col-xs-6">
-						 <div class="form-group" ng-class="{ 'has-success': form.firstname.$valid && submitted,
-			                                          'has-error': form.firstname.$invalid && submitted }">
+						 <div class="form-group" ng-class="{ 'has-success': form.organizerFirstName.$valid && submitted,
+			                                          'has-error': form.organizerFirstName.$invalid && submitted }">
 						   <label>First Name</label>
-						   <input type="text" name="firstname" ng-model="newEvent.firstName" class="form-control" required>
+						   <input type="text" name="organizerFirstName" ng-model="newEvent.organizerFirstName" class="form-control" required>
 						  </div>
 						</div>
 						<div class="col-md-6 col-xs-6">
-							<div class="form-group" ng-class="{ 'has-success': form.lastname.$valid && submitted,
-				                                           'has-error': form.lastname.$invalid  && submitted }">
+							<div class="form-group" ng-class="{ 'has-success': form.organizerLastName.$valid && submitted,
+				                                           'has-error': form.organizerLastName.$invalid  && submitted }">
 							   <label>Last Name</label>
-							   <input type="text" name="lastname" ng-model="newEvent.lastName" class="form-control" required>
+							   <input type="text" name="organizerLastName" ng-model="newEvent.organizerLastName" class="form-control" required>
 							</div>
 						</div>
 					</div>
 					<!-- end client name -->
 					<!-- organizer email -->
 					<!-- email -->
-					<div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
-					                                     'has-error': form.email.$invalid && submitted }">
+					<div class="form-group" ng-class="{ 'has-success': form.organizerEmail.$valid && submitted,
+					                                     'has-error': form.organizerEmail.$invalid && submitted }">
 					  <label>Email</label>
-					  <input type="text" name="email" ng-model="newEvent.email"
+					  <input type="text" name="organizerEmail" ng-model="newEvent.organizerEmail"
 					         class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
 					         required/>
-					    <p class="text-danger" ng-show="form.email.$error.pattern && submitted">
+					    <p class="text-danger" ng-if="form.email.$error.pattern && submitted">
 					      Please enter a valid email.
 					    </p>
 					 </div>
 					<!-- end email -->
 					<!-- end organizer email -->
 					<!-- phone number  -->
-			      <div class="form-group" ng-class="{ 'has-success': form.phoneNumber.$valid && submitted,
-			                                           'has-error': form.phoneNumber.$invalid && submitted }">
+			      <div class="form-group" ng-class="{ 'has-success': form.organizerPhoneNumber.$valid && submitted,
+			                                           'has-error': form.organizerPhoneNumber.$invalid && submitted }">
 			        <label>Phone Number</label>
-			        <input type="text" name="phoneNumber" ng-model="newEvent.phoneNumber"
+			        <input type="text" name="organizerPhoneNumber" ng-model="newEvent.organizerPhoneNumber"
 			               class="form-control" ui-mask="(999) 999-9999"/>
 			      </div>
 					<!-- end phone number -->
