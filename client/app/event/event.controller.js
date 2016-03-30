@@ -91,6 +91,26 @@ angular.module('gobeApp')
       };
     }
 
+    $scope.createLabel = function(eventName, label){
+        if(eventName === 'Homeless Move-in' && (label === 'Zipcode' || label === 'Date')){
+          return 'Move-in'
+        }
+        else if(label === 'Notes' ){
+          if(eventName === 'Homeless Move-in'){
+            return  "Notes (optional)"
+          }
+          else{
+            return "Event Description"
+          }
+        }
+        else if(eventName === 'Homeless Move-in'){
+            return 'Client';
+        }
+        else{
+          return 'Event';
+        }
+    }
+
   $scope.clear = function() {
     $scope.dt = null;
   };
@@ -161,33 +181,5 @@ angular.module('gobeApp')
   var afterTomorrow = new Date();
   afterTomorrow.setDate(tomorrow.getDate() + 1);
 
-  // $scope.events = [
-  //   {
-  //     date: tomorrow,
-  //     status: 'full'
-  //   },
-  //   {
-  //     date: afterTomorrow,
-  //     status: 'partially'
-  //   }
-  // ];
-
-  // function getDayClass(data) {
-  //   var date = data.date,
-  //     mode = data.mode;
-  //   if (mode === 'day') {
-  //     var dayToCheck = new Date(date).setHours(0,0,0,0);
-
-  //     for (var i = 0; i < $scope.events.length; i++) {
-  //       var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
-
-  //       if (dayToCheck === currentDay) {
-  //         return $scope.events[i].status;
-  //       }
-  //     }
-  //   }
-
-  //   return '';
-  // }
 
 });

@@ -50,14 +50,14 @@ angular.module('gobeApp', [
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
         var admin = Auth.isAdmin();
-        console.log('!admin: ', !admin)
-        console.log('adminProtected', next.adminProtected)
-        console.log('loggedIn', loggedIn)
-        console.log('first eval: ', (!admin && next.adminProtected && loggedIn))
+        // console.log('!admin: ', !admin)
+        // console.log('adminProtected', next.adminProtected)
+        // console.log('loggedIn', loggedIn)
+        // console.log('first eval: ', (!admin && next.adminProtected && loggedIn))
 
         if(!admin && next.adminProtected && loggedIn){
             event.preventDefault();
-           $location.path('/profile/details');
+           $location.path('/');
         }
         if(next.loginPrevent && loggedIn){
            event.preventDefault();

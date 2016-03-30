@@ -6,6 +6,7 @@ angular.module('gobeApp')
       .state('main', {
         url: '/',
         templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        loginPrevent: true
       });
   });
