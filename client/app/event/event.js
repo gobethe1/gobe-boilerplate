@@ -7,6 +7,7 @@ angular.module('gobeApp')
         url: '/event',
         templateUrl: 'app/event/event.html',
         controller: 'EventCtrl',
+        adminProtected: true,
         resolve:{
          eventModel: function(Event){
            return Event.query().$promise;
@@ -20,6 +21,7 @@ angular.module('gobeApp')
         url: '/list',
         templateUrl: 'app/event/event-list.html',
         controller: 'EventCtrl',
+        adminProtected: true,
         resolve:{
          eventModel: function(Event){
            return Event.query().$promise;
@@ -67,6 +69,6 @@ angular.module('gobeApp')
         }
       });
 
-        
+
       $urlRouterProvider.otherwise('/');
   });

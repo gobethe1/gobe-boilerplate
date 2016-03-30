@@ -49,6 +49,19 @@ angular.module('gobeApp', [
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
+        var admin = Auth.isAdmin();
+        console.log('auth: ', Auth.isAdmin())
+        console.log('adminProtected', next.adminProtected)
+        console.log('first eval: ', (!admin && next.adminProtected && loggedIn))
+
+        if(!admin && next.adminProtected && loggedIn){
+            event.preventDefault();
+           $location.path('/profile/details');
+        }
+        if(next.loginPrevent && loggedIn){
+           event.preventDefault();
+           $location.path('/profile/details');
+        }
         if (next.authenticate && !loggedIn) {
           event.preventDefault();
           $location.path('/login');
@@ -56,3 +69,4 @@ angular.module('gobeApp', [
       });
     });
   });
+

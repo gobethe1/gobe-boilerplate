@@ -7,6 +7,7 @@ angular.module('gobeApp')
         url: '/group',
         templateUrl: 'app/group/group.html',
         controller: 'GroupCtrl',
+        adminProtected: true,
         resolve:{
          groupModel: function(Group){
            return Group.query().$promise;
@@ -20,6 +21,7 @@ angular.module('gobeApp')
         url: '/list',
         templateUrl: 'app/group/group-list.html',
         controller: 'GroupCtrl',
+        adminProtected: true,
         resolve:{
          groupModel: function(Group){
            return Group.query().$promise;
