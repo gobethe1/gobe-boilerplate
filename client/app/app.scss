@@ -55,13 +55,14 @@ body {
 }
 
 .navbar-fixed-responsive{
-  top: 10px;
+  top: -66px;
   border-bottom: 1px solid black;
   border-width: 0 0 1px;
-  position: fixed;
+  position: absolute;
   right: 0;
   left: 0;
   z-index: 1030;
+  margin-top: 0px;
 }
 
 li.current-location{
