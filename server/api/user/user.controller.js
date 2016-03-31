@@ -6,6 +6,9 @@ var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
+var stripeKey = process.env.STRIPE_API_KEY;
+var plan = process.env.PLAN;
+var stripe = require("stripe")(stripeKey);
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -33,6 +36,17 @@ exports.create = function (req, res, next) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresIn: 60*45 });
     res.json({ token: token });
+  });
+};
+
+exports.createSubscription = function(req, res, next){
+  console.log(req);
+  stripe.customers.create({
+    source: stripeToken,
+    plan: plan,
+    email: req.body.email
+  }, function(err, customer) {
+    console.log(err);
   });
 };
 

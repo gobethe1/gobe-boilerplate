@@ -7,9 +7,12 @@ angular.module('gobeApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'ui.mask'
+  'ui.mask',
+  'angularPayments'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider) {
+    var $window = $windowProvider.$get();
+    $window.Stripe.setPublishableKey('pk_test_LfZukS2wLTvKs3nJue3WPNyq');
     $urlRouterProvider
       .otherwise('/');
 
