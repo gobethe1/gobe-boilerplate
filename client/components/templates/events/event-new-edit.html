@@ -122,9 +122,10 @@
 			<!-- gender age-->
 
 			<!-- date movedin -->
-			<div class="form-group" ng-class="{ 'has-success': form.moveindate.$valid && submitted,
+			<div class="form-group" ng-if="newEvent.causeType === 'Homeless Move-in'"
+				  ng-class="{ 'has-success': form.moveindate.$valid && submitted,
                                                'has-error': form.moveindate.$invalid && submitted }">
-			  <label>{{createLabel(newEvent.causeType, 'Date')}} Date</label>
+			  <label>Move-in Date</label>
 		        <p class="input-group">
 		          <input type="text" class="form-control" name="moveindate" uib-datepicker-popup="{{format}}" ng-model="newEvent.availability.moveInDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
 		          <span class="input-group-btn">

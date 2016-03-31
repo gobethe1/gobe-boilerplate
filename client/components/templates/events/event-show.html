@@ -35,7 +35,7 @@
               <td>{{event.phoneNumber | tel}}</td>
           </tr>
           <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
-              <th>Move in address:</th>
+              <th>{{createLabel(event.causeType, 'address')}} address:</th>
               <td>{{event.address | capitalize}}</td>
           </tr>
           <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"

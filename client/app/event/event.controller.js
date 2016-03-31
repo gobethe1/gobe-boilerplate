@@ -92,7 +92,7 @@ angular.module('gobeApp')
     }
 
     $scope.createLabel = function(eventName, label){
-        if(eventName === 'Homeless Move-in' && (label === 'Zipcode' || label === 'Date')){
+        if(eventName === 'Homeless Move-in' && (label === 'Zipcode' || label === 'Date' || label === 'address')){
           return 'Move-in'
         }
         else if(label === 'Notes' ){
