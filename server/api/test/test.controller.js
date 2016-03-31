@@ -21,7 +21,9 @@ exports.groups = function(req, res) {
 exports.events = function(req, res) {
   Event.find({}, function (err, events) {
     _.forEach(events, function(event) {
-      eventEmailer.matchZipCode(event, "localhost:9000");
+      if(event.causeType === 'Homeless Move-in'){
+        eventEmailer.matchZipCode(event, "localhost:9000");
+      }
     })
   });
   res.status(200).send('bingo');

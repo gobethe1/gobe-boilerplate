@@ -13,12 +13,12 @@ function matchZipCode(group, host){
 
 	 async.waterfall([
 	   function(done) {
-	     Event.find({ zipCode: group.zipCode, confirmGroup:null }, function(err, event) {
+	     Event.find({ zipCode: group.zipCode, confirmGroup:null, causeType: 'Homeless Move-in' }, function(err, event) {
 	       if (!event) {
-	       	 console.log(err)
 	       	 console.log("no zipcode matches")
 	         // return res.status(404).send('There are no zipcode matches.');
 	       }
+	        // console.log(event)
 	        done(err, event);
 	     });
 	   },

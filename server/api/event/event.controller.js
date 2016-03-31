@@ -57,7 +57,10 @@ exports.update = function(req, res) {
 exports.send = function(req, res) {
   Event.create(req.body, function(err, event) {
     if(err) { return handleError(res, err); }
-    eventEmailer.matchZipCode(event, req.headers.host);
+    if(event.causeType === 'Homeless Move-in'){
+      console.log(event)
+      eventEmailer.matchZipCode(event, req.headers.host);
+    }
     return res.status(201).json(event);
   });
 };
