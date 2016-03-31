@@ -135,7 +135,8 @@
 			</div>
 
 			<!-- date one and time -->
-			<label>Please Choose 3 Available Dates and Times</label><br>
+			<label ng-if="newEvent.causeType === 'Other'">Pick 3 dates so Volunteers can choose</label>
+			<label ng-if="newEvent.causeType === 'Homeless Move-in'">Please Choose 3 Available Dates and Times</label><br>
 			<label>Date & Time 1</label>
 			<div class="row">
 				<div class="col-xs-12 col-sm-5">
