@@ -40,9 +40,9 @@ exports.create = function (req, res, next) {
 };
 
 exports.createSubscription = function(req, res, next){
-  console.log(req);
+  console.log('made it!', req.body, 'stripe', stripe);
   stripe.customers.create({
-    source: stripeToken,
+    source: req.body.id,
     plan: plan,
     email: req.body.email
   }, function(err, customer) {
