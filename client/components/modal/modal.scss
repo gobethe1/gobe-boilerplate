@@ -23,3 +23,16 @@
 .modal-danger .modal-header {
   background: $brand-danger;
 }
+
+.modal-dialog {
+    width: 600px;
+    margin: 125px auto;
+}
+
+.modal-body h3{
+	color: $primary-blue;
+}
+
+.ng-invalid {
+    color: red;
+}

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('GroupCtrl', function ($scope, $state, Group, groupModel, $stateParams, currentUser, Auth) {
+  .controller('GroupCtrl', function ($scope, $state, Group, groupModel, $stateParams, currentUser, Auth, Modal) {
     $scope.listGroups = groupModel;
     $scope.newGroup = {};
     $scope.newGroup.emailList = [];
@@ -12,6 +12,19 @@ angular.module('gobeApp')
     var isAdmin = Auth.isAdmin();
     console.log("!isAdmin")
     console.log(!isAdmin)
+
+    $scope.openTest = Modal.confirm.payment();
+
+    $scope.stripeCallback = function (code, result) {
+        console.log("firing callback")
+        console.log(code)
+        console.log(result)
+        if (result.error) {
+            window.alert('it failed! error: ' + result.error.message);
+        } else {
+            window.alert('success! token: ' + result.id);
+        }
+    };
 
     if(!isAdmin){
     $scope.groupUserFilter = {'ownedBy': currentUser._id}
