@@ -2,33 +2,76 @@
   <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
   <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
 </div>
-<div class="modal-body">
+<div class="modal-body text-center">
 <!--   <p ng-if="modal.text" ng-bind="modal.text"></p>
   <div ng-if="modal.html" ng-bind-html="modal.html"></div> -->
+  <img class="paywall" src="assets/images/paywall.png">
   <h3>FREE 30 DAY TRIAL</h3>
-  <p>After 30 days your card will be charged $5.95. The trial can be canceled anytime.</p>
-  <p>Need multiple groups? Contact us at info@gobethe1.com</p>
-  <form stripe-form="stripeCallback" name="checkoutForm">
-  	{{checkoutForm.$invalid}}
-  	{{checkoutForm.$valid}}
-  	 <input ng-model="name" class="form-control" placeholder="Name"/><br>
-     <input ng-model="number" class="form-control" placeholder="Card Number" payments-format="card" payments-validate="card" name="card"/><br>
-     <div ng-if="checkoutForm.card.$invalid">
-         Error: invalid card number!
-     </div>
-     <input ng-model="expiry"class="form-control" placeholder="Expiration" payments-format="expiry" payments-validate="expiry" name="expiry" /><br>
-     <div ng-if="checkoutForm.expiry.$invalid">
-         Error: invalid expiration date!
-     </div>
-     <input ng-model="cvc" class="form-control"placeholder="CVC" payments-format="cvc"  payments-validate="cvc" name="cvc" /><br>
-     <div ng-if="checkoutForm.cvc.$invalid">
-         Error: cvc number!
-     </div>
-      <button class="btn btn-primary btn-lg" type="submit"
-      	ng-class="{ 'btn-primary': checkoutForm.$valid, 'btn-danger': checkoutForm.$invalid}">
-      	Submit
-      </button>
+  <p>After 30 days your card will be charged $5.95. <br>The trial can be canceled anytime.</p>
+  <br>
+  <form stripe-form="stripeCallback" name="checkoutForm" ng-class="{'has-error': checkoutForm.$invalid && submitted }">
+
+    <div class="row">
+      <!-- cardholder name -->
+        <div class="col-sm-12">
+          <input ng-model="name" class="form-control" placeholder="Name"/><br>
+        </div>
+    </div>
+
+    <!-- credit card -->
+    <div class="row">
+      <div class="col-sm-12">
+         <span ng-if="checkoutForm.card.$invalid && submitted"
+               ng-class="{'text-danger': checkoutForm.card.$invalid && submitted }">
+             Error: invalid card number!
+         </span>
+         <input ng-model="number" class="form-control" placeholder="Card Number" payments-format="card" payments-validate="card" payments-type-model="type" name="card"/><br>
+      </div>
+    </div>
+
+
+    <!-- expiration date -->
+    <div class="row">
+      <div class="col-sm-4">
+         <span ng-if="checkoutForm.expiry.$invalid && submitted"
+               ng-class="{'text-danger': checkoutForm.expiry.$invalid && submitted }">
+             Error: invalid expiration date!
+         </span>
+         <input ng-model="expiry"class="form-control" placeholder="Expiration" payments-format="expiry" payments-validate="expiry" name="expiry" /><br>
+
+      </div>
+
+      <!-- cvc # -->
+      <div class="col-sm-4">
+         <span ng-if="checkoutForm.cvc.$invalid && submitted"
+               ng-class="{'text-danger': checkoutForm.cvc.$invalid && submitted }">
+             Error: cvc number!
+         </span>
+         <input ng-model="cvc" class="form-control"placeholder="CVC" payments-format="cvc"  payments-validate="cvc" name="cvc" /><br>
+      </div>
+
+      <!-- promo -->
+      <div class="col-sm-4">
+         <input ng-model="promo" class="form-control" placeholder="promo" payments-format="promo"  name="promo" /><br>
+      </div>
+    </div>
+
+
+
+
+     <!-- submit button -->
+    <span ng-if="checkoutForm.$pristine && submitted"
+           ng-class="{'text-danger': checkoutForm.$pristine && submitted }">
+         Please fill out the form!
+     </span><br>
+    <button class="btn btn-primary btn-lg btn-block" type="submit"
+      ng-class="{ 'btn-primary': checkoutForm.$valid, 'btn-secondary': checkoutForm.$invalid}">
+      Get started
+    </button>
   </form>
+  <br>
+  <p>Need multiple groups? <br>
+  Contact us at <a href="mailto:info@gobethe1.com"><strong>info@gobethe1.com</strong></a></p>
 </div>
 <div class="modal-footer">
 <!--   <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button> -->

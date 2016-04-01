@@ -77,12 +77,13 @@ angular.module('gobeApp')
           };
         },
 
-          payment: function(){  
+          payment: function(){
 
-              return function(){ 
+              return function(){
 
               var paymentModal = openModal({
                 modal: {
+                  size: 'sm',
                   dismissable: true,
                   // title: 'Confirm Delete',
                   // html: '<p>Are you sure you want to delete <strong>' + name + '</strong> ?</p>',
@@ -102,10 +103,10 @@ angular.module('gobeApp')
                 }
               }, 'modal-default');
 
-              
+
               paymentModal.result.then(function(event) {
                   // del.apply(event, args);
-              });  
+              });
             }
 
         }
