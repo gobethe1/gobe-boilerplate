@@ -40,12 +40,13 @@ exports.create = function (req, res, next) {
 };
 
 exports.createSubscription = function(req, res, next){
-  console.log('made it!', req.body, 'stripe', stripe);
+  console.log('made it!', req.body, 'stripekey', stripeKey);
   stripe.customers.create({
     source: req.body.id,
     plan: plan,
     email: req.body.email
   }, function(err, customer) {
+    console.log(customer)
     console.log(err);
   });
 };
