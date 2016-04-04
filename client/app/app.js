@@ -53,10 +53,15 @@ angular.module('gobeApp', [
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
         var admin = Auth.isAdmin();
+        var activeSubscription = Auth.activeSubscription();
 
         if(!admin && next.adminProtected && loggedIn){
             event.preventDefault();
            $location.path('/');
+        }
+        if(!admin && next.activeSubscription && !activeSubscription && loggedIn){
+            event.preventDefault();
+            $location.path('/group/list')
         }
         if(next.loginPrevent && loggedIn){
            event.preventDefault();

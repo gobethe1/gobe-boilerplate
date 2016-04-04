@@ -46,20 +46,24 @@ exports.create = function (req, res, next) {
 };
 
 exports.createSubscription = function(req, res, next){
-
+  console.log('req body: ', req.body)
   stripe.customers.create({
     source: req.body.token,
     plan: plan,
+    coupon: req.body.promo,
     email: req.body.email
   }, function(err, customer) {
-
+      console.log('err: ', err)
+      console.log('customer: ', customer)
       User.findById(req.body.user_id, function (err, user) {
-          user.stripeCustomerId = customer.id
+          user.stripeCustomerId = customer.id;
           user.stripeData = customer.subscriptions.data;
-          
+          user.stripeDiscount = customer.discount;
+          user.activeSubscription = true;
           user.save(function(err) {
             if (err) return validationError(res, err);
-            res.status(200).send('OK');
+            // res.status(200).send('OK');
+            res.json(user);
           });
       });
 

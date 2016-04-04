@@ -30,6 +30,7 @@ angular.module('gobeApp')
         url: '/new',
         templateUrl: 'app/group/group-new.html',
         controller: 'GroupCtrl',
+        activeSubscription: true,
         resolve:{
          groupModel: function(Group){
            return Group.query().$promise;
@@ -40,6 +41,7 @@ angular.module('gobeApp')
         url: '/:id/show',
         templateUrl: 'app/group/group-show.html',
         controller: 'GroupShowCtrl',
+        activeSubscription: true,
         resolve:{
         groupShow: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;
@@ -63,6 +65,7 @@ angular.module('gobeApp')
         url: '/:id/edit',
         templateUrl: 'app/group/group-edit.html',
         controller: 'GroupEditCtrl',
+        activeSubscription: true,
         resolve:{
          groupEdit: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;

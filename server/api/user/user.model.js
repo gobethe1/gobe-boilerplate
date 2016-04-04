@@ -19,7 +19,9 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
+  activeSubscription: {type: Boolean, default: false},
   stripeCustomerId: String,
+  stripeDiscount: {},
   stripeData: [],
   position: String,
   hashedPassword: String,

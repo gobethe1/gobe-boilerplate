@@ -109,8 +109,8 @@ function volunteerMatch(event, host){
 		  	var capFirstName = _.capitalize(group.firstName);
 	  		var capLastName = _.capitalize(group.lastName);
 	  		var dateString = event.confirmDate.toString()
-	  	  	var finalDate = dateString.slice(0, 10)
-	  	  	var capOrgName = group.organizationName.capitalize();
+	  	  var finalDate = dateString.slice(0, 10)
+	  	  var capOrgName = group.organizationName.capitalize();
 
 
 		  	// console.log("group emailList")
