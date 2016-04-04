@@ -3,9 +3,6 @@
 angular.module('gobeApp')
   .controller('ModalCtrl', function ($scope, Modal, User, currentUser) {
     $scope.submitted = false;
-    // var currentUser = Auth.getCurrentUser();
-    console.log("currentUser")
-    console.log(currentUser)
 
     $scope.stripeCallback = function (code, result) {
         $scope.submitted = true;
