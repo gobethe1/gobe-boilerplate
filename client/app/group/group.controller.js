@@ -15,16 +15,16 @@ angular.module('gobeApp')
 
     $scope.openTest = Modal.confirm.payment();
 
-    $scope.stripeCallback = function (code, result) {
-        console.log("firing callback")
-        console.log(code)
-        console.log(result)
-        if (result.error) {
-            window.alert('it failed! error: ' + result.error.message);
-        } else {
-            window.alert('success! token: ' + result.id);
-        }
-    };
+    // $scope.stripeCallback = function (code, result) {
+    //     console.log("firing callback")
+    //     console.log(code)
+    //     console.log(result)
+    //     if (result.error) {
+    //         window.alert('it failed! error: ' + result.error.message);
+    //     } else {
+    //         window.alert('success! token: ' + result.id);
+    //     }
+    // };
 
     if(!isAdmin){
     $scope.groupUserFilter = {'ownedBy': currentUser._id}

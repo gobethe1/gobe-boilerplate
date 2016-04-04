@@ -8,7 +8,13 @@ var jwt = require('jsonwebtoken');
 var _ = require('lodash');
 var stripeKey = process.env.STRIPE_API_KEY;
 var plan = process.env.PLAN;
+// console.log("stripeKey var env")
+// console.log(stripeKey)
+// console.log("plan env var")
+// console.log(plan)
 var stripe = require("stripe")(stripeKey);
+// console.log("stripe")
+// console.log(stripe)
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -40,16 +46,50 @@ exports.create = function (req, res, next) {
 };
 
 exports.createSubscription = function(req, res, next){
-  console.log('made it!', req.body, 'stripekey', stripeKey);
+  // console.log('raw key', process.env.STRIPE_API_KEY)
+  // console.log('made it!', req.body, 'stripekey', stripeKey);
+  // console.log("user_id", req.body.user_id)
+  console.log("req.body", req.body)
   stripe.customers.create({
-    source: req.body.id,
+    source: req.body.token,
     plan: plan,
     email: req.body.email
   }, function(err, customer) {
-    console.log(customer)
+    // customer.id
+    // console.log(customer)
+    // console.log(customer.subscriptions)
+    console.log(customer.subscriptions.data)
     console.log(err);
+
+      User.findById(req.body.user_id, function (err, user) {
+          console.log("user")
+          console.log(user)
+          user.stripeCustomerId = customer.id
+          user.stripeData = customer.subscriptions.data;
+          // user.stripeCurrentPeriodStart = customer.subscriptions.data.current_period_start;
+          // user.stripeCurrentPeriodEnd = customer.subscriptions.data.current_period_end;
+          // user.stripeTrialStart = customer.subscriptions.data.trial_start;
+          // user.stripeTrialEnd = customer.subscriptions.data.trial_end;
+          // user.stripeQuantity = customer.subscriptions.data.quantity;
+          // user.stripePlan = customer.subscriptions.data.plan;
+          // user.stripeDiscount = customer.subscriptions.data.discount;
+          
+          user.save(function(err) {
+            if (err) return validationError(res, err);
+            res.status(200).send('OK');
+          });
+      
+      });
+
+
+
+
+
+
   });
 };
+
+
 
 /**
  * Get a single user

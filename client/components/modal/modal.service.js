@@ -19,7 +19,12 @@ angular.module('gobeApp')
         templateUrl: 'components/modal/stripe.html',
         windowClass: modalClass,
         scope: modalScope,
-        controller: 'ModalCtrl'
+        controller: 'ModalCtrl',
+        resolve: {
+          currentUser: function(Auth){
+             return Auth.getCurrentUser().$promise;
+          }
+        }
       });
     }
 
