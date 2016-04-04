@@ -140,6 +140,10 @@ angular.module('gobeApp')
         return currentUser.position === 'group';
       },
 
+      isStripePaid: function(){
+        return currentUser.stripeCustomerId;
+      },
+
       /**
        * Get auth token
        */

@@ -1,13 +1,18 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-12">
-        <button ui-sref="group.new" class="btn btn-secondary btn-lg pull-right">Add Group</button>
+       <!--  <button ui-sref="group.new" class="btn btn-secondary btn-lg pull-right">Add Group</button> -->
+       <button  ng-click="openPaymentModal();" ng-if="!currentUser.stripeCustomerId && !isAdmin" 
+       class="btn btn-secondary btn-lg pull-right" >Add Group</button>
+       <!-- admin -->
+        <button ui-sref="group.new" ng-if="isAdmin" class="btn btn-secondary btn-lg pull-right">Add Group</button>
+       <!-- end admin -->
   </div>
 </div>
 
-<div>
-  <button class="btn btn-lg btn-primary" ng-click="openTest();">Open Payment Modal</button>
-</div>
+<!-- <div>
+  <button class="btn btn-lg btn-primary" ng-click="openPaymentModal();">Add Group</button>
+</div> -->
 
 <div class="row">
   <div class="col-sm-6 col-xs-12">

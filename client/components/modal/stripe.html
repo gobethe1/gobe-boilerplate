@@ -9,7 +9,7 @@
   <h3>FREE 30 DAY TRIAL</h3>
   <p>After 30 days your card will be charged $5.95. <br>The trial can be canceled anytime.</p>
   <br>
-  <form stripe-form="stripeCallback" name="checkoutForm" ng-class="{'has-error': checkoutForm.$invalid && submitted }">
+  <form stripe-form="stripeCallback" name="checkoutForm" class="modal-form-content" ng-class="{'has-error': checkoutForm.$invalid && submitted }">
 
     <div class="row">
       <!-- cardholder name -->
@@ -56,14 +56,17 @@
       </div>
     </div>
 
-
-
-
+    <!-- card error message -->
+    <span ng-if="submitted" class="text-danger">
+        {{cardErrorMessage}}
+     </span
+    <!-- end card error nessage -->
      <!-- submit button -->
     <span ng-if="checkoutForm.$pristine && submitted"
            ng-class="{'text-danger': checkoutForm.$pristine && submitted }">
          Please fill out the form!
      </span><br>
+
     <button class="btn btn-primary btn-lg btn-block" type="submit"
       ng-class="{ 'btn-primary': checkoutForm.$valid, 'btn-secondary': checkoutForm.$invalid}">
       Get started

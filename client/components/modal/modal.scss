@@ -37,6 +37,10 @@
   width: 18%;
 }
 
+.modal-form-content{
+  text-align: left;
+}
+
 @media only screen and (max-width: $screen-xs) {
   .modal-dialog {
     width: 90vw;

@@ -32,7 +32,7 @@ angular.module('gobeApp')
         })
         .then( function() {
           if($scope.user.position === "group"){
-              $location.path('/group/new');
+              $location.path('/group/list');
             }
            else if($scope.user.position === 'volunteer'){
             $location.path('volunteer/profile');
