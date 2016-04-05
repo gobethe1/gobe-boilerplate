@@ -8,13 +8,7 @@ var jwt = require('jsonwebtoken');
 var _ = require('lodash');
 var stripeKey = process.env.STRIPE_API_KEY;
 var plan = process.env.PLAN;
-// console.log("stripeKey var env")
-// console.log(stripeKey)
-// console.log("plan env var")
-// console.log(plan)
 var stripe = require("stripe")(stripeKey);
-// console.log("stripe")
-// console.log(stripe)
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -45,16 +39,14 @@ exports.create = function (req, res, next) {
   });
 };
 
+/* Create new stripe customer subscription */
 exports.createSubscription = function(req, res, next){
-  console.log('req body: ', req.body)
   stripe.customers.create({
     source: req.body.token,
     plan: plan,
     coupon: req.body.promo,
     email: req.body.email
   }, function(err, customer) {
-      console.log('err: ', err)
-      console.log('customer: ', customer)
       User.findById(req.body.user_id, function (err, user) {
           user.stripeCustomerId = customer.id;
           user.stripeData = customer.subscriptions.data;
@@ -62,7 +54,6 @@ exports.createSubscription = function(req, res, next){
           user.activeSubscription = true;
           user.save(function(err) {
             if (err) return validationError(res, err);
-            // res.status(200).send('OK');
             res.json(user);
           });
       });
@@ -70,7 +61,17 @@ exports.createSubscription = function(req, res, next){
   });
 };
 
-
+/* Retrieve Stripe Customer information */
+exports.retrieveCustomer = function(req, res, next){
+    stripe.customers.retrieve(
+      req.params.id,
+      function(err, customer) {
+        if(err) return next(err)
+        if(!customer) return res.status(401).send('Unauthorized');
+        res.json(customer.subscriptions.data[0]);
+      }
+    );
+}
 
 /**
  * Get a single user

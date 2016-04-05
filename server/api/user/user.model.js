@@ -30,7 +30,9 @@ var UserSchema = new Schema({
   facebook: {},
   twitter: {},
   google: {},
-  github: {}
+  github: {},
+  createdAt: {type: Date, default: Date.now()},
+  updatedAt: Date
 });
 
 /**
@@ -118,6 +120,12 @@ UserSchema
     else
       next();
   });
+
+UserSchema
+   .pre('save', function(next) {
+   this.updatedAt = new Date();
+   next()
+  })
 
 /**
  * Methods

@@ -23,6 +23,12 @@ angular.module('gobeApp')
         params: {
           id: 'subscription'
         }
+      },
+      retrieveCustomer: {
+        method: 'GET',
+        params:{
+          controller: 'customer'
+        }
       }
 	  });
   });
