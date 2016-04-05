@@ -17,8 +17,11 @@ angular.module('gobeApp')
 	      if(customerInfo.status === "trialing"){
 	      	return "Free Trial";
 	      }
-	      else{
+	      else if(customerInfo.status === "active"){
 	      	return "Active";
+	      }
+	      else{
+	      	return "Inactive";
 	      }	
 	  }
 	  else{
@@ -33,8 +36,11 @@ angular.module('gobeApp')
     			var remainingDays = endDate.diff(Date.now(), "days");
     			return remainingDays + " days remaining on free trial"
     		}
-    		else{
+    		else if(customerInfo.status === "active"){
     			return "Renews on "	+ $filter('date')(currentPeriodEnd, "MM-dd-yyyy");
+    		}
+    		else{
+    		   return "Inactive"; 
     		}
     	}
     	else{
