@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('GroupCtrl', function ($scope, $state, Group, groupModel, $stateParams, currentUser, Auth, Modal) {
+  .controller('GroupCtrl', function ($scope, $state, Group, groupModel, $stateParams, currentUser, Auth, $uibModal) {
     $scope.listGroups = groupModel;
     $scope.newGroup = {};
     $scope.newGroup.emailList = [];
@@ -12,7 +12,20 @@ angular.module('gobeApp')
     $scope.newGroup.email   = currentUser.email;
     $scope.isAdmin = Auth.isAdmin();
 
-    $scope.openPaymentModal = Modal.confirm.payment();
+    // $scope.openPaymentModal = Modal.confirm.payment();
+
+    $scope.openPaymentModal = function() {
+
+          $uibModal.open({
+            templateUrl: 'components/modal/stripe.html',
+            controller: 'ModalCtrl',
+            resolve: {
+              currentUser: function(Auth){
+                 return Auth.getCurrentUser().$promise;
+              }
+            }
+          });
+        }
 
     if(!$scope.isAdmin){
     $scope.groupUserFilter = {'ownedBy': currentUser._id}
