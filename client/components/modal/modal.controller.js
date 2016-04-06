@@ -1,7 +1,12 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('ModalCtrl', function ($scope, User, currentUser, $state, $uibModalInstance) {
+    .controller('ModalCtrl', [ '$scope', '$state', 'User', 'currentUser', '$uibModalInstance',
+        function controller($scope, $state, User, currentUser, $uibModalInstance) {
+  
+  // .controller('ModalCtrl', function ($scope, User, currentUser, $state, $uibModalInstance) {
+
+
     console.log("hitting ModalCtrl")
     $scope.submitted = false;
     $scope.promo;
@@ -32,4 +37,4 @@ angular.module('gobeApp')
 
     };
 
-})
+}])

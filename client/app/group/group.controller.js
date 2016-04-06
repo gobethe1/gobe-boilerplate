@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('GroupCtrl', function ($scope, $state, Group, groupModel, $stateParams, currentUser, Auth, $uibModal) {
+  .controller('GroupCtrl', [ '$scope', '$state', 'Group', 'groupModel', '$stateParams', 'currentUser', 'Auth', '$uibModal', 
+    function ($scope, $state, Group, groupModel, $stateParams, currentUser, Auth, $uibModal) {
+    
     $scope.listGroups = groupModel;
     $scope.newGroup = {};
     $scope.newGroup.emailList = [];
@@ -15,14 +17,15 @@ angular.module('gobeApp')
     // $scope.openPaymentModal = Modal.confirm.payment();
 
     $scope.openPaymentModal = function() {
-          console.log("hitting openPaymentModal function");
-          $uibModal.open({
+        console.log("hitting openPaymentModal function");
+        var modalInstance = $uibModal.open({
             templateUrl: 'components/modal/stripe.html',
             controller: 'ModalCtrl',
             resolve: {
-              currentUser: function(Auth){
+              currentUser: ['Auth', function(Auth){
+                  console.log("inside resolve currentUser")
                  return Auth.getCurrentUser().$promise;
-              }
+              }]
             }
           });
         }
@@ -72,7 +75,9 @@ angular.module('gobeApp')
         Group.remove({id: id });
       };
     }
-  })
+  
+
+  }])
 
 
   .controller('GroupConfirmCtrl', function ($scope, $state, $stateParams, groupModel, groupShow, $location) {
