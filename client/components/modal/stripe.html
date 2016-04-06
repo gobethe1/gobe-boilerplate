@@ -1,7 +1,6 @@
 
 <div class="modal-header">
-  <button type="button" ng-click="$dismiss()" class="close">&times;</button>
-  <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
+  <button type="button" ng-click="cancel()" class="close">&times;</button>
 </div>
 
 <!-- thank you message upon successful payment -->
@@ -12,13 +11,12 @@
 
 <!-- stripe sign up form -->
 <div class="modal-body text-center" ng-if="!currentUser.activeSubscription">
-<!--   <p ng-if="modal.text" ng-bind="modal.text"></p>
-  <div ng-if="modal.html" ng-bind-html="modal.html"></div> -->
   <img class="paywall" src="assets/images/paywall.png">
   <h3>FREE 30 DAY TRIAL</h3>
   <p>After 30 days your card will be charged $5.95. <br>The trial can be canceled anytime.</p>
   <br>
-  <form stripe-form="stripeCallback" name="checkoutForm" class="modal-form-content" ng-class="{'has-error': checkoutForm.$invalid && submitted }">
+  <form stripe-form="stripeCallback" name="checkoutForm" class="modal-form-content" 
+  ng-class="{'has-error': checkoutForm.$invalid && submitted }">
 
     <div class="row">
       <!-- cardholder name -->
@@ -68,7 +66,7 @@
     <!-- card error message -->
     <span ng-if="submitted" class="text-danger">
         {{cardErrorMessage}}
-     </span
+     </span>
     <!-- end card error nessage -->
      <!-- submit button -->
     <span ng-if="checkoutForm.$pristine && submitted"
@@ -86,5 +84,4 @@
   Contact us at <a href="mailto:info@gobethe1.com"><strong>info@gobethe1.com</strong></a></p>
 </div>
 <div class="modal-footer">
-<!--   <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button> -->
 </div>

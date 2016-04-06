@@ -1,24 +1,19 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('ModalCtrl', function ($scope, Modal, User, currentUser, $state, $uibModalStack) {
+  .controller('ModalCtrl', function ($scope, User, currentUser, $state, $uibModalInstance) {
+    console.log("hitting ModalCtrl")
     $scope.submitted = false;
     $scope.promo;
     $scope.currentUser = currentUser;
 
+    $scope.cancel = function () {
+      $uibModalInstance.dismiss();
+    };
+
     $scope.stripeCallback = function (code, result) {
         $scope.submitted = true;
         $scope.cardErrorMessage = null;
-
-        // console.log($scope.checkoutForm)
-        // console.log("firing stripe callback")
-        console.log(result)
-
-        // if (result.error) {
-        //     window.alert('it failed! error: ' + result.error.message);
-        // } else {
-        //     window.alert('success! token: ' + result.id);
-        // }
 
         if(result.error) {
            $scope.cardErrorMessage = result.error.message;
@@ -28,8 +23,6 @@ angular.module('gobeApp')
             function(data){
                 console.log(data)
                 $scope.currentUser.activeSubscription = true;
-                // console.log("close")
-                // $uibModalStack.dismissAll();
                 $state.go('group.new');
               }),
               function(err){
