@@ -14,6 +14,16 @@ if [[ $TRAVIS_PULL_REQUEST == "false" && $TRAVIS_BRANCH == "staging" ]]
     echo yes | grunt buildcontrol:heroku
     heroku keys:clear
 fi
+if [[ $TRAVIS_PULL_REQUEST == "false" && $TRAVIS_BRANCH == "sandbox" ]]
+  then
+    gem install heroku
+    heroku keys:clear
+    echo yes | heroku keys:add
+    # ssh -vT git@heroku.com
+    grunt build
+    echo yes | grunt buildcontrol:herokuSand
+    heroku keys:clear
+fi
 if [[ $TRAVIS_PULL_REQUEST == "false" && $TRAVIS_BRANCH == "production" ]]
   then
     gem install heroku
