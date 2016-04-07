@@ -17,13 +17,11 @@ angular.module('gobeApp')
     // $scope.openPaymentModal = Modal.confirm.payment();
 
     $scope.openPaymentModal = function() {
-        console.log("hitting openPaymentModal function");
         var modalInstance = $uibModal.open({
             templateUrl: 'components/modal/stripe.html',
             controller: 'ModalCtrl',
             resolve: {
               currentUser: ['Auth', function(Auth){
-                  console.log("inside resolve currentUser")
                  return Auth.getCurrentUser().$promise;
               }]
             }
