@@ -9,19 +9,27 @@
   <p>Thank you for subscribing to GOBE. We hope you enjoy your free 30 day trial.</p>
 </div>
 
+
+
 <!-- stripe sign up form -->
 <div class="modal-body text-center" ng-if="!currentUser.activeSubscription">
   <img class="paywall" src="assets/images/paywall.png">
   <h3>FREE 30 DAY TRIAL</h3>
   <p>After 30 days your card will be charged $5.95. <br>The trial can be canceled anytime.</p>
   <br>
-  <form stripe-form="stripeCallback" name="checkoutForm" class="modal-form-content" 
+
+  <form stripe-form="stripeCallback" name="checkoutForm" class="modal-form-content"
   ng-class="{'has-error': checkoutForm.$invalid && submitted }">
 
     <div class="row">
       <!-- cardholder name -->
         <div class="col-sm-12">
-          <input ng-model="name" class="form-control" placeholder="Name"/><br>
+          <span class="text-danger" ng-show="checkoutForm.name.$error.pattern">
+            Please enter your full name.
+          </span>
+          <input ng-model="name" class="form-control" name="name" placeholder="Name"
+                 ng-pattern="/^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/">
+            <br>
         </div>
     </div>
 
