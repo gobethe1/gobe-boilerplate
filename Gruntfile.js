@@ -402,6 +402,12 @@ module.exports = function (grunt) {
           branch: 'master', //branch to commit to
         }
       },
+      herokuSand: {
+        options: {
+          remote: 'git@heroku.com:gobethe1-sandbox.git', //remote to push to 'heroku'
+          branch: 'master', //branch to commit to
+        }
+      },
       herokuProd: {
         options: {
           remote: 'git@heroku.com:gobethe1-production.git', //remote to push to 'heroku'
