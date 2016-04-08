@@ -12,11 +12,12 @@ angular.module('gobeApp')
     $scope.showLink = 'event.show';
     $scope.causeArray = ["Homeless Move-in", "Other"];
 
+    // event list sorting filters
     $scope.sort = {};
     $scope.all = {};
-    $scope.matched = {'confirmGroup': "!!"};
-    $scope.pending =  {'published': true};
-    $scope.unpublished = {'published': false};
+    $scope.matched = {'confirmGroup': "!!", 'published': true };
+    $scope.pending =  {'published': true, 'confirmGroup': null };
+    $scope.unpublished = {'published': false, 'confirmGroup': null };
 
     $scope.newEvent.availability.firstDateTime = [false, false, false];
     $scope.newEvent.availability.secondDateTime = [false, false, false];
