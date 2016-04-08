@@ -106,11 +106,14 @@ function volunteerMatch(event, host){
 		  },
 		  function(group, done) {
 
-		  	var capFirstName = _.capitalize(group.firstName);
-	  		var capLastName = _.capitalize(group.lastName);
-	  		var dateString = event.confirmDate.toString()
-	  	  var finalDate = dateString.slice(0, 10)
-	  	  var capOrgName = group.organizationName.capitalize();
+		  	var capFirstName 			= _.capitalize(group.firstName);
+	  		var capLastName 			= _.capitalize(group.lastName);
+	  	  var finalDate 				= dateString.slice(0, 10);
+	  	  var capOrgName 				= group.organizationName.capitalize();
+	  	  var groupPhoneNumber 	= group.phoneNumber;
+	  		var dateString 				= event.confirmDate.toString();
+	  	  var clientFirstName 	= event.firstName.capitalize();
+	  	  var eventAddress 			= event.address;
 
 
 		  	// console.log("group emailList")
@@ -139,15 +142,19 @@ function volunteerMatch(event, host){
 			      from: 'hello@gobethe1.com',
 			      subject: 'Are you available to volunteer?',
 			      html:
-					    '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
-					    '<td align="center" width="50%">' +
-					    '<p style="font-size:14px;font-family:sans-serif;">You have been invited by ' + capFirstName + ' ' + capLastName + ' to  <br>' +
-					    'join the rest of the ' + capOrgName + ' for the move <br>' +
-					    'in party in your area on  <span style="font-weight:bold"> ' + finalDate + ' at ' + event.confirmTime + '</span>. <br>' +
+			      	'<p style="font-size:14px;font-family:sans-serif;"> Get ready to party! </p>' +
+			      	'<h5> Details </h5><br>' +
+					    '<p style="font-size:14px;font-family:sans-serif;"> The ' + capOrgName + 'are confirmed for the' +
+					    'move-in party of ' + clientName + ' on ' + finalDate + ' at ' + event.confirmTime + '<br>' +
+					    '<h5> Event Information </h5><br>' +
+					    '<p> Point person name: ' + capFirstName + ' ' + capLastName + ' </p></br>' +
+					    '<p> Point person phone: ' + groupPhoneNumber + '</p></br>' +
+					    '<p> Event address: ' + eventAddress + ' </p></br>' +
+					    'in party in your area on  <span style="font-weight:bold"> ' '</span>. <br>' +
 					    'Can you make it? <br><br>' +
 					    '<a href=' + linkConfirm +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:40%;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +
 					    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a></p></td>' +
-					    '<td align="left" width="50%" style="vertical-align:top;">' +
+
 					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold;">What\'s this invite about?</p>' +
 					    '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s <br>' +
 					   	'time to party! This person now lives in your <br>' +
@@ -155,9 +162,7 @@ function volunteerMatch(event, host){
 					   	'welcome them home! Ready to make a difference? <br>' +
 					   	'Simply, accept the invite, ask your group leader <br>' +
 					   	'what items you can bring, and bring the items <br>' +
-					   	'with you to the party!</p></td>' +
-					    '</tr>' +
-					    '</table>'
+					   	'with you to the party!</p>'
 			    };
 
 				// if(index === -1){
