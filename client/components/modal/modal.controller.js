@@ -8,15 +8,18 @@ angular.module('gobeApp')
     $scope.promo;
     $scope.currentUser = currentUser;
     $scope.cardErrorMessage = null;
+    $scope.checkoutForm;
 
     $scope.cancel = function () {
       $uibModalInstance.dismiss();
     };
 
+    console.log('stripe callback outside submit: ', $scope.stripeCallback)
     $scope.stripeCallback = function (code, result) {
         $scope.submitted = true;
         $scope.cardErrorMessage = null;
 
+        console.log('scope checkout: ', $scope.checkoutForm)
         if(!result.error) {
            User.createSubscription({token: result.id, user_id: currentUser._id, email: currentUser.email, promo: $scope.promo},
             function(data){

@@ -19,6 +19,7 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
+  legacyUser: {type: Boolean, default: false},
   activeSubscription: {type: Boolean, default: false},
   stripeCustomerId: String,
   stripeDiscount: {},
