@@ -106,12 +106,16 @@ function volunteerMatch(event, host){
 		  },
 		  function(group, done) {
 
-		  	var capFirstName = _.capitalize(group.firstName);
-	  		var capLastName = _.capitalize(group.lastName);
-	  		var dateString = event.confirmDate.toString()
-	  	  var finalDate = dateString.slice(0, 10)
-	  	  var capOrgName = group.organizationName.capitalize();
-
+	  		var dateString 				= event.confirmDate.toString();
+	  	  var clientFirstName 	= event.firstName.capitalize();
+	  	  var eventAddress 			= event.address;
+		  	var capFirstName 			= _.capitalize(group.firstName);
+	  		var capLastName 			= _.capitalize(group.lastName);
+	  	  var finalDate 				= dateString.slice(0, 10);
+	  	  var capOrgName 				= group.organizationName.capitalize();
+	  	  var groupPhoneNumber 	= group.phoneNumber;
+	  	  var gobeKitLink				= 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
+	  	  var gobeInstagram 		= 'https://www.instagram.com/gobethe1/';
 
 		  	// console.log("group emailList")
 		  	// console.log(group.emailList)
@@ -139,25 +143,35 @@ function volunteerMatch(event, host){
 			      from: 'hello@gobethe1.com',
 			      subject: 'Are you available to volunteer?',
 			      html:
-					    '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
-					    '<td align="center" width="50%">' +
-					    '<p style="font-size:14px;font-family:sans-serif;">You have been invited by ' + capFirstName + ' ' + capLastName + ' to  <br>' +
-					    'join the rest of the ' + capOrgName + ' for the move <br>' +
-					    'in party in your area on  <span style="font-weight:bold"> ' + finalDate + ' at ' + event.confirmTime + '</span>. <br>' +
-					    'Can you make it? <br><br>' +
-					    '<a href=' + linkConfirm +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:40%;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +
-					    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a></p></td>' +
-					    '<td align="left" width="50%" style="vertical-align:top;">' +
-					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold;">What\'s this invite about?</p>' +
-					    '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s <br>' +
-					   	'time to party! This person now lives in your <br>' +
-					   	'area and you have been invited to help <br>' +
-					   	'welcome them home! Ready to make a difference? <br>' +
-					   	'Simply, accept the invite, ask your group leader <br>' +
-					   	'what items you can bring, and bring the items <br>' +
-					   	'with you to the party!</p></td>' +
-					    '</tr>' +
-					    '</table>'
+			      	// initial tag-line + details
+			      	'<p> Get ready to party! </p>' +
+			      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details </p>' +
+					    '<p> The ' + capOrgName + 'are confirmed for the ' +
+					    'move-in party of ' + clientFirstName + ' on ' + finalDate + ' at ' + event.confirmTime + '.</p>' +
+
+					    // event information
+					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information </p>' +
+					    '<p> Point person name: ' + capFirstName + ' ' + capLastName + '<br>' +
+					    'Point person phone: ' + groupPhoneNumber + '<br>' +
+					    'Event address: ' + eventAddress + ' </p>' +
+
+					    // what to bring section
+					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to bring? </p>' +
+					    '<p>You can download the checklist of items that complete a <a href=' + gobeKitLink + '>' +
+					    'GOBE Welcome Home Kit</a>, but make sure to coordinate with your group leader to see what is still needed! ' +
+					    'We encourage you to bring as many items as you would like, but we ask that you please bring the items on this ' +
+					    'list as a minimum. All items except pillows can be lightly used. </p>' +
+
+					    // some nice touches sectionc
+					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Some nice touches </p>' +
+					    '<p>Keep in mind it\'s a party! Throwing in extra touches such as dessert and/or a welcome home ' +
+					    'sign or banner make each move-in personal and special. Need some ideas? Check out our instagram ' +
+					    '<a href='+ gobeInstagram +'>@gobethe1</a> for pictures of previous parties. Don\'t forget to take ' +
+					    'your own pictures and tag us #gobethe1.</p>' +
+
+					    // sign off
+					    '<p> See you there, <br><br>' +
+					    'GOBE Team </p>'
 			    };
 
 				// if(index === -1){

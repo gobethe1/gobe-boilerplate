@@ -19,17 +19,17 @@
   <br>
 
   <form stripe-form="stripeCallback" name="checkoutForm" class="modal-form-content" novalidate>
- <!--    ng-class="{'has-error': checkoutForm.$invalid && submitted }" -->
 
     <div class="row">
       <!-- cardholder name -->
         <div class="col-sm-12" ng-class="{'has-error': checkoutForm.name.$invalid && submitted}">
-          <input ng-model="name" class="form-control" name="name" placeholder="Name" required>
+          <input ng-model="name" class="form-control" name="name" placeholder="Cardholder Name" required>
             <span class="text-danger" ng-show="checkoutForm.name.$invalid && submitted">
               Please enter your full cardholder name.
             </span>
         </div>
     </div>
+    <!-- end cardholder name -->
     <br>
     <!-- credit card -->
     <div class="row">
