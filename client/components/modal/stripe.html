@@ -15,59 +15,62 @@
 <div class="modal-body text-center" ng-if="!currentUser.activeSubscription">
   <img class="paywall" src="assets/images/paywall.png">
   <h3>FREE 30 DAY TRIAL</h3>
+  <h3>SUBMITTED {{submitted}}</h3>
   <p>After 30 days your card will be charged $5.95. <br>The trial can be canceled anytime.</p>
   <br>
 
-  <form stripe-form="stripeCallback" name="checkoutForm" class="modal-form-content"
-  ng-class="{'has-error': checkoutForm.$invalid && submitted }">
+  <form stripe-form="stripeCallback" name="checkoutForm" class="modal-form-content" novalidate>
+ <!--    ng-class="{'has-error': checkoutForm.$invalid && submitted }" -->
 
     <div class="row">
       <!-- cardholder name -->
-        <div class="col-sm-12">
-          <span class="text-danger" ng-show="checkoutForm.name.$error.pattern">
-            Please enter your full name.
+        <div class="col-sm-12" ng-class="{'has-error': checkoutForm.name.$invalid && submitted}">
+          <span class="text-danger" ng-show="checkoutForm.name.$invalid && submitted">
+            Please enter your full cardholder name.
           </span>
-          <input ng-model="name" class="form-control" name="name" placeholder="Name"
-                 ng-pattern="/^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/">
+          <input ng-model="name" class="form-control" name="name" placeholder="Name" required>
             <br>
         </div>
     </div>
 
     <!-- credit card -->
     <div class="row">
-      <div class="col-sm-12">
-         <span ng-if="checkoutForm.card.$invalid && submitted"
+      <div class="col-sm-12" ng-class="{'has-error': checkoutForm.card.$invalid  && submitted}">
+         <span ng-show="checkoutForm.card.$invalid && submitted"
                ng-class="{'text-danger': checkoutForm.card.$invalid && submitted }">
-             Error: invalid card number!
+             Invalid Card Number
          </span>
-         <input ng-model="number" class="form-control" placeholder="Card Number" payments-format="card" payments-validate="card" payments-type-model="type" name="card"/><br>
+         <input ng-model="number" class="form-control" placeholder="Card Number" 
+         payments-format="card" payments-validate="card" payments-type-model="type" name="card" required/><br>
       </div>
     </div>
 
 
     <!-- expiration date -->
     <div class="row">
-      <div class="col-sm-4">
-         <span ng-if="checkoutForm.expiry.$invalid && submitted"
+      <div class="col-sm-4" ng-class="{'has-error': checkoutForm.expiry.$invalid && submitted}">
+         <div ng-if="checkoutForm.expiry.$invalid && submitted"
                ng-class="{'text-danger': checkoutForm.expiry.$invalid && submitted }">
-             Error: invalid expiration date!
-         </span>
-         <input ng-model="expiry"class="form-control" placeholder="Expiration" payments-format="expiry" payments-validate="expiry" name="expiry" /><br>
+             Invalid Exp
+         </div>
+         <input ng-model="expiry"class="form-control" placeholder="Expiration" 
+         payments-format="expiry" payments-validate="expiry" name="expiry" required/><br>
 
       </div>
 
       <!-- cvc # -->
-      <div class="col-sm-4">
-         <span ng-if="checkoutForm.cvc.$invalid && submitted"
+      <div class="col-sm-4" ng-class="{'has-error': checkoutForm.cvc.$invalid && submitted}">
+         <div ng-if="checkoutForm.cvc.$invalid && submitted"
                ng-class="{'text-danger': checkoutForm.cvc.$invalid && submitted }">
-             Error: cvc number!
-         </span>
-         <input ng-model="cvc" class="form-control"placeholder="CVC" payments-format="cvc"  payments-validate="cvc" name="cvc" /><br>
+             Invalid CVC
+         </div>
+         <input ng-model="cvc" class="form-control"placeholder="CVC" payments-format="cvc"  
+         payments-validate="cvc" name="cvc" required/><br>
       </div>
 
       <!-- promo -->
       <div class="col-sm-4">
-         <input ng-model="promo" class="form-control" placeholder="promo" name="promo" /><br>
+         <input ng-model="promo" class="form-control" placeholder="Promo" name="promo" /><br>
       </div>
     </div>
 
