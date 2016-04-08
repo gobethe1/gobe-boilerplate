@@ -12,7 +12,14 @@ angular.module('gobeApp', [
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider) {
     var $window = $windowProvider.$get();
-    $window.Stripe.setPublishableKey('pk_test_LfZukS2wLTvKs3nJue3WPNyq');
+
+    if($window.location.hostname === 'try.gobethe1.com'){
+      $window.Stripe.setPublishableKey('pk_live_D3gze9OR9adAigqBpRtpp3Pa');
+    }
+    else{
+      $window.Stripe.setPublishableKey('pk_test_LfZukS2wLTvKs3nJue3WPNyq');
+    }
+    
     $urlRouterProvider
       .otherwise('/');
 

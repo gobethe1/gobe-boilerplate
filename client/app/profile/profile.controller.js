@@ -2,6 +2,7 @@
 
 angular.module('gobeApp')
   .controller('ProfileCtrl', function ($scope, $filter, currentUser, Auth, Path, customerInfo) {
+    
     $scope.user = currentUser;
     $scope.isAdmin = Auth.isAdmin;
     $scope.path = Path.transitionToPath;

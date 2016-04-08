@@ -47,17 +47,22 @@ exports.createSubscription = function(req, res, next){
     coupon: req.body.promo,
     email: req.body.email
   }, function(err, customer) {
-      User.findById(req.body.user_id, function (err, user) {
-          user.stripeCustomerId = customer.id;
-          user.stripeData = customer.subscriptions.data;
-          user.stripeDiscount = customer.discount;
-          user.activeSubscription = true;
-          user.save(function(err) {
-            if (err) return validationError(res, err);
-            res.json(user);
-          });
-      });
-
+      if(err){return res.status(200).json({status: 'error', error:err})}
+      else{
+        User.findById(req.body.user_id, function (err, user) {
+            user.stripeCustomerId = customer.id;
+            user.stripeData = customer.subscriptions.data;
+            user.stripeDiscount = customer.discount;
+            user.activeSubscription = true;
+            
+            user.save(function(err) {
+              if (err){return validationError(res, err)}
+              else{
+              res.status(200).json({status:'success'});
+              }
+            });
+        });
+      }
   });
 };
 
@@ -81,7 +86,7 @@ exports.show = function (req, res, next) {
 
   User.findById(userId, function (err, user) {
     if (err) return next(err);
-    if (!user) return res.status(401).send('Unauthorized');
+    if (!user) return res.status(422).send('Unauthorized');
     res.json(user.profile);
   });
 };

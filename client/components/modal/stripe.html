@@ -9,70 +9,81 @@
   <p>Thank you for subscribing to GOBE. We hope you enjoy your free 30 day trial.</p>
 </div>
 
+
+
 <!-- stripe sign up form -->
 <div class="modal-body text-center" ng-if="!currentUser.activeSubscription">
   <img class="paywall" src="assets/images/paywall.png">
   <h3>FREE 30 DAY TRIAL</h3>
   <p>After 30 days your card will be charged $5.95. <br>The trial can be canceled anytime.</p>
   <br>
-  <form stripe-form="stripeCallback" name="checkoutForm" class="modal-form-content" 
-  ng-class="{'has-error': checkoutForm.$invalid && submitted }">
+
+  <form stripe-form="stripeCallback" name="checkoutForm" class="modal-form-content" novalidate>
 
     <div class="row">
       <!-- cardholder name -->
-        <div class="col-sm-12">
-          <input ng-model="name" class="form-control" placeholder="Name"/><br>
+        <div class="col-sm-12" ng-class="{'has-error': checkoutForm.name.$invalid && submitted}">
+          <input ng-model="name" class="form-control" name="name" placeholder="Cardholder Name" required>
+            <span class="text-danger" ng-show="checkoutForm.name.$invalid && submitted">
+              Please enter your full cardholder name.
+            </span>
         </div>
     </div>
-
+    <!-- end cardholder name -->
+    <br>
     <!-- credit card -->
     <div class="row">
-      <div class="col-sm-12">
-         <span ng-if="checkoutForm.card.$invalid && submitted"
+      <div class="col-sm-12" ng-class="{'has-error': checkoutForm.card.$invalid  && submitted}">
+         <input ng-model="number" class="form-control" placeholder="Card Number" 
+         payments-format="card" payments-validate="card" payments-type-model="type" name="card" required/>
+         <div ng-show="checkoutForm.card.$invalid && submitted"
                ng-class="{'text-danger': checkoutForm.card.$invalid && submitted }">
-             Error: invalid card number!
-         </span>
-         <input ng-model="number" class="form-control" placeholder="Card Number" payments-format="card" payments-validate="card" payments-type-model="type" name="card"/><br>
+             Invalid Card Number
+         </div>
       </div>
     </div>
-
+    <br>
 
     <!-- expiration date -->
     <div class="row">
-      <div class="col-sm-4">
-         <span ng-if="checkoutForm.expiry.$invalid && submitted"
+      <div class="col-sm-4" ng-class="{'has-error': checkoutForm.expiry.$invalid && submitted}">
+
+         <input ng-model="expiry"class="form-control" placeholder="Expiration" 
+         payments-format="expiry" payments-validate="expiry" name="expiry" required/>
+         <div ng-if="checkoutForm.expiry.$invalid && submitted"
                ng-class="{'text-danger': checkoutForm.expiry.$invalid && submitted }">
-             Error: invalid expiration date!
-         </span>
-         <input ng-model="expiry"class="form-control" placeholder="Expiration" payments-format="expiry" payments-validate="expiry" name="expiry" /><br>
+             Invalid Exp
+         </div>
 
       </div>
 
       <!-- cvc # -->
-      <div class="col-sm-4">
-         <span ng-if="checkoutForm.cvc.$invalid && submitted"
+      <div class="col-sm-4" ng-class="{'has-error': checkoutForm.cvc.$invalid && submitted}">
+    
+         <input ng-model="cvc" class="form-control"placeholder="CVC" payments-format="cvc"  
+         payments-validate="cvc" name="cvc" required/>
+         <div ng-if="checkoutForm.cvc.$invalid && submitted"
                ng-class="{'text-danger': checkoutForm.cvc.$invalid && submitted }">
-             Error: cvc number!
-         </span>
-         <input ng-model="cvc" class="form-control"placeholder="CVC" payments-format="cvc"  payments-validate="cvc" name="cvc" /><br>
+             Invalid CVC
+         </div>
       </div>
 
       <!-- promo -->
       <div class="col-sm-4">
-         <input ng-model="promo" class="form-control" placeholder="promo" name="promo" /><br>
+         <input ng-model="promo" class="form-control" placeholder="Promo" name="promo" /><br>
       </div>
     </div>
-
+    <br>
     <!-- card error message -->
     <span ng-if="submitted" class="text-danger">
         {{cardErrorMessage}}
      </span>
     <!-- end card error nessage -->
      <!-- submit button -->
-    <span ng-if="checkoutForm.$pristine && submitted"
+<!--     <span ng-if="checkoutForm.$pristine && submitted"
            ng-class="{'text-danger': checkoutForm.$pristine && submitted }">
          Please fill out the form!
-     </span><br>
+     </span><br> -->
 
     <button class="btn btn-primary btn-lg btn-block" type="submit"
       ng-class="{ 'btn-primary': checkoutForm.$valid, 'btn-secondary': checkoutForm.$invalid}">
