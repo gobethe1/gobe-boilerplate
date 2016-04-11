@@ -78,7 +78,6 @@ angular.module('gobeApp')
     $scope.addGroup = function addGroup(form) {
       $scope.newGroup = $scope.newGroup;
       $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
-      console.log('match radius: ', $scope.newGroup.matchRadius)
       $scope.submitted = true;
          if(form.$valid){
              Group.save($scope.newGroup,
