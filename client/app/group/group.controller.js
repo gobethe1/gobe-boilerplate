@@ -13,7 +13,7 @@ angular.module('gobeApp')
     $scope.newGroup.ownedBy = currentUser._id;
     $scope.newGroup.email   = currentUser.email;
     $scope.isAdmin = Auth.isAdmin();
-    $scope.priceSlider = {
+    $scope.zipCodeSlider = {
       value: 5,
       options: {
         floor: 5,
@@ -23,7 +23,7 @@ angular.module('gobeApp')
            return value + ' mi';
          }
       }
-    }
+    };
 
 
     var zipCodeApiKey = "js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4";
@@ -76,7 +76,9 @@ angular.module('gobeApp')
     };
 
     $scope.addGroup = function addGroup(form) {
-      $scope.newGroup = $scope.newGroup
+      $scope.newGroup = $scope.newGroup;
+      $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
+      console.log('match radius: ', $scope.newGroup.matchRadius)
       $scope.submitted = true;
          if(form.$valid){
              Group.save($scope.newGroup,
