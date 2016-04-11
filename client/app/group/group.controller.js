@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('GroupCtrl', [ '$scope', '$http', '$state', 'Group', 'groupModel', '$stateParams', 'currentUser', 'Auth', '$uibModal', 
+  .controller('GroupCtrl', [ '$scope', '$http', '$state', 'Group', 'groupModel', '$stateParams', 'currentUser', 'Auth', '$uibModal',
     function ($scope, $http, $state, Group, groupModel, $stateParams, currentUser, Auth, $uibModal) {
-    
+
     $scope.listGroups = groupModel;
     $scope.newGroup = {};
     $scope.newGroup.emailList = [];
@@ -13,15 +13,29 @@ angular.module('gobeApp')
     $scope.newGroup.ownedBy = currentUser._id;
     $scope.newGroup.email   = currentUser.email;
     $scope.isAdmin = Auth.isAdmin();
-    
+    $scope.priceSlider = {
+      value: 5,
+      options: {
+        floor: 5,
+        ceil: 50,
+      }
+    }
+
 
     var zipCodeApiKey = "js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4";
     $scope.newGroup.zipCode = '90036';
     $scope.newGroup.matchRadius = '5';
+
+    // $.ajax('https://www.zipcodeapi.com/rest/js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4/radius.json/90028/5/mile')
     //https://www.zipcodeapi.com/rest/<api_key>/radius.<format>/<zip_code>/<distance>/<units>
     //https://www.zipcodeapi.com/rest/md9rylFy2kijKcS804V7xxMKHHOePVDb8NCG9ifbCxvmKovLsqT0XFKEnyTcuwoC/radius.json/90036/5/mile
-    // $http.get('https://www.zipcodeapi.com/rest/' + zipCodeApiKey + '/radius.json/' + $scope.newGroup.zipCode + '/' + 
-    //            $scope.newGroup.matchRadius + '/mile' )
+    // $http({
+    //       origin: "http://localhost:9000",
+    //       method: "GET",
+    //       url: 'https://www.zipcodeapi.com/rest/' + zipCodeApiKey + '/radius.json/' + $scope.newGroup.zipCode + '/' +
+    //            $scope.newGroup.matchRadius + '/mile',
+    //       headers: {'Access-Control-Allow-Headers': "*"}
+    //        })
     //             .success(function(data){
     //                 console.log(data)
     //             })
@@ -86,7 +100,7 @@ angular.module('gobeApp')
         Group.remove({id: id });
       };
     }
-  
+
 
   }])
 

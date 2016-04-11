@@ -8,7 +8,8 @@ angular.module('gobeApp', [
   'ui.router',
   'ui.bootstrap',
   'ui.mask',
-  'angularPayments'
+  'angularPayments',
+  'rzModule'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider) {
     var $window = $windowProvider.$get();
@@ -19,12 +20,15 @@ angular.module('gobeApp', [
     else{
       $window.Stripe.setPublishableKey('pk_test_LfZukS2wLTvKs3nJue3WPNyq');
     }
-    
+
     $urlRouterProvider
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+    // $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+    // $httpProvider.defaults.withCredentials = true;
+    // $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
   })
 
