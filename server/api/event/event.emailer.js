@@ -143,10 +143,13 @@ function volunteerMatch(event, host){
 			      from: 'hello@gobethe1.com',
 			      subject: 'Are you available to volunteer?',
 			      html:
+			      	// gobe logo
+			      	'<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
+
 			      	// initial tag-line + details
 			      	'<p> Get ready to party! </p>' +
 			      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details </p>' +
-					    '<p> The ' + capOrgName + 'are confirmed for the ' +
+					    '<p> The ' + capOrgName + ' are confirmed for the ' +
 					    'move-in party of ' + clientFirstName + ' on ' + finalDate + ' at ' + event.confirmTime + '.</p>' +
 
 					    // event information
