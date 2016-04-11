@@ -18,6 +18,10 @@ angular.module('gobeApp')
       options: {
         floor: 5,
         ceil: 50,
+        showSelectionBar: true,
+        translate: function(value) {
+           return value + ' mi';
+         }
       }
     }
 

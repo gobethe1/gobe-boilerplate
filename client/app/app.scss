@@ -17,6 +17,7 @@ $white: white;
 $black: black;
 $gray: #979797;
 $footer-black: #ffffff;
+$light-gray-slider: #cccccc;
 
 // button borders pulled from bootstrap-sass variables
 $border-radius-base:        9px !important;
@@ -253,9 +254,26 @@ li.current-location{
 }
 
 rzslider .rz-pointer {
-  background-color: $gray;
+  &:after {
+    top: 7px;
+    left: 8px;
+    width: 5px;
+    height: 6px;
+  }
+  top: -9px;
+  width: 20px;
+  height: 20px;
+  background-color: $light-gray-slider;
   box-shadow: 2px 2px 1px grey
 }
+
+rzslider .rz-bar.rz-selection {
+    z-index: 2;
+    background: $primary-blue;
+  }
+
+
+
 
 
 
