@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('GroupCtrl', [ '$scope', '$state', 'Group', 'groupModel', '$stateParams', 'currentUser', 'Auth', '$uibModal', 
-    function ($scope, $state, Group, groupModel, $stateParams, currentUser, Auth, $uibModal) {
+  .controller('GroupCtrl', [ '$scope', '$http', '$state', 'Group', 'groupModel', '$stateParams', 'currentUser', 'Auth', '$uibModal', 
+    function ($scope, $http, $state, Group, groupModel, $stateParams, currentUser, Auth, $uibModal) {
     
     $scope.listGroups = groupModel;
     $scope.newGroup = {};
@@ -13,6 +13,19 @@ angular.module('gobeApp')
     $scope.newGroup.ownedBy = currentUser._id;
     $scope.newGroup.email   = currentUser.email;
     $scope.isAdmin = Auth.isAdmin();
+    
+
+    var zipCodeApiKey = "js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4";
+    $scope.newGroup.zipCode = '90036';
+    $scope.newGroup.matchRadius = '5';
+    //https://www.zipcodeapi.com/rest/<api_key>/radius.<format>/<zip_code>/<distance>/<units>
+    //https://www.zipcodeapi.com/rest/md9rylFy2kijKcS804V7xxMKHHOePVDb8NCG9ifbCxvmKovLsqT0XFKEnyTcuwoC/radius.json/90036/5/mile
+    // $http.get('https://www.zipcodeapi.com/rest/' + zipCodeApiKey + '/radius.json/' + $scope.newGroup.zipCode + '/' + 
+    //            $scope.newGroup.matchRadius + '/mile' )
+    //             .success(function(data){
+    //                 console.log(data)
+    //             })
+    // $.ajax('https://www.zipcodeapi.com/rest/js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4/5.radius.json/90028/mile')
 
     // $scope.openPaymentModal = Modal.confirm.payment();
 

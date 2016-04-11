@@ -25,6 +25,7 @@ angular.module('gobeApp', [
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
