@@ -29,7 +29,7 @@ angular.module('gobeApp')
     var newArr = [];
 
     $scope.addGroup = function addGroup(form) {
-        console.log($scope.newGroup)
+        // console.log($scope.newGroup)
         $scope.newGroup = $scope.newGroup;
         $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
         $scope.submitted = true;

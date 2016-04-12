@@ -187,7 +187,7 @@ q.fcall(function() {
           lastName: 'Malone',
           email: 'pmalone@example.com',
           phoneNumber: '7467447474',
-          zipCode: '90000'
+          zipCode: '90012'
         },
         function(error, doc) {
             console.log('finished populating groups');
