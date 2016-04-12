@@ -21,9 +21,9 @@ function matchZipCode(group, host){
 	       	 console.log("no zipcode matches")
 	         // return res.status(404).send('There are no zipcode matches.');
 	       }
-	        console.log('event')
-	        console.log(event)
-	        done(err, event);
+	        // console.log('event')
+	        // console.log(event)
+	        // done(err, event);
 	     });
 	   },
 	   function(event, done) {

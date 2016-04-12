@@ -119,7 +119,7 @@ function volunteerMatch(event, host){
 	  	  var dateString 				= event.confirmDate.toString();
 	  	  var clientFirstName 	= event.firstName.capitalize();
 	  	  var eventAddress 			= event.address;
-		  var capFirstName 			= _.capitalize(group.firstName);
+		  	var capFirstName 			= _.capitalize(group.firstName);
 	  	  var capLastName 			= _.capitalize(group.lastName);
 	  	  var finalDate 				= dateString.slice(0, 10);
 	  	  var capOrgName 				= group.organizationName.capitalize();
