@@ -148,13 +148,21 @@ footer{
     .group-button {
       border-right: 1px solid $black;
       border-left: 1px solid $black;
-
+    }
+    .cause-button {
+      border-right: 1px solid $black;
+      // border-left: 1px solid $black;
     }
 
 }
 
 .footer-active a, .footer-active i{
   color: $bg-blue;
+}
+
+footer .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 
