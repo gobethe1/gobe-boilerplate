@@ -22,10 +22,6 @@ function matchZipCode(event, host){
 
   async.waterfall([
 	  function(done) {
-	  	// finding groups by the event zipcode 90017
-	  	// group.matchZipCodeRadius [90017, 90012]
-	  	//if event.zipCode matches any of the group.matchZipCodeRadius
-	  	//check Group matchZipCodeRadius against event.zipcode
 	  	console.log("hitting waterfall")
 
 	    Group.find({ matchZipCodeArr: {$elemMatch: {$eq: event.zipCode} }}, function(err, group) {
