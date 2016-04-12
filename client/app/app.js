@@ -29,15 +29,22 @@ angular.module('gobeApp', [
     // $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
     // $httpProvider.defaults.withCredentials = true;
     // $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    // delete $httpProvider.defaults.headers.common['X-Requested-With'];
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {
       // Add authorization token to headers
       request: function (config) {
+        // console.log(config)
+        // console.log(config.url)
+        var str = config.url
+        var configUrl = /www.zipcodeapi.com/
+        var checkStr = configUrl.test(str)
+        // console.log("checkStr")
+        // console.log(checkStr)
         config.headers = config.headers || {};
-        if ($cookieStore.get('token')) {
+        if ($cookieStore.get('token') && !checkStr) {
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
         }
         return config;

@@ -25,27 +25,47 @@ angular.module('gobeApp')
       }
     };
 
-
     var zipCodeApiKey = "js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4";
-    $scope.newGroup.zipCode = '90036';
-    $scope.newGroup.matchRadius = '5';
+    var newArr = [];
 
-    // $.ajax('https://www.zipcodeapi.com/rest/js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4/radius.json/90028/5/mile')
-    //https://www.zipcodeapi.com/rest/<api_key>/radius.<format>/<zip_code>/<distance>/<units>
-    //https://www.zipcodeapi.com/rest/md9rylFy2kijKcS804V7xxMKHHOePVDb8NCG9ifbCxvmKovLsqT0XFKEnyTcuwoC/radius.json/90036/5/mile
-    // $http({
-    //       origin: "http://localhost:9000",
-    //       method: "GET",
-    //       url: 'https://www.zipcodeapi.com/rest/' + zipCodeApiKey + '/radius.json/' + $scope.newGroup.zipCode + '/' +
-    //            $scope.newGroup.matchRadius + '/mile',
-    //       headers: {'Access-Control-Allow-Headers': "*"}
-    //        })
-    //             .success(function(data){
-    //                 console.log(data)
-    //             })
-    // $.ajax('https://www.zipcodeapi.com/rest/js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4/5.radius.json/90028/mile')
+    $scope.addGroup = function addGroup(form) {
+        console.log($scope.newGroup)
+        $scope.newGroup = $scope.newGroup;
+        $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
+        $scope.submitted = true;
+           if(form.$valid){
+              
+              $http({  method: "GET",
+                      url: 'https://www.zipcodeapi.com/rest/' + zipCodeApiKey + '/radius.json/' + $scope.newGroup.zipCode + '/' + $scope.newGroup.matchRadius + '/mile',
+                      headers: {Authorization: undefined}
+                     }).then
+                        (function(response){
+                            // console.log(response.data)
+                            var data = response.data;
+                            data.zip_codes.map(function(value){
+                            newArr.push(value.zip_code);
+                          })
+                            // console.log("newArr")
+                            // console.log(newArr)
+                            $scope.newGroup.matchZipCodeArr = newArr;
 
-    // $scope.openPaymentModal = Modal.confirm.payment();
+                        }).then(function(){
+                            Group.save($scope.newGroup,
+                              function(data){
+                                 $state.go('group.confirmation',
+                                   {confirm: data._id})
+                                }),
+                                function(err){
+                                 $scope.addGroupError = "Looks like something went wrong! Please try again"
+                                }
+                        })
+
+               }
+         else{
+             document.body.scrollTop = document.documentElement.scrollTop = 0;
+         }
+    };
+             
 
     $scope.openPaymentModal = function() {
         var modalInstance = $uibModal.open({
@@ -75,24 +95,6 @@ angular.module('gobeApp')
       $scope.email = null;
     };
 
-    $scope.addGroup = function addGroup(form) {
-      $scope.newGroup = $scope.newGroup;
-      $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
-      $scope.submitted = true;
-         if(form.$valid){
-             Group.save($scope.newGroup,
-               function(data){
-                  $state.go('group.confirmation',
-                    {confirm: data._id})
-                 }),
-                 function(err){
-                  $scope.addGroupError = "Looks like something went wrong! Please try again"
-                 }
-               }
-         else{
-             document.body.scrollTop = document.documentElement.scrollTop = 0;
-         }
-    };
 
     $scope.deleteGroup = function deleteGroup(id){
       if(confirm('Are you sure you want to delete this client?')){

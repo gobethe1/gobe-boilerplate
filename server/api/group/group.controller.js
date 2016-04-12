@@ -27,13 +27,18 @@ exports.create = function(req, res) {
 
   Group.create(req.body, function(err, group) {
     if(err) { return handleError(res, err); }
+    
     User.findById(req.body.ownedBy, function(err, user){
       if (err) { return handleError(res, err); }
+    
         var updated = _.merge(user, {groupId: group._id})
+    
         updated.save(function (err) {
           if (err) { return handleError(res, err); }
         });
+    
     })
+    
     groupEmailer.matchZipCode(group, req.headers.host);
     return res.status(201).json(group);
   });
