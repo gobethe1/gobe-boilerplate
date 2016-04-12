@@ -165,14 +165,16 @@ q.fcall(function() {
           lastName: 'Figueroa',
           email: 'sally@example.com', //'midgetllamas182@yahoo.com',
           phoneNumber: '313333333',
-          zipCode: '90000'
+          zipCode: '90017',
+          matchZipCodeArr: ['90071', '90017', '90012', '90050', '90020']
         },{
           organizationName: 'Homes for vets',
           firstName: 'Casper',
           lastName: 'P',
           email: 'cassie.purtlebaugh@example.com', //'gobethe1dev@gmail.com',
           phoneNumber: '7467447474',
-          zipCode: '90000'
+          zipCode: '90000',
+          matchZipCodeArr: ['90050', '90020']
         },{
           organizationName: 'Greg Rocks',
           firstName: 'Greg',
@@ -180,6 +182,7 @@ q.fcall(function() {
           email: 'gobethe1dev@gmail.com',
           phoneNumber: '7467447474',
           zipCode: '90017',
+          matchZipCodeArr: ['90071', '90050', '90020'],
           emailList: ['gobethe1dev@gmail.com', 'grock006@example.com', 'cassie.purtlebaugh@example.com']
         },{
           organizationName: 'Feed The Homeless',
@@ -187,7 +190,8 @@ q.fcall(function() {
           lastName: 'Malone',
           email: 'pmalone@example.com',
           phoneNumber: '7467447474',
-          zipCode: '90012'
+          zipCode: '90012',
+          matchZipCodeArr: ['90071', '90050', '90020', '90028']
         },
         function(error, doc) {
             console.log('finished populating groups');

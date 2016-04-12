@@ -15,7 +15,7 @@ function matchZipCode(group, host){
 	   function(done) {
 	   	console.log('group.matchZipCodeArr')
 	   	console.log(group.matchZipCodeArr)
-	     Event.find({zipCode: {$in: group.matchZipCodeArr}, confirmGroup:null, causeType: 'Homeless Move-in'}, 
+	     Event.find({zipCode: {$in: group.matchZipCodeArr}, confirmGroup:null, causeType: 'Homeless Move-in'},
 	     	function(err, event) {
 	       if (!event) {
 	       	 console.log("no zipcode matches")

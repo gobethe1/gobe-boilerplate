@@ -15,9 +15,6 @@ String.prototype.capitalize = function() {
     return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 };
 
-// function matchZipCode(event, host){
-
-// }
 
 
 //ORIGINAL MATCHZIPCODE FN
@@ -30,15 +27,16 @@ function matchZipCode(event, host){
 	  	//if event.zipCode matches any of the group.matchZipCodeRadius
 	  	//check Group matchZipCodeRadius against event.zipcode
 	  	console.log("hitting waterfall")
-	    Group.find({ matchZipCodeArr: event.zipCode }, function(err, group) {
+
+	    Group.find({ matchZipCodeArr: {$elemMatch: {$eq: event.zipCode} }}, function(err, group) {
 	      if (!group) {
 	      	// console.log(err)
 	        // return res.status(404).send('There are no zipcode matches.');
-	        console.log("!group")
-	        console.log(group)
+	        // console.log("!group")
+	        // console.log(group)
 	      }
-	       console.log("group")
-	       console.log(group)
+	       // console.log("group")
+	       // console.log(group)
 	       done(err, group);
 	    });
 	  },
