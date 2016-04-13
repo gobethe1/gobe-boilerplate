@@ -9,7 +9,8 @@ angular.module('gobeApp', [
   'ui.bootstrap',
   'ui.mask',
   'angularPayments',
-  'rzModule'
+  'rzModule',
+  'google.places'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider) {
     var $window = $windowProvider.$get();
