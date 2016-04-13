@@ -5,6 +5,17 @@ angular.module('gobeApp')
     $scope.newGroup = groupEdit;
     $scope.emailList = $scope.newGroup.emailList;
     $scope.hover = true;
+    $scope.zipCodeSlider = {
+      value: $scope.newGroup.matchRadius,
+      options: {
+        floor: 5,
+        ceil: 50,
+        showSelectionBar: true,
+        translate: function(value) {
+           return value + ' mi';
+         }
+      }
+    };
 
     $scope.updateEmail = function updateEmail(){
       $scope.emailList.push($scope.email);
@@ -28,6 +39,8 @@ angular.module('gobeApp')
 
     $scope.updateGroup = function addGroup(form) {
       var data = $scope.newGroup;
+      $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
+
       $scope.submitted = true;
          if(form.$valid){
              Group.update({id: $stateParams.id }, data,

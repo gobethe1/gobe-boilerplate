@@ -15,6 +15,8 @@ var GroupSchema = new Schema({
   email: {type: String, required: true},
   phoneNumber: {type: String, required: true},
   zipCode: {type: String, required: true},
+  matchRadius: Number,
+  matchZipCodeArr: Array,
   emailList: Array
 });
 

@@ -1,22 +1,29 @@
 <footer ng-controller="FooterCtrl"ng-show="isLoggedIn()" class="navbar-default navbar-fixed-bottom hidden-sm hidden-md hidden-lg">
   <div class="container-fluid">
-    <div ui-sref="profile.details" ng-class="{'footer-active': isActive('/profile/details')}" class="col-sm-4 col-xs-4 text-center">
+    <div ui-sref="profile.details" ng-class="{'footer-active': isActive('/profile/details')}" class="col-sm-3 col-xs-3 text-center">
       <a>
         <i class="fa fa-user"></i>
         <p>Profile</p>
       </a>
     </div>
-    <div ui-sref="group.list" ng-class="{'footer-active': isActive('/group/list')}" class="col-sm-4 col-xs-4 text-center group-button">
+    <div ui-sref="group.list" ng-class="{'footer-active': isActive('/group/list')}" class="col-sm-3 col-xs-3 text-center group-button">
       <a>
         <i class="fa fa-users"></i>
         <p>Groups</p>
       </a>
     </div>
-    <div ng-click="causesLink()" ng-class="{'footer-active': isActive('/profile/event/list') || isActive('/event/list')}" 
-    class="col-sm-4 col-xs-4 text-center">
+    <div ng-click="causesLink()" ng-class="{'footer-active': isActive('/profile/event/list') || isActive('/event/list')}"
+    class="col-sm-3 col-xs-3 text-center cause-button">
       <a>
         <i class="fa fa-heart"></i>
         <p>Causes</p>
+      </a>
+    </div>
+    <div ui-sref="comment" ng-class="{'footer-active': isActive('/comment')}"
+    class="col-sm-3 col-xs-3 text-center">
+      <a>
+        <i class="fa fa-comment"></i>
+        <p>Feedback</p>
       </a>
     </div>
   </div>

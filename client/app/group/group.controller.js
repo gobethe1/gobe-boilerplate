@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('GroupCtrl', [ '$scope', '$state', 'Group', 'groupModel', '$stateParams', 'currentUser', 'Auth', '$uibModal', 
-    function ($scope, $state, Group, groupModel, $stateParams, currentUser, Auth, $uibModal) {
-    
+  .controller('GroupCtrl', [ '$scope', '$http', '$state', 'Group', 'groupModel', '$stateParams', 'currentUser', 'Auth', '$uibModal',
+    function ($scope, $http, $state, Group, groupModel, $stateParams, currentUser, Auth, $uibModal) {
+
     $scope.listGroups = groupModel;
     $scope.newGroup = {};
     $scope.newGroup.emailList = [];
@@ -13,8 +13,59 @@ angular.module('gobeApp')
     $scope.newGroup.ownedBy = currentUser._id;
     $scope.newGroup.email   = currentUser.email;
     $scope.isAdmin = Auth.isAdmin();
+    $scope.zipCodeSlider = {
+      value: 5,
+      options: {
+        floor: 5,
+        ceil: 50,
+        showSelectionBar: true,
+        translate: function(value) {
+           return value + ' mi';
+         }
+      }
+    };
 
-    // $scope.openPaymentModal = Modal.confirm.payment();
+    var zipCodeApiKey = "js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4";
+    var newArr = [];
+
+    $scope.addGroup = function addGroup(form) {
+        // console.log($scope.newGroup)
+        $scope.newGroup = $scope.newGroup;
+        $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
+        $scope.submitted = true;
+           if(form.$valid){
+              
+              $http({  method: "GET",
+                      url: 'https://www.zipcodeapi.com/rest/' + zipCodeApiKey + '/radius.json/' + $scope.newGroup.zipCode + '/' + $scope.newGroup.matchRadius + '/mile',
+                      headers: {Authorization: undefined}
+                     }).then
+                        (function(response){
+                            // console.log(response.data)
+                            var data = response.data;
+                            data.zip_codes.map(function(value){
+                            newArr.push(value.zip_code);
+                          })
+                            // console.log("newArr")
+                            // console.log(newArr)
+                            $scope.newGroup.matchZipCodeArr = newArr;
+
+                        }).then(function(){
+                            Group.save($scope.newGroup,
+                              function(data){
+                                 $state.go('group.confirmation',
+                                   {confirm: data._id})
+                                }),
+                                function(err){
+                                 $scope.addGroupError = "Looks like something went wrong! Please try again"
+                                }
+                        })
+
+               }
+         else{
+             document.body.scrollTop = document.documentElement.scrollTop = 0;
+         }
+    };
+             
 
     $scope.openPaymentModal = function() {
         var modalInstance = $uibModal.open({
@@ -44,23 +95,6 @@ angular.module('gobeApp')
       $scope.email = null;
     };
 
-    $scope.addGroup = function addGroup(form) {
-      $scope.newGroup = $scope.newGroup
-      $scope.submitted = true;
-         if(form.$valid){
-             Group.save($scope.newGroup,
-               function(data){
-                  $state.go('group.confirmation',
-                    {confirm: data._id})
-                 }),
-                 function(err){
-                  $scope.addGroupError = "Looks like something went wrong! Please try again"
-                 }
-               }
-         else{
-             document.body.scrollTop = document.documentElement.scrollTop = 0;
-         }
-    };
 
     $scope.deleteGroup = function deleteGroup(id){
       if(confirm('Are you sure you want to delete this client?')){
@@ -73,7 +107,7 @@ angular.module('gobeApp')
         Group.remove({id: id });
       };
     }
-  
+
 
   }])
 

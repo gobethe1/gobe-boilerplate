@@ -15,15 +15,24 @@ String.prototype.capitalize = function() {
     return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 };
 
+
+
+//ORIGINAL MATCHZIPCODE FN
 function matchZipCode(event, host){
 
   async.waterfall([
 	  function(done) {
-	    Group.find({ zipCode: event.zipCode }, function(err, group) {
+	  	console.log("hitting waterfall")
+
+	    Group.find({ matchZipCodeArr: {$elemMatch: {$eq: event.zipCode} }}, function(err, group) {
 	      if (!group) {
 	      	// console.log(err)
 	        // return res.status(404).send('There are no zipcode matches.');
+	        // console.log("!group")
+	        // console.log(group)
 	      }
+	       // console.log("group")
+	       // console.log(group)
 	       done(err, group);
 	    });
 	  },
@@ -91,6 +100,7 @@ function matchZipCode(event, host){
 	  if (err) return (err);
 	});
 }
+//END ORIGINAL MATCHZIPCODE FN
 
 function volunteerMatch(event, host){
 
@@ -106,11 +116,11 @@ function volunteerMatch(event, host){
 		  },
 		  function(group, done) {
 
-	  		var dateString 				= event.confirmDate.toString();
+	  	  var dateString 				= event.confirmDate.toString();
 	  	  var clientFirstName 	= event.firstName.capitalize();
 	  	  var eventAddress 			= event.address;
 		  	var capFirstName 			= _.capitalize(group.firstName);
-	  		var capLastName 			= _.capitalize(group.lastName);
+	  	  var capLastName 			= _.capitalize(group.lastName);
 	  	  var finalDate 				= dateString.slice(0, 10);
 	  	  var capOrgName 				= group.organizationName.capitalize();
 	  	  var groupPhoneNumber 	= group.phoneNumber;
@@ -143,10 +153,13 @@ function volunteerMatch(event, host){
 			      from: 'hello@gobethe1.com',
 			      subject: 'Are you available to volunteer?',
 			      html:
+			      	// gobe logo
+			      	'<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
+
 			      	// initial tag-line + details
 			      	'<p> Get ready to party! </p>' +
 			      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details </p>' +
-					    '<p> The ' + capOrgName + 'are confirmed for the ' +
+					    '<p> The ' + capOrgName + ' are confirmed for the ' +
 					    'move-in party of ' + clientFirstName + ' on ' + finalDate + ' at ' + event.confirmTime + '.</p>' +
 
 					    // event information
@@ -288,12 +301,12 @@ function detailsToGroupLeader(event, host){
 	    	// var capFirstName = _.capitalize(value.firstName);
 	    	// var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey
 
-								var groupContact = group.email;
+						var groupContact = group.email;
 			  	    	var capFirstName = _.capitalize(event.firstName);
 			  	    	var capLastName = _.capitalize(event.lastName);
 			  	    	var dateString = event.confirmDate.toString();
-			  	      var finalDate = dateString.slice(0, 10);
-			  	      var capOrgName = group.organizationName.capitalize();
+			  	        var finalDate = dateString.slice(0, 10);
+			  	        var capOrgName = group.organizationName.capitalize();
 
 			  		    var transporter = nodemailer.createTransport({
 			  		      host: GodaddySMTP,
