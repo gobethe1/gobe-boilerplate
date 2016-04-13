@@ -8,11 +8,14 @@
 			                                    'has-error': form.body.$invalid && submitted}">
 			   <textarea type="text" rows="3" name="body" ng-model="comment.body" class="form-control"
 			   placeholder="Let us know how we are doing! We look forward to co-creating this software with you."
-			   ng-maxlength="15"
+			   ng-maxlength="500"
 			   required>
 			  </textarea>
 			</div>
 			<!-- end feedback section -->
+			<!-- error -->
+			<span class="text-danger" ng-if="form.body.$error.maxlength"> Limit 500 Characters</span>
+			<!-- end error -->
 			<div class="text-right">
 				<button class="btn btn-lg" type="submit" ng-submit="publishEvent(form)"
 				ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}">
@@ -26,7 +29,8 @@
 			
 			<div class="row">
 				<div class="col-xs-6">
-				  <strong>{{comment.email}}</strong>
+				  <span ng-if="isAdmin"><strong>{{comment.email}}</strong></span>
+				  <span ng-if="!isAdmin"><strong>{{ comment.email.split('@')[0]}}</strong></span>	
 				</div>
 				<div class="col-xs-6 text-right">
 					{{comment.createdAt | date:"MMMM dd, yyyy h:mm a" }}
@@ -38,6 +42,7 @@
 					{{comment.body}}
 				</div>
 			</div>
+			<br>
 			<br>
 		</div>
 	</div>
