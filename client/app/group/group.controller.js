@@ -7,6 +7,7 @@ angular.module('gobeApp')
     $scope.listGroups = groupModel;
     $scope.newGroup = {};
     $scope.newGroup.emailList = [];
+    // $scope.newGroup.address = {};
     $scope.emailList = $scope.newGroup.emailList;
     $scope.hover = true;
     $scope.currentUser = currentUser;
@@ -25,16 +26,26 @@ angular.module('gobeApp')
       }
     };
 
+    var checkAddress = function(){
+        $scope.newGroup.address   = $scope.newGroup.address.formatted_address;
+        var fullAddress           = $scope.newGroup.address;
+        var addressArray          = fullAddress.split(',');
+        var stateAndZip           = addressArray[addressArray.length - 2].split(' ');
+        var zip                   = stateAndZip[2];
+        $scope.newGroup.zipCode   = zip;
+    };
+
+
     var zipCodeApiKey = "js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4";
     var newArr = [];
 
     $scope.addGroup = function addGroup(form) {
-        // console.log($scope.newGroup)
+        console.log($scope.newGroup)
         $scope.newGroup = $scope.newGroup;
         $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
         $scope.submitted = true;
+        checkAddress();
            if(form.$valid){
-              
               $http({  method: "GET",
                       url: 'https://www.zipcodeapi.com/rest/' + zipCodeApiKey + '/radius.json/' + $scope.newGroup.zipCode + '/' + $scope.newGroup.matchRadius + '/mile',
                       headers: {Authorization: undefined}
@@ -65,7 +76,7 @@ angular.module('gobeApp')
              document.body.scrollTop = document.documentElement.scrollTop = 0;
          }
     };
-             
+
 
     $scope.openPaymentModal = function() {
         var modalInstance = $uibModal.open({

@@ -52,18 +52,18 @@
        </div>
       <!-- end email -->
 
-      <!-- start zip code -->
-      <div class="form-group" ng-class="{'has-success': form.zipcode.$valid && submitted,
-                                           'has-error': (form.zipcode.$invalid || form.zipcode.$error.minlength) && submitted }">
-         <label> Volunteer Zipcode</label>
-         <input type="text" ng-minlength="5" name="zipcode" ui-mask="99999" ui-mask-placeholder-char="space"
-                ng-model="newGroup.zipCode" class="form-control" required>
+      <!-- address -->
+      <div class="form-group" ng-class="{'has-success': form.address.$valid && submitted,
+                                           'has-error': form.address.$invalid && submitted }">
+         <label> Where would you like to volunteer?</label>
+         <input type="text" g-places-autocomplete name="address"
+                ng-model="newGroup.address" class="form-control" required>
       </div>
 
-      <p class="text-danger" ng-show="form.zipcode.$error.minlength && submitted">
-          Zipcode must be 5 numbers.
+      <p class="text-danger" ng-show="form.address.$error.minlength && submitted">
+          Please enter a complete address.
       </p>
-      <!-- end zip code -->
+      <!-- end address -->
 
       <!-- zip code slider -->
       <div>

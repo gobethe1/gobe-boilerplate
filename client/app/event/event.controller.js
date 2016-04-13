@@ -25,14 +25,14 @@ angular.module('gobeApp')
     $scope.newEvent.availability.thirdDateTime  = [false, false, false];
     $scope.newEvent.userId                      = currentUser._id;
 
-    var checkDate = function(event){
+    var checkAddress = function(){
         $scope.newEvent.address   = $scope.newEvent.address.formatted_address;
         var fullAddress           = $scope.newEvent.address;
         var addressArray          = fullAddress.split(',');
         var stateAndZip           = addressArray[addressArray.length - 2].split(' ');
         var zip                   = stateAndZip[2];
         $scope.newEvent.zipCode   = zip;
-    }
+    };
 
 
     $scope.confirmGroupStatus = function(event){
@@ -57,7 +57,7 @@ angular.module('gobeApp')
     $scope.addEvent = function addEvent(){
       $scope.newEvent.published = false;
       $scope.submitted = false;
-      checkDate(event);
+      checkAddress();
 
       Event.save($scope.newEvent, function(data){
         $state.go('event.list');
@@ -72,7 +72,7 @@ angular.module('gobeApp')
         console.log('published')
         $scope.newEvent.published = true;
         $scope.submitted          = true;
-        checkDate(event);
+        checkAddress();
 
         console.log($scope.newEvent.published);
            if(form.$valid){
