@@ -140,6 +140,10 @@ angular.module('gobeApp')
         return currentUser.position === 'group';
       },
 
+      activeSubscription: function(){
+        return currentUser.activeSubscription;
+      },
+
       /**
        * Get auth token
        */

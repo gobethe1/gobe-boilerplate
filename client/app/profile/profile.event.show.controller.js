@@ -4,9 +4,12 @@ angular.module('gobeApp')
   .controller('ProfileEventShowCtrl', function ($scope, $state, $stateParams, Event, eventModel, currentUser, userGroup, Path, eventShow) {
     
     $scope.event = eventShow;
-    var userZipCode = userGroup.zipCode;
-    $scope.matchedZipCodeId = userGroup._id;
     $scope.group = userGroup;
+    
+    if(userGroup){
+      var userZipCode = userGroup.zipCode;
+      $scope.matchedZipCodeId = userGroup._id;
+    }
 
     var timeArray = ["8am-12pm", "12pm-5pm", "5pm-8pm"];
 

@@ -14,7 +14,10 @@ var GroupSchema = new Schema({
   lastName: {type: String, required: true},
   email: {type: String, required: true},
   phoneNumber: {type: String, required: true},
+  address: {type: String, required: true},
   zipCode: {type: String, required: true},
+  matchRadius: Number,
+  matchZipCodeArr: Array,
   emailList: Array
 });
 

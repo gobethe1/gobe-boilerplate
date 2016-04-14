@@ -26,10 +26,12 @@
     "passport-local": "^1.0.0",
     "passport-twitter": "latest",
     "q": "^1.4.1",
+    "request": "^2.70.0",
     "serve-favicon": "~2.0.1",
     "socket.io": "^1.0.6",
     "socket.io-client": "^1.0.6",
-    "socketio-jwt": "^3.0.0"
+    "socketio-jwt": "^3.0.0",
+    "stripe": "^4.5.0"
   },
   "devDependencies": {
     "connect-livereload": "~0.4.0",

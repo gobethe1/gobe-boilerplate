@@ -8,6 +8,13 @@
     border-radius: 5px 5px 0 0;
   }
 }
+
+.modal-header{
+  border-bottom: 0px solid transparent;
+}
+.modal-footer{
+  border-top: 0px solid transparent;
+}
 .modal-primary .modal-header {
   background: $brand-primary;
 }
@@ -23,3 +30,31 @@
 .modal-danger .modal-header {
   background: $brand-danger;
 }
+
+.modal-dialog {
+    width: 400px;
+    margin: 75px auto;
+}
+
+.modal-body h3{
+	color: $primary-blue;
+}
+
+.modal-body img {
+  width: 18%;
+}
+
+.modal-form-content{
+  text-align: left;
+}
+
+@media only screen and (max-width: $screen-xs) {
+  .modal-dialog {
+    width: 90vw;
+    margin: 125px auto;
+  }
+}
+
+// .ng-invalid {
+//     color: red;
+// }

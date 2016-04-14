@@ -10,13 +10,14 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 
 $bg-blue: #4a90e2;
 $dark-blue: #152940;
-$darkest-blue: #203f62; 
+$darkest-blue: #203f62;
 $primary-blue: #4A90E2;
 $font-family-sans-serif: "Helvetica", sans-serif !important;
 $white: white;
 $black: black;
 $gray: #979797;
 $footer-black: #ffffff;
+$light-gray-slider: #cccccc;
 
 // button borders pulled from bootstrap-sass variables
 $border-radius-base:        9px !important;
@@ -147,13 +148,21 @@ footer{
     .group-button {
       border-right: 1px solid $black;
       border-left: 1px solid $black;
-
+    }
+    .cause-button {
+      border-right: 1px solid $black;
+      // border-left: 1px solid $black;
     }
 
 }
 
 .footer-active a, .footer-active i{
   color: $bg-blue;
+}
+
+footer .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 
@@ -252,10 +261,35 @@ li.current-location{
   }
 }
 
+rzslider .rz-pointer {
+  &:after {
+    top: 7px;
+    left: 8px;
+    width: 5px;
+    height: 6px;
+  }
+  top: -9px;
+  width: 20px;
+  height: 20px;
+  background-color: $light-gray-slider;
+  box-shadow: 2px 2px 1px grey
+}
+
+rzslider .rz-bar.rz-selection {
+    z-index: 2;
+    background: $primary-blue;
+  }
+
+
+
+
+
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
+@import 'comment/comment.scss';
 @import 'confirm/confirm.scss';
 @import 'event/event.scss';
 @import 'group/group.scss';

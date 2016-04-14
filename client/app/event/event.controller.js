@@ -7,21 +7,33 @@ angular.module('gobeApp')
     $scope.hover = true;
     $scope.newEvent = {};
     $scope.newEvent.availability = {};
+    $scope.newEvent.address = {};
     $scope.isAdmin = Auth.isAdmin;
     $scope.path = Path.transitionToPath;
     $scope.showLink = 'event.show';
     $scope.causeArray = ["Homeless Move-in", "Other"];
 
+    // event list sorting filters
     $scope.sort = {};
     $scope.all = {};
-    $scope.matched = {'confirmGroup': "!!"};
-    $scope.pending =  {'published': true};
-    $scope.unpublished = {'published': false};
+    $scope.matched = {'confirmGroup': "!!", 'published': true };
+    $scope.pending =  {'published': true, 'confirmGroup': null };
+    $scope.unpublished = {'published': false, 'confirmGroup': null };
 
-    $scope.newEvent.availability.firstDateTime = [false, false, false];
+    $scope.newEvent.availability.firstDateTime  = [false, false, false];
     $scope.newEvent.availability.secondDateTime = [false, false, false];
-    $scope.newEvent.availability.thirdDateTime = [false, false, false];
-    $scope.newEvent.userId = currentUser._id;
+    $scope.newEvent.availability.thirdDateTime  = [false, false, false];
+    $scope.newEvent.userId                      = currentUser._id;
+
+    var checkAddress = function(){
+        $scope.newEvent.address   = $scope.newEvent.address.formatted_address;
+        var fullAddress           = $scope.newEvent.address;
+        var addressArray          = fullAddress.split(',');
+        var stateAndZip           = addressArray[addressArray.length - 2].split(' ');
+        var zip                   = stateAndZip[2];
+        $scope.newEvent.zipCode   = zip;
+    };
+
 
     $scope.confirmGroupStatus = function(event){
       if(!event.confirmGroup){
@@ -45,8 +57,8 @@ angular.module('gobeApp')
     $scope.addEvent = function addEvent(){
       $scope.newEvent.published = false;
       $scope.submitted = false;
-      console.log('new event published');
-      console.log($scope.newEvent.published)
+      checkAddress();
+
       Event.save($scope.newEvent, function(data){
         $state.go('event.list');
       }),
@@ -59,7 +71,9 @@ angular.module('gobeApp')
       console.log(form)
         console.log('published')
         $scope.newEvent.published = true;
-        $scope.submitted = true;
+        $scope.submitted          = true;
+        checkAddress();
+
         console.log($scope.newEvent.published);
            if(form.$valid){
                Event.send($scope.newEvent,

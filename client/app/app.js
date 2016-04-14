@@ -7,22 +7,45 @@ angular.module('gobeApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'ui.mask'
+  'ui.mask',
+  'angularPayments',
+  'rzModule',
+  'google.places'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider) {
+    var $window = $windowProvider.$get();
+
+    if($window.location.hostname === 'try.gobethe1.com'){
+      $window.Stripe.setPublishableKey('pk_live_D3gze9OR9adAigqBpRtpp3Pa');
+    }
+    else{
+      $window.Stripe.setPublishableKey('pk_test_LfZukS2wLTvKs3nJue3WPNyq');
+    }
+
     $urlRouterProvider
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+    // $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+    // $httpProvider.defaults.withCredentials = true;
+    // $httpProvider.defaults.useXDomain = true;
+    // delete $httpProvider.defaults.headers.common['X-Requested-With'];
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {
       // Add authorization token to headers
       request: function (config) {
+        // console.log(config)
+        // console.log(config.url)
+        var str = config.url
+        var configUrl = /www.zipcodeapi.com/
+        var checkStr = configUrl.test(str)
+        // console.log("checkStr")
+        // console.log(checkStr)
         config.headers = config.headers || {};
-        if ($cookieStore.get('token')) {
+        if ($cookieStore.get('token') && !checkStr) {
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
         }
         return config;
@@ -44,20 +67,21 @@ angular.module('gobeApp', [
   })
 
   .run(function ($rootScope, $location, Auth, $state) {
-    // $rootScope.currentLocation = $location
+
     $rootScope.currentLocation = $location
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
         var admin = Auth.isAdmin();
-        // console.log('!admin: ', !admin)
-        // console.log('adminProtected', next.adminProtected)
-        // console.log('loggedIn', loggedIn)
-        // console.log('first eval: ', (!admin && next.adminProtected && loggedIn))
+        var activeSubscription = Auth.activeSubscription();
 
         if(!admin && next.adminProtected && loggedIn){
             event.preventDefault();
            $location.path('/');
+        }
+        if(!admin && next.activeSubscription && !activeSubscription && loggedIn){
+            event.preventDefault();
+            $location.path('/group/list')
         }
         if(next.loginPrevent && loggedIn){
            event.preventDefault();

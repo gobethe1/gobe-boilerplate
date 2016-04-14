@@ -19,6 +19,11 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
+  legacyUser: {type: Boolean, default: false},
+  activeSubscription: {type: Boolean, default: false},
+  stripeCustomerId: String,
+  stripeDiscount: {},
+  stripeData: [],
   position: String,
   hashedPassword: String,
   provider: String,
@@ -26,7 +31,9 @@ var UserSchema = new Schema({
   facebook: {},
   twitter: {},
   google: {},
-  github: {}
+  github: {},
+  createdAt: {type: Date, default: Date.now()},
+  updatedAt: Date
 });
 
 /**
@@ -114,6 +121,12 @@ UserSchema
     else
       next();
   });
+
+UserSchema
+   .pre('save', function(next) {
+   this.updatedAt = new Date();
+   next()
+  })
 
 /**
  * Methods

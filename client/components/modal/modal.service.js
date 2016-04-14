@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gobeApp')
-  .factory('Modal', function ($rootScope, $modal) {
+  .factory('Modal', function ($rootScope, $uibModal) {
     /**
      * Opens a modal
      * @param  {Object} scope      - an object to be merged with modal's scope
@@ -15,10 +15,16 @@ angular.module('gobeApp')
 
       angular.extend(modalScope, scope);
 
-      return $modal.open({
-        templateUrl: 'components/modal/modal.html',
+      return $uibModal.open({
+        templateUrl: 'components/modal/stripe.html',
         windowClass: modalClass,
-        scope: modalScope
+        scope: modalScope,
+        controller: 'ModalCtrl',
+        resolve: {
+          currentUser: function(Auth){
+             return Auth.getCurrentUser().$promise;
+          }
+        }
       });
     }
 
@@ -45,6 +51,9 @@ angular.module('gobeApp')
             var args = Array.prototype.slice.call(arguments),
                 name = args.shift(),
                 deleteModal;
+                console.log("args")
+                console.log(args)
+                console.log(arguments)
 
             deleteModal = openModal({
               modal: {
@@ -71,7 +80,42 @@ angular.module('gobeApp')
               del.apply(event, args);
             });
           };
+        },
+
+          payment: function(){
+
+              return function(){
+
+              var paymentModal = openModal({
+                modal: {
+                  size: 'sm',
+                  dismissable: true,
+                  // title: 'Confirm Delete',
+                  // html: '<p>Are you sure you want to delete <strong>' + name + '</strong> ?</p>',
+                  buttons: [{
+                    classes: 'btn-danger',
+                    text: 'Delete',
+                    click: function(e) {
+                      paymentModal.close(e);
+                    }
+                  }, {
+                    classes: 'btn-default',
+                    text: 'Cancel',
+                    click: function(e) {
+                      paymentModal.dismiss(e);
+                    }
+                  }]
+                }
+              }, 'modal-default');
+
+
+              paymentModal.result.then(function(event) {
+                  // del.apply(event, args);
+              });
+            }
+
         }
+
       }
     };
   });

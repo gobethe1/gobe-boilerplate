@@ -17,6 +17,18 @@ angular.module('gobeApp')
         params: {
           id:'me'
         }
+      },
+      createSubscription: {
+        method: 'POST',
+        params: {
+          id: 'subscription'
+        }
+      },
+      retrieveCustomer: {
+        method: 'GET',
+        params:{
+          controller: 'customer'
+        }
       }
 	  });
   });

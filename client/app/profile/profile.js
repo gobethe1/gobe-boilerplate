@@ -14,7 +14,15 @@ angular.module('gobeApp')
          eventModel: function(Event){
            return Event.query().$promise;
          },
-        userGroup: function(Group, currentUser){
+         customerInfo: function(User, currentUser){
+          if(currentUser.stripeCustomerId){
+           return User.retrieveCustomer({id: currentUser.stripeCustomerId}).$promise;
+          }
+          else{
+            return null;
+          }
+         },
+         userGroup: function(Group, currentUser){
             if(currentUser.groupId){
               return Group.get({id: currentUser.groupId}).$promise;
             }
@@ -33,7 +41,6 @@ angular.module('gobeApp')
         url: '/event',
         abstract: true,
         template: "<div ui-view></div>",
-        // templateUrl: 'app/profile/profile-details.html',
         controller: 'ProfileCtrl'
       })
       .state('profile.event.list', {

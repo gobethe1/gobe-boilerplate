@@ -6,6 +6,9 @@ var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
+var stripeKey = process.env.STRIPE_API_KEY;
+var plan = process.env.PLAN;
+var stripe = require("stripe")(stripeKey);
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -36,6 +39,45 @@ exports.create = function (req, res, next) {
   });
 };
 
+/* Create new stripe customer subscription */
+exports.createSubscription = function(req, res, next){
+  stripe.customers.create({
+    source: req.body.token,
+    plan: plan,
+    coupon: req.body.promo,
+    email: req.body.email
+  }, function(err, customer) {
+      if(err){return res.status(200).json({status: 'error', error:err})}
+      else{
+        User.findById(req.body.user_id, function (err, user) {
+            user.stripeCustomerId = customer.id;
+            user.stripeData = customer.subscriptions.data;
+            user.stripeDiscount = customer.discount;
+            user.activeSubscription = true;
+            
+            user.save(function(err) {
+              if (err){return validationError(res, err)}
+              else{
+              res.status(200).json({status:'success'});
+              }
+            });
+        });
+      }
+  });
+};
+
+/* Retrieve Stripe Customer information */
+exports.retrieveCustomer = function(req, res, next){
+    stripe.customers.retrieve(
+      req.params.id,
+      function(err, customer) {
+        if(err) return next(err)
+        if(!customer) return res.status(401).send('Unauthorized');
+        res.json(customer.subscriptions.data[0]);
+      }
+    );
+}
+
 /**
  * Get a single user
  */
@@ -44,7 +86,7 @@ exports.show = function (req, res, next) {
 
   User.findById(userId, function (err, user) {
     if (err) return next(err);
-    if (!user) return res.status(401).send('Unauthorized');
+    if (!user) return res.status(422).send('Unauthorized');
     res.json(user.profile);
   });
 };

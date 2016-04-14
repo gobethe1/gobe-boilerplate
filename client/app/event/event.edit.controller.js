@@ -21,9 +21,19 @@ angular.module('gobeApp')
       $scope.newEvent.availability.thirdDate =  new Date($scope.newEvent.availability.thirdDate);
     };
 
+    var checkAddress = function(){
+        $scope.newEvent.address   = $scope.newEvent.address.formatted_address;
+        var fullAddress           = $scope.newEvent.address;
+        var addressArray          = fullAddress.split(',');
+        var stateAndZip           = addressArray[addressArray.length - 2].split(' ');
+        var zip                   = stateAndZip[2];
+        $scope.newEvent.zipCode   = zip;
+    };
+
     $scope.updateEvent = function updateEvent(){
       $scope.newEvent.published = false;
       $scope.submitted = false;
+      checkAddress();
       var data = $scope.newEvent;
       console.log('new event published');
       console.log($scope.newEvent.published)
@@ -39,11 +49,10 @@ angular.module('gobeApp')
     };
 
     $scope.publishEvent = function publishEvent(form) {
-      console.log('form')
-      console.log(form)
       var data = $scope.newEvent;
       $scope.submitted = true;
       $scope.newEvent.published = true;
+      checkAddress();
          if(form.$valid){
              Event.sendupdate({id: $stateParams.id }, data,
                function(data){
