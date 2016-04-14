@@ -15,7 +15,7 @@ angular.module('gobeApp', [
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider) {
     var $window = $windowProvider.$get();
 
-    if($window.location.hostname === 'try.gobethe1.com'){
+    if($window.location.hostname === 'www.getgobe.com'){
       $window.Stripe.setPublishableKey('pk_live_D3gze9OR9adAigqBpRtpp3Pa');
     }
     else{
