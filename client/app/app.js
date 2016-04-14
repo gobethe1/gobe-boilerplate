@@ -15,12 +15,16 @@ angular.module('gobeApp', [
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider) {
     var $window = $windowProvider.$get();
 
-    // if($window.location.hostname === 'www.getgobe.com'){
+    console.log('window host: ', $window.location.hostname)
+    console.log('window href: ', $window.location.href)
+    console.log('window origin: ', $window.location.origin)
+    if($window.location.hostname === 'www.getgobe.com'){
       $window.Stripe.setPublishableKey('pk_live_D3gze9OR9adAigqBpRtpp3Pa');
-    // }
-    // else{
-    //   $window.Stripe.setPublishableKey('pk_test_LfZukS2wLTvKs3nJue3WPNyq');
-    // }
+    }
+    else{
+      $window.Stripe.setPublishableKey('pk_test_LfZukS2wLTvKs3nJue3WPNyq');
+    }
+
 
     $urlRouterProvider
       .otherwise('/');
