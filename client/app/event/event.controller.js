@@ -33,7 +33,7 @@ angular.module('gobeApp')
         var zip                   = stateAndZip[2];
         $scope.newEvent.zipCode   = zip;
     };
-
+    //
 
     $scope.confirmGroupStatus = function(event){
       if(!event.confirmGroup){
