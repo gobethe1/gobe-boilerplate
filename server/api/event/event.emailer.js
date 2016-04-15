@@ -307,7 +307,8 @@ function detailsToGroupLeader(event, host){
 			  	    	var dateString 				= event.confirmDate.toString();
 			  	      var finalDate 				= dateString.slice(0, 10);
 			  	      var capOrgName 				= group.organizationName.capitalize();
-			  	      var clientPhoneNumber = event.phoneNumber;
+			  	      var number 						= event.phoneNumber.toString();
+	  	  				var clientPhoneNumber = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
 			  	      var eventAddress 			= event.address;
 
 			  		    var transporter = nodemailer.createTransport({
