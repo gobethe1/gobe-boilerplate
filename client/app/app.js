@@ -10,20 +10,25 @@ angular.module('gobeApp', [
   'ui.mask',
   'angularPayments',
   'rzModule',
-  'google.places'
+  'google.places',
+  'config'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider, ENV) {
     var $window = $windowProvider.$get();
+    $window.Stripe.setPublishableKey(ENV.stripePublishKey)
 
-    console.log('window host: ', $window.location.hostname)
-    console.log('window href: ', $window.location.href)
-    console.log('window origin: ', $window.location.origin)
-    if($window.location.hostname === 'www.getgobe.com'){
-      $window.Stripe.setPublishableKey('pk_live_D3gze9OR9adAigqBpRtpp3Pa');
-    }
-    else{
-      $window.Stripe.setPublishableKey('pk_test_LfZukS2wLTvKs3nJue3WPNyq');
-    }
+    // console.log('window host: ', $window.location.hostname)
+    // console.log('window href: ', $window.location.href)
+    // console.log('window origin: ', $window.location.origin)
+    // if($window.location.hostname === 'www.getgobe.com'){
+    //   $window.Stripe.setPublishableKey('pk_live_D3gze9OR9adAigqBpRtpp3Pa');
+    // }
+    // else{
+    //   $window.Stripe.setPublishableKey('pk_test_LfZukS2wLTvKs3nJue3WPNyq');
+    // }
+
+    console.log('ENV', ENV)
+    console.log(ENV.stripePublishKey)
 
 
     $urlRouterProvider

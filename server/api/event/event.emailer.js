@@ -17,7 +17,6 @@ String.prototype.capitalize = function() {
 
 
 
-//ORIGINAL MATCHZIPCODE FN
 function matchZipCode(event, host){
 
   async.waterfall([
@@ -28,11 +27,7 @@ function matchZipCode(event, host){
 	      if (!group) {
 	      	// console.log(err)
 	        // return res.status(404).send('There are no zipcode matches.');
-	        // console.log("!group")
-	        // console.log(group)
 	      }
-	       // console.log("group")
-	       // console.log(group)
 	       done(err, group);
 	    });
 	  },
@@ -100,7 +95,7 @@ function matchZipCode(event, host){
 	  if (err) return (err);
 	});
 }
-//END ORIGINAL MATCHZIPCODE FN
+
 
 function volunteerMatch(event, host){
 
