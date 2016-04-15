@@ -2,6 +2,6 @@
 
  angular.module('config', [])
 
-.constant('ENV', {name:'production',apiEndpoint:'http://www.getgobe.com',stripePublishKey:'pk_live_D3gze9OR9adAigqBpRtpp3Pa'})
+.constant('ENV', {name:'development',apiEndpoint:'http://localhost:9000',stripePublishKey:'pk_test_LfZukS2wLTvKs3nJue3WPNyq'})
 
 ;

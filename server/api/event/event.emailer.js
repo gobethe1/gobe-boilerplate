@@ -120,7 +120,10 @@ function volunteerMatch(event, host){
 	  	  var capLastName 			= _.capitalize(group.lastName);
 	  	  var finalDate 				= dateString.slice(0, 10);
 	  	  var capOrgName 				= group.organizationName.capitalize();
-	  	  var groupPhoneNumber 	= group.phoneNumber;
+	  	  var number 						= group.phoneNumber.toString();
+	  	  var groupPhoneNumber  = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
+
+
 	  	  var gobeKitLink				= 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
 	  	  var gobeInstagram 		= 'https://www.instagram.com/gobethe1/';
 
