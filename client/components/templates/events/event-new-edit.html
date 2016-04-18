@@ -20,12 +20,12 @@
 			<div class="form-group" ng-if="newEvent.causeType === 'Homeless Move-in'">
 			  <label>Is this client a veteran?</label><br>
 				<label class="radio-inline">
-				  <input name="veteranYes" ng-model="newEvent.veteran" value="true" type="radio">
+				  <input name="veteranYes" ng-model="newEvent.veteran" ng-value="true" type="radio">
 				  <span class="c-indicator"></span>
 				  Yes
 				</label>
 				<label class="radio-inline">
-				  <input name="veteranNo" ng-model="newEvent.veteran" value="false" type="radio">
+				  <input name="veteranNo" ng-model="newEvent.veteran" ng-value="false" type="radio">
 				  <span class="c-indicator"></span>
 				 No
 				</label>
@@ -150,7 +150,7 @@
 					  Morning<br> 8-12
 					</label>
 					<label class="checkbox-inline">
-					  <input name="afternoon" ng-model="newEvent.availability.firstDateTime[1]"type="checkbox"  ng-required="!newEvent.availability.firstDateTime[0] && !newEvent.availability.firstDateTime[1] && !newEvent.availability.firstDateTime[2]">
+					  <input name="afternoon" ng-model="newEvent.availability.firstDateTime[1]" type="checkbox"  ng-required="!newEvent.availability.firstDateTime[0] && !newEvent.availability.firstDateTime[1] && !newEvent.availability.firstDateTime[2]">
 					  <span class="c-indicator"></span>
 					 Afternoon<br> 12-5
 					</label>
