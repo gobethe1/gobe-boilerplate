@@ -20,6 +20,7 @@ var EventSchema = new Schema({
   organizerEmail: String,
   organizerPhoneNumber: String,
   address: String,
+  meetupAddress: String,
   zipCode: String,
   gender: String,
   age: Number,

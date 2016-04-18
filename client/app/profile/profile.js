@@ -57,5 +57,14 @@ angular.module('gobeApp')
             return Event.get({id: $stateParams.id}).$promise;
           }
         }
+            groupId: function(userGroup, currentUser){
+            if(currentUser.groupId){
+              return userGroup;
+            }
+            else{
+              return null;
+            }
+          }
+        }
       });
   });

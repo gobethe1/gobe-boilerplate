@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-6 col-xs-12">
       <div class="row event-list-sub-nav">
-        <div class="col-xs-3 col-xs-offset-3" ng-init="sort = allZipCode" ng-class="{'active-sub': sort === allZipCode}"><a href="" ng-click="sort = allZipCode">Available</a></div>
+        <div class="col-xs-3 col-xs-offset-3" ng-init="sort = allZipCode" ng-class="{'active-sub': sort === allZipCode}"><a href="" ng-click="sort = checkMatchedArray()">Available</a></div>
         <div class="col-xs-3" ng-class="{'active-sub': sort == matchedZipCode}"><a href=""  ng-click="sort = matchedZipCode" style="white-space:nowrap">Your Causes</a></div>
       </div>
     </div>
