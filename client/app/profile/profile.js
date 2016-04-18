@@ -4,6 +4,7 @@ angular.module('gobeApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('profile', {
+        cache: false,
         url: '/profile',
         templateUrl: 'app/profile/profile.html',
         controller: 'ProfileCtrl',
@@ -55,15 +56,6 @@ angular.module('gobeApp')
         resolve:{
            eventShow: function(Event, $stateParams){
             return Event.get({id: $stateParams.id}).$promise;
-          }
-        }
-            groupId: function(userGroup, currentUser){
-            if(currentUser.groupId){
-              return userGroup;
-            }
-            else{
-              return null;
-            }
           }
         }
       });

@@ -64,6 +64,9 @@ angular.module('gobeApp')
 
     $scope.confirmGroupTime = function(form){
       $scope.submitted = true;
+      $scope.event.meetupAddress = $scope.event.meetupAddress.formatted_address;
+      console.log("scope event meetupAddress")
+      console.log($scope.event.meetupAddress)
       $scope.event.confirmGroup = $stateParams.group_id;
 
       if(form.$valid && $scope.event.confirmTime){

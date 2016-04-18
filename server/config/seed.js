@@ -165,6 +165,7 @@ q.fcall(function() {
           lastName: 'Figueroa',
           email: 'sally@example.com', //'midgetllamas182@yahoo.com',
           phoneNumber: '313333333',
+          address: '123 Example Street',
           zipCode: '90017',
           matchZipCodeArr: ['90071', '90017', '90012', '90050', '90020']
         },{
@@ -173,6 +174,7 @@ q.fcall(function() {
           lastName: 'P',
           email: 'cassie.purtlebaugh@example.com', //'gobethe1dev@gmail.com',
           phoneNumber: '7467447474',
+          address: '456 Example Street',
           zipCode: '90000',
           matchZipCodeArr: ['90050', '90020']
         },{
@@ -181,6 +183,7 @@ q.fcall(function() {
           lastName: 'Rock',
           email: 'gobethe1dev@gmail.com',
           phoneNumber: '7467447474',
+          address: '789 Example Street',
           zipCode: '90017',
           matchZipCodeArr: ['90071', '90050', '90020'],
           emailList: ['gobethe1dev@gmail.com', 'grock006@example.com', 'cassie.purtlebaugh@example.com']
@@ -190,6 +193,7 @@ q.fcall(function() {
           lastName: 'Malone',
           email: 'pmalone@example.com',
           phoneNumber: '7467447474',
+          address: '101 Example Street',
           zipCode: '90012',
           matchZipCodeArr: ['90071', '90050', '90020', '90028']
         },
@@ -202,7 +206,3 @@ q.fcall(function() {
 
 
   });
-
-// .then(function(){
-//       seedEventUser('gobethe1dev@gmail.com', 'bob');
-//   })

@@ -9,6 +9,7 @@
 		<!-- conditional based on matched or not -->
 		<div class="row">
 		 <div class="col-xs-12 text-center">
+		 	GROUP ID: {{group._id}}<br>
 			<button ng-show="matchedZipCodeId !== event.confirmGroup"
 				ui-sref="confirm.group({event_id: event._id , group_id: group._id })"
 				class="btn btn-primary btn-lg">
