@@ -48,6 +48,15 @@
   text-align: left;
 }
 
+.thank-you-underline {
+    margin-top: 0;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 3px solid $primary-blue;
+    text-decoration: underline;
+    width: 56%;
+}
+
 @media only screen and (max-width: $screen-xs) {
   .modal-dialog {
     width: 90vw;
