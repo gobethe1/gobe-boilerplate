@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('EventCtrl', function ($scope, $state, $stateParams, Event, eventModel, currentUser, Auth, Path) {
+  .controller('EventCtrl', ['$scope', '$state', '$stateParams', 'Event', 'eventModel',
+    'currentUser', 'Auth', 'Path', '$uibModal',
+    function ($scope, $state, $stateParams, Event, eventModel, currentUser, Auth, Path, $uibModal) {
     // console.log(currentUser)
   	$scope.listEvents = eventModel;
     $scope.hover = true;
@@ -33,7 +35,19 @@ angular.module('gobeApp')
         var zip                   = stateAndZip[2];
         $scope.newEvent.zipCode   = zip;
     };
-    //
+
+    // payment modal
+    $scope.openPaymentModal = function() {
+    var modalInstance = $uibModal.open({
+        templateUrl: 'components/modal/stripe.html',
+        controller: 'ModalCtrl',
+        resolve: {
+          currentUser: ['Auth', function(Auth){
+             return Auth.getCurrentUser().$promise;
+          }]
+        }
+      });
+    };
 
     $scope.confirmGroupStatus = function(event){
       if(!event.confirmGroup){
@@ -196,4 +210,4 @@ angular.module('gobeApp')
   afterTomorrow.setDate(tomorrow.getDate() + 1);
 
 
-});
+}]);

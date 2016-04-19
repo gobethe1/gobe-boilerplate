@@ -6,7 +6,7 @@
 <!-- thank you message upon successful payment -->
 <div class="modal-body text-center" ng-if="currentUser.activeSubscription">
   <h3>Thank you!</h3>
-  <p>Thank you for subscribing to GOBE. We hope you enjoy your free 30 day trial.</p>
+  <p>Thank you for subscribing to change your community with GOBE. Enjoy your free 30 day trial. Need to cancel? Email us at info@gobethe1.com.</p>
 </div>
 
 
@@ -34,7 +34,7 @@
     <!-- credit card -->
     <div class="row">
       <div class="col-sm-12" ng-class="{'has-error': checkoutForm.card.$invalid  && submitted}">
-         <input ng-model="number" class="form-control" placeholder="Card Number" 
+         <input ng-model="number" class="form-control" placeholder="Card Number"
          payments-format="card" payments-validate="card" payments-type-model="type" name="card" required/>
          <div ng-show="checkoutForm.card.$invalid && submitted"
                ng-class="{'text-danger': checkoutForm.card.$invalid && submitted }">
@@ -48,7 +48,7 @@
     <div class="row">
       <div class="col-sm-4" ng-class="{'has-error': checkoutForm.expiry.$invalid && submitted}">
 
-         <input ng-model="expiry"class="form-control" placeholder="Expiration" 
+         <input ng-model="expiry"class="form-control" placeholder="Expiration"
          payments-format="expiry" payments-validate="expiry" name="expiry" required/>
          <div ng-if="checkoutForm.expiry.$invalid && submitted"
                ng-class="{'text-danger': checkoutForm.expiry.$invalid && submitted }">
@@ -59,8 +59,8 @@
 
       <!-- cvc # -->
       <div class="col-sm-4" ng-class="{'has-error': checkoutForm.cvc.$invalid && submitted}">
-    
-         <input ng-model="cvc" class="form-control"placeholder="CVC" payments-format="cvc"  
+
+         <input ng-model="cvc" class="form-control"placeholder="CVC" payments-format="cvc"
          payments-validate="cvc" name="cvc" required/>
          <div ng-if="checkoutForm.cvc.$invalid && submitted"
                ng-class="{'text-danger': checkoutForm.cvc.$invalid && submitted }">
@@ -91,7 +91,7 @@
     </button>
   </form>
   <br>
-  <p>Need multiple groups? <br>
+  <p>Questions? <br>
   Contact us at <a href="mailto:info@gobethe1.com"><strong>info@gobethe1.com</strong></a></p>
 </div>
 <div class="modal-footer">
