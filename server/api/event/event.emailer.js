@@ -69,9 +69,9 @@ function matchZipCode(event, host){
 				     'and times and let us know if you are available:</p>' +
 				     '<div style="text-align:center"><a href=' + link +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a></div><br>' +
 				     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold;">What\'s this invite about?</p>' +
-						 '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s' +
+						 '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s ' +
 						 'time to party! This person now lives in your area and you have been invited to help welcome them home! Ready to make a difference? ' +
-						 'Simply, accept the invite and start recruiting your friends.</p>' +
+						 ' Simply, accept the invite and start recruiting your friends.</p>' +
 						 '<p style="font-size:14px;font-family:sans-serif;">We hope to see you there,</p>' +
 			       '<p style="font-size:14px;font-family:sans-serif;">GOBE team</p>' +
 						 '</td>' +
@@ -113,32 +113,24 @@ function volunteerMatch(event, host){
 		  },
 		  function(group, done) {
 
-	  	  var dateString 				= event.confirmDate.toString();
-	  	  var clientFirstName 	= event.firstName.capitalize();
-	  	  var eventAddress 			= event.address;
-		  	var capFirstName 			= _.capitalize(group.firstName);
-	  	  var capLastName 			= _.capitalize(group.lastName);
-	  	  var finalDate 				= dateString.slice(0, 10);
-	  	  var capOrgName 				= group.organizationName.capitalize();
-	  	  var number 						= group.phoneNumber.toString();
+	  	  var dateString = event.confirmDate.toString();
+	  	  var clientFirstName = event.firstName.capitalize();
+	  	  var eventAddress = event.address;
+		  var capFirstName = _.capitalize(group.firstName);
+	  	  var capLastName = _.capitalize(group.lastName);
+	  	  var finalDate = dateString.slice(0, 10);
+	  	  var capOrgName = group.organizationName.capitalize();
+	  	  var number = group.phoneNumber.toString();
 	  	  var groupPhoneNumber  = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
+	  	  var gobeKitLink = 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
+	  	  var gobeInstagram = 'https://www.instagram.com/gobethe1/';
 
-
-	  	  var gobeKitLink				= 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
-	  	  var gobeInstagram 		= 'https://www.instagram.com/gobethe1/';
-
-		  	// console.log("group emailList")
-		  	// console.log(group.emailList)
 
 		    group.emailList.map(function(value){
-		    	// console.log("email value")
-		    	// console.log(value)
-		    	// var index = _.indexOf(event.sentEmails, value.email)
 
 		    	var linkConfirm = 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ event._id + '/' + value + '/yes';
 		    	var linkReject =  'http://' + host + '/confirm/volunteer/' + group._id + '/'+ event._id + '/' + value + '/no';
-		    	// console.log("link")
-		    	// console.log(linkConfirm)
+
 			    var transporter = nodemailer.createTransport({
 			      host: GodaddySMTP,
 			      port: 25,
@@ -167,6 +159,12 @@ function volunteerMatch(event, host){
 					    '<p> Point person name: ' + capFirstName + ' ' + capLastName + '<br>' +
 					    'Point person phone: ' + groupPhoneNumber + '<br>' +
 					    'Event address: ' + eventAddress + ' </p>' +
+
+					    // meetup address
+					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Meet up with your group at this address:</p>' +
+					    '<p>' + event.meetupAddress + '<p>' +
+					    '<br>' +
+					    '<p> From the meetup spot ' + capFirstName + ', your group leader, will direct you to the event</p>' +
 
 					    // what to bring section
 					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to bring? </p>' +
@@ -209,10 +207,7 @@ function volunteerMatch(event, host){
 }
 
 function detailsToEventCreator(event, host){
-		  // console.log("confirmGroup")
-		  // console.log(event.confirmGroup)
-		  // console.log('event')
-		  // console.log(event)
+
 		  async.waterfall([
 			  function(done) {
 			    Group.findById( event.confirmGroup, function(err, group) {
@@ -235,9 +230,9 @@ function detailsToEventCreator(event, host){
 			  function(user, group, done) {
 
 			  	      var eventContact = user.email;
-			  	    	var capFirstName = _.capitalize(event.firstName);
-			  	    	var capLastName = _.capitalize(event.lastName);
-			  	    	var dateString = event.confirmDate.toString();
+			  	      var capFirstName = _.capitalize(event.firstName);
+			  	      var capLastName = _.capitalize(event.lastName);
+			  	      var dateString = event.confirmDate.toString();
 			  	      var finalDate = dateString.slice(0, 10);
 			  	      var capOrgName = group.organizationName.capitalize();
 
@@ -271,8 +266,7 @@ function detailsToEventCreator(event, host){
 			  		    	console.log(mailOptions.to)
 			  		      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 			  		    });
-			  	// detailsToGroupLeader(event, host);
-			  	// volunteerMatch(event, host);
+
 			    done('done');
 
 
@@ -297,19 +291,15 @@ function detailsToGroupLeader(event, host){
 	  function(group, done) {
 	    	// var index = _.indexOf(event.sentEmails, value.email)
 
-	    	// var link = 'http://' + host + '/confirm/' + event._id + '/' + value._id;
-	    	// var capFirstName = _.capitalize(value.firstName);
-	    	// var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey
-
-						var groupContact 					= group.email;
-			  	    	var capFirstName 			= _.capitalize(event.firstName);
-			  	    	var capLastName 			= _.capitalize(event.lastName);
-			  	    	var dateString 				= event.confirmDate.toString();
-			  	      var finalDate 				= dateString.slice(0, 10);
-			  	      var capOrgName 				= group.organizationName.capitalize();
-			  	      var number 						= event.phoneNumber.toString();
-	  	  				var clientPhoneNumber = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
-			  	      var eventAddress 			= event.address;
+					  var groupContact = group.email;
+			  	      var capFirstName = _.capitalize(event.firstName);
+			  	      var capLastName = _.capitalize(event.lastName);
+			  	      var dateString = event.confirmDate.toString();
+			  	      var finalDate = dateString.slice(0, 10);
+			  	      var capOrgName = group.organizationName.capitalize();
+			  	      var number = event.phoneNumber.toString();
+	  	  			  var clientPhoneNumber = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
+			  	      var eventAddress = event.address;
 
 			  		    var transporter = nodemailer.createTransport({
 			  		      host: GodaddySMTP,
@@ -340,6 +330,10 @@ function detailsToGroupLeader(event, host){
 							    '<p> Name: ' + capFirstName + ' ' + capLastName + '<br>' +
 							    'Phone: ' + clientPhoneNumber + '<br>' +
 							    'Event address: ' + eventAddress + ' </p>' +
+
+							    //meetup address
+							     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Address where the group will meet</p>' +
+							    '<p>' + event.meetupAddress + '</p>' +
 
 							    // what to bring section
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to bring? </p>' +
