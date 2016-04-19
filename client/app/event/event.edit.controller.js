@@ -31,16 +31,15 @@ angular.module('gobeApp')
     };
 
     $scope.updateEvent = function updateEvent(){
-      $scope.newEvent.published = false;
       $scope.submitted = false;
       checkAddress();
       var data = $scope.newEvent;
-      console.log('new event published');
-      console.log($scope.newEvent.published)
+      // console.log('new event published');
+      // console.log($scope.newEvent.published)
         Event.update({id: $stateParams.id}, data,
            function(data){
-              console.log('data')
-              console.log(data)
+              // console.log('data')
+              // console.log(data)
                 $state.go('event.list')
                }),
            function(err){
@@ -56,8 +55,8 @@ angular.module('gobeApp')
          if(form.$valid){
              Event.sendupdate({id: $stateParams.id }, data,
                function(data){
-                console.log('data')
-                console.log(data)
+                // console.log('data')
+                // console.log(data)
                   $state.go('event.list')
                  }),
                  function(err){
