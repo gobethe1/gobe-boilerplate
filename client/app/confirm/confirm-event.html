@@ -116,15 +116,15 @@
 			<!-- meet up address -->
 			<div class="form-group" ng-class="{ 'has-success': form.meetupAddress.$valid && submitted,
 			                                     'has-error': form.meetupAddress.$invalid && submitted }">
-        <input type="text" g-places-autocomplete  name="meetupAddress" ng-model="event.meetupAddress" placeholder="Enter an address, business name, landmark" class="form-control" required/>
-      </div>
+        		<input type="text" g-places-autocomplete  name="meetupAddress" ng-model="event.meetupAddress" placeholder="Enter an address, business name, landmark" class="form-control" required/>
+      		</div>
 			<!-- end meet up meetupAddresss -->
 
 			<!-- rsvp -->
 			<div class="text-right">
 				<button class="btn btn-lg" type="submit"
 				ng-class="{ 'btn-primary': form.$valid && event.confirmTime, 'btn-secondary': form.$invalid && !event.confirmTime}">
-					Send RSVP
+					Next
 				</button>
 			</div>
 			<!-- end rsvp -->
