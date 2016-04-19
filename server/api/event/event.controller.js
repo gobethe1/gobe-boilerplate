@@ -40,12 +40,10 @@ exports.update = function(req, res) {
     updated.availability = req.body.availability;
     event.markModified('confirmedEmails');
     event.markModified('rejectedEmails');
-    // console.log('updated');
-    // console.log(updated.confirmedEmails);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      if((event.published) && ((event.confirmGroup !== null) && (event.confirmedEmails.length === 0))){
-      eventEmailer.detailsToGroupLeader(event, req.headers.host);
+      if((event.causeType === 'Homeless Move-in') && (event.published) && ((event.confirmGroup !== null) && (event.confirmedEmails.length === 0))){
+        eventEmailer.detailsToGroupLeader(event, req.headers.host);
       }
       return res.status(200).json(event);
     });
@@ -57,7 +55,6 @@ exports.send = function(req, res) {
   Event.create(req.body, function(err, event) {
     if(err) { return handleError(res, err); }
     if(event.causeType === 'Homeless Move-in'){
-      console.log(event)
       eventEmailer.matchZipCode(event, req.headers.host);
     }
     return res.status(201).json(event);
@@ -65,7 +62,6 @@ exports.send = function(req, res) {
 };
 
 exports.sendupdate = function(req, res) {
-  console.log(req.body)
   if(req.body._id) { delete req.body._id; }
   Event.findById(req.params.id, function (err, event) {
     if (err) { return handleError(res, err); }

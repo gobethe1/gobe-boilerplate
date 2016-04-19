@@ -17,6 +17,16 @@ angular.module('gobeApp')
       }
     };
 
+    var checkAddress = function(){
+        $scope.newGroup.address   = $scope.newGroup.address.formatted_address;
+        var fullAddress           = $scope.newGroup.address;
+        var addressArray          = fullAddress.split(',');
+        var stateAndZip           = addressArray[addressArray.length - 2].split(' ');
+        var zip                   = stateAndZip[2];
+        $scope.newGroup.zipCode   = zip;
+    };
+
+
     $scope.updateEmail = function updateEmail(){
       $scope.emailList.push($scope.email);
       $scope.email = null;
@@ -38,6 +48,7 @@ angular.module('gobeApp')
 
 
     $scope.updateGroup = function addGroup(form) {
+      checkAddress();
       var data = $scope.newGroup;
       $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
 

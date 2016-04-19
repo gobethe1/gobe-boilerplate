@@ -20,6 +20,7 @@ var EventSchema = new Schema({
   organizerEmail: String,
   organizerPhoneNumber: String,
   address: String,
+  meetupAddress: String,
   zipCode: String,
   gender: String,
   age: Number,
@@ -40,7 +41,6 @@ var EventSchema = new Schema({
   confirmGroup: {type: mongoose.Schema.Types.ObjectId, ref: 'Group', default:null},
   confirmDate: Date,
   confirmTime: String,
-  // sentEmails: Array,
   confirmedEmails: Array,
   rejectedEmails: Array
 });

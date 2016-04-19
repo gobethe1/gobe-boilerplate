@@ -36,7 +36,7 @@
           </tr>
           <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
               <th>{{createLabel(event.causeType, 'address')}} address:</th>
-              <td>{{event.address | capitalize}}</td>
+              <td>{{event.address}}</td>
           </tr>
           <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
               ng-hide="event.causeType !== 'Homeless Move-in'">

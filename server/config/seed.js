@@ -88,7 +88,7 @@ q.fcall(function() {
           eventName: 'Feed Da Poor',
           organizerFirstName: 'Cynthia',
           organizerLastName: 'Pickles',
-          organizerEmail: 'cassie.purtlebaugh@gmail.com',
+          organizerEmail: 'cassie.purtlebaugh@example.com',
           zipCode: '90012',
           organizerPhoneNumber: '1112223333',
           notes: 'Let\'s help save the world and make a difference',
@@ -108,7 +108,7 @@ q.fcall(function() {
           eventName: 'Music for Kids',
           organizerFirstName: 'Sandra',
           organizerLastName: 'B',
-          organizerEmail: 'cassie.purtlebaugh@gmail.com',
+          organizerEmail: 'cassie.purtlebaugh@example.com',
           organizerPhoneNumber: '1112223333',
           notes: 'Let\'s help save the world and make a difference',
           zipCode: '90017',
@@ -165,31 +165,35 @@ q.fcall(function() {
           lastName: 'Figueroa',
           email: 'sally@example.com', //'midgetllamas182@yahoo.com',
           phoneNumber: '313333333',
+          address: '123 Example Street',
           zipCode: '90017',
           matchZipCodeArr: ['90071', '90017', '90012', '90050', '90020']
         },{
           organizationName: 'Homes for vets',
           firstName: 'Casper',
           lastName: 'P',
-          email: 'cassie.purtlebaugh@example.com', //'gobethe1dev@gmail.com',
+          email: 'cassie.purtlebaugh@example.com', //'gobethe1dev@example.com',
           phoneNumber: '7467447474',
+          address: '456 Example Street',
           zipCode: '90000',
           matchZipCodeArr: ['90050', '90020']
         },{
           organizationName: 'Greg Rocks',
           firstName: 'Greg',
           lastName: 'Rock',
-          email: 'gobethe1dev@gmail.com',
+          email: 'gobethe1dev@example.com',
           phoneNumber: '7467447474',
+          address: '789 Example Street',
           zipCode: '90017',
           matchZipCodeArr: ['90071', '90050', '90020'],
-          emailList: ['gobethe1dev@gmail.com', 'grock006@example.com', 'cassie.purtlebaugh@example.com']
+          emailList: ['gobethe1dev@example.com', 'grock006@example.com', 'cassie.purtlebaugh@example.com']
         },{
           organizationName: 'Feed The Homeless',
           firstName: 'Patty',
           lastName: 'Malone',
           email: 'pmalone@example.com',
           phoneNumber: '7467447474',
+          address: '101 Example Street',
           zipCode: '90012',
           matchZipCodeArr: ['90071', '90050', '90020', '90028']
         },
@@ -202,7 +206,3 @@ q.fcall(function() {
 
 
   });
-
-// .then(function(){
-//       seedEventUser('gobethe1dev@gmail.com', 'bob');
-//   })

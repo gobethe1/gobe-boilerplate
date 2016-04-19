@@ -3,14 +3,17 @@
 angular.module('gobeApp')
   .controller('ProfileEventCtrl', function ($scope, $state, $stateParams, Event, eventModel, currentUser, userGroup) {
     
-    if(userGroup){
-      var userZipCode = userGroup.zipCode;
-      var matchedZipCode = userGroup._id;
+    $scope.checkMatchedArray = function(event, index) {
+      return !event.confirmGroup && userGroup.matchZipCodeArr.indexOf(event.zipCode) !== -1;
     }
+
+    if(userGroup){
+      var groupId = userGroup._id;
+    }
+    
     $scope.listEvents = eventModel;
     $scope.hover = true;
-    $scope.allZipCode = {'zipCode': userZipCode, 'confirmGroup': null};
-    $scope.matchedZipCode =  {'confirmGroup': matchedZipCode};
+    $scope.matchedZipCode =  {'confirmGroup': groupId};
     $scope.showLink = 'profile.event.show';
 
     $scope.confirmGroupStatus = function(event){

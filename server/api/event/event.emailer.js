@@ -10,6 +10,8 @@ var nodemailer = require('nodemailer');
 var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 var GoogleAPIKey = process.env.GOOGLE_API_KEY;
+var gobeKitLink				= 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
+var gobeInstagram 		= 'https://www.instagram.com/gobethe1/';
 
 String.prototype.capitalize = function() {
     return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
@@ -17,7 +19,6 @@ String.prototype.capitalize = function() {
 
 
 
-//ORIGINAL MATCHZIPCODE FN
 function matchZipCode(event, host){
 
   async.waterfall([
@@ -28,11 +29,7 @@ function matchZipCode(event, host){
 	      if (!group) {
 	      	// console.log(err)
 	        // return res.status(404).send('There are no zipcode matches.');
-	        // console.log("!group")
-	        // console.log(group)
 	      }
-	       // console.log("group")
-	       // console.log(group)
 	       done(err, group);
 	    });
 	  },
@@ -72,9 +69,9 @@ function matchZipCode(event, host){
 				     'and times and let us know if you are available:</p>' +
 				     '<div style="text-align:center"><a href=' + link +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a></div><br>' +
 				     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold;">What\'s this invite about?</p>' +
-						 '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s' +
+						 '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s ' +
 						 'time to party! This person now lives in your area and you have been invited to help welcome them home! Ready to make a difference? ' +
-						 'Simply, accept the invite and start recruiting your friends.</p>' +
+						 ' Simply, accept the invite and start recruiting your friends.</p>' +
 						 '<p style="font-size:14px;font-family:sans-serif;">We hope to see you there,</p>' +
 			       '<p style="font-size:14px;font-family:sans-serif;">GOBE team</p>' +
 						 '</td>' +
@@ -100,7 +97,7 @@ function matchZipCode(event, host){
 	  if (err) return (err);
 	});
 }
-//END ORIGINAL MATCHZIPCODE FN
+
 
 function volunteerMatch(event, host){
 
@@ -116,29 +113,24 @@ function volunteerMatch(event, host){
 		  },
 		  function(group, done) {
 
-	  	  var dateString 				= event.confirmDate.toString();
-	  	  var clientFirstName 	= event.firstName.capitalize();
-	  	  var eventAddress 			= event.address;
-		  	var capFirstName 			= _.capitalize(group.firstName);
-	  	  var capLastName 			= _.capitalize(group.lastName);
-	  	  var finalDate 				= dateString.slice(0, 10);
-	  	  var capOrgName 				= group.organizationName.capitalize();
-	  	  var groupPhoneNumber 	= group.phoneNumber;
-	  	  var gobeKitLink				= 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
-	  	  var gobeInstagram 		= 'https://www.instagram.com/gobethe1/';
+	  	  var dateString = event.confirmDate.toString();
+	  	  var clientFirstName = event.firstName.capitalize();
+	  	  var eventAddress = event.address;
+		  var capFirstName = _.capitalize(group.firstName);
+	  	  var capLastName = _.capitalize(group.lastName);
+	  	  var finalDate = dateString.slice(0, 10);
+	  	  var capOrgName = group.organizationName.capitalize();
+	  	  var number = group.phoneNumber.toString();
+	  	  var groupPhoneNumber  = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
+	  	  var gobeKitLink = 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
+	  	  var gobeInstagram = 'https://www.instagram.com/gobethe1/';
 
-		  	// console.log("group emailList")
-		  	// console.log(group.emailList)
 
 		    group.emailList.map(function(value){
-		    	// console.log("email value")
-		    	// console.log(value)
-		    	// var index = _.indexOf(event.sentEmails, value.email)
 
 		    	var linkConfirm = 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ event._id + '/' + value + '/yes';
 		    	var linkReject =  'http://' + host + '/confirm/volunteer/' + group._id + '/'+ event._id + '/' + value + '/no';
-		    	// console.log("link")
-		    	// console.log(linkConfirm)
+
 			    var transporter = nodemailer.createTransport({
 			      host: GodaddySMTP,
 			      port: 25,
@@ -167,6 +159,12 @@ function volunteerMatch(event, host){
 					    '<p> Point person name: ' + capFirstName + ' ' + capLastName + '<br>' +
 					    'Point person phone: ' + groupPhoneNumber + '<br>' +
 					    'Event address: ' + eventAddress + ' </p>' +
+
+					    // meetup address
+					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Meet up with your group at this address:</p>' +
+					    '<p>' + event.meetupAddress + '<p>' +
+					    '<br>' +
+					    '<p> From the meetup spot ' + capFirstName + ', your group leader, will direct you to the event</p>' +
 
 					    // what to bring section
 					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to bring? </p>' +
@@ -209,10 +207,7 @@ function volunteerMatch(event, host){
 }
 
 function detailsToEventCreator(event, host){
-		  // console.log("confirmGroup")
-		  // console.log(event.confirmGroup)
-		  // console.log('event')
-		  // console.log(event)
+
 		  async.waterfall([
 			  function(done) {
 			    Group.findById( event.confirmGroup, function(err, group) {
@@ -235,9 +230,9 @@ function detailsToEventCreator(event, host){
 			  function(user, group, done) {
 
 			  	      var eventContact = user.email;
-			  	    	var capFirstName = _.capitalize(event.firstName);
-			  	    	var capLastName = _.capitalize(event.lastName);
-			  	    	var dateString = event.confirmDate.toString();
+			  	      var capFirstName = _.capitalize(event.firstName);
+			  	      var capLastName = _.capitalize(event.lastName);
+			  	      var dateString = event.confirmDate.toString();
 			  	      var finalDate = dateString.slice(0, 10);
 			  	      var capOrgName = group.organizationName.capitalize();
 
@@ -271,8 +266,7 @@ function detailsToEventCreator(event, host){
 			  		    	console.log(mailOptions.to)
 			  		      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 			  		    });
-			  	// detailsToGroupLeader(event, host);
-			  	// volunteerMatch(event, host);
+
 			    done('done');
 
 
@@ -297,16 +291,15 @@ function detailsToGroupLeader(event, host){
 	  function(group, done) {
 	    	// var index = _.indexOf(event.sentEmails, value.email)
 
-	    	// var link = 'http://' + host + '/confirm/' + event._id + '/' + value._id;
-	    	// var capFirstName = _.capitalize(value.firstName);
-	    	// var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey
-
-						var groupContact = group.email;
-			  	    	var capFirstName = _.capitalize(event.firstName);
-			  	    	var capLastName = _.capitalize(event.lastName);
-			  	    	var dateString = event.confirmDate.toString();
-			  	        var finalDate = dateString.slice(0, 10);
-			  	        var capOrgName = group.organizationName.capitalize();
+					  var groupContact = group.email;
+			  	      var capFirstName = _.capitalize(event.firstName);
+			  	      var capLastName = _.capitalize(event.lastName);
+			  	      var dateString = event.confirmDate.toString();
+			  	      var finalDate = dateString.slice(0, 10);
+			  	      var capOrgName = group.organizationName.capitalize();
+			  	      var number = event.phoneNumber.toString();
+	  	  			  var clientPhoneNumber = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
+			  	      var eventAddress = event.address;
 
 			  		    var transporter = nodemailer.createTransport({
 			  		      host: GodaddySMTP,
@@ -317,37 +310,51 @@ function detailsToGroupLeader(event, host){
 			  		      }
 			  		    });
 
+
 			  		    var mailOptions = {
 			  		      to: groupContact, //admin annie email
 			  		      from: 'hello@gobethe1.com',
 			  		      subject: capFirstName + '\'s Move-In Party',
 			  		      html:
-		  		      		'<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
-		      			    '<td align="left" width="50%">' +
-		      			    '<img src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png">' +
-		      			    '<p style="font-size:16px;font-family:sans-serif;">Get ready to party!</p>' +
-		      			    '<p style="font-size:14px;font-family:sans-serif;font-weight:bolder">Details</p>' +
-		      			    '<p style="font-size:14px;font-family:sans-serif;">The ' + capOrgName + ' are confirmed for the move in party<br>' +
-		      			    'of ' + capFirstName + ' ' + capLastName + ' on  <span style="font-weight:bolder"> ' + finalDate + ' at ' + event.confirmTime + '</span></p>' +
-		      			   	'<p style="font-size:14px;font-family:sans-serif;font-weight:bolder">Event Address</p>' +
-		      			    '<p style="font-size:14px;font-family:sans-serif;"> ' + event.address + ' </p>' +
-		      			    '<p style="font-size:14px;font-family:sans-serif;font-weight:bolder;">What to bring?</p>' +
-		      			    '<p style="font-size:14px;font-family:sans-serif;">Download the checklist of items <a href="https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf" target="_blank" style="text-decoration:underline;">here</a>. This is a typical <br>' +
-		      			    'GOBE Welcome Home Kit. You can bring more but we <br>' +
-		      			    'ask you bring this as a minimum. All items except<br>' +
-		      			    'pillows can be lightly used.</p>' +
-		      			    '<br><p style="font-size:14px;font-family:sans-serif;">See you there,</p>' +
-		      			    '<p style="font-size:14px;font-family:sans-serif;">GOBE team</p>' +
-		      			    '</td>' +
-		      			    '<td align="left" width="50%">' +
-		      			    '<p style="font-size:14px;font-family:sans-serif;font-weight:bolder">Some nice touches</p>' +
-		      			    '<p style="font-size:14px;font-family:sans-serif">Check out instagram <a href="https://www.instagram.com/gobethe1/" target="_blank">@GOBETHE1</a> for good ideas' +
-		      			   	'from previous parties. Try to think of things you typically find' +
-		      			   	'at a party like food and drinks. Things such as welcome home banners' +
-		      			   	'and posters make each party an extra special event!<p>' +
-		      			   	'</td>' +
-		      			    '</tr></table>'
+					  		  // gobe logo
+					      	'<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
+
+					      	// initial tag-line + details
+					      	'<p> Get ready to party! </p>' +
+					      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details </p>' +
+							    '<p> The ' + capOrgName + ' are confirmed for the ' +
+							    'move-in party of ' + capFirstName + ' on ' + finalDate + ' at ' + event.confirmTime + '.</p>' +
+
+							    // event information
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information </p>' +
+							    '<p> Name: ' + capFirstName + ' ' + capLastName + '<br>' +
+							    'Phone: ' + clientPhoneNumber + '<br>' +
+							    'Event address: ' + eventAddress + ' </p>' +
+
+							    //meetup address
+							     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Address where the group will meet</p>' +
+							    '<p>' + event.meetupAddress + '</p>' +
+
+							    // what to bring section
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to bring? </p>' +
+							    '<p>You can download the checklist of items that complete a <a href=' + gobeKitLink + '>' +
+							    'GOBE Welcome Home Kit</a>, but make sure to coordinate with your group leader to see what is still needed! ' +
+							    'We encourage you to bring as many items as you would like, but we ask that you please bring the items on this ' +
+							    'list as a minimum. All items except pillows can be lightly used. </p>' +
+
+							    // some nice touches sectionc
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Some nice touches </p>' +
+							    '<p>Keep in mind it\'s a party! Throwing in extra touches such as dessert and/or a welcome home ' +
+							    'sign or banner make each move-in personal and special. Need some ideas? Check out our instagram ' +
+							    '<a href='+ gobeInstagram +'>@gobethe1</a> for pictures of previous parties. Don\'t forget to take ' +
+							    'your own pictures and tag us #gobethe1.</p>' +
+
+							    // sign off
+							    '<p> See you there, <br><br>' +
+							    'GOBE Team </p>'
+
 			  		    };
+
   				transporter.sendMail(mailOptions, function(err) {
   		    	console.log("inside sendMail error")
   		    	console.log(err)

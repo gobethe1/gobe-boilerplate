@@ -4,6 +4,8 @@
 		<p>Please choose the date your group is available for the party.
 			Move-ins are usually about an hour.</p>
 	  <br>
+
+
 	  <form name="form" ng-submit="confirmGroupTime(form)" novalidate>
 		<div class="form-group col-xs-11 col-offset-xs-1" >
 		    <!-- date time one  -->
@@ -94,6 +96,30 @@
 			</div>
 			<!-- end no times -->
 			<br>
+
+				<!-- event address -->
+			<div class="row">
+				<div class="col-sm-6">
+					<strong>Event address:</strong>
+				</div>
+				<div class="col-sm-6">
+					{{event.address}}
+				</div>
+			</div>
+			<!-- end event address -->
+			<br>
+
+			<!-- text instructions re: meetup address -->
+			<p>Add a location to meet your group before heading to {{event.firstName | capitalize}}'s new place. This helps us keep the address as confidential as possible.</p>
+			<!-- end text instructions re: meetup address -->
+			<br>
+			<!-- meet up address -->
+			<div class="form-group" ng-class="{ 'has-success': form.meetupAddress.$valid && submitted,
+			                                     'has-error': form.meetupAddress.$invalid && submitted }">
+        		<input type="text" g-places-autocomplete  name="meetupAddress" ng-model="event.meetupAddress" placeholder="Enter an address, business name, landmark" class="form-control" required/>
+      		</div>
+			<!-- end meet up meetupAddresss -->
+
 			<!-- rsvp -->
 			<div class="text-right">
 				<button class="btn btn-lg" type="submit"

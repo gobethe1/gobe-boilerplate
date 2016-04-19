@@ -4,6 +4,7 @@ angular.module('gobeApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('profile', {
+        cache: false,
         url: '/profile',
         templateUrl: 'app/profile/profile.html',
         controller: 'ProfileCtrl',
