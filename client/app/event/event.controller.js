@@ -11,6 +11,7 @@ angular.module('gobeApp')
     $scope.newEvent.availability = {};
     $scope.newEvent.address = {};
     $scope.isAdmin = Auth.isAdmin;
+    $scope.activeSubscription     = Auth.activeSubscription;
     $scope.path = Path.transitionToPath;
     $scope.showLink = 'event.show';
     $scope.causeArray = ["Homeless Move-in", "Other"];
@@ -28,8 +29,14 @@ angular.module('gobeApp')
     $scope.newEvent.userId                      = currentUser._id;
 
     // check user id fx
-    $scope.activeSubscription     = Auth.activeSubscription;
-    console.log($scope.activeSubscription)
+    $scope.checkEventFilter = function(event){
+      if($scope.isAdmin()){
+        return {};
+      }
+      else {
+        return event.userId === currentUser._id;
+      }
+    };
 
     var checkAddress = function(){
         $scope.newEvent.address   = $scope.newEvent.address.formatted_address;

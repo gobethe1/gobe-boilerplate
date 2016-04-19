@@ -22,7 +22,7 @@ angular.module('gobeApp')
     };
 
     var checkAddress = function(){
-        $scope.newEvent.address   = $scope.newEvent.address.formatted_address;
+        $scope.newEvent.address   = $scope.newEvent.address.formatted_address || $scope.newEvent.address;
         var fullAddress           = $scope.newEvent.address;
         var addressArray          = fullAddress.split(',');
         var stateAndZip           = addressArray[addressArray.length - 2].split(' ');
