@@ -9,13 +9,16 @@ angular.module('gobeApp')
     // $scope.currentUrl = $location.path();
     // $scope.getCurrentUser = Auth.getCurrentUser;
 
-    $scope.causesLink = function(){
-      if(Auth.isAdmin()){
-        $state.go('event.list');
-      } else {
-        $state.go('profile.event.list');
-      }
-    };
+    // fx to handle isAdmin and send non-admin user to profile views instead of event viewss
+    // use ng-click on navbar.html and footer.html to re-implement
+
+    // $scope.causesLink = function(){
+    //   if(Auth.isAdmin()){
+    //     $state.go('event.list');
+    //   } else {
+    //     $state.go('profile.event.list');
+    //   }
+    // };
 
     $scope.isActive = function(route) {
       if(route === '/profile/event/list' || route === '/profile/details'){
@@ -27,5 +30,5 @@ angular.module('gobeApp')
         return currentLocation === path;
       }
     };
-  
+
   });

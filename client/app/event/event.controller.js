@@ -27,6 +27,10 @@ angular.module('gobeApp')
     $scope.newEvent.availability.thirdDateTime  = [false, false, false];
     $scope.newEvent.userId                      = currentUser._id;
 
+    // check user id fx
+    $scope.activeSubscription     = Auth.activeSubscription;
+    console.log($scope.activeSubscription)
+
     var checkAddress = function(){
         $scope.newEvent.address   = $scope.newEvent.address.formatted_address;
         var fullAddress           = $scope.newEvent.address;
