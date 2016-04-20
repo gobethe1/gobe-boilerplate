@@ -18,6 +18,7 @@ var GroupSchema = new Schema({
   zipCode: {type: String, required: true},
   matchRadius: Number,
   matchZipCodeArr: Array,
+  previousEmailList: Array,
   emailList: Array
 });
 

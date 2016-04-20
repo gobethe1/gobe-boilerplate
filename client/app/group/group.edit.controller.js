@@ -51,12 +51,12 @@ angular.module('gobeApp')
       checkAddress();
       var data = $scope.newGroup;
       $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
+      $scope.newGroup.previousEmailList = $scope.newGroup.previousEmailList;
 
       $scope.submitted = true;
          if(form.$valid){
              Group.update({id: $stateParams.id }, data,
                function(data){
-                console.log(currentProfile)
                 if(currentProfile.groupId === $scope.newGroup._id){
                     $state.go('group.profile');
                   }

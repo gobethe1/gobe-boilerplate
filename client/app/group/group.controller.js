@@ -42,6 +42,7 @@ angular.module('gobeApp')
         console.log($scope.newGroup)
         $scope.newGroup = $scope.newGroup;
         $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
+        $scope.newGroup.previousEmailList = $scope.newGroup.emailList;
         $scope.submitted = true;
         checkAddress();
            if(form.$valid){

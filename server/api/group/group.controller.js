@@ -24,19 +24,14 @@ exports.show = function(req, res) {
 
 // Creates a new group in the DB.
 exports.create = function(req, res) {
-
   Group.create(req.body, function(err, group) {
     if(err) { return handleError(res, err); }
-    
     User.findById(req.body.ownedBy, function(err, user){
       if (err) { return handleError(res, err); }
-    
         var updated = _.merge(user, {groupId: group._id})
-    
         updated.save(function (err) {
           if (err) { return handleError(res, err); }
         });
-    
     })
     
     groupEmailer.matchZipCode(group, req.headers.host);
@@ -46,13 +41,15 @@ exports.create = function(req, res) {
 
 // Updates an existing group in the DB.
 exports.update = function(req, res) {
-  // console.log(req)
+  console.log("update event req body")
+  console.log(req.body)
   if(req.body._id) { delete req.body._id; }
   Group.findById(req.params.id, function (err, group) {
     if (err) { return handleError(res, err); }
     if(!group) { return res.status(404).send('Not Found'); }
     var updated = _.merge(group, req.body);
     updated.emailList = req.body.emailList;
+    updated.previousEmailList = req.body.previousEmailList;
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(group);
