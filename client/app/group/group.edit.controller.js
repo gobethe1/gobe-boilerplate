@@ -3,8 +3,10 @@
 angular.module('gobeApp')
   .controller('GroupEditCtrl', function ($scope, $state, $stateParams, Group, groupEdit, currentProfile) {
     $scope.newGroup = groupEdit;
+    $scope.oldGroup = groupEdit;
     $scope.emailList = $scope.newGroup.emailList;
     $scope.hover = true;
+    // $scope.newGroup.previousEmailList = $scope.oldGroup.emailList;
     $scope.zipCodeSlider = {
       value: $scope.newGroup.matchRadius,
       options: {
@@ -16,6 +18,11 @@ angular.module('gobeApp')
          }
       }
     };
+
+    console.log('old group email list: ', $scope.oldGroup.emailList)
+    console.log('new group email previous list', $scope.newGroup.previousEmailList)
+    console.log('new group email list', $scope.newGroup.emailList)
+
 
     var checkAddress = function(){
         $scope.newGroup.address   = $scope.newGroup.address.formatted_address || $scope.newGroup.address;
@@ -49,10 +56,10 @@ angular.module('gobeApp')
 
     $scope.updateGroup = function addGroup(form) {
       checkAddress();
-      var data = $scope.newGroup;
       $scope.newGroup.matchRadius = $scope.zipCodeSlider.value;
-      $scope.newGroup.previousEmailList = $scope.newGroup.previousEmailList;
-
+      // $scope.newGroup.previousEmailList;
+      var data = $scope.newGroup;
+      console.log('data: ', data)
       $scope.submitted = true;
          if(form.$valid){
              Group.update({id: $stateParams.id }, data,

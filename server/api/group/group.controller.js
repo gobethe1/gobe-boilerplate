@@ -33,7 +33,7 @@ exports.create = function(req, res) {
           if (err) { return handleError(res, err); }
         });
     })
-    
+
     groupEmailer.matchZipCode(group, req.headers.host);
     return res.status(201).json(group);
   });
@@ -41,17 +41,20 @@ exports.create = function(req, res) {
 
 // Updates an existing group in the DB.
 exports.update = function(req, res) {
-  console.log("update event req body")
-  console.log(req.body)
+  // console.log("update event req body")
+  // console.log(req.body)
   if(req.body._id) { delete req.body._id; }
   Group.findById(req.params.id, function (err, group) {
     if (err) { return handleError(res, err); }
     if(!group) { return res.status(404).send('Not Found'); }
+    group.markModified('previousEmailList');
+    group.markModified('emailList');
     var updated = _.merge(group, req.body);
     updated.emailList = req.body.emailList;
-    updated.previousEmailList = req.body.previousEmailList;
+    updated.previousEmailList = group.emailList;
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
+      groupEmailer.updatedVolunteerMatch(group, req.headers.host);
       return res.status(200).json(group);
     });
   });

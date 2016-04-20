@@ -116,7 +116,7 @@ function volunteerMatch(event, host){
 	  	  var dateString = event.confirmDate.toString();
 	  	  var clientFirstName = event.firstName.capitalize();
 	  	  var eventAddress = event.address;
-		  var capFirstName = _.capitalize(group.firstName);
+		  	var capFirstName = _.capitalize(group.firstName);
 	  	  var capLastName = _.capitalize(group.lastName);
 	  	  var finalDate = dateString.slice(0, 10);
 	  	  var capOrgName = group.organizationName.capitalize();
@@ -168,7 +168,7 @@ function volunteerMatch(event, host){
 					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Can you make it? </p>' +
 					   	'<a href=' + linkConfirm +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:40%;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +
 					    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a><br><br>' +
-					    
+
 					    // what to bring section
 					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to bring? </p>' +
 					    '<p>You can download the checklist of items that complete a <a href=' + gobeKitLink + '>' +
@@ -226,7 +226,7 @@ function detailsToEventCreator(event, host){
 			  function(group, done){
 			  	// console.log('user')
 			  	User.findById( event.userId, function(err, user) {
-			  		// console.log(user)
+			  		console.log(user)
 			       done(err, user, group);
 			  	});
 			  },
