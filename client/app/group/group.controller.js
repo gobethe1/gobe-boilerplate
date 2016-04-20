@@ -7,7 +7,6 @@ angular.module('gobeApp')
     $scope.listGroups = groupModel;
     $scope.newGroup = {};
     $scope.newGroup.emailList = [];
-    // $scope.newGroup.address = {};
     $scope.emailList = $scope.newGroup.emailList;
     $scope.hover = true;
     $scope.currentUser = currentUser;
@@ -104,6 +103,14 @@ angular.module('gobeApp')
     $scope.addEmail = function addEmail(){
       $scope.newGroup.emailList.push($scope.email);
       $scope.email = null;
+    };
+
+    $scope.alerts = [
+      { type: 'warning', msg: 'Email has been added to the group. When you choose an event to attend they will now automatically be invited.' },
+    ];
+
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
     };
 
 

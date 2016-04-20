@@ -18,7 +18,7 @@ angular.module('gobeApp')
     };
 
     var checkAddress = function(){
-        $scope.newGroup.address   = $scope.newGroup.address.formatted_address;
+        $scope.newGroup.address   = $scope.newGroup.address.formatted_address || $scope.newGroup.address;
         var fullAddress           = $scope.newGroup.address;
         var addressArray          = fullAddress.split(',');
         var stateAndZip           = addressArray[addressArray.length - 2].split(' ');

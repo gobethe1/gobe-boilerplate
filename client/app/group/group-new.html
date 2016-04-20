@@ -85,12 +85,16 @@
 
           <div class="col-sm-4">
             <button type="button" class="btn btn-primary" ng-click="addEmail()">
-            Add Email
+            Add Email 
             </button>
           </div>
         </div>
       <!-- end add user email -->
-        <br>
+      <!-- email alert -->
+      <uib-alert ng-if="newGroup.emailList.length === 1" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+        {{alert.msg}}
+      </uib-alert>
+      <!-- end email alert -->
       <!-- emails in emailList -->
         <div class="row">
           <div class="col-sm-8">
