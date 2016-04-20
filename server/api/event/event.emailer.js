@@ -157,15 +157,18 @@ function volunteerMatch(event, host){
 					    // event information
 					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information </p>' +
 					    '<p> Point person name: ' + capFirstName + ' ' + capLastName + '<br>' +
-					    'Point person phone: ' + groupPhoneNumber + '<br>' +
-					    'Event address: ' + eventAddress + ' </p>' +
+					    'Point person phone: ' + groupPhoneNumber + '</p>' +
 
 					    // meetup address
 					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Meet up with your group at this address:</p>' +
 					    '<p>' + event.meetupAddress + '<p>' +
-					    '<br>' +
 					    '<p> From the meetup spot ' + capFirstName + ', your group leader, will direct you to the event</p>' +
 
+					    // can you make it?
+					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Can you make it? </p>' +
+					   	'<a href=' + linkConfirm +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:40%;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +
+					    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a><br><br>' +
+					    
 					    // what to bring section
 					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to bring? </p>' +
 					    '<p>You can download the checklist of items that complete a <a href=' + gobeKitLink + '>' +
@@ -181,7 +184,7 @@ function volunteerMatch(event, host){
 					    'your own pictures and tag us #gobethe1.</p>' +
 
 					    // sign off
-					    '<p> See you there, <br><br>' +
+					    '<p> Hope to see you there, <br><br>' +
 					    'GOBE Team </p>'
 			    };
 
