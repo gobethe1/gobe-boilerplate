@@ -92,10 +92,11 @@ function matchZipCode(group, host){
 function updatedVolunteerMatch(group, host){
 		console.log("hitting updatedVolunteerMatch")
 
+		     	console.log(new Date())
 		 async.waterfall([
 
 		   function(done) {
-		     Event.find({confirmGroup: group._id},
+		     Event.find({confirmGroup: group._id, confirmDate: {$gte: new Date()}},
 		     	function(err, event) {
 		       if (!event) {
 		       	 console.log("no zipcode matches")
