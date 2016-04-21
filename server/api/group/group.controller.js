@@ -47,16 +47,40 @@ exports.update = function(req, res) {
   Group.findById(req.params.id, function (err, group) {
     if (err) { return handleError(res, err); }
     if(!group) { return res.status(404).send('Not Found'); }
+
+    req.body.previousEmailList = group.emailList;
+
+    console.log('group emailList before markModified and updated', group.emailList)
+    console.log("req body previousEmailList before markModified and updated", req.body.previousEmailList)
+    
     group.markModified('previousEmailList');
     group.markModified('emailList');
+    
+    console.log('group emailList after markModified before updated', group.emailList)
+    // group.previousEmailList = group.emailList;
+
+    console.log("group req body before merge", req.body)
     var updated = _.merge(group, req.body);
+    console.log("group req body after merge", updated)
+    
     updated.emailList = req.body.emailList;
-    updated.previousEmailList = group.emailList;
+    updated.previousEmailList = req.body.previousEmailList;
+
+    console.log("updated after chaning emailList and previousEmailList", updated)
+
+    console.log('group emailList after updated', group.emailList)
+    console.log('req body emailList after updated', req.body.emailList)
+    console.log('req body previousEmailList after updated', req.body.previousEmailList)
+    console.log('updated emailList', updated.emailList)
+    console.log('updated previousEmailList', updated.previousEmailList)
+    
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      groupEmailer.updatedVolunteerMatch(group, req.headers.host);
+      console.log("htting inside update group save")
+      // groupEmailer.updatedVolunteerMatch(group, req.headers.host);
       return res.status(200).json(group);
     });
+  
   });
 };
 
