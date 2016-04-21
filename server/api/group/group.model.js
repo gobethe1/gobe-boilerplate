@@ -18,13 +18,16 @@ var GroupSchema = new Schema({
   zipCode: {type: String, required: true},
   matchRadius: Number,
   matchZipCodeArr: Array,
-  previousEmailList: Array,
-  emailList: Array
+  previousEmailList: [String],
+  emailList:[String]
 });
 
 
 GroupSchema
  .pre('save', function(next) {
+ //  console.log('previous email in pre-save', this.previousEmailList)
+
+ // this.previousEmailList = this.previousEmailList;
  this.updatedAt = new Date();
  next();
 });

@@ -91,9 +91,9 @@ function matchZipCode(group, host){
 
 function updatedVolunteerMatch(group, host){
 		console.log("hitting updatedVolunteerMatch")
-		 
+
 		 async.waterfall([
-		 
+
 		   function(done) {
 		     Event.find({confirmGroup: group._id},
 		     	function(err, event) {
@@ -106,21 +106,21 @@ function updatedVolunteerMatch(group, host){
 		     });
 		   },
 		function(event, done) {
-				
+
 				var previousEmailListArr = group.previousEmailList;
 				var currentEmailListArr = group.emailList;
 				var emailerListArr 		= _.difference(currentEmailListArr, previousEmailListArr)
-	
-	  			console.log("previousEmailListArr", previousEmailListArr)
-				console.log("currentEmailListArr", currentEmailListArr)
-				console.log("emailerListArr", emailerListArr)
 
-		  		var capFirstName = _.capitalize(group.firstName);
+	  			console.log("previousEmailListArr", previousEmailListArr)
+					console.log("currentEmailListArr", currentEmailListArr)
+					console.log("emailerListArr", emailerListArr)
+
+		  			var capFirstName = _.capitalize(group.firstName);
 	  	  		var capLastName = _.capitalize(group.lastName);
 		  	  	var capOrgName = group.organizationName.capitalize();
 	  		  	var number = group.phoneNumber.toString();
 		  	  	var groupPhoneNumber  = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
-	  	  	  	var gobeKitLink = 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
+	  	  	  var gobeKitLink = 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
 	  	  		var gobeInstagram = 'https://www.instagram.com/gobethe1/';
 
 	  	  		_.forEach(event, function(value){
@@ -131,9 +131,9 @@ function updatedVolunteerMatch(group, host){
 					    	console.log("emailerListArr", email)
 
 					    	var dateString 			= value.confirmDate.toString();
-		  	  				var finalDate 			= dateString.slice(0, 10);
-		  	  				var clientFirstName     = value.firstName.capitalize();
-		  	  				var eventAddress 		= value.address;
+		  	  			var finalDate 			= dateString.slice(0, 10);
+		  	  			var clientFirstName     = value.firstName.capitalize();
+		  	  			var eventAddress 		= value.address;
 					    	var linkConfirm 		= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/yes';
 					    	var linkReject 			= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/no';
 
@@ -194,15 +194,15 @@ function updatedVolunteerMatch(group, host){
 								    'GOBE Team </p>'
 						    };
 
-			
+
 							    transporter.sendMail(mailOptions, function(err) {
 							    	console.log("inside sendMail")
 							    	console.log(err)
-									console.log(mailOptions.to)
+										console.log(mailOptions.to)
 							      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
 							    });
-						
-						
+
+
 
 						})
 			});

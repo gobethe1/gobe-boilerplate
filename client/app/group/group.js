@@ -67,6 +67,9 @@ angular.module('gobeApp')
          groupEdit: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;
          },
+         groupPreviousEmail: function(Group, $stateParams){
+           return Group.get({id: $stateParams.id}).$promise;
+         },
          currentProfile: function(currentUser){
           return currentUser;
          }
