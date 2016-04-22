@@ -24,7 +24,7 @@ angular.module('gobeApp')
       $scope.event.confirmedEmails = uniqueConfirmed;
       // console.log( $scope.event.confirmedEmails)
       Event.update({id: $stateParams.event_id}, $scope.event, function(data){
-        console.log('data');
+        //console.log('data');
         // console.log(data);
       })
     }

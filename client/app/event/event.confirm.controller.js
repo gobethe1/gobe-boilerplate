@@ -3,8 +3,6 @@
 angular.module('gobeApp')
   .controller('EventConfirmCtrl', function ($scope, $state, $stateParams, Event, eventConfirm) {
     console.log("EventConfirmCtrl")
-    console.log(eventConfirm)
-    console.log(eventConfirm.confirmGroup)
 
     if(!eventConfirm.confirmGroup){
       $scope.event = eventConfirm;
@@ -38,8 +36,6 @@ angular.module('gobeApp')
       //if confirmGroup, Date, Time, doesn't exist
       Event.update({id: $stateParams.event_id }, $scope.event,
         function(data){
-          console.log("data")
-          console.log(data)
           $scope.confirmGroup = true;
            // $state.go('event.list')
           }),

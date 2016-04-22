@@ -7,7 +7,7 @@
 
         <!--   Status: Party Pending -->
           <p ng-if="!event.confirmGroup">Status: Pending</p>
-          <p ng-if="event.confirmGroup">Status: Scheduled {{event.confirmDate | date:"MM/d/ yyyy"}} at {{event.confirmTime}}</p>
+          <p ng-if="event.confirmGroup" class="date-position">Status: Scheduled {{event.confirmDate | date:"MM/d/ yyyy"}} at {{event.confirmTime}}</p>
           <p ng-if="event.confirmGroup">Attending Group: {{group.organizationName}}</p>
           <!-- create function that runs on event.confirmGroup and returns party status -->
         </div>
@@ -15,7 +15,7 @@
     </div>
     <!-- end party status -->
     <!-- back button -->
-    <div class="row">
+    <div class="row event-show-info-margin-top">
       <div class="col-xs-6 col-sm-6">
       <a ui-sref="event.list">
         <i class="fa fa-long-arrow-left fa-2x" style="padding-left:10px;"></i>

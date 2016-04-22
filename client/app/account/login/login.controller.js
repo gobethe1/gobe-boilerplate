@@ -5,12 +5,9 @@ angular.module('gobeApp')
     $scope.user = {};
     $scope.errors = {};
     $scope.tab = 1;
-    // console.log($scope.tab)
-
 
     $scope.setTab = function (tabId) {
         $scope.tab = tabId;
-      // console.log($scope.tab)
     };
 
     $scope.isSet = function (tabId) {
@@ -18,8 +15,6 @@ angular.module('gobeApp')
     };
 
     $scope.login = function(form) {
-      console.log(form)
-      console.log("firing")
       $scope.submitted = true;
 
       if(form.$valid) {

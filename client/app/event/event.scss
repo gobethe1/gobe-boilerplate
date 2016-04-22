@@ -50,15 +50,27 @@ i {
 .table-responsive {
     border: 0px solid transparent;
 }
-.status-bar{
-    width: 100%;
+
+.status-bar {   
+    position: fixed;
     color: white;
+    width: 100%;
+    left: 0px;
+    top: 114px;
     margin-top: -20px;
     margin-bottom: 20px;
-    padding: 6px 25px;
-    p {
-    margin: 0 0 0px;
-  }
+    padding: 6px 10%;
+    z-index: 100;
+      p {
+      margin: 0 0 0px;
+    }
+    .date-position{
+      float: right;
+    }
+}
+
+.event-show-info-margin-top{
+  margin-top:20px;
 }
 
 .pending-bar{
@@ -121,8 +133,16 @@ button.btn.save-later{
   padding-bottom: 5px;
 }
 
-@media only screen and (max-width: $screen-xs) {
+@media only screen and (max-width: $screen-sm) {
   .status-bar{
       padding: 6px 25px;
+      top:80px;
+     .date-position{
+       float: none;
+     } 
   }
+  .event-show-info-margin-top{
+    margin-top:40px;
+  }
+
 }

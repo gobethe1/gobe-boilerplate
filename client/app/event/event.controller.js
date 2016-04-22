@@ -93,17 +93,14 @@ angular.module('gobeApp')
     };
 
     $scope.publishEvent = function publishEvent(form) {
-      console.log(form)
-        console.log('published')
+
         $scope.newEvent.published = true;
         $scope.submitted          = true;
         checkAddress();
 
-        console.log($scope.newEvent.published);
            if(form.$valid){
                Event.send($scope.newEvent,
                  function(data){
-                    // console.log(data)
                     $state.go('event.list')
                    }),
                    function(err){
@@ -119,8 +116,6 @@ angular.module('gobeApp')
     $scope.deleteEvent = function deleteEvent(id){
       if(confirm('Are you sure you want to delete this client?')){
         angular.forEach($scope.listEvents, function(e, i) {
-          console.log('e')
-          // console.log(e)
            if (e._id === id) {
              $scope.listEvents.splice(i, 1);
            }
@@ -155,7 +150,6 @@ angular.module('gobeApp')
   };
 
   $scope.inlineOptions = {
-    // customClass: getDayClass,
     minDate: new Date(),
     showWeeks: true
   };

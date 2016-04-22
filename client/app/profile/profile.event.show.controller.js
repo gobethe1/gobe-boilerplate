@@ -2,10 +2,9 @@
 
 angular.module('gobeApp')
   .controller('ProfileEventShowCtrl', function ($scope, $state, $stateParams, Event, Group, eventModel, currentUser, userGroup, Path, eventShow) {
-    console.log("hitting ProfileEventShowCtrl")
+
     $scope.event = eventShow;
     $scope.group = userGroup;
-    console.log('userGroup', userGroup)
     
     if(userGroup){
       var userZipCode = userGroup.zipCode;
