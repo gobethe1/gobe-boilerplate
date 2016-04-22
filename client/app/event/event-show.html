@@ -4,8 +4,11 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 no-pad">
         <div class="status-bar" ng-class="{'pending-bar': !event.confirmGroup, 'confirmed-bar': event.confirmGroup}">
-        <!--   Status: Party Pending --> Status: {{partyStatus(event)}} 
-          <span style="float:right" ng-if="event.confirmGroup">Guests: {{group.organizationName}}</span>
+
+        <!--   Status: Party Pending -->
+          <p ng-if="!event.confirmGroup">Status: Pending</p>
+          <p ng-if="event.confirmGroup">Status: Scheduled {{event.confirmDate | date:"MM/d/ yyyy"}} at {{event.confirmTime}}</p>
+          <p ng-if="event.confirmGroup">Attending Group: {{group.organizationName}}</p>
           <!-- create function that runs on event.confirmGroup and returns party status -->
         </div>
       </div>

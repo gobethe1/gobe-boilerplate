@@ -1,6 +1,6 @@
 angular.module('gobeApp')
   .controller('EventShowCtrl', function ($scope, $stateParams, Event, eventShow, Group, eventGroup, Auth) {
-    
+
     $scope.event = eventShow;
 
     if(eventGroup){
@@ -10,7 +10,7 @@ angular.module('gobeApp')
     var timeArray = ["8am-12pm", "12pm-5pm", "5pm-8pm"];
 
     $scope.checkTime = function(time, index) {
-      
+
         if(time && (index === 0)){
           return timeArray[0];
         }
@@ -31,5 +31,5 @@ angular.module('gobeApp')
       }
     }
 
-  
+
   });
