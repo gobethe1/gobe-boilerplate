@@ -241,8 +241,9 @@
 			<!-- end date three and time -->
 
 			<!-- registry url -->
-			<div class="form-group" ng-if="newEvent.causeType === 'Homeless Move-in'">
-			   <label>Registry Url (optional)</label>
+			<div class="form-group">
+			   <label ng-if="newEvent.causeType === 'Homeless Move-in'">Registry Url (optional)</label>
+			   <label ng-if="newEvent.causeType !== 'Homeless Move-in'">Url (optional)</label>
 			   <input type="text" name="registryUrl" ng-model="newEvent.registryUrl" class="form-control">
 			</div>
 			<!-- end registry url -->

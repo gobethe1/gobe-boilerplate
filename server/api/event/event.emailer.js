@@ -18,7 +18,7 @@ String.prototype.capitalize = function() {
 };
 
 var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group." +
-"You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!" 	
+"You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!"
 
 var checkEventName = function(event){
 	if(event.firstName){
@@ -30,7 +30,12 @@ var checkEventName = function(event){
 	else{
 		return "";
 	}
-}
+};
+
+var parseDate = function(event){
+	var dateString = event.confirmDate.toString().slice(0,10);
+	return dateString;
+};
 
 
 function matchZipCode(event, host){
@@ -87,7 +92,7 @@ function matchZipCode(event, host){
 						 '<p>Ready to make a difference? Simply accept the invite and start recruiting your friends.' +
 
 				 // sign off
-				 '<p>We hope to see you there,<br><br>' +
+				 '<p>We hope to see you there,<br>' +
 			       'GoBe team</p>'
 		    };
 
@@ -126,14 +131,15 @@ function volunteerMatch(event, host){
 		  },
 		  function(group, done) {
 
-		
+
 	  	  var dateString = event.confirmDate.toString();
 	  	  var clientFirstName = checkEventName(event);
 	  	  // var clientFirstName = event.organizerFirstName.capitalize() || event.firstName.capitalize() || " ";
 	  	  var eventAddress = event.address;
-		  var capFirstName = _.capitalize(group.firstName);
+		  	var capFirstName = _.capitalize(group.firstName);
 	  	  var capLastName = _.capitalize(group.lastName);
 	  	  var finalDate = dateString.slice(0, 10);
+	  	  var date 			= new Date(event.confirmDate);
 	  	  var capOrgName = group.organizationName.capitalize();
 	  	  var groupLeader = group.firstName;
 	  	  var number = group.phoneNumber.toString();
@@ -177,7 +183,7 @@ function volunteerMatch(event, host){
 					    '<p>' + eventDescription + '</p>' +
 
 					    // sign off
-					    '<p> Hope to see you there, <br><br>' +
+					    '<p> Hope to see you there, <br>' +
 					    'GoBe Team </p>'
 			    };
 
@@ -252,7 +258,7 @@ function detailsToEventCreator(event, host){
 
  			  		      // match text
  			  		      '<p> We\'ve got a match! The ' + group.organizationName + ', have confirmed ' +
- 			  		      'their attendance for ' + eventName + ' on ' + finalDate + 
+ 			  		      'their attendance for ' + eventName + ' on ' + finalDate +
  			  		      ' at ' + event.confirmTime + '. </p>'
 			  		    };
 
@@ -287,11 +293,15 @@ function detailsToGroupLeader(event, host){
 	  function(group, done) {
 	    	// var index = _.indexOf(event.sentEmails, value.email)
 
-					  var groupContact = group.email;
+					  		var groupContact = group.email;
 			  	      // var capFirstName = _.capitalize(event.firstName);
 			  	      // var capLastName = _.capitalize(event.lastName);
-			  	      var dateString = event.confirmDate.toString();
-			  	      var finalDate = dateString.slice(0, 10);
+			  	      // var dateString = event.confirmDate.toString().substring(0,11);
+			  	      // var finalDate = dateString.slice(0, 10);
+			  	      var date = new Date(event.confirmDate);
+			  	      var dateString = date.toString();
+			  	      var finalDate = dateString.slice(0,10);
+			  	      // var finalDate = parseDate(event);
 			  	      var capOrgName = group.organizationName.capitalize();
 			  	      var number = event.organizerPhoneNumber.toString() || event.phoneNumber.toString();
 	  	  			  var clientPhoneNumber = '(' + number.substring(0,3) + ') ' + number.substring(3,6) + '-' + number.substring(6,10);
@@ -300,8 +310,9 @@ function detailsToGroupLeader(event, host){
 			  	      var eventName = event.eventName || event.firstName;
 
 			  	      console.log("event confirmdate", event.confirmDate)
-			  	      console.log("datestring", dateString)
+			  	      // console.log("datestring", dateString)
 			  	      console.log("finaldate", finalDate)
+
 
 			  		    var transporter = nodemailer.createTransport({
 			  		      host: GodaddySMTP,
@@ -323,18 +334,18 @@ function detailsToGroupLeader(event, host){
 
 					      	// initial tag-line + details
 					      	'<p> Thank you for being a changemaker!</p>' +
-					      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details </p>' +
+					      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details: </p>' +
 							    '<p> The ' + capOrgName + ' are confirmed for ' + eventName + ' on ' +
-							  	+ event.confirmDate + ' at ' + event.confirmTime + '.</p>' +
+							  	+ finalDate + ' at ' + event.confirmTime + '.</p>' +
 
 							    // event information
-							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information </p>' +
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information: </p>' +
 							    '<p> Event Name: ' + eventName + '<br>' +
 							    'Phone: ' + phoneNumber + '<br>' +
 							    'Event address: ' + eventAddress + ' </p>' +
 
 							    //meetup address
-							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Address where the group will meet</p>' +
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Address where the group will meet:</p>' +
 							    '<p>' + event.meetupAddress + '</p>' +
 
 							    // what to bring section
@@ -352,12 +363,13 @@ function detailsToGroupLeader(event, host){
 							    'Phone Number: ' + event.organizerPhoneNumber + '</p>' +
 
 							    // sign off
-							    '<p> See you there, <br><br>' +
+							    '<p> See you there, <br>' +
 							    'GoBe Team </p>'
 
 			  		    };
 
   				transporter.sendMail(mailOptions, function(err) {
+  					console.log('parse date: ', parseDate(event))
   		    	console.log("inside sendMail error")
   		    	console.log(err)
   		    	console.log(mailOptions.to)
