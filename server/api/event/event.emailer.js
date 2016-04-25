@@ -17,8 +17,8 @@ String.prototype.capitalize = function() {
     return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 };
 
-var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group.
-You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!" 	
+var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group." +
+"You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!" 	
 
 
 
@@ -162,7 +162,7 @@ function volunteerMatch(event, host){
 
 					    // some this about?
 					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What\'s this invite about? </p>' +
-					    '<p>' + eventDescription + '</p>'
+					    '<p>' + eventDescription + '</p>' +
 
 					    // sign off
 					    '<p> Hope to see you there, <br><br>' +
@@ -326,7 +326,7 @@ function detailsToGroupLeader(event, host){
 							    '<p>' + event.notes + '</p>' +
 
 							    // registry link
-							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">More info: </p>'
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">More info: </p>' +
 							    '<p><a href=' + event.registryUrl + '>Event Link</a></p>' +
 
 							    // some nice touches sectionc

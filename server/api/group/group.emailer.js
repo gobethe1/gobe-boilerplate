@@ -9,8 +9,8 @@ var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 var GoogleAPIKey = process.env.GOOGLE_API_KEY;
 
-var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group.
-You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!" 	
+var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group." + 
+"You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!" 	
 
 function matchZipCode(group, host){
 
@@ -170,7 +170,7 @@ function updatedVolunteerMatch(group, host){
 
 				    		    // some this about?
 				    		    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What\'s this invite about? </p>' +
-				    		    '<p>' + eventDescription + '</p>'
+				    		    '<p>' + eventDescription + '</p>' +
 
 				    		    // sign off
 				    		    '<p> Hope to see you there, <br><br>' +
