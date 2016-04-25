@@ -41,6 +41,7 @@ function matchZipCode(event, host){
 
 	    	var link = 'http://' + host + '/confirm/' + event._id + '/' + value._id;
 	    	var capFirstName = _.capitalize(value.firstName);
+	    	var eventName = _.capitalize(event.firstName) || _.capitalize(event.eventName);
 	    	var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey
 
 		    var transporter = nodemailer.createTransport({
@@ -57,25 +58,23 @@ function matchZipCode(event, host){
 		      from: 'hello@gobethe1.com',
 		      subject: 'Are You Available?',
 		      html:
-		         '<table width="100%" border="0" cellspacing="0" cellpadding="0">' +
-				     '<tr>' +
-				     '<td align="center"><img src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
-				     '<img src=' + mapLink + '></td><br>' +
-				     '</tr>' +
-				     '<tr>' +
-				     '<td align="left" valign="top">' +
+		      	 // gobe logo
+			       '<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
+
+			       // salutation + invite
 				     '<p style="font-size:14px;font-family:sans-serif;">Hello ' + capFirstName + ',<br>' +
-				     'We matched you with a move-in party of a homeless vet in your neighborhood! Check out the dates ' +
-				     'and times and let us know if you are available:</p>' +
-				     '<div style="text-align:center"><a href=' + link +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a></div><br>' +
-				     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold;">What\'s this invite about?</p>' +
-						 '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s ' +
-						 'time to party! This person now lives in your area and you have been invited to help welcome them home! Ready to make a difference? ' +
-						 ' Simply, accept the invite and start recruiting your friends.</p>' +
-						 '<p style="font-size:14px;font-family:sans-serif;">We hope to see you there,</p>' +
-			       '<p style="font-size:14px;font-family:sans-serif;">GOBE team</p>' +
-						 '</td>' +
-				     '</tr></table>'
+				     'You have a new opportunity to make a difference! ' + eventName + 'needs help in your area.' +
+
+				     // view dates button
+				     '<div style="text-align:center"><a href=' + link +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Event Dates</a></div><br>' +
+
+				     // what's this about?
+				     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">What\'s this invite about?</p>' +
+						 '<p>Ready to make a difference? Simply accept the invite and start recruiting your friends.' +
+
+						 // sign off
+						 '<p>We hope to see you there,</p>' +
+			       '<p>GoBe team</p>'
 		    };
 
 			// if(index === -1){
@@ -252,15 +251,14 @@ function detailsToEventCreator(event, host){
 			  		      to: eventContact, //admin annie email
 			  		      from: 'hello@gobethe1.com',
 			  		      subject: capFirstName + '\'s Move-In Party',
- 			  		      html:  '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>' +
-  			  		    '<td>' +
-  			  		    '<p style="font-size:14px;font-family:sans-serif;">We\'ve got a match! The ' + capOrgName + ', have confirmed their attendance ' +
-  			  		    'for the <br> move-in party of <span style="text-transform:underline">' + capFirstName + ' ' + capLastName + ' </span>' +
-  			  		    'on <span style="font-weight:bold">' + finalDate + ' from ' + event.confirmTime + '</span>. </p>' +
-  			  		 		'<p style="font-size:14px;font-family:sans-serif;">Party on, </p>' +
-  			  		 		'<img src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png">' +
-  			  		 		'</td>' +
-  			  		    '</tr></table>'
+ 			  		      html:
+ 			  		      // gobe logo
+ 			  		      '<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
+
+ 			  		      // match text
+ 			  		      '<p> We\'ve got a match! The ' + group.organizationName + ', have confirmed' +
+ 			  		      'their attendance for the ' + event.firstName + 'on ' + event.confirmDate +
+ 			  		      'at ' + event.confirmTime + '. </p>'
 			  		    };
 
 			  		    transporter.sendMail(mailOptions, function(err) {
@@ -323,34 +321,33 @@ function detailsToGroupLeader(event, host){
 					      	'<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
 
 					      	// initial tag-line + details
-					      	'<p> Get ready to party! </p>' +
+					      	'<p> Thank you for being a changemaker!</p>' +
 					      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details </p>' +
-							    '<p> The ' + capOrgName + ' are confirmed for the ' +
-							    'move-in party of ' + capFirstName + ' on ' + finalDate + ' at ' + event.confirmTime + '.</p>' +
+							    '<p> The ' + capOrgName + ' are confirmed for ' + capFirstName + 'on ' +
+							  	+ finalDate + ' at ' + event.confirmTime + '.</p>' +
 
 							    // event information
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information </p>' +
-							    '<p> Name: ' + capFirstName + ' ' + capLastName + '<br>' +
+							    '<p> Event Name: ' + capFirstName + ' ' + capLastName + '<br>' +
 							    'Phone: ' + clientPhoneNumber + '<br>' +
 							    'Event address: ' + eventAddress + ' </p>' +
 
 							    //meetup address
-							     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Address where the group will meet</p>' +
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Address where the group will meet</p>' +
 							    '<p>' + event.meetupAddress + '</p>' +
 
 							    // what to bring section
-							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to bring? </p>' +
-							    '<p>You can download the checklist of items that complete a <a href=' + gobeKitLink + '>' +
-							    'GOBE Welcome Home Kit</a>, but make sure to coordinate with your group leader to see what is still needed! ' +
-							    'We encourage you to bring as many items as you would like, but we ask that you please bring the items on this ' +
-							    'list as a minimum. All items except pillows can be lightly used. </p>' +
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to know: </p>' +
+							    '<p>' + event.notes + '</p>' +
+
+							    // registry link
+							    '<p><a href=' + event.registryUrl + '>Event Link</a></p>' +
 
 							    // some nice touches sectionc
-							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Some nice touches </p>' +
-							    '<p>Keep in mind it\'s a party! Throwing in extra touches such as dessert and/or a welcome home ' +
-							    'sign or banner make each move-in personal and special. Need some ideas? Check out our instagram ' +
-							    '<a href='+ gobeInstagram +'>@gobethe1</a> for pictures of previous parties. Don\'t forget to take ' +
-							    'your own pictures and tag us #gobethe1.</p>' +
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Who to contact for questions: ' +
+							    'Name: ' + event.organizerFirstName + ' ' + event.organizerLastName +
+							    'Email: ' + event.organizerEmail +
+							    'Phone Number: ' + event.organizerPhoneNumber + '</p>' +
 
 							    // sign off
 							    '<p> See you there, <br><br>' +
