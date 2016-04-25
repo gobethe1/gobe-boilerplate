@@ -25,9 +25,6 @@ var GroupSchema = new Schema({
 
 GroupSchema
  .pre('save', function(next) {
- //  console.log('previous email in pre-save', this.previousEmailList)
-
- // this.previousEmailList = this.previousEmailList;
  this.updatedAt = new Date();
  next();
 });
