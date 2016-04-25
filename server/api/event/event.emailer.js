@@ -281,7 +281,7 @@ function detailsToGroupLeader(event, host){
 			  	      var dateString = event.confirmDate.toString();
 			  	      var finalDate = dateString.slice(0, 10);
 			  	      var capOrgName = group.organizationName.capitalize();
-			  	      var number = event.phoneNumber.toString();
+			  	      var number = event.organizerPhoneNumber.toString() || event.phoneNumber.toString();
 	  	  			  var clientPhoneNumber = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
 	  	  			  var phoneNumber = clientPhoneNumber || organizerPhoneNumber;
 			  	      var eventAddress = event.address;
