@@ -138,7 +138,7 @@ function volunteerMatch(event, host){
 	  	  var groupLeader = group.firstName;
 	  	  var number = group.phoneNumber.toString();
 	  	  var groupPhoneNumber  = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
-	  	  var eventName = _.capitalize(event.firstName) || _.capitalize(event.eventName);
+	  	  var eventName = _.capitalize(event.firstName || event.eventName);
 	  	  var eventDescription = event.description || homelessMoveinDescription;
 
 
@@ -226,8 +226,8 @@ function detailsToEventCreator(event, host){
 			  function(user, group, done) {
 
 			  	      var eventContact = user.email;
-			  	      var capFirstName = _.capitalize(event.firstName);
-			  	      var capLastName = _.capitalize(event.lastName);
+			  	      // var capFirstName = _.capitalize(event.firstName);
+			  	      // var capLastName = _.capitalize(event.lastName);
 			  	      var dateString = event.confirmDate.toString();
 			  	      var finalDate = dateString.slice(0, 10);
 			  	      var capOrgName = group.organizationName.capitalize();
@@ -288,8 +288,8 @@ function detailsToGroupLeader(event, host){
 	    	// var index = _.indexOf(event.sentEmails, value.email)
 
 					  var groupContact = group.email;
-			  	      var capFirstName = _.capitalize(event.firstName);
-			  	      var capLastName = _.capitalize(event.lastName);
+			  	      // var capFirstName = _.capitalize(event.firstName);
+			  	      // var capLastName = _.capitalize(event.lastName);
 			  	      var dateString = event.confirmDate.toString();
 			  	      var finalDate = dateString.slice(0, 10);
 			  	      var capOrgName = group.organizationName.capitalize();
