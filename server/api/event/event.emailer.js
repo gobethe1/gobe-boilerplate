@@ -42,6 +42,7 @@ function matchZipCode(event, host){
 	    	var link = 'http://' + host + '/confirm/' + event._id + '/' + value._id;
 	    	var capFirstName = _.capitalize(value.firstName);
 	    	var eventName = _.capitalize(event.firstName) || _.capitalize(event.eventName);
+	    	var eventDescription = event.description;
 	    	var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey
 
 		    var transporter = nodemailer.createTransport({
@@ -63,18 +64,19 @@ function matchZipCode(event, host){
 
 			       // salutation + invite
 				     '<p style="font-size:14px;font-family:sans-serif;">Hello ' + capFirstName + ',<br>' +
-				     'You have a new opportunity to make a difference! ' + eventName + 'needs help in your area.' +
+				     'You have a new opportunity to make a difference! ' + eventName + ' needs help in your area.' +
 
 				     // view dates button
 				     '<div style="text-align:center"><a href=' + link +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Event Dates</a></div><br>' +
 
 				     // what's this about?
 				     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">What\'s this invite about?</p>' +
+				     '<p>' + eventDescription + ' </p><br>' +
 						 '<p>Ready to make a difference? Simply accept the invite and start recruiting your friends.' +
 
 						 // sign off
-						 '<p>We hope to see you there,</p>' +
-			       '<p>GoBe team</p>'
+						 '<p>We hope to see you there,<br><br>' +
+			       'GoBe team</p>'
 		    };
 
 			// if(index === -1){
@@ -167,7 +169,7 @@ function volunteerMatch(event, host){
 
 					    // sign off
 					    '<p> Hope to see you there, <br><br>' +
-					    'GOBE Team </p>'
+					    'GoBe Team </p>'
 			    };
 
 				// if(index === -1){
@@ -338,7 +340,7 @@ function detailsToGroupLeader(event, host){
 
 							    // sign off
 							    '<p> See you there, <br><br>' +
-							    'GOBE Team </p>'
+							    'GoBe Team </p>'
 
 			  		    };
 
