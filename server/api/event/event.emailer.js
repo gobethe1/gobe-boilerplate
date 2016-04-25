@@ -119,10 +119,11 @@ function volunteerMatch(event, host){
 	  	  var capLastName = _.capitalize(group.lastName);
 	  	  var finalDate = dateString.slice(0, 10);
 	  	  var capOrgName = group.organizationName.capitalize();
+	  	  var groupLeader = group.firstName;
 	  	  var number = group.phoneNumber.toString();
 	  	  var groupPhoneNumber  = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
-	  	  var gobeKitLink = 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
-	  	  var gobeInstagram = 'https://www.instagram.com/gobethe1/';
+	  	  var eventName = event.eventName || event.firstName;
+	  	  var eventDescription = event.description || event.notes;
 
 
 		    group.emailList.map(function(value){
@@ -148,39 +149,21 @@ function volunteerMatch(event, host){
 			      	'<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
 
 			      	// initial tag-line + details
-			      	'<p> Get ready to party! </p>' +
-			      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details </p>' +
-					    '<p> The ' + capOrgName + ' are confirmed for the ' +
-					    'move-in party of ' + clientFirstName + ' on ' + finalDate + ' at ' + event.confirmTime + '.</p>' +
+			      	'<p> You have been invited by ' + groupLeader + ' to join the rest of ' + capOrgName + ' to help ' + eventName +
+			      	' in your area on ' + finalDate + ' at ' + event.confirmTime + '. Can you make it?</p>' +
 
-					    // event information
-					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information </p>' +
-					    '<p> Point person name: ' + capFirstName + ' ' + capLastName + '<br>' +
-					    'Point person phone: ' + groupPhoneNumber + '</p>' +
-
-					    // meetup address
-					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Meet up with your group at this address:</p>' +
-					    '<p>' + event.meetupAddress + '<p>' +
-					    '<p> From the meetup spot ' + capFirstName + ', your group leader, will direct you to the event</p>' +
+					    // // meetup address
+					    // '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Meet up with your group at this address:</p>' +
+					    // '<p>' + event.meetupAddress + '<p>' +
+					    // '<p> From the meetup spot ' + capFirstName + ', your group leader, will direct you to the event</p>' +
 
 					    // can you make it?
-					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Can you make it? </p>' +
 					   	'<a href=' + linkConfirm +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:40%;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +
 					    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a><br><br>' +
 
-					    // what to bring section
-					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to bring? </p>' +
-					    '<p>You can download the checklist of items that complete a <a href=' + gobeKitLink + '>' +
-					    'GOBE Welcome Home Kit</a>, but make sure to coordinate with your group leader to see what is still needed! ' +
-					    'We encourage you to bring as many items as you would like, but we ask that you please bring the items on this ' +
-					    'list as a minimum. All items except pillows can be lightly used. </p>' +
-
-					    // some nice touches sectionc
-					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Some nice touches </p>' +
-					    '<p>Keep in mind it\'s a party! Throwing in extra touches such as dessert and/or a welcome home ' +
-					    'sign or banner make each move-in personal and special. Need some ideas? Check out our instagram ' +
-					    '<a href='+ gobeInstagram +'>@gobethe1</a> for pictures of previous parties. Don\'t forget to take ' +
-					    'your own pictures and tag us #gobethe1.</p>' +
+					    // some this about?
+					    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What\'s this invite about? </p>' +
+					    '<p>' + eventDescription + '</p>'
 
 					    // sign off
 					    '<p> Hope to see you there, <br><br>' +
@@ -237,6 +220,7 @@ function detailsToEventCreator(event, host){
 			  	      var dateString = event.confirmDate.toString();
 			  	      var finalDate = dateString.slice(0, 10);
 			  	      var capOrgName = group.organizationName.capitalize();
+			  	      var eventName = event.eventName || event.firstName;
 
 			  		    var transporter = nodemailer.createTransport({
 			  		      host: GodaddySMTP,
@@ -250,14 +234,14 @@ function detailsToEventCreator(event, host){
 			  		    var mailOptions = {
 			  		      to: eventContact, //admin annie email
 			  		      from: 'hello@gobethe1.com',
-			  		      subject: capFirstName + '\'s Move-In Party',
+			  		      subject: eventName + 'has been matched!',
  			  		      html:
  			  		      // gobe logo
  			  		      '<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
 
  			  		      // match text
  			  		      '<p> We\'ve got a match! The ' + group.organizationName + ', have confirmed' +
- 			  		      'their attendance for the ' + event.firstName + 'on ' + event.confirmDate +
+ 			  		      'their attendance for the ' + eventName + 'on ' + event.confirmDate +
  			  		      'at ' + event.confirmTime + '. </p>'
 			  		    };
 
@@ -300,7 +284,9 @@ function detailsToGroupLeader(event, host){
 			  	      var capOrgName = group.organizationName.capitalize();
 			  	      var number = event.phoneNumber.toString();
 	  	  			  var clientPhoneNumber = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
+	  	  			  var phoneNumber = clientPhoneNumber || organizerPhoneNumber;
 			  	      var eventAddress = event.address;
+			  	      var eventName = event.eventName || event.firstName;
 
 			  		    var transporter = nodemailer.createTransport({
 			  		      host: GodaddySMTP,
@@ -315,7 +301,7 @@ function detailsToGroupLeader(event, host){
 			  		    var mailOptions = {
 			  		      to: groupContact, //admin annie email
 			  		      from: 'hello@gobethe1.com',
-			  		      subject: capFirstName + '\'s Move-In Party',
+			  		      subject: eventName + ' Details',
 			  		      html:
 					  		  // gobe logo
 					      	'<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
@@ -323,13 +309,13 @@ function detailsToGroupLeader(event, host){
 					      	// initial tag-line + details
 					      	'<p> Thank you for being a changemaker!</p>' +
 					      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details </p>' +
-							    '<p> The ' + capOrgName + ' are confirmed for ' + capFirstName + 'on ' +
+							    '<p> The ' + capOrgName + ' are confirmed for ' + eventName + ' on ' +
 							  	+ finalDate + ' at ' + event.confirmTime + '.</p>' +
 
 							    // event information
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information </p>' +
-							    '<p> Event Name: ' + capFirstName + ' ' + capLastName + '<br>' +
-							    'Phone: ' + clientPhoneNumber + '<br>' +
+							    '<p> Event Name: ' + eventName + '<br>' +
+							    'Phone: ' + phoneNumber + '<br>' +
 							    'Event address: ' + eventAddress + ' </p>' +
 
 							    //meetup address
@@ -341,6 +327,7 @@ function detailsToGroupLeader(event, host){
 							    '<p>' + event.notes + '</p>' +
 
 							    // registry link
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">More info: </p>'
 							    '<p><a href=' + event.registryUrl + '>Event Link</a></p>' +
 
 							    // some nice touches sectionc
