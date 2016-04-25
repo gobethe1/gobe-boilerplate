@@ -55,7 +55,7 @@ function matchZipCode(group, host){
 			       '<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
 
 			       // salutation + invite
-				     '<p style="font-size:14px;font-family:sans-serif;">Hello ' + capFirstName + ',<br>' +
+				     '<p style="font-size:14px;font-family:sans-serif;">Hello ' + capFirstName + ', <br>' +
 				     'You have a new opportunity to make a difference! ' + eventName + ' needs help in your area.' +
 
 				     // view dates button

@@ -219,7 +219,7 @@ function detailsToEventCreator(event, host){
 			  function(group, done){
 			  	// console.log('user')
 			  	User.findById( event.userId, function(err, user) {
-			  		console.log(user)
+			  		//console.log(user)
 			       done(err, user, group);
 			  	});
 			  },
@@ -251,9 +251,9 @@ function detailsToEventCreator(event, host){
  			  		      '<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
 
  			  		      // match text
- 			  		      '<p> We\'ve got a match! The ' + group.organizationName + ', have confirmed' + '<br>' +
- 			  		      'their attendance for the ' + eventName + 'on ' + finalDate + '<br>' + 
- 			  		      'at ' + event.confirmTime + '. </p>'
+ 			  		      '<p> We\'ve got a match! The ' + group.organizationName + ', have confirmed ' +
+ 			  		      'their attendance for ' + eventName + ' on ' + finalDate + 
+ 			  		      ' at ' + event.confirmTime + '. </p>'
 			  		    };
 
 			  		    transporter.sendMail(mailOptions, function(err) {
@@ -294,10 +294,14 @@ function detailsToGroupLeader(event, host){
 			  	      var finalDate = dateString.slice(0, 10);
 			  	      var capOrgName = group.organizationName.capitalize();
 			  	      var number = event.organizerPhoneNumber.toString() || event.phoneNumber.toString();
-	  	  			  var clientPhoneNumber = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
+	  	  			  var clientPhoneNumber = '(' + number.substring(0,3) + ') ' + number.substring(3,6) + '-' + number.substring(6,10);
 	  	  			  var phoneNumber = clientPhoneNumber || organizerPhoneNumber;
 			  	      var eventAddress = event.address;
 			  	      var eventName = event.eventName || event.firstName;
+
+			  	      console.log("event confirmdate", event.confirmDate)
+			  	      console.log("datestring", dateString)
+			  	      console.log("finaldate", finalDate)
 
 			  		    var transporter = nodemailer.createTransport({
 			  		      host: GodaddySMTP,
@@ -321,7 +325,7 @@ function detailsToGroupLeader(event, host){
 					      	'<p> Thank you for being a changemaker!</p>' +
 					      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details </p>' +
 							    '<p> The ' + capOrgName + ' are confirmed for ' + eventName + ' on ' +
-							  	+ finalDate + ' at ' + event.confirmTime + '.</p>' +
+							  	+ event.confirmDate + ' at ' + event.confirmTime + '.</p>' +
 
 							    // event information
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information </p>' +
