@@ -245,14 +245,14 @@ function detailsToEventCreator(event, host){
 			  		    var mailOptions = {
 			  		      to: eventContact, //admin annie email
 			  		      from: 'hello@gobethe1.com',
-			  		      subject: eventName + 'has been matched!',
+			  		      subject: eventName + ' has been matched!',
  			  		      html:
  			  		      // gobe logo
  			  		      '<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
 
  			  		      // match text
- 			  		      '<p> We\'ve got a match! The ' + group.organizationName + ', have confirmed' +
- 			  		      'their attendance for the ' + eventName + 'on ' + event.confirmDate +
+ 			  		      '<p> We\'ve got a match! The ' + group.organizationName + ', have confirmed' + '<br>' +
+ 			  		      'their attendance for the ' + eventName + 'on ' + finalDate + '<br>' + 
  			  		      'at ' + event.confirmTime + '. </p>'
 			  		    };
 
@@ -335,16 +335,16 @@ function detailsToGroupLeader(event, host){
 
 							    // what to bring section
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to know: </p>' +
-							    '<p>' + event.notes + '</p>' +
+							    '<p>' + (event.notes || event.description) + '</p>' +
 
 							    // registry link
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">More info: </p>' +
 							    '<p><a href=' + event.registryUrl + '>Event Link</a></p>' +
 
 							    // some nice touches sectionc
-							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Who to contact for questions: ' +
-							    'Name: ' + event.organizerFirstName + ' ' + event.organizerLastName +
-							    'Email: ' + event.organizerEmail +
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Who to contact for questions:</p>' +
+							    '<p>Name: ' + event.organizerFirstName + ' ' + event.organizerLastName + '<br>' +
+							    'Email: ' + event.organizerEmail + '<br>' +
 							    'Phone Number: ' + event.organizerPhoneNumber + '</p>' +
 
 							    // sign off
