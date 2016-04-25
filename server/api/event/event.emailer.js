@@ -20,6 +20,17 @@ String.prototype.capitalize = function() {
 var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group." +
 "You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!" 	
 
+var checkEventName = function(event){
+	if(event.firstName){
+		return event.firstName.capitalize();
+	}
+	else if(!event.firstName && event.organizerFirstName){
+		return event.organizerFirstName.capitalize();
+	}
+	else{
+		return "";
+	}
+}
 
 
 function matchZipCode(event, host){
@@ -117,7 +128,8 @@ function volunteerMatch(event, host){
 
 		
 	  	  var dateString = event.confirmDate.toString();
-	  	  var clientFirstName = event.firstName.capitalize();
+	  	  var clientFirstName = checkEventName(event);
+	  	  // var clientFirstName = event.organizerFirstName.capitalize() || event.firstName.capitalize() || " ";
 	  	  var eventAddress = event.address;
 		  var capFirstName = _.capitalize(group.firstName);
 	  	  var capLastName = _.capitalize(group.lastName);
