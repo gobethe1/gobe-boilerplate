@@ -37,6 +37,7 @@ var EventSchema = new Schema({
   },
   registryUrl: String,
   notes: String,
+  description: String,
   host: String,
   confirmGroup: {type: mongoose.Schema.Types.ObjectId, ref: 'Group', default:null},
   confirmDate: Date,

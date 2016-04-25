@@ -42,7 +42,7 @@ exports.update = function(req, res) {
     event.markModified('rejectedEmails');
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      if((event.causeType === 'Homeless Move-in') && (event.published) && ((event.confirmGroup !== null) && (event.confirmedEmails.length === 0))){
+      if((event.published) && ((event.confirmGroup !== null) && (event.confirmedEmails.length === 0))){
         eventEmailer.detailsToGroupLeader(event, req.headers.host);
       }
       return res.status(200).json(event);
@@ -54,9 +54,7 @@ exports.update = function(req, res) {
 exports.send = function(req, res) {
   Event.create(req.body, function(err, event) {
     if(err) { return handleError(res, err); }
-    if(event.causeType === 'Homeless Move-in'){
-      eventEmailer.matchZipCode(event, req.headers.host);
-    }
+    eventEmailer.matchZipCode(event, req.headers.host);
     return res.status(201).json(event);
   });
 };

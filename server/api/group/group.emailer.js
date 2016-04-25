@@ -13,7 +13,7 @@ function matchZipCode(group, host){
 
 	 async.waterfall([
 	   function(done) {
-	     Event.find({zipCode: {$in: group.matchZipCodeArr}, confirmGroup:null, causeType: 'Homeless Move-in'},
+	     Event.find({zipCode: {$in: group.matchZipCodeArr}, confirmGroup:null},
 	     	function(err, event) {
 	       if (!event) {
 	       	 console.log("no zipcode matches")
@@ -91,8 +91,6 @@ function matchZipCode(group, host){
 
 function updatedVolunteerMatch(group, host){
 		console.log("hitting updatedVolunteerMatch")
-
-		     	console.log(new Date())
 		 async.waterfall([
 
 		   function(done) {
@@ -102,7 +100,7 @@ function updatedVolunteerMatch(group, host){
 		       	 console.log("no zipcode matches")
 		         // return res.status(404).send('There are no zipcode matches.');
 		       }
-		       console.log("updatedVolunteerMatch events", event)
+		       	console.log("updatedVolunteerMatch events", event)
 		        done(err, event);
 		     });
 		   },

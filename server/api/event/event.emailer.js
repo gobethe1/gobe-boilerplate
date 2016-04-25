@@ -23,8 +23,6 @@ function matchZipCode(event, host){
 
   async.waterfall([
 	  function(done) {
-	  	console.log("hitting waterfall")
-
 	    Group.find({ matchZipCodeArr: {$elemMatch: {$eq: event.zipCode} }}, function(err, group) {
 	      if (!group) {
 	      	// console.log(err)

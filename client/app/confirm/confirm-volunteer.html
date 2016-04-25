@@ -1,13 +1,26 @@
 <div class="row" ng-show="confirm">
   <div class="col-sm-6 col-sm-offset-3 col-xs-12 volunteer-confirm">
-    <h4>Get Ready To Party!</h4>
-    <h5>Details</h5>
-    <p>The {{group.organizationName}} are confirmed for the move
-    in party of {{event.firstName}} on {{event.confirmDate | date:"MMMM, d, yyyy"}}
-    {{event.confirmTime}}.</p>
-    <h5>Event Address</h5>
-    <p>{{event.address}}</p>
-    <h5>What To Bring?</h5>
+<!--     <h4>Get Ready To Party!</h4>
+    <h5>Details</h5> -->
+    
+    <p>Yay! The {{group.organizationName}} have jumped into action to help 
+    {{event.firstName}} on {{event.confirmDate | date:"MMMM, d, yyyy"}} at {{event.confirmTime}}.</p>
+    
+    <h5>Event information</h5>
+    <p>Main point of contact: {{group.firstName | capitalize}} {{group.lastName | capitalize}} <br>
+       Phone: {{group.phoneNumber}}</p>
+
+    <h5>Address where the group will meet</h5>   
+    <p>{{event.meetupAddress}}</p>
+
+    <h5>More details:</h5>
+    <p>{{event.registryUrl}}</p>
+
+    <p>Have fun,<br>
+      GoBe Team
+    </p>
+    
+<!--     <h5>What To Bring?</h5>
     <p>Download the checklist of items 
     <a href="https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf" target="_blank" style="text-decoration:underline">here</a>, and
     let your group know what you are bringing.
@@ -15,13 +28,15 @@
     You can bring more but we ask you bring
     this as a minimum. All items except pillows
     can be lightly used.</p>
+    
     <h5>Some Nice Touches</h5>
     <p>Check out instagram <a href="https://www.instagram.com/gobethe1/" target="_blank">@GOBETHE1</a> for
     good ideas from previous parties. Try to
     think of things you typical find at a party.
     Like food and drinks. Things such as
     welcome home banners and posters make
-    each party an extra special event!</p>
+    each party an extra special event!</p> -->
+  
   </div>
 </div>
 <div class="row" ng-show="reject">
