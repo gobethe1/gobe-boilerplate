@@ -9,6 +9,9 @@ var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 var GoogleAPIKey = process.env.GOOGLE_API_KEY;
 
+var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group.
+You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!" 	
+
 function matchZipCode(group, host){
 
 	 async.waterfall([
@@ -31,6 +34,8 @@ function matchZipCode(group, host){
 	     	var link = 'http://' + host + '/confirm/' + event._id + '/' + group._id;
 	     	var capFirstName = _.capitalize(group.firstName);
 	     	var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey
+	     	var eventDescription = event.description ||  homelessMoveinDescription;
+	     	var eventName = _.capitalize(event.firstName) || _.capitalize(event.eventName);
 
 		     var transporter = nodemailer.createTransport({
 		       host: GodaddySMTP,
@@ -46,25 +51,24 @@ function matchZipCode(group, host){
 		       from: 'hello@gobethe1.com',
 		       subject: 'Are You Available?',
 		       html:
-		         '<table width="100%" border="0" cellspacing="0" cellpadding="0">' +
-				     '<tr>' +
-				     '<td align="center"><img src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
-				     '<img src=' + mapLink + '></td><br>' +
-				     '</tr>' +
-				     '<tr>' +
-				     '<td align="left" valign="top">' +
+		      	 // gobe logo
+			       '<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
+
+			       // salutation + invite
 				     '<p style="font-size:14px;font-family:sans-serif;">Hello ' + capFirstName + ',<br>' +
-				     'we matched you with a move-in party of a homeless vet in your neighborhood! Check out the dates ' +
-				     'and times and let us know if you are available:</p>' +
-				     '<div style="text-align:center"><a href=' + link +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Party Dates</a></div><br>' +
-				     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold;">What\'s this invite about?</p>' +
-						 '<p style="font-size:14px;font-family:sans-serif">Someone just moved off the streets and it\'s ' +
-						 'time to party! This person now lives in your area and you have been invited to help welcome them home! Ready to make a difference?' +
-						 ' Simply, accept the invite and start recruiting your friends.</p>' +
-						 '<p style="font-size:14px;font-family:sans-serif;">We hope to see you there,</p>' +
-			       '<p style="font-size:14px;font-family:sans-serif;">GOBE team</p>' +
-						 '</td>' +
-				     '</tr></table>'
+				     'You have a new opportunity to make a difference! ' + eventName + ' needs help in your area.' +
+
+				     // view dates button
+				     '<div style="text-align:center"><a href=' + link +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Event Dates</a></div><br>' +
+
+				     // what's this about?
+				     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">What\'s this invite about?</p>' +
+				     '<p>' + eventDescription + ' </p><br>' +
+					 '<p>Ready to make a difference? Simply accept the invite and start recruiting your friends.' +
+
+       				 // sign off
+       				 '<p>We hope to see you there,<br><br>' +
+       			      'GoBe team</p>'
 		     };
 
 		 	// if(index === -1){
@@ -111,16 +115,17 @@ function updatedVolunteerMatch(group, host){
 				var emailerListArr 		= _.difference(currentEmailListArr, previousEmailListArr)
 
 	  			console.log("previousEmailListArr", previousEmailListArr)
-					console.log("currentEmailListArr", currentEmailListArr)
-					console.log("emailerListArr", emailerListArr)
+				console.log("currentEmailListArr", currentEmailListArr)
+				console.log("emailerListArr", emailerListArr)
 
-		  			var capFirstName = _.capitalize(group.firstName);
+		  		var capFirstName = _.capitalize(group.firstName);
 	  	  		var capLastName = _.capitalize(group.lastName);
+	  	  		var groupLeader = group.firstName;
 		  	  	var capOrgName = group.organizationName.capitalize();
 	  		  	var number = group.phoneNumber.toString();
 		  	  	var groupPhoneNumber  = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
-	  	  	  var gobeKitLink = 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
-	  	  		var gobeInstagram = 'https://www.instagram.com/gobethe1/';
+	  	  	    // var gobeKitLink = 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
+	  	  		// var gobeInstagram = 'https://www.instagram.com/gobethe1/';
 
 	  	  		_.forEach(event, function(value){
 				    console.log("forEach event", value)
@@ -130,9 +135,11 @@ function updatedVolunteerMatch(group, host){
 					    	console.log("emailerListArr", email)
 
 					    	var dateString 			= value.confirmDate.toString();
-		  	  			var finalDate 			= dateString.slice(0, 10);
-		  	  			var clientFirstName     = value.firstName.capitalize();
-		  	  			var eventAddress 		= value.address;
+		  	  				var finalDate 			= dateString.slice(0, 10);
+		  	  				var clientFirstName     = value.firstName.capitalize();
+		  	  				var eventAddress 		= value.address;
+		  	  				var eventName 			= _.capitalize(value.firstName) || _.capitalize(value.eventName);
+		  	  				var eventDescription 	= value.description || homelessMoveinDescription;
 					    	var linkConfirm 		= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/yes';
 					    	var linkReject 			= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/no';
 
@@ -153,44 +160,22 @@ function updatedVolunteerMatch(group, host){
 						      	// gobe logo
 						      	'<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
 
-						      	// initial tag-line + details
-						      	'<p> Get ready to party! </p>' +
-						      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details </p>' +
-								    '<p> The ' + capOrgName + ' are confirmed for the ' +
-								    'move-in party of ' + clientFirstName + ' on ' + finalDate + ' at ' + value.confirmTime + '.</p>' +
+					          	// initial tag-line + details
+					          	'<p> You have been invited by ' + groupLeader + ' to join the rest of ' + capOrgName + ' to help ' + eventName +
+					          	' in your area on ' + finalDate + ' at ' + value.confirmTime + '. Can you make it?</p>' +
+				    	
+				    		    // can you make it?
+				    		   	'<a href=' + linkConfirm +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:40%;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +
+				    		    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a><br><br>' +
 
-								    // event information
-								    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information </p>' +
-								    '<p> Point person name: ' + capFirstName + ' ' + capLastName + '<br>' +
-								    'Point person phone: ' + groupPhoneNumber + '</p>' +
+				    		    // some this about?
+				    		    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What\'s this invite about? </p>' +
+				    		    '<p>' + eventDescription + '</p>'
 
-								    // meetup address
-								    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Meet up with your group at this address:</p>' +
-								    '<p>' + value.meetupAddress + '<p>' +
-								    '<p> From the meetup spot ' + capFirstName + ', your group leader, will direct you to the event</p>' +
-
-								    // can you make it?
-								    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Can you make it? </p>' +
-								   	'<a href=' + linkConfirm +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:40%;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +
-								    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a><br><br>' +
-
-								    // what to bring section
-								    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to bring? </p>' +
-								    '<p>You can download the checklist of items that complete a <a href=' + gobeKitLink + '>' +
-								    'GOBE Welcome Home Kit</a>, but make sure to coordinate with your group leader to see what is still needed! ' +
-								    'We encourage you to bring as many items as you would like, but we ask that you please bring the items on this ' +
-								    'list as a minimum. All items except pillows can be lightly used. </p>' +
-
-								    // some nice touches sectionc
-								    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Some nice touches </p>' +
-								    '<p>Keep in mind it\'s a party! Throwing in extra touches such as dessert and/or a welcome home ' +
-								    'sign or banner make each move-in personal and special. Need some ideas? Check out our instagram ' +
-								    '<a href='+ gobeInstagram +'>@gobethe1</a> for pictures of previous parties. Don\'t forget to take ' +
-								    'your own pictures and tag us #gobethe1.</p>' +
-
-								    // sign off
-								    '<p> Hope to see you there, <br><br>' +
-								    'GOBE Team </p>'
+				    		    // sign off
+				    		    '<p> Hope to see you there, <br><br>' +
+				    		    'GoBe Team </p>'
+								   
 						    };
 
 
