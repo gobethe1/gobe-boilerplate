@@ -1,21 +1,13 @@
-  <uib-accordion close-others="oneAtATime">
-    <uib-accordion-group heading="Dynamic Body Content">
-      <p>The body of the uib-accordion group grows to fit the contents</p>
-      <!-- <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button> -->
-      <div ng-repeat="item in items">{{item}}</div>
-    </uib-accordion-group>
-  </uib-accordion>
-
 <!-- hello -->
-<!-- <div class="row">
+<div class="row">
   <div class="col-xs-12 col-sm-12">
 
        <button  ng-click="openPaymentModal();" ng-if="!currentUser.activeSubscription && !isAdmin"
-       class="btn btn-secondary btn-lg pull-right" >Add Group</button> -->
+       class="btn btn-secondary btn-lg pull-right" >Add Group</button>
        <!-- admin -->
-        <!-- <button ui-sref="group.new" ng-if="isAdmin" class="btn btn-secondary btn-lg pull-right">Add Group</button> -->
+        <button ui-sref="group.new" ng-if="isAdmin" class="btn btn-secondary btn-lg pull-right">Add Group</button>
        <!-- end admin -->
- <!--  </div>
+  </div>
 </div>
 
 <div class="row">
@@ -43,4 +35,12 @@
   </div>
 
 </div>
- -->
+
+
+<!--   <uib-accordion close-others="oneAtATime">
+    <uib-accordion-group heading="Dynamic Body Content">
+      <p>The body of the uib-accordion group grows to fit the contents</p> -->
+      <!-- <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button> -->
+<!--       <div ng-repeat="item in items">{{item}}</div>
+    </uib-accordion-group>
+  </uib-accordion> -->

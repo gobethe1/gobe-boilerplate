@@ -1,23 +1,23 @@
 <div class="row" ng-show="confirm">
   <div class="col-sm-6 col-sm-offset-3 col-xs-12 volunteer-confirm">
-    
-    <h4>Yay! The {{group.organizationName}} have jumped into action to help<br> 
+
+    <h4>Yay! The {{group.organizationName}} have jumped into action to help<br>
     {{event.firstName}} {{event.eventName}} on {{event.confirmDate | date:"MMMM, d, yyyy"}} at {{event.confirmTime}}.</h4>
-    
+
     <h5>Event information</h5>
     <p>Main point of contact: {{group.firstName | capitalize}} {{group.lastName | capitalize}} <br>
        Phone: {{group.phoneNumber | tel}}</p>
 
-    <h5>Address where the group will meet</h5>   
+    <h5>Address where the group will meet</h5>
     <p>{{event.meetupAddress}}</p>
 
     <h5>More details:</h5>
-    <p>{{event.registryUrl}}</p>
+    <p><a href="{{event.registryUrl}}">{{event.registryUrl}}</a></p>
 
     <p>Have fun,<br>
       GoBe Team
     </p>
-  
+
   </div>
 </div>
 <div class="row" ng-show="reject">

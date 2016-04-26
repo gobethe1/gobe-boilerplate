@@ -9,8 +9,11 @@ var GodaddyPassword = process.env.GODADDY_PASSWORD;
 var GodaddySMTP = process.env.GODADDY_SMTP;
 var GoogleAPIKey = process.env.GOOGLE_API_KEY;
 
-var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group." + 
-"You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!" 	
+var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group." +
+"You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!"
+
+var homelessVolunteerMoveIn =	"Someone just moved off the streets and it’s time to party! This person now lives in your area and you can help make a difference by welcoming them home!";
+
 
 function matchZipCode(group, host){
 
@@ -63,12 +66,12 @@ function matchZipCode(group, host){
 
 				     // what's this about?
 				     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">What\'s this invite about?</p>' +
-				     '<p>' + eventDescription + ' </p><br>' +
-					 '<p>Ready to make a difference? Simply accept the invite and start recruiting your friends.' +
+				     '<p>' + eventDescription + ' </p>' +
+					 	 '<p>Ready to make a difference? Simply accept the invite and start recruiting your friends.' +
 
-       				 // sign off
-       				 '<p>We hope to see you there,<br><br>' +
-       			      'GoBe team</p>'
+     				 // sign off
+     				 '<p>We hope to see you there,<br>' +
+     			      'GoBe team</p>'
 		     };
 
 		 	// if(index === -1){
@@ -114,11 +117,11 @@ function updatedVolunteerMatch(group, host){
 				var currentEmailListArr = group.emailList;
 				var emailerListArr 		= _.difference(currentEmailListArr, previousEmailListArr)
 
-	  			console.log("previousEmailListArr", previousEmailListArr)
+	  		console.log("previousEmailListArr", previousEmailListArr)
 				console.log("currentEmailListArr", currentEmailListArr)
 				console.log("emailerListArr", emailerListArr)
 
-		  		var capFirstName = _.capitalize(group.firstName);
+		  			var capFirstName = _.capitalize(group.firstName);
 	  	  		var capLastName = _.capitalize(group.lastName);
 	  	  		var groupLeader = group.firstName;
 		  	  	var capOrgName = group.organizationName.capitalize();
@@ -134,14 +137,14 @@ function updatedVolunteerMatch(group, host){
 					    	console.log("hitting emailerListArr map")
 					    	console.log("emailerListArr", email)
 
-					    	var dateString 			= value.confirmDate.toString();
-		  	  				var finalDate 			= dateString.slice(0, 10);
-		  	  				var clientFirstName     = value.firstName.capitalize();
-		  	  				var eventAddress 		= value.address;
-		  	  				var eventName 			= _.capitalize(value.firstName) || _.capitalize(value.eventName);
-		  	  				var eventDescription 	= value.description || homelessMoveinDescription;
-					    	var linkConfirm 		= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/yes';
-					    	var linkReject 			= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/no';
+					    	var dateString 						= value.confirmDate.toString();
+		  	  			var finalDate 						= dateString.slice(0, 10);
+		  	  			var clientFirstName	     	= value.firstName.capitalize();
+		  	  			var eventAddress 					= value.address;
+		  	  			var eventName 						= _.capitalize(value.firstName) || _.capitalize(value.eventName);
+		  	  			var eventDescriptio	n 		= value.description || homelessVolunteerMoveIn;
+					    	var linkConfirm 					= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/yes';
+					    	var linkReject 						= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/no';
 
 						    var transporter = nodemailer.createTransport({
 						      host: GodaddySMTP,
@@ -163,7 +166,7 @@ function updatedVolunteerMatch(group, host){
 					          	// initial tag-line + details
 					          	'<p> You have been invited by ' + groupLeader + ' to join the rest of ' + capOrgName + ' to help ' + eventName +
 					          	' in your area on ' + finalDate + ' at ' + value.confirmTime + '. Can you make it?</p>' +
-				    	
+
 				    		    // can you make it?
 				    		   	'<a href=' + linkConfirm +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:40%;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +
 				    		    '<a href=' + linkReject +  '  style="text-decoration:underline;color:black;font-size:14px;">I can\'t make it</a><br><br>' +
@@ -173,9 +176,9 @@ function updatedVolunteerMatch(group, host){
 				    		    '<p>' + eventDescription + '</p>' +
 
 				    		    // sign off
-				    		    '<p> Hope to see you there, <br><br>' +
+				    		    '<p> Hope to see you there, <br>' +
 				    		    'GoBe Team </p>'
-								   
+
 						    };
 
 

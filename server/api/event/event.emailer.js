@@ -18,7 +18,9 @@ String.prototype.capitalize = function() {
 };
 
 var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group." +
-"You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!"
+"You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!";
+
+var homelessVolunteerMoveIn =	"Someone just moved off the streets and it’s time to party! This person now lives in your area and you can help make a difference by welcoming them home!";
 
 var checkEventName = function(event){
 	if(event.firstName){
@@ -83,7 +85,7 @@ function matchZipCode(event, host){
 
 				     // what's this about?
 				     '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">What\'s this invite about?</p>' +
-				     '<p>' + eventDescription + ' </p><br>' +
+				     '<p>' + eventDescription + ' </p>' +
 						 '<p>Ready to make a difference? Simply accept the invite and start recruiting your friends.' +
 
 				 // sign off
@@ -127,20 +129,19 @@ function volunteerMatch(event, host){
 		  function(group, done) {
 
 
-	  	  var dateString = event.confirmDate.toString();
-	  	  var clientFirstName = checkEventName(event);
-	  	  // var clientFirstName = event.organizerFirstName.capitalize() || event.firstName.capitalize() || " ";
-	  	  var eventAddress = event.address;
-		  	var capFirstName = _.capitalize(group.firstName);
-	  	  var capLastName = _.capitalize(group.lastName);
-	  	  var finalDate = dateString.slice(0, 10);
-	  	  var date 			= new Date(event.confirmDate);
-	  	  var capOrgName = group.organizationName.capitalize();
-	  	  var groupLeader = group.firstName;
-	  	  var number = group.phoneNumber.toString();
+	  	  var dateString 				= event.confirmDate.toString();
+	  	  var clientFirstName 	= checkEventName(event);
+	  	  var eventAddress 			= event.address;
+		  	var capFirstName 			= _.capitalize(group.firstName);
+	  	  var capLastName 			= _.capitalize(group.lastName);
+	  	  var finalDate 				= dateString.slice(0, 10);
+	  	  var date 							= new Date(event.confirmDate);
+	  	  var capOrgName 				= group.organizationName.capitalize();
+	  	  var groupLeader 			= group.firstName;
+	  	  var number 						= group.phoneNumber.toString();
 	  	  var groupPhoneNumber  = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
-	  	  var eventName = _.capitalize(event.firstName || event.eventName);
-	  	  var eventDescription = event.description || homelessMoveinDescription;
+	  	  var eventName 				= _.capitalize(event.firstName || event.eventName);
+	  	  var eventDescription  = event.description || homelessVolunteerMoveIn;
 
 
 		    group.emailList.map(function(value){
@@ -288,15 +289,15 @@ function detailsToGroupLeader(event, host){
 	  function(group, done) {
 	    	// var index = _.indexOf(event.sentEmails, value.email)
 
-					  var groupContact = group.email;
-			  	      var dateString = event.confirmDate.toString();
-			  	      var finalDate = dateString.slice(0,10);
-			  	      var capOrgName = group.organizationName.capitalize();
-			  	      var number = event.organizerPhoneNumber.toString() || event.phoneNumber.toString();
+					  		var groupContact 	= group.email;
+			  	      var dateString 		= event.confirmDate.toString();
+			  	      var finalDate 		= dateString.slice(0,10);
+			  	      var capOrgName 		= group.organizationName.capitalize();
+			  	      var number 				= event.organizerPhoneNumber.toString() || event.phoneNumber.toString();
 	  	  			  var clientPhoneNumber = '(' + number.substring(0,3) + ') ' + number.substring(3,6) + '-' + number.substring(6,10);
-	  	  			  var phoneNumber = clientPhoneNumber || organizerPhoneNumber;
-			  	      var eventAddress = event.address;
-			  	      var eventName = event.eventName || event.firstName;
+	  	  			  var phoneNumber 	= clientPhoneNumber || organizerPhoneNumber;
+			  	      var eventAddress 	= event.address;
+			  	      var eventName 		= event.eventName || event.firstName;
 
 			  		    var transporter = nodemailer.createTransport({
 			  		      host: GodaddySMTP,
@@ -319,7 +320,7 @@ function detailsToGroupLeader(event, host){
 					      	// initial tag-line + details
 					      	'<p> Thank you for being a changemaker!</p>' +
 					      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details: </p>' +
-							    '<p> The ' + capOrgName + ' are confirmed for ' + eventName + ' on ' + finalDate + 
+							    '<p> The ' + capOrgName + ' are confirmed for ' + eventName + ' on ' + finalDate +
 							    ' at ' + event.confirmTime + '.</p>' +
 
 							    // event information
@@ -334,11 +335,11 @@ function detailsToGroupLeader(event, host){
 
 							    // what to bring section
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to know: </p>' +
-							    '<p>' + (event.notes || event.description) + '</p>' +
+							    '<p>' + (event.description  || homelessMoveinDescription) + '</p>' +
 
 							    // registry link
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">More info: </p>' +
-							    '<p><a href=' + event.registryUrl + '>Event Link</a></p>' +
+							    '<p><a href=' + event.registryUrl + '>Event Link</a> <br>' + (event.notes || "" ) + '</p>'
 
 							    // some nice touches sectionc
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Who to contact for questions:</p>' +
