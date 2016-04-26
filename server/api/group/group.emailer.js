@@ -1,13 +1,21 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var async = require('async');
-var _     = require('lodash');
-var Event = require('../event/event.model');
-var nodemailer = require('nodemailer');
-var GodaddyPassword = process.env.GODADDY_PASSWORD;
-var GodaddySMTP = process.env.GODADDY_SMTP;
-var GoogleAPIKey = process.env.GOOGLE_API_KEY;
+var mongoose 					= require('mongoose');
+var async 						= require('async');
+var _     						= require('lodash');
+var Event 						= require('../event/event.model');
+var nodemailer 				= require('nodemailer');
+var GodaddyPassword 	= process.env.GODADDY_PASSWORD;
+var GodaddySMTP 			= process.env.GODADDY_SMTP;
+var GoogleAPIKey 			= process.env.GOOGLE_API_KEY;
+var SENDGRID_API_KEY 	= process.env.SENDGRID_API_KEY;
+var sendgrid  				= require('sendgrid')('SENDGRID_API_KEY');
+var email 						= new sendgrid.Email();
+
+email.addTo("test@sendgrid.com");
+email.setFrom("you@youremail.com");
+email.setSubject("Sending with SendGrid is Fun");
+email.setHtml("and easy to do anywhere, even with Node.js");
 
 var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group." +
 "You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!"
@@ -142,7 +150,7 @@ function updatedVolunteerMatch(group, host){
 		  	  			var clientFirstName	     	= value.firstName.capitalize();
 		  	  			var eventAddress 					= value.address;
 		  	  			var eventName 						= _.capitalize(value.firstName) || _.capitalize(value.eventName);
-		  	  			var eventDescriptio	n 		= value.description || homelessVolunteerMoveIn;
+		  	  			var eventDescription		 		= value.description || homelessVolunteerMoveIn;
 					    	var linkConfirm 					= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/yes';
 					    	var linkReject 						= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/no';
 

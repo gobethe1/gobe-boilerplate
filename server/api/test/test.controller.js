@@ -5,6 +5,7 @@ var Event = require('../event/event.model');
 var Group = require('../group/group.model');
 var groupEmailer = require('../group/group.emailer');
 var eventEmailer = require('../event/event.emailer');
+var sendGridTest = require('../event/sendgrid.test');
 
 // new group is created
 //passing in all the groups
@@ -28,3 +29,9 @@ exports.events = function(req, res) {
   });
   res.status(200).send('bingo');
 };
+
+exports.sendGrid = function(req, res) {
+  sendGridTest.sendEmail();
+  res.status(200).send('bingo');
+};
+

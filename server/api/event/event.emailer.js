@@ -1,15 +1,25 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var async = require('async');
-var _     = require('lodash');
-var fs    = require('fs');
-var Group = require('../group/group.model');
-var User = require('../user/user.model');
-var nodemailer = require('nodemailer');
-var GodaddyPassword = process.env.GODADDY_PASSWORD;
-var GodaddySMTP = process.env.GODADDY_SMTP;
-var GoogleAPIKey = process.env.GOOGLE_API_KEY;
+var mongoose 					= require('mongoose');
+var async 						= require('async');
+var _     						= require('lodash');
+var fs    						= require('fs');
+var Group 						= require('../group/group.model');
+var User 							= require('../user/user.model');
+var nodemailer 				= require('nodemailer');
+var GodaddyPassword 	= process.env.GODADDY_PASSWORD;
+var GodaddySMTP 			= process.env.GODADDY_SMTP;
+var GoogleAPIKey 			= process.env.GOOGLE_API_KEY;
+var SENDGRID_API_KEY 	= process.env.SENDGRID_API_KEY;
+var sendgrid  				= require('sendgrid')('SENDGRID_API_KEY');
+var email 						= new sendgrid.Email();
+
+email.addTo("test@sendgrid.com");
+email.setFrom("you@youremail.com");
+email.setSubject("Sending with SendGrid is Fun");
+email.setHtml("and easy to do anywhere, even with Node.js");
+
+sendgrid.send(email);
 var gobeKitLink				= 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
 var gobeInstagram 		= 'https://www.instagram.com/gobethe1/';
 
@@ -339,11 +349,11 @@ function detailsToGroupLeader(event, host){
 
 							    // registry link
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">More info: </p>' +
-							    '<p><a href=' + event.registryUrl + '>Event Link</a> <br>' + (event.notes || "" ) + '</p>'
+							    '<p><a href=' + event.registryUrl + '>Event Link</a> <br>' + (event.notes || "" ) + '</p>' +
 
 							    // some nice touches sectionc
-							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Who to contact for questions:</p>' +
-							    '<p>Name: ' + event.organizerFirstName + ' ' + event.organizerLastName + '<br>' +
+							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Who to contact for questions:</p>' +
+							    '<p> Name: ' + event.organizerFirstName + ' ' + event.organizerLastName + '<br>' +
 							    'Email: ' + event.organizerEmail + '<br>' +
 							    'Phone Number: ' + event.organizerPhoneNumber + '</p>' +
 
