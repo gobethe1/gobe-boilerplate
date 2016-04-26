@@ -355,7 +355,7 @@ function detailsToGroupLeader(event, host){
   				transporter.sendMail(mailOptions, function(err) {
 	  		    	console.log("inside sendMail error")
 	  		    	console.log(err)
-	  		    	console.log(mailOptions)
+	  		    	console.log(mailOptions.to)
   		      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
   		    });
 
