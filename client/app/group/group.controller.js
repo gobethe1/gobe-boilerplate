@@ -25,6 +25,12 @@ angular.module('gobeApp')
       }
     };
 
+    // dropdown-button
+    $scope.status = {
+      isFirstOpen: true,
+      isFirstDisabled: false
+    };
+
     var checkAddress = function(){
         $scope.newGroup.address   = $scope.newGroup.address.formatted_address;
         var fullAddress           = $scope.newGroup.address;
