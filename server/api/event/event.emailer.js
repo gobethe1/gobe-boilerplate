@@ -32,11 +32,6 @@ var checkEventName = function(event){
 	}
 };
 
-var parseDate = function(event){
-	var dateString = event.confirmDate.toString().slice(0,10);
-	return dateString;
-};
-
 
 function matchZipCode(event, host){
 
@@ -293,26 +288,15 @@ function detailsToGroupLeader(event, host){
 	  function(group, done) {
 	    	// var index = _.indexOf(event.sentEmails, value.email)
 
-					  		var groupContact = group.email;
-			  	      // var capFirstName = _.capitalize(event.firstName);
-			  	      // var capLastName = _.capitalize(event.lastName);
-			  	      // var dateString = event.confirmDate.toString().substring(0,11);
-			  	      // var finalDate = dateString.slice(0, 10);
-			  	      var date = new Date(event.confirmDate);
-			  	      var dateString = date.toString();
+					  var groupContact = group.email;
+			  	      var dateString = event.confirmDate.toString();
 			  	      var finalDate = dateString.slice(0,10);
-			  	      // var finalDate = parseDate(event);
 			  	      var capOrgName = group.organizationName.capitalize();
 			  	      var number = event.organizerPhoneNumber.toString() || event.phoneNumber.toString();
 	  	  			  var clientPhoneNumber = '(' + number.substring(0,3) + ') ' + number.substring(3,6) + '-' + number.substring(6,10);
 	  	  			  var phoneNumber = clientPhoneNumber || organizerPhoneNumber;
 			  	      var eventAddress = event.address;
 			  	      var eventName = event.eventName || event.firstName;
-
-			  	      console.log("event confirmdate", event.confirmDate)
-			  	      // console.log("datestring", dateString)
-			  	      console.log("finaldate", finalDate)
-
 
 			  		    var transporter = nodemailer.createTransport({
 			  		      host: GodaddySMTP,
@@ -335,8 +319,8 @@ function detailsToGroupLeader(event, host){
 					      	// initial tag-line + details
 					      	'<p> Thank you for being a changemaker!</p>' +
 					      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details: </p>' +
-							    '<p> The ' + capOrgName + ' are confirmed for ' + eventName + ' on ' +
-							  	+ finalDate + ' at ' + event.confirmTime + '.</p>' +
+							    '<p> The ' + capOrgName + ' are confirmed for ' + eventName + ' on ' + finalDate + 
+							    ' at ' + event.confirmTime + '.</p>' +
 
 							    // event information
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information: </p>' +
@@ -369,10 +353,9 @@ function detailsToGroupLeader(event, host){
 			  		    };
 
   				transporter.sendMail(mailOptions, function(err) {
-  					console.log('parse date: ', parseDate(event))
-  		    	console.log("inside sendMail error")
-  		    	console.log(err)
-  		    	console.log(mailOptions.to)
+	  		    	console.log("inside sendMail error")
+	  		    	console.log(err)
+	  		    	console.log(mailOptions)
   		      // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
   		    });
 
