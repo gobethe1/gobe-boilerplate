@@ -10,16 +10,10 @@ var nodemailer 				= require('nodemailer');
 var GodaddyPassword 	= process.env.GODADDY_PASSWORD;
 var GodaddySMTP 			= process.env.GODADDY_SMTP;
 var GoogleAPIKey 			= process.env.GOOGLE_API_KEY;
-var SENDGRID_API_KEY 	= process.env.SENDGRID_API_KEY;
-var sendgrid  				= require('sendgrid')('SENDGRID_API_KEY');
-var email 						= new sendgrid.Email();
+// var SENDGRID_API_KEY 	= process.env.SENDGRID_API_KEY;
+// var sendgrid  				= require('sendgrid')('SENDGRID_API_KEY');
+// var email 						= new sendgrid.Email();
 
-email.addTo("test@sendgrid.com");
-email.setFrom("you@youremail.com");
-email.setSubject("Sending with SendGrid is Fun");
-email.setHtml("and easy to do anywhere, even with Node.js");
-
-sendgrid.send(email);
 var gobeKitLink				= 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
 var gobeInstagram 		= 'https://www.instagram.com/gobethe1/';
 
@@ -142,7 +136,7 @@ function volunteerMatch(event, host){
 	  	  var dateString 				= event.confirmDate.toString();
 	  	  var clientFirstName 	= checkEventName(event);
 	  	  var eventAddress 			= event.address;
-		  	var capFirstName 			= _.capitalize(group.firstName);
+		  var capFirstName 			= _.capitalize(group.firstName);
 	  	  var capLastName 			= _.capitalize(group.lastName);
 	  	  var finalDate 				= dateString.slice(0, 10);
 	  	  var date 							= new Date(event.confirmDate);
@@ -244,6 +238,7 @@ function detailsToEventCreator(event, host){
 			  	      var finalDate = dateString.slice(0, 10);
 			  	      var capOrgName = group.organizationName.capitalize();
 			  	      var eventName = event.eventName || event.firstName;
+			  	      var eventTime = event.confirmTime;
 
 			  		    var transporter = nodemailer.createTransport({
 			  		      host: GodaddySMTP,
@@ -263,9 +258,9 @@ function detailsToEventCreator(event, host){
  			  		      '<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
 
  			  		      // match text
- 			  		      '<p> We\'ve got a match! The ' + group.organizationName + ', have confirmed ' +
+ 			  		      '<p> We\'ve got a match! The ' + capOrgName + ', have confirmed ' +
  			  		      'their attendance for ' + eventName + ' on ' + finalDate +
- 			  		      ' at ' + event.confirmTime + '. </p>'
+ 			  		      ' at ' + eventTime + '. </p>'
 			  		    };
 
 			  		    transporter.sendMail(mailOptions, function(err) {
@@ -299,15 +294,24 @@ function detailsToGroupLeader(event, host){
 	  function(group, done) {
 	    	// var index = _.indexOf(event.sentEmails, value.email)
 
-					  		var groupContact 	= group.email;
+					  var groupContact 		= group.email;
 			  	      var dateString 		= event.confirmDate.toString();
 			  	      var finalDate 		= dateString.slice(0,10);
 			  	      var capOrgName 		= group.organizationName.capitalize();
-			  	      var number 				= event.organizerPhoneNumber.toString() || event.phoneNumber.toString();
+			  	      var number 			= event.organizerPhoneNumber.toString() || event.phoneNumber.toString();
 	  	  			  var clientPhoneNumber = '(' + number.substring(0,3) + ') ' + number.substring(3,6) + '-' + number.substring(6,10);
-	  	  			  var phoneNumber 	= clientPhoneNumber || organizerPhoneNumber;
-			  	      var eventAddress 	= event.address;
+	  	  			  var phoneNumber 		= clientPhoneNumber || organizerPhoneNumber;
+			  	      var eventAddress 		= event.address;
 			  	      var eventName 		= event.eventName || event.firstName;
+			  	      var eventTime 		= event.confirmTime;
+			  	      var eventMeetup 		= event.meetupAddress;
+			  	      var eventDescription 	= event.description  || homelessMoveinDescription;
+			  	      var eventRegistryUrl 	= event.registryUrl
+			  	      var eventNotes  		= event.notes || "";
+			  	      var organizerFirstName = event.organizerFirstName;
+			  	      var organizerLastName = event.organizerLastName;
+			  	      var organizerPhoneNumber = event.organizerPhoneNumber;
+			  	      var organizerEmail 	= event.organizerEmail
 
 			  		    var transporter = nodemailer.createTransport({
 			  		      host: GodaddySMTP,
@@ -331,7 +335,7 @@ function detailsToGroupLeader(event, host){
 					      	'<p> Thank you for being a changemaker!</p>' +
 					      	'<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Details: </p>' +
 							    '<p> The ' + capOrgName + ' are confirmed for ' + eventName + ' on ' + finalDate +
-							    ' at ' + event.confirmTime + '.</p>' +
+							    ' at ' + eventTime + '.</p>' +
 
 							    // event information
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Event Information: </p>' +
@@ -341,21 +345,21 @@ function detailsToGroupLeader(event, host){
 
 							    //meetup address
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">Address where the group will meet:</p>' +
-							    '<p>' + event.meetupAddress + '</p>' +
+							    '<p>' + eventMeetup + '</p>' +
 
 							    // what to bring section
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> What to know: </p>' +
-							    '<p>' + (event.description  || homelessMoveinDescription) + '</p>' +
+							    '<p>' + eventDescription + '</p>' +
 
 							    // registry link
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">More info: </p>' +
-							    '<p><a href=' + event.registryUrl + '>Event Link</a> <br>' + (event.notes || "" ) + '</p>' +
+							    '<p><a href=' + eventRegistryUrl + '>Event Link</a> <br>' + eventNotes  + '</p>' +
 
 							    // some nice touches sectionc
 							    '<p style="font-size:14px;font-family:sans-serif;font-weight:bold"> Who to contact for questions:</p>' +
-							    '<p> Name: ' + event.organizerFirstName + ' ' + event.organizerLastName + '<br>' +
-							    'Email: ' + event.organizerEmail + '<br>' +
-							    'Phone Number: ' + event.organizerPhoneNumber + '</p>' +
+							    '<p> Name: ' + organizerFirstName + ' ' + organizerLastName + '<br>' +
+							    'Email: ' + organizerEmail + '<br>' +
+							    'Phone Number: ' + organizerPhoneNumber + '</p>' +
 
 							    // sign off
 							    '<p> See you there, <br>' +

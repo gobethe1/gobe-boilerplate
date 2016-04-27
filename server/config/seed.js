@@ -163,7 +163,7 @@ q.fcall(function() {
           organizationName: 'Holly Rollers',
           firstName: 'Sally',
           lastName: 'Figueroa',
-          email: 'sally@example.com', //'midgetllamas182@yahoo.com',
+          email: 'gobethe1dev@gmail.com', //'midgetllamas182@yahoo.com',
           phoneNumber: '313333333',
           address: '123 Example Street',
           zipCode: '90017',
@@ -172,30 +172,30 @@ q.fcall(function() {
           organizationName: 'Homes for vets',
           firstName: 'Casper',
           lastName: 'P',
-          email: 'cassie.purtlebaugh@example.com', //'gobethe1dev@example.com',
+          email: 'gobethe1dev@gmail.com', //'gobethe1dev@example.com',
           phoneNumber: '7467447474',
           address: '456 Example Street',
           zipCode: '90000',
-          matchZipCodeArr: ['90050', '90020']
+          matchZipCodeArr: ['90050', '90020', '90000']
         },{
           organizationName: 'Greg Rocks',
           firstName: 'Greg',
           lastName: 'Rock',
-          email: 'gobethe1dev@example.com',
+          email: 'gobethe1dev@gmail.com',
           phoneNumber: '7467447474',
           address: '789 Example Street',
           zipCode: '90017',
-          matchZipCodeArr: ['90071', '90050', '90020'],
+          matchZipCodeArr: ['90071', '90050', '90020', '90017'],
           emailList: ['gobethe1dev@example.com', 'grock006@example.com', 'cassie.purtlebaugh@example.com']
         },{
           organizationName: 'Feed The Homeless',
           firstName: 'Patty',
           lastName: 'Malone',
-          email: 'pmalone@example.com',
+          email: 'gobethe1dev@gmail.com',
           phoneNumber: '7467447474',
           address: '101 Example Street',
           zipCode: '90012',
-          matchZipCodeArr: ['90071', '90050', '90020', '90028']
+          matchZipCodeArr: ['90071', '90050', '90020', '90028', '90012']
         },
         function(error, doc) {
             console.log('finished populating groups');
