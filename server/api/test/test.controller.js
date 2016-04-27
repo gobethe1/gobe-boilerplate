@@ -31,7 +31,12 @@ exports.events = function(req, res) {
 };
 
 exports.sendGrid = function(req, res) {
-  sendGridTest.sendEmail();
+  Event.find({}, function (err, events) {
+    _.forEach(events, function(event) {
+        sendGridTest.matchZipCodeSendgrid(event, "localhost:9000");
+    })
+  });
+  // sendGridTest.sendEmail();
   res.status(200).send('bingo');
 };
 
