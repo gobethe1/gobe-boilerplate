@@ -150,6 +150,7 @@ function volunteerMatch(event, host){
 	  	  var groupPhoneNumber  = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
 	  	  var eventName 				= _.capitalize(event.firstName || event.eventName);
 	  	  var eventDescription  = event.description || homelessVolunteerMoveIn;
+	  	  var confirmTime 		= event.confirmTime
 
 
 		    group.emailList.map(function(value){
@@ -176,7 +177,7 @@ function volunteerMatch(event, host){
 
 			      	// initial tag-line + details
 			      	'<p> You have been invited by ' + groupLeader + ' to join the rest of ' + capOrgName + ' to help ' + eventName +
-			      	' in your area on ' + finalDate + ' at ' + event.confirmTime + '. Can you make it?</p>' +
+			      	' in your area on ' + finalDate + ' at ' + confirmTime + '. Can you make it?</p>' +
 
 					    // can you make it?
 					   	'<a href=' + linkConfirm +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:40%;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +

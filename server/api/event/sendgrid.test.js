@@ -39,7 +39,6 @@ var sendEmail = function() {
         from: 'gobethe1dev@gmail.com',
         subject: 'Testing testing 1.3.3',
         html: '<h1></h1>',
-        // sub: {'<%date%>': new Date()},
     });
     email.addFilter('templates', 'template_id', 'bc764a16-9e00-4cae-b42e-5e6fb11d282f');
     email.addSubstitution("%date%", date)
@@ -66,8 +65,6 @@ function matchZipCodeSendgrid(event, host){
 
         group.map(function(value){
 
-            // var index = _.indexOf(event.sentEmails, value.email)
-
             var link = 'http://' + host + '/confirm/' + event._id + '/' + value._id;
             var capFirstName = _.capitalize(value.firstName);
             var eventName = _.capitalize(event.firstName) || _.capitalize(event.eventName);
@@ -80,7 +77,6 @@ function matchZipCodeSendgrid(event, host){
                 from: 'gobethe1dev@gmail.com',
                 subject: 'Are You Available? TEST',
                 html: '<h1></h1>',
-                // sub: {'<%date%>': new Date()},
             });
 
             console.log("capFirstName")
@@ -94,49 +90,6 @@ function matchZipCodeSendgrid(event, host){
              console.log(json);
             });
 
-
-            // var transporter = nodemailer.createTransport({
-            //   host: GodaddySMTP,
-            //   port: 25,
-            //   auth: {
-            //     user: 'hello@gobethe1.com',
-            //     pass: GodaddyPassword
-            //   }
-            // });
-
-            // var mailOptions = {
-            //   to:  value.email,
-            //   from: 'hello@gobethe1.com',
-            //   subject: 'Are You Available?',
-            //   html:
-            //      // gobe logo
-            //        '<img style="display:block;margin:0 auto"src="https://s3-us-west-1.amazonaws.com/gobethe1-prod/confirm-email-logo.png"><br>' +
-
-            //        // salutation + invite
-            //          '<p style="font-size:14px;font-family:sans-serif;">Hello ' + capFirstName + ',<br>' +
-            //          'You have a new opportunity to make a difference! ' + eventName + ' needs help in your area.' +
-
-            //          // view dates button
-            //          '<div style="text-align:center"><a href=' + link +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;">View Event Dates</a></div><br>' +
-
-            //          // what's this about?
-            //          '<p style="font-size:14px;font-family:sans-serif;font-weight:bold">What\'s this invite about?</p>' +
-            //          '<p>' + eventDescription + ' </p>' +
-            //              '<p>Ready to make a difference? Simply accept the invite and start recruiting your friends.' +
-
-            //      // sign off
-            //      '<p>We hope to see you there,<br>' +
-            //        'GoBe team</p>'
-            // };
-
-            // // if(index === -1){
-            //     transporter.sendMail(mailOptions, function(err) {
-            //         console.log("inside sendMail error")
-            //         console.log(err)
-            //         console.log(mailOptions.to)
-            //       // return res.status(200).send('An e-mail has been sent to ' + user.email + ' with further instructions.');
-            //     });
-            // // }
 
         });
 
