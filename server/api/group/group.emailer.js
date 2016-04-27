@@ -12,11 +12,6 @@ var SENDGRID_API_KEY 	= process.env.SENDGRID_API_KEY;
 var sendgrid  				= require('sendgrid')('SENDGRID_API_KEY');
 var email 						= new sendgrid.Email();
 
-email.addTo("test@sendgrid.com");
-email.setFrom("you@youremail.com");
-email.setSubject("Sending with SendGrid is Fun");
-email.setHtml("and easy to do anywhere, even with Node.js");
-
 var homelessMoveinDescription = "Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group." +
 "You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!"
 
@@ -150,9 +145,10 @@ function updatedVolunteerMatch(group, host){
 		  	  			var clientFirstName	     	= value.firstName.capitalize();
 		  	  			var eventAddress 					= value.address;
 		  	  			var eventName 						= _.capitalize(value.firstName) || _.capitalize(value.eventName);
-		  	  			var eventDescription		 		= value.description || homelessVolunteerMoveIn;
+		  	  			var eventDescription		 	= value.description || homelessVolunteerMoveIn;
 					    	var linkConfirm 					= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/yes';
 					    	var linkReject 						= 'http://' + host + '/confirm/volunteer/' + group._id + '/'+ value._id + '/' + value + '/no';
+					    	var confirmTime						= value.confirmTime;
 
 						    var transporter = nodemailer.createTransport({
 						      host: GodaddySMTP,
@@ -173,7 +169,7 @@ function updatedVolunteerMatch(group, host){
 
 					          	// initial tag-line + details
 					          	'<p> You have been invited by ' + groupLeader + ' to join the rest of ' + capOrgName + ' to help ' + eventName +
-					          	' in your area on ' + finalDate + ' at ' + value.confirmTime + '. Can you make it?</p>' +
+					          	' in your area on ' + finalDate + ' at ' + confirmTime + '. Can you make it?</p>' +
 
 				    		    // can you make it?
 				    		   	'<a href=' + linkConfirm +  ' style="background-color:#4A90E2;border:1px solid #4A90E2;border-radius:5px;color:#ffffff ;display:inline-block;font-family:sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:40%;-webkit-text-size-adjust:none;mso-hide:all;">Yes, I\'ll be there</a><br><br>' +

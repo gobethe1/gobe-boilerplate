@@ -14,11 +14,6 @@ var SENDGRID_API_KEY 	= process.env.SENDGRID_API_KEY;
 var sendgrid  				= require('sendgrid')('SENDGRID_API_KEY');
 var email 						= new sendgrid.Email();
 
-email.addTo("test@sendgrid.com");
-email.setFrom("you@youremail.com");
-email.setSubject("Sending with SendGrid is Fun");
-email.setHtml("and easy to do anywhere, even with Node.js");
-
 sendgrid.send(email);
 var gobeKitLink				= 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
 var gobeInstagram 		= 'https://www.instagram.com/gobethe1/';
