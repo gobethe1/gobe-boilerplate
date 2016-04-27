@@ -14,10 +14,6 @@ var GoogleAPIKey 			= process.env.GOOGLE_API_KEY;
 // var sendgrid  				= require('sendgrid')('SENDGRID_API_KEY');
 // var email 						= new sendgrid.Email();
 
-<<<<<<< HEAD
-sendgrid.send(email);
-=======
->>>>>>> 71de95830c4f516add083ad92f78bfc5d992d5f2
 var gobeKitLink				= 'https://s3-us-west-1.amazonaws.com/gobethe1-prod/welcome-kit.pdf';
 var gobeInstagram 		= 'https://www.instagram.com/gobethe1/';
 
