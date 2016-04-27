@@ -282,10 +282,48 @@ rzslider .rz-pointer {
 rzslider .rz-bar.rz-selection {
     z-index: 2;
     background: $primary-blue;
+}
+
+// arrow on tab buttons in group show
+
+
+
+.group-buttons {
+  li {
+    padding-left: 0;
+    padding-right: 0;
   }
+}
+
+.nav-pills > li + li {
+    margin-left: 0;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: $white;
+    background-color: $darkest-blue;
+}
 
 
+.group-buttons  {
+  position: relative;
+  background: $darkest-blue;
+}
 
+.group-buttons .active:after {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(32, 63, 98, 0);
+  border-top-color: #203f62;
+  border-width: 30px;
+  margin-left: -30px;
+}
 
 
 

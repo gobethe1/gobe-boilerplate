@@ -1,27 +1,56 @@
+
+<!-- group info -->
+
+  <uib-accordion close-others="oneAtATime">
+      <uib-accordion-group heading="Group Info">
+          <p><strong>Contact Information:</strong><br>
+              {{group.firstName}} {{group.lastName}} <br>
+              Phone: {{group.phoneNumber}}<br>
+              Email: {{group.email}}</p>
+
+          <p><strong>Volunteer Address:</strong><br>
+          {{group.address}}</p>
+
+          <p><strong>Volunteer Radius:</strong><br>
+          {{group.matchRadius}}</p>
+      </uib-accordion-group>
+  </uib-accordion>
+
+  <uib-accordion close-others="oneAtATime">
+      <uib-accordion-group heading="Team Members">
+          <p ng-repeat="email in group.emailList track by $index">{{email}}</p>
+      </uib-accordion-group>
+  </uib-accordion>
+
+  <uib-tabset class="group-buttons" type="pills">
+      <uib-tab class="col-sm-6 text-center arrow_box" heading="Available"></uib-tab>
+      <uib-tab class="col-sm-6 text-center arrow_box" heading="Your Events"></uib-tab>
+  </uib-tabset>
+
 <!-- hello -->
-<div ng-if="confirm">
+<!-- <div ng-if="confirm">
   <div class="row">
     <div class="col-sm-12 col-xs-12">
       <h2>Get ready to make a change!</h2>
       <h4>We are sending you an email with the event details.</h4>
     </div>
     <div class="col-sm-6 col-md-6 col-xs-12">
-     <!--  <h2>
+      <h2>
           <button ui-sref="group.new" class="btn btn-secondary btn-lg">+ Add Group</button>
-      </h2> -->
+      </h2>
     </div>
   </div>
-</div>
-
+</div> -->
+<!--
 <div class="row">
-  <div class="col-sm-12 col-xs-12">
+  <div class="col-sm-12 col-xs-12"> -->
     <!-- back button -->
-    <a ui-sref="group.list" ng-if="!confirm"
+   <!--  <a ui-sref="group.list" ng-if="!confirm"
        ng-hide="currentUser.groupId === group._id">
       <i class="fa fa-long-arrow-left fa-2x"></i>
-    </a>
+    </a> -->
     <!-- end back button -->
-    <table class="table table-sm">
+    <!-- <table class="table table-sm">
       <thead>
         <tr>
           <th class="col-sm-4">
@@ -75,5 +104,5 @@
     </table>
 
   </div>
-</div>
+</div> -->
 
