@@ -9,7 +9,7 @@ var CommentSchema = new Schema({
   email: String,
   userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   body: String,
-  createdAt: {type: Date, default: Date.now()},
+  createdAt: {type: Date, default: Date.now},
   updatedAt: Date
 });
 
