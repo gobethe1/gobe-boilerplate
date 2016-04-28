@@ -143,7 +143,7 @@ function matchZipCode(event, host){
             var email = new sendgrid.Email({
                 to: value.email,
                 from: gobeEmailAddress,
-                subject: 'Are You Available? TEST',
+                subject: 'Are You Available?',
                 html: '<h1></h1>',
             });
 
@@ -301,7 +301,7 @@ function volunteerMatch(event, host){
  					var email = new sendgrid.Email({
                 to: value,
                 from: gobeEmailAddress,
-                subject: 'Are You Available to volunteer? TEST',
+                subject: 'Are You Available to volunteer?',
                 html: '<h1></h1>',
           });
 

@@ -2,10 +2,10 @@
 <!-- group info -->
 
   <uib-accordion close-others="oneAtATime">
-      <uib-accordion-group heading="Group Info">
+      <uib-accordion-group heading="Group Info" template-url="app/group/custom-accordion-template.html">
           <p><strong>Contact Information:</strong><br>
-              {{group.firstName}} {{group.lastName}} <br>
-              Phone: {{group.phoneNumber}}<br>
+              {{group.firstName | capitalize }} {{group.lastName | capitalize}} <br>
+              Phone: {{group.phoneNumber | tel}}<br>
               Email: {{group.email}}</p>
 
           <p><strong>Volunteer Address:</strong><br>
@@ -17,14 +17,18 @@
   </uib-accordion>
 
   <uib-accordion close-others="oneAtATime">
-      <uib-accordion-group heading="Team Members">
+      <uib-accordion-group heading="Team Members" template-url="app/group/custom-accordion-template.html">
           <p ng-repeat="email in group.emailList track by $index">{{email}}</p>
       </uib-accordion-group>
   </uib-accordion>
 
   <uib-tabset class="group-buttons" type="pills">
-      <uib-tab class="col-sm-6 text-center arrow_box" heading="Available"></uib-tab>
-      <uib-tab class="col-sm-6 text-center arrow_box" heading="Your Events"></uib-tab>
+      <uib-tab class="col-sm-6 col-xs-6 text-center arrow_box" heading="Available">
+        Content for Available 
+      </uib-tab>
+      <uib-tab class="col-sm-6 col-xs-6 text-center arrow_box" heading="Your Events">
+        Content for Your Events
+    </uib-tab>
   </uib-tabset>
 
 <!-- hello -->

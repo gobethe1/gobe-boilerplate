@@ -304,28 +304,42 @@ rzslider .rz-bar.rz-selection {
     background-color: $darkest-blue;
 }
 
-
-.group-buttons  {
-  position: relative;
-  background: $darkest-blue;
+.group-buttons ul{
+  border: 1px solid $darkest-blue;
 }
 
-.group-buttons .active:after {
-  top: 100%;
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(32, 63, 98, 0);
-  border-top-color: #203f62;
-  border-width: 30px;
-  margin-left: -30px;
+.active-tab:after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(32, 63, 98, 0);
+    border-top-color: #203f62;
+    border-width: 34px;
+    border-top-width: 15px;
+    margin-left: -34px;
 }
 
+.panel-default > .panel-heading {
+    color: #333333;
+    background-color: blue;
+    border-color: #ddd;
+}
 
+.panel-default > .panel-heading {
+    color: white;
+    background-color: $darkest-blue;
+    border-color: $darkest-blue;
+}
+
+.fa-caret-down:before, .fa-caret-up:before{
+  color:white;
+  font-size: 25px;
+}
 
 // Component styles are injected through grunt
 // injector
