@@ -10,23 +10,21 @@ angular.module('gobeApp')
     console.log($scope.events)
     $scope.isAdmin = Auth.isAdmin;
 
-
-
     //filters
     var groupId = groupShow._id;
     $scope.matchedZipCode =  {'confirmGroup': groupId, 'published': true};
 
     $scope.matchedArray    = [];
-    $scope.unmatchedArray  = [];
-    $scope.returnValue     = [$scope.matchedArray, $scope.unmatchedArray];
+    $scope.acceptedMatchedArray  = [];
+    $scope.returnValue     = [$scope.matchedArray, $scope.acceptedMatchedArray];
 
     var checkMatchedArray = function(events){
         eventModel.forEach(function(event){
           if (event.published && !event.confirmGroup && groupShow.matchZipCodeArr.indexOf(event.zipCode) !== -1){
              $scope.matchedArray.push(event);
           }
-          else {
-             $scope.unmatchedArray.push(event);
+          else if(event.published && event.confirmGroup === groupId) {
+             $scope.acceptedMatchedArray.push(event);
           }
         })
         return $scope.returnValue;
