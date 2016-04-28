@@ -45,6 +45,9 @@ angular.module('gobeApp')
         resolve:{
         groupShow: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;
+         },
+         eventModel: function(Event){
+           return Event.query().$promise;
          }
         }
       })
