@@ -39,10 +39,11 @@ angular.module('gobeApp')
       })
 
        .state('event.show', {
-        url: '/:id/show',
+        url: '/:id/show/:name',
         templateUrl: 'app/event/event-show.html',
         controller: 'EventShowCtrl',
         activeSubscription: true,
+        params: name,
         resolve:{
           eventShow: function(Event, $stateParams){
             return Event.get({id: $stateParams.id}).$promise;

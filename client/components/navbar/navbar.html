@@ -15,7 +15,7 @@
 
     <ul class="nav navbar-nav title-navbar-nav">
       <li class="current-location">
-        <h4 class="pull-right">{{navTitle(currentLocation)}}</h4>
+        <h4 class="pull-right">{{stateParams.name || navTitle(currentLocation)}}</h4>
       </li>
     </ul>
     <div collapse="isCollapsed" class="navbar-collapse" ng-class="{'collapse': isCollapsed}" id="navbar-main">

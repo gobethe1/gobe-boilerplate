@@ -1,7 +1,8 @@
 'use strict';
+'use strict';
 
 angular.module('gobeApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, $state, $rootScope) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, $state, $rootScope, $stateParams) {
 
     $scope.title;
     $scope.isCollapsed = true;
@@ -9,6 +10,7 @@ angular.module('gobeApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.currentUrl = $location.path();
+    $scope.stateParams = $stateParams;
 
     $scope.logout = function() {
       $scope.isCollapsed = !$scope.isCollapsed
