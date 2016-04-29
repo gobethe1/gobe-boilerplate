@@ -69,7 +69,7 @@ angular.module('gobeApp')
                             Group.save($scope.newGroup,
                               function(data){
                                  $scope.currentUser.groupId = data._id
-                                 $state.go('group.confirmation', {confirm: data._id})
+                                 $state.go('group.show', {id: data._id})
                                 }),
                                 function(err){
                                  $scope.addGroupError = "Looks like something went wrong! Please try again"

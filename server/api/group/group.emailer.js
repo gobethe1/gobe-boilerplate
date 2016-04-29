@@ -108,7 +108,7 @@ function updatedVolunteerMatch(group, host){
 				    	emailerListArr.map(function(value){
 					    	// console.log("hitting emailerListArr map")
 					    	// console.log("emailerListArr", value)
-
+					    	console.log('event: ', value)
 					    	var dateString 						= value.confirmDate.toString();
 		  	  			var finalDate 						= dateString.slice(0, 10);
 		  	  			var clientFirstName	     	= value.firstName.capitalize();
