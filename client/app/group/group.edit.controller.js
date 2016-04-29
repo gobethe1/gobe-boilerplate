@@ -61,7 +61,7 @@ angular.module('gobeApp')
              Group.update({id: $stateParams.id }, data,
                function(data){
                 if(currentProfile.groupId === $scope.newGroup._id){
-                    $state.go('group.profile');
+                    $state.go('group.show', {id: data._id});
                   }
                   else {
                     $state.go('group.list');

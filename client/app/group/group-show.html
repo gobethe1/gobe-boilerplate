@@ -1,27 +1,154 @@
+
+<!-- edit group -->
+<div class="row">
+  <div class="col-sm-12 col-xs-12 text-right">
+    <a ng-if="!confirm" ui-sref="group.edit({id: group._id})">Edit group</a>
+  </div>
+</div>
+<!-- end edit group -->
+  <br>
+  <!-- group info -->
+  <uib-accordion close-others="oneAtATime">
+      <uib-accordion-group heading="Group Info" template-url="app/group/custom-accordion-template.html">
+          <p><strong>Contact Information:</strong><br>
+              {{group.firstName | capitalize }} {{group.lastName | capitalize}} <br>
+              Phone: {{group.phoneNumber | tel}}<br>
+              Email: {{group.email}}</p>
+
+          <p><strong>Volunteer Address:</strong><br>
+          {{group.address}}</p>
+
+          <p><strong>Volunteer Radius:</strong><br>
+          {{group.matchRadius}}</p>
+      </uib-accordion-group>
+  </uib-accordion>
+  <!-- end group info -->
+
+  <!-- team members -->
+  <uib-accordion close-others="oneAtATime">
+      <uib-accordion-group heading="Team Members" template-url="app/group/custom-accordion-template.html">
+          <p ng-repeat="email in group.emailList track by $index">{{email}}</p>
+      </uib-accordion-group>
+  </uib-accordion>
+  <!-- end team members -->
+  <!-- cause -->
+  <uib-tabset class="group-buttons" type="pills">
+    <!-- available causes -->
+      <uib-tab class="col-sm-6 col-xs-6 text-center" heading="Available">
+        <div class="row" ng-if="activeSubscription() || isAdmin()">
+          <div class="col-sm-12 col-xs-12">
+            <br>
+            <br>
+            <ul class="list-unstyled">
+              <li ng-repeat="match in matchedArray | orderBy: '-createdAt'">
+                <div class="row">
+                  <span class="col-sm-2 col-xs-2 text-center">
+                      <i class="fa fa-calendar-plus-o fa-3x"></i>
+                      <p>{{match.confirmDate | date:"MM/dd" }}</p>
+                  </span>
+                  <span class="col-sm-8 col-xs-8 group-show-mid-col">
+                        <h5 class="group-show"><strong>
+                          {{match.firstName | capitalize }} {{match.lastName | capitalize }} {{match.eventName}}
+                        </strong></h5>
+                    </a>
+                    <p><i class="fa fa-map-marker"></i>  {{shortAddress(match.address)}}</p>
+                  </span>
+                  <span class="col-sm-2 col-xs-2">
+                      <a ui-sref="profile.event.show({id: match._id})">
+                        <i class="fa fa-angle-right fa-3x"></i>
+                      </a>
+                  </span>
+
+                </div>
+                <hr class="group-show-hr">
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Content for Available -->
+      </uib-tab>
+
+    <!-- matched causes -->
+      <uib-tab class="col-sm-6 col-xs-6 text-center" heading="Your Events">
+        <div class="row" ng-if="activeSubscription() || isAdmin()">
+          <div class="col-sm-12 col-xs-12">
+            <br>
+            <ul class="list-unstyled">
+              <div class="well well-sm text-center"><h5><strong>Upcoming Events</strong></h5></div>
+              <li ng-repeat="match in acceptedCurrentArray | orderBy: '-confirmDate'">
+                <div class="row">
+                  <span class="col-sm-2 col-xs-2 text-center">
+                      <i class="fa fa-calendar-check-o fa-1x"></i>
+                      <p>{{match.confirmDate | date:"MM/dd" }}</p>
+                  </span>
+                  <span class="col-sm-8 col-xs-8 group-show-mid-col">
+                        <h5 class="group-show"><strong>
+                          {{match.firstName | capitalize }} {{match.lastName | capitalize }} {{match.eventName}}
+                        </strong></h5>
+                    </a>
+                    <p><i class="fa fa-map-marker"></i>  {{shortAddress(match.address)}}</p>
+                  </span>
+                  <span class="col-sm-2 col-xs-2">
+                      <a ui-sref="event.show({id: match._id})">
+                        <i class="fa fa-angle-right fa-3x"></i>
+                      </a>
+                  </span>
+                </div>
+                <hr class="group-show-hr">
+              </li>
+              <div class="well well-sm text-center"><h5><strong>Past Events</strong></h5></div>
+              <li ng-repeat="match in acceptedPastArray | orderBy: '-confirmDate'">
+                  <div class="row">
+                    <span class="col-sm-2 col-xs-2 text-center">
+                        <i class="fa fa-calendar-check-o fa-1x"></i>
+                        <p>{{match.confirmDate | date:"MM/dd" }}</p>
+                    </span>
+                    <span class="col-sm-8 col-xs-8 group-show-mid-col">
+                          <h5 class="group-show"><strong>
+                            {{match.firstName | capitalize }} {{match.lastName | capitalize }} {{match.eventName}}
+                          </strong></h5>
+                      </a>
+                      <p><i class="fa fa-map-marker"></i>  {{shortAddress(match.address)}}</p>
+                    </span>
+                    <span class="col-sm-2 col-xs-2">
+                        <a ui-sref="event.show({id: match._id})">
+                          <i class="fa fa-angle-right fa-3x"></i>
+                        </a>
+                    </span>
+                  </div>
+                  <hr class="group-show-hr">
+              </li>
+            </ul>
+          </div>
+        </div>
+      </uib-tab>
+  </uib-tabset>
+  <!-- end cause -->
+
 <!-- hello -->
-<div ng-if="confirm">
+<!-- <div ng-if="confirm">
   <div class="row">
     <div class="col-sm-12 col-xs-12">
       <h2>Get ready to make a change!</h2>
       <h4>We are sending you an email with the event details.</h4>
     </div>
     <div class="col-sm-6 col-md-6 col-xs-12">
-     <!--  <h2>
+      <h2>
           <button ui-sref="group.new" class="btn btn-secondary btn-lg">+ Add Group</button>
-      </h2> -->
+      </h2>
     </div>
   </div>
-</div>
-
+</div> -->
+<!--
 <div class="row">
-  <div class="col-sm-12 col-xs-12">
+  <div class="col-sm-12 col-xs-12"> -->
     <!-- back button -->
-    <a ui-sref="group.list" ng-if="!confirm"
+   <!--  <a ui-sref="group.list" ng-if="!confirm"
        ng-hide="currentUser.groupId === group._id">
       <i class="fa fa-long-arrow-left fa-2x"></i>
-    </a>
+    </a> -->
     <!-- end back button -->
-    <table class="table table-sm">
+    <!-- <table class="table table-sm">
       <thead>
         <tr>
           <th class="col-sm-4">
@@ -75,5 +202,5 @@
     </table>
 
   </div>
-</div>
+</div> -->
 

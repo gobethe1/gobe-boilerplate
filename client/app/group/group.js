@@ -45,19 +45,22 @@ angular.module('gobeApp')
         resolve:{
         groupShow: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;
+         },
+         eventModel: function(Event){
+           return Event.query().$promise;
          }
         }
       })
       .state('group.profile', {
-        url: '/profile',
-        templateUrl: 'app/group/group-show.html',
-        controller: 'GroupProfileCtrl',
-        resolve:{
-        groupProfile: function(Group, currentUser){
-            return Group.get({id: currentUser.groupId}).$promise;
+         url: '/profile',
+         templateUrl: 'app/group/group-show.html',
+         controller: 'GroupProfileCtrl',
+         resolve:{
+         groupProfile: function(Group, currentUser){
+             return Group.get({id: currentUser.groupId}).$promise;
+          }
          }
-        }
-      })
+       })
        .state('group.edit', {
         url: '/:id/edit',
         templateUrl: 'app/group/group-edit.html',

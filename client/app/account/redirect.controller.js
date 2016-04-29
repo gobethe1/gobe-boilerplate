@@ -7,7 +7,7 @@ angular.module('gobeApp')
       $state.go('event.list'); //event.list
     }
     else if((currentUser.position === "group") && currentUser.groupId){
-      $state.go('group.profile'); //group.profile
+      $state.go('group.list'); //group.profile
     }
     else if((currentUser.position === "group") && !currentUser.groupId){
       $state.go('group.list'); //group.new

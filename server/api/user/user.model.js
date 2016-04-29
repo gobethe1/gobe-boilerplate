@@ -32,7 +32,7 @@ var UserSchema = new Schema({
   twitter: {},
   google: {},
   github: {},
-  createdAt: {type: Date, default: Date.now()},
+  createdAt: {type: Date, default: Date.now},
   updatedAt: Date
 });
 
