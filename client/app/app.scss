@@ -282,12 +282,65 @@ rzslider .rz-pointer {
 rzslider .rz-bar.rz-selection {
     z-index: 2;
     background: $primary-blue;
+}
+
+// arrow on tab buttons in group show
+
+
+
+.group-buttons {
+  li {
+    padding-left: 0;
+    padding-right: 0;
   }
+}
 
+.nav-pills > li + li {
+    margin-left: 0;
+}
 
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: $white;
+    background-color: $darkest-blue;
+}
 
+.group-buttons ul li.col-sm-6{
+  border: 1px solid $darkest-blue;
+  border-radius: 5px;
+}
 
+.active-tab:after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(32, 63, 98, 0);
+    border-top-color: #203f62;
+    border-width: 34px;
+    border-top-width: 15px;
+    margin-left: -34px;
+}
 
+.panel-default > .panel-heading {
+    color: #333333;
+    background-color: blue;
+    border-color: #ddd;
+}
+
+.panel-default > .panel-heading {
+    color: white;
+    background-color: $darkest-blue;
+    border-color: $darkest-blue;
+}
+
+.fa-caret-down:before, .fa-caret-up:before{
+  color:white;
+  font-size: 25px;
+}
 
 // Component styles are injected through grunt
 // injector

@@ -44,7 +44,7 @@ function matchZipCode(group, host){
 		            var email = new sendgrid.Email({
 		                to: group.email,
 		                from: gobeEmailAddress,
-		                subject: 'Are You Available? Group TEST',
+		                subject: 'Are You Available?',
 		                html: '<h1></h1>',
 		            });
 
@@ -71,17 +71,17 @@ function matchZipCode(group, host){
 }
 
 function updatedVolunteerMatch(group, host){
-		console.log("hitting updatedVolunteerMatch")
+		// console.log("hitting updatedVolunteerMatch")
 		 async.waterfall([
 
 		   function(done) {
 		     Event.find({confirmGroup: group._id, confirmDate: {$gte: new Date()}},
 		     	function(err, event) {
 		       if (!event) {
-		       	 console.log("no zipcode matches")
+		       	 // console.log("no zipcode matches")
 		         // return res.status(404).send('There are no zipcode matches.');
 		       }
-		       	console.log("updatedVolunteerMatch events", event)
+		       	// console.log("updatedVolunteerMatch events", event)
 		        done(err, event);
 		     });
 		   },
@@ -91,11 +91,11 @@ function updatedVolunteerMatch(group, host){
 				var currentEmailListArr = group.emailList;
 				var emailerListArr 		= _.difference(currentEmailListArr, previousEmailListArr)
 
-	  		console.log("previousEmailListArr", previousEmailListArr)
-				console.log("currentEmailListArr", currentEmailListArr)
-				console.log("emailerListArr", emailerListArr)
+	  	// 		console.log("previousEmailListArr", previousEmailListArr)
+				// console.log("currentEmailListArr", currentEmailListArr)
+				// console.log("emailerListArr", emailerListArr)
 
-		  			var capFirstName = _.capitalize(group.firstName);
+		  		var capFirstName = _.capitalize(group.firstName);
 	  	  		var capLastName = _.capitalize(group.lastName);
 	  	  		var groupLeader = group.firstName;
 		  	  	var capOrgName = group.organizationName.capitalize();
@@ -103,11 +103,11 @@ function updatedVolunteerMatch(group, host){
 		  	  	var groupPhoneNumber  = '(' + number.substring(0,3) + ')' + number.substring(3,6) + '-' + number.substring(6,10);
 
 	  	  		_.forEach(event, function(value){
-				    console.log("forEach event", value)
+				    // console.log("forEach event", value)
 
 				    	emailerListArr.map(function(value){
-					    	console.log("hitting emailerListArr map")
-					    	console.log("emailerListArr", value)
+					    	// console.log("hitting emailerListArr map")
+					    	// console.log("emailerListArr", value)
 
 					    	var dateString 						= value.confirmDate.toString();
 		  	  			var finalDate 						= dateString.slice(0, 10);
@@ -122,7 +122,7 @@ function updatedVolunteerMatch(group, host){
 			 					var email = new sendgrid.Email({
 			                to: value,
 			                from: gobeEmailAddress,
-			                subject: 'Are You Available to volunteer? TEST',
+			                subject: 'Are You Available to volunteer?',
 			                html: '<h1></h1>',
 			          });
 

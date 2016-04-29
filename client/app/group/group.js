@@ -45,16 +45,9 @@ angular.module('gobeApp')
         resolve:{
         groupShow: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;
-         }
-        }
-      })
-      .state('group.profile', {
-        url: '/profile',
-        templateUrl: 'app/group/group-show.html',
-        controller: 'GroupProfileCtrl',
-        resolve:{
-        groupProfile: function(Group, currentUser){
-            return Group.get({id: currentUser.groupId}).$promise;
+         },
+         eventModel: function(Event){
+           return Event.query().$promise;
          }
         }
       })

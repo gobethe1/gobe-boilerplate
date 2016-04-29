@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
     _ = require('lodash');
 
 var EventSchema = new Schema({
-  createdAt: {type: Date, default: Date.now()},
+  createdAt: {type: Date, default: Date.now},
   updatedAt: Date,
   published: Boolean,
   userId: {type: mongoose.Schema.Types.ObjectId,
