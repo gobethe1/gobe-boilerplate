@@ -304,7 +304,7 @@ rzslider .rz-bar.rz-selection {
     background-color: $darkest-blue;
 }
 
-.group-buttons ul{
+.group-buttons ul li.disabled:first-child{
   border: 1px solid $darkest-blue;
 }
 

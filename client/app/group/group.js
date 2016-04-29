@@ -51,16 +51,6 @@ angular.module('gobeApp')
          }
         }
       })
-      .state('group.profile', {
-        url: '/profile',
-        templateUrl: 'app/group/group-show.html',
-        controller: 'GroupProfileCtrl',
-        resolve:{
-        groupProfile: function(Group, currentUser){
-            return Group.get({id: currentUser.groupId}).$promise;
-         }
-        }
-      })
        .state('group.edit', {
         url: '/:id/edit',
         templateUrl: 'app/group/group-edit.html',
