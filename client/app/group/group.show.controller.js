@@ -11,15 +11,13 @@ angular.module('gobeApp')
     $scope.isAdmin = Auth.isAdmin;
 
     //filters
-    var groupId = groupShow._id;
-    $scope.matchedZipCode =  {'confirmGroup': groupId, 'published': true};
-
-    $scope.matchedArray    = [];
-    $scope.acceptedPastArray  = [];
+    var groupId                 = groupShow._id;
+    $scope.matchedZipCode       =  {'confirmGroup': groupId, 'published': true};
+    $scope.matchedArray         = [];
+    $scope.acceptedPastArray    = [];
     $scope.acceptedCurrentArray = [];
-    $scope.returnValue     = [$scope.matchedArray, $scope.acceptedCurrentArray, $scope.acceptedPastArray];
-    $scope.pastArray       = [];
-    $scope.currentArray    = [];
+    $scope.returnValue          = [$scope.matchedArray, $scope.acceptedCurrentArray, $scope.acceptedPastArray];
+
 
     var checkMatchedArray = function(events){
         eventModel.forEach(function(event){
@@ -34,23 +32,15 @@ angular.module('gobeApp')
             return err
           }
         })
-        console.log($scope.returnValue)
         return $scope.returnValue;
     };
 
-
-
-
+    console.log('return value: ', $scope.returnValue)
 
     // console.log('matchedArray: ', $scope.matchedArray)
     // console.log('aaccepted matched: ', $scope.acceptedMatchedArray)
     // console.log('checkMatchedArray: ', checkMatchedArray())
     // console.log('pastArray: ', $scope.pastArray, 'currentArray: ', $scope.currentArray)
     // console.log('check if passed fx: ', checkIfEventPassed())
-
-
-    // $scope.checkMatchedArray = function(event, index) {
-    //   return event.published && !event.confirmGroup && userGroup.matchZipCodeArr.indexOf(event.zipCode) !== -1;
-    // }
 
   });
