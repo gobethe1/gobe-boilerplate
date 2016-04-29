@@ -38,10 +38,11 @@ angular.module('gobeApp')
         }
       })
       .state('group.show', {
-        url: '/:id/show',
+        url: '/:id/show/:name',
         templateUrl: 'app/group/group-show.html',
         controller: 'GroupShowCtrl',
         activeSubscription: true,
+        params: name,
         resolve:{
         groupShow: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;
@@ -62,10 +63,11 @@ angular.module('gobeApp')
          }
        })
        .state('group.edit', {
-        url: '/:id/edit',
+        url: '/:id/edit/:name',
         templateUrl: 'app/group/group-edit.html',
         controller: 'GroupEditCtrl',
         activeSubscription: true,
+        params: name,
         resolve:{
          groupEdit: function(Group, $stateParams){
            return Group.get({id: $stateParams.id}).$promise;

@@ -2,11 +2,13 @@
 <!-- edit group -->
 <div class="row">
   <div class="col-sm-12 col-xs-12 text-right">
-    <a ng-if="!confirm" ui-sref="group.edit({id: group._id})">Edit group</a>
+    <a ng-if="!confirm" ui-sref="group.edit({id: group._id, name: group.organizationName})">Edit group</a>
   </div>
 </div>
 <!-- end edit group -->
   <br>
+
+  {{group.organizationName}}
   <!-- group info -->
   <uib-accordion close-others="oneAtATime">
       <uib-accordion-group heading="Group Info" template-url="app/group/custom-accordion-template.html">
@@ -54,7 +56,7 @@
                     <p><i class="fa fa-map-marker"></i>  {{shortAddress(match.address)}}</p>
                   </span>
                   <span class="col-sm-2 col-xs-2">
-                      <a ui-sref="profile.event.show({id: match._id})">
+                      <a ui-sref="profile.event.show({id: match._id, name: (match.eventName || match.firstName)})">
                         <i class="fa fa-angle-right fa-3x"></i>
                       </a>
                   </span>
@@ -89,7 +91,7 @@
                     <p><i class="fa fa-map-marker"></i>  {{shortAddress(match.address)}}</p>
                   </span>
                   <span class="col-sm-2 col-xs-2">
-                      <a ui-sref="event.show({id: match._id})">
+                      <a ui-sref="event.show({id: match._id, name: (match.eventName || match.firstName)})">
                         <i class="fa fa-angle-right fa-3x"></i>
                       </a>
                   </span>
