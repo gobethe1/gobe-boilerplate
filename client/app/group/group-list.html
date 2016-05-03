@@ -3,9 +3,9 @@
   <div class="col-xs-12 col-sm-12">
 
        <button  ng-click="openPaymentModal();" ng-if="!currentUser.activeSubscription && !isAdmin"
-       class="btn btn-secondary btn-lg pull-right" >Add Group</button>
+       class="btn btn-secondary btn-lg btn-add pull-right" >Add Group</button>
        <!-- admin -->
-        <button ui-sref="group.new" ng-if="isAdmin" class="btn btn-secondary btn-lg pull-right">Add Group</button>
+        <button ui-sref="group.new" ng-if="isAdmin" class="btn btn-secondary btn-lg btn-add pull-right">Add Group</button>
        <!-- end admin -->
   </div>
 </div>

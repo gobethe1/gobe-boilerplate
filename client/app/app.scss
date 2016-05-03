@@ -33,6 +33,13 @@ body {
   margin-top: 116px;
 }
 
+.btn {
+  color: $white;
+  &:hover {
+    color: $white;
+  }
+}
+
 .navbar.navbar-default {
   background-color: $bg-blue !important;
   border-color: transparent !important;
@@ -202,7 +209,18 @@ footer{
   color: $primary-blue;
 }
 
-.btn:active, .btn.active {
+.btn.btn-add {
+  background-color: $darkest-blue;
+  &:active, &:focus {
+    background-color: $darkest-blue;
+    box-shadow: none;
+    color: $white;
+    border: 1px solid $darkest-blue;
+  }
+
+}
+
+.btn:active {
   background-color: $white;
   box-shadow: none;
   color: $primary-blue;

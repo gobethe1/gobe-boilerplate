@@ -1,14 +1,3 @@
-<div class="row">
-  <!-- button to add cause -->
-  <div ng-if="isAdmin() || activeSubscription()" class="col-xs-12 col-sm-12">
-        <button ui-sref="event.new" class="btn btn-secondary btn-lg pull-right">Add Cause</button>
-  </div>
-
-  <!-- button to trigger stipe -->
-  <div ng-if="!isAdmin() && !activeSubscription()" class="col-xs-12 col-sm-12">
-        <button ng-click="openPaymentModal();" class="btn btn-secondary btn-lg pull-right">Add Cause</button>
-  </div>
-</div>
 
 <div class="row" ng-if="activeSubscription() || isAdmin()">
   <div class="col-sm-12 col-xs-12">
