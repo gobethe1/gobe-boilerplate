@@ -26,11 +26,11 @@
 		<br>
 		<br>
 		<div ng-repeat="comment in comments | orderBy:'-createdAt'">
-			
+
 			<div class="row">
 				<div class="col-xs-6">
 				  <span ng-if="isAdmin"><strong>{{comment.email}}</strong></span>
-				  <span ng-if="!isAdmin"><strong>{{ comment.email.split('@')[0]}}</strong></span>	
+				  <span ng-if="!isAdmin"><strong>{{ comment.email.split('@')[0]}}</strong></span>
 				</div>
 				<div class="col-xs-6 text-right">
 					{{comment.createdAt | date:"MMMM dd, yyyy h:mm a" }}

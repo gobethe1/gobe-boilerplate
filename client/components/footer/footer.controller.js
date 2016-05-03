@@ -20,6 +20,8 @@ angular.module('gobeApp')
     //   }
     // };
 
+    // $scope.hover =
+
     $scope.isActive = function(route) {
       if(route === '/profile/event/list' || route === '/profile/details'){
          return route === $location.path();
