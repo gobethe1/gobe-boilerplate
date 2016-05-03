@@ -33,6 +33,7 @@ body {
   margin-top: 116px;
 }
 
+
 .btn {
   color: $white;
   &:hover {
@@ -62,6 +63,9 @@ body {
   }
   .navbar-nav > li > a {
       color: $white;
+      &:hover {
+        color: $light-gray-slider;
+      }
   }
 }
 
