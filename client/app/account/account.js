@@ -29,5 +29,15 @@ angular.module('gobeApp')
         templateUrl: 'app/account/settings/settings.html',
         controller: 'SettingsCtrl',
         authenticate: true
-      });
+      })
+      .state('forgot', {
+        url: '/forgot',
+        templateUrl: 'app/account/settings/forgot-password.html',
+        controller: 'SettingsCtrl'
+      })
+      .state('reset', {
+        url: '/reset',
+        templateUrl: 'app/account/settings/reset-password.html',
+        controller: 'SettingsCtrl'
+      })
   });
