@@ -33,14 +33,6 @@ body {
   margin-top: 116px;
 }
 
-
-.btn {
-  color: $white;
-  &:hover {
-    color: $white;
-  }
-}
-
 .navbar.navbar-default {
   background-color: $bg-blue !important;
   border-color: transparent !important;
@@ -194,7 +186,7 @@ footer{
 
 .signup .well{
   background-color: $white;
-  border-color: $primary-blue;
+  border-color: $bg-blue;
 }
 
 .signup-header{
@@ -204,8 +196,33 @@ footer{
   }
 }
 
+
+// btn styling
+// dark blue buttons
+
+// primary blue buttons
+
+// grey buttons
+
+
+// add buttons
+.btn {
+  color: $white;
+  &:hover {
+    color: $white;
+  }
+}
+
+// cancel buttons
+button.btn-transparent {
+  color: $bg-blue;
+  &:hover {
+    color: $bg-blue;
+  }
+}
+
 .dark-blue{
-  background-color: $primary-blue;
+  background-color: $bg-blue;
   color: $white;
 }
 
@@ -237,9 +254,8 @@ footer{
    outline: 0;
 }
 
+
 // font-awesome styling
-
-
 .glyphicon {
   line-height: 1.45 !important;
 }
