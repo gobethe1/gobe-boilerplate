@@ -12,24 +12,25 @@
 			</div>
 
 			<div class="row">
-				<div class="col-xs-2 col-sm-4 text-left">
-					<button class="btn btn-lg btn-transparent" ng-click="cancelClient(form)">
-						Cancel
-					</button>
-				</div>
-				<div class="col-xs-6 col-sm-4 text-center">
-					<button class="btn btn-lg btn-primary save-later" type="button" ng-click="updateEvent()">
-						Save For Later
-					</button>
-				</div>
-				<div class="col-xs-4 col-sm-4 text-right">
-					<button class="btn btn-lg" type="submit" ng-submit="publishEvent()"
-					ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}">
-						Publish
-					</button>
-				</div>
+					<div class="col-xs-2 col-sm-4 text-left">
+						<button class="btn btn-lg btn-transparent" ng-click="cancelClient(form)">
+							Cancel
+						</button>
+					</div>
+
+					<div class="col-xs-8 col-sm-8 text-right">
+						<button class="btn btn-lg btn-primary save-later" type="button" ng-click="updateEvent()">
+							Save For Later
+						</button>
+					<!-- </div> -->
+					<!-- <div class="col-xs-4 col-sm-4 text-right"> -->
+						<button class="btn btn-lg" type="submit" ng-submit="publishEvent()"
+						ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}">
+							Publish
+						</button>
+					</div>
 			</div>
 
-		</div>
+			</div>
 	</div>
 </form>

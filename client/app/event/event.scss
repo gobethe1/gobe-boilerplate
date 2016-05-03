@@ -51,7 +51,7 @@ i {
     border: 0px solid transparent;
 }
 
-.status-bar {   
+.status-bar {
     position: fixed;
     color: white;
     width: 100%;
@@ -96,6 +96,7 @@ i {
 
 button.btn.save-later{
   background-color: $darkest-blue;
+  border-color: $darkest-blue;
 }
 
 .btn-lg {
@@ -139,7 +140,7 @@ button.btn.save-later{
       top:80px;
      .date-position{
        float: none;
-     } 
+     }
   }
   .event-show-info-margin-top{
     margin-top:40px;
