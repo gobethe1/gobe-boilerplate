@@ -24,6 +24,7 @@ angular.module('gobeApp')
        if(path === 'group'){return "Groups"}
        if(path === 'profile'){return "Profile"}
        if(path === 'event'){return "Causes"}
+       if(path === 'comment'){return "Feedback"}
     }
 
     // $scope.goBack = function() {

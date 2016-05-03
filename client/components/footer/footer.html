@@ -1,26 +1,28 @@
 <footer ng-controller="FooterCtrl" ng-show="isLoggedIn()" class="navbar-default navbar-fixed-bottom hidden-sm hidden-md hidden-lg navbar-subnav">
-  <div class="container-fluid">
-    <div ui-sref="profile.details" ng-class="{'footer-active': isActive('/profile/details')}" class="col-sm-3 col-xs-3 text-center">
+  <div class="container-fluid sub-nav-bar">
+    <div ui-sref="profile.details" ng-class="{'footer-active': isActive('/profile/details')}"
+         ng-mouseover="hover"
+         class="col-sm-3 col-xs-3 text-center hover-button">
       <a>
         <i class="fa fa-user"></i>
         <p>Profile</p>
       </a>
     </div>
-    <div ui-sref="group.list" ng-class="{'footer-active': isActive('/group/list')}" class="col-sm-3 col-xs-3 text-center group-button">
+    <div ui-sref="group.list" ng-class="{'footer-active': isActive('/group/list')}" class="col-sm-3 col-xs-3 text-center group-button hover-button">
       <a>
         <i class="fa fa-users"></i>
         <p>Groups</p>
       </a>
     </div>
     <div ui-sref="event.list" ng-class="{'footer-active': isActive('/event/list')}"
-    class="col-sm-3 col-xs-3 text-center cause-button">
+    class="col-sm-3 col-xs-3 text-center cause-button hover-button">
       <a>
         <i class="fa fa-heart"></i>
         <p>Causes</p>
       </a>
     </div>
     <div ui-sref="comment" ng-class="{'footer-active': isActive('/comment')}"
-    class="col-sm-3 col-xs-3 text-center">
+    class="col-sm-3 col-xs-3 text-center hover-button" >
       <a>
         <i class="fa fa-comment"></i>
         <p>Feedback</p>
