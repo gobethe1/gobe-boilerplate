@@ -206,6 +206,7 @@ footer{
 
 
 // add buttons
+
 .btn {
   color: $white;
   &:hover {
@@ -218,6 +219,7 @@ button.btn-transparent {
   color: $bg-blue;
   &:hover {
     color: $bg-blue;
+    text-decoration: underline;
   }
 }
 
