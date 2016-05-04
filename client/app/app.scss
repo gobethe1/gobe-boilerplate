@@ -218,6 +218,10 @@ button.btn-transparent {
 .dark-blue{
   background-color: $bg-blue;
   color: $white;
+  &:hover, &:focus {
+    background-color: $bg-blue;
+    color: $white;
+  }
 }
 
 .btn:focus{
@@ -248,6 +252,10 @@ button.btn-transparent {
    outline: 0;
 }
 
+.forgot-password button, input {
+  margin-top: 5%;
+  margin-bottom: 7%;
+}
 
 // font-awesome styling
 .glyphicon {

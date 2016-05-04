@@ -25,6 +25,7 @@ angular.module('gobeApp')
        if(path === 'profile'){return "Profile"}
        if(path === 'event'){return "Causes"}
        if(path === 'comment'){return "Feedback"}
+       if((path === 'forgot') || (path === 'reset')){return "Reset Password"}
     }
 
     // $scope.goBack = function() {
