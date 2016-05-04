@@ -1,16 +1,19 @@
 'use strict';
+var async             = require('async');
 
 var User = require('./user.model');
 var Group = require('../group/group.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var crypto = require('crypto');
 var _ = require('lodash');
 var stripeKey = process.env.STRIPE_API_KEY;
 var plan = process.env.PLAN;
 var stripe = require("stripe")(stripeKey);
 var SENDGRID_API_KEY  = process.env.SENDGRID_API_KEY;
 var sendgrid          = require('sendgrid')(SENDGRID_API_KEY);
+var gobeEmailAddress  = 'hello@getgobe.com';
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -167,21 +170,20 @@ exports.resetPassword = function(req, res, next) {
     },
     function(token, user, done) {
         var email = new sendgrid.Email({
-                to: value.email,
+                to: user.email,
                 from: gobeEmailAddress,
                 subject: 'Reset Password',
                 html: '<h1></h1>',
             });
 
-            var resetlink = 'http://' + req.headers.host + '/reset/' + token;
+            var resetlink = 'http://localhost:9000/reset/' + token;
             console.log('token: ', token)
-            console.log('capFirstName: ', capFirstName)
             console.log("resetlink: ", resetlink)
             console.log('request header host: ', req.headers.host)
 
 
             email.addFilter('templates', 'template_id', '05d029a6-21df-4373-a8fb-00280cdf85f1');
-            email.setSubstitutions({"%resetlink": [resetlink]})
+            email.setSubstitutions({"%resetlink%": [resetlink]})
 
             sendgrid.send(email, function(err, json) {
              if (err) { return console.error(err); }
@@ -217,24 +219,21 @@ exports.acceptToken = function(req, res, next){
       });
     },
     function(user, done) {
-      var transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          user: 'hello@castifi.com',
-          pass: gmailPassword
-        }
-      });
-      var mailOptions = {
-        to: user.email,
-        from: 'hello@castifi.com',
-        subject: 'Your password has been changed',
-        text: 'Hello,\n\n' +
-          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
-      };
-      transporter.sendMail(mailOptions, function(err) {
-         return res.status(200).send('Success! Your password has been changed.');
-        done(err);
-      });
+            var email = new sendgrid.Email({
+                to: user.email,
+                from: gobeEmailAddress,
+                subject: 'Your password has been reset',
+                html: '<h1></h1>',
+            });
+
+            email.addFilter('templates', 'template_id', 'df24931d-0b49-434b-bd9e-e7179134e928');
+            // email.setSubstitutions({"%resetlink": [resetlink]})
+
+            sendgrid.send(email, function(err, json) {
+             if (err) { return console.error(err); }
+             console.log(json);
+            });
+
     }
   ], function(err) {
     res.redirect('/');
