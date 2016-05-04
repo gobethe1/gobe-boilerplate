@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('SettingsCtrl', function ($scope, User, Auth, $http, $stateParams) {
+  .controller('SettingsCtrl', function ($scope, User, Auth, $http, $stateParams, $state, $location) {
     $scope.errors = {};
     $scope.stateParams = $stateParams;
 
@@ -31,12 +31,14 @@ angular.module('gobeApp')
             .success(function(data){
               $scope.successMessage = data;
               $scope.spinner = false;
+              $location.path('/login');
             })
             .error(function(err){
               $scope.errors.other = err;
               $scope.spinner= false;
-            });
+            })
         }
+        $state.go('login');
     };
 
     $scope.newPasswordReset = function(form){
@@ -45,22 +47,22 @@ angular.module('gobeApp')
       if(form.$valid){
         console.log($stateParams.token)
         var data = {password: $scope.user.password, passwordConfirm: $scope.user.passwordConfirm};
-        $scope.spinner = true;
         $http.post('/api/users/reset/' + $stateParams.token, data)
             .success(function(data){
+              console.log(data)
               //on success send success message
               $scope.successMessage = data;
-              $scope.spinner = false;
+              $location.path('/login');
+
+              // $scope.spinner = false;
             })
             .error(function(err){
                 console.log(err)
                 $scope.errors.other = err;
-                $scope.spinner = false;
+                // $scope.spinner = false;
             })
+
       }
-      else {
-        // $scope.errors.other = 'Sorry, something went wrong, please try again';
-        $scope.spinner = false;
-      }
+        $state.go('login');
     };
   });
