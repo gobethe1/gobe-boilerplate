@@ -26,6 +26,8 @@ var UserSchema = new Schema({
   stripeData: [],
   position: String,
   hashedPassword: String,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
   provider: String,
   salt: String,
   facebook: {},
