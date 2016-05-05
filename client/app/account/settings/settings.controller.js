@@ -22,23 +22,43 @@ angular.module('gobeApp')
       }
 		};
 
+    // $scope.passwordReset = function(form){
+    //     $scope.submitted = true;
+    //     var data = {email: $scope.user.email};
+    //     if(form.$valid){
+    //        $scope.spinner = true;
+    //       $http.post('api/users/forgot', data)
+    //         .success(function(data){
+    //           $scope.successMessage = data;
+    //           $scope.spinner = false;
+    //           $location.path('/login');
+    //         })
+    //         .error(function(err){
+    //           $scope.errors.other = err;
+    //           $scope.spinner= false;
+    //         })
+    //     }
+    //     $state.go('login');
+    // };
+
+
     $scope.passwordReset = function(form){
         $scope.submitted = true;
         var data = {email: $scope.user.email};
         if(form.$valid){
            $scope.spinner = true;
           $http.post('api/users/forgot', data)
-            .success(function(data){
+            .then(function(data, err){
               $scope.successMessage = data;
               $scope.spinner = false;
-              $location.path('/login');
+
             })
             .error(function(err){
               $scope.errors.other = err;
               $scope.spinner= false;
             })
         }
-        $state.go('login');
+        $state.go('reset.confirmation');
     };
 
     $scope.newPasswordReset = function(form){
