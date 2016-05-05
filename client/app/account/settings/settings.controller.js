@@ -28,7 +28,7 @@ angular.module('gobeApp')
         var data = {email: $scope.user.email};
         if(form.$valid){
           $http.post('api/users/forgot', data)
-            .success(function(data, err){
+            .success(function(data){
               $scope.successMessage = data;
             })
             .error(function(err){
@@ -38,22 +38,26 @@ angular.module('gobeApp')
         $state.go('confirmation');
     };
 
+
+
     $scope.newPasswordReset = function(form){
       $scope.submitted = true;
 
       if(form.$valid){
         var data = {password: $scope.user.password, passwordConfirm: $scope.user.passwordConfirm};
         $http.post('/api/users/reset/' + $stateParams.token, data)
-            .success(function(data){
-              //on success send success message
-              $scope.successMessage = data;
-              console.log($scope.successMessage);
+            .success(function(data, err){
+
             })
             .error(function(err){
                 console.log(err)
                 $scope.errors.other = err;
             })
+            console.log(data);
 
       }
+
+      $scope.successMessage = "Your password has been successfully reset!";
     };
+
   });
