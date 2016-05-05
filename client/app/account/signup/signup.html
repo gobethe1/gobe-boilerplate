@@ -29,7 +29,7 @@
 
     <!-- group signup -->
   <form class="form" name="form" ng-submit="signup(form)" novalidate>
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4 well" ng-show="isSet(1)">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4 well" ng-show="isSet(1)">
 
 
         <!-- email -->
@@ -72,12 +72,16 @@
         <!-- end password -->
         </div>
         <!-- submit button -->
-      
-        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+
+        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
           <button class="btn btn-inverse btn-lg btn-login btn-block" type="submit"
           ng-class="{ 'dark-blue': form.$valid, 'btn-secondary': form.$invalid}">
             Sign up
           </button>
+          <br>
+          <a ui-sref="login">
+              <p class="text-center">Already creating change? Sign in.</p>
+          </a>
         </div>
       </form>
         <!-- end submit button -->

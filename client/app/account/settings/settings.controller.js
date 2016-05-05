@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('SettingsCtrl', function ($scope, User, Auth) {
+  .controller('SettingsCtrl', function ($scope, User, Auth, $http, $stateParams, $state, $location) {
     $scope.errors = {};
+    $scope.stateParams = $stateParams;
+
+    console.log($scope.stateParams)
 
     $scope.changePassword = function(form) {
       $scope.submitted = true;
@@ -18,4 +21,43 @@ angular.module('gobeApp')
         });
       }
 		};
+
+
+    $scope.passwordReset = function(form){
+        $scope.submitted = true;
+        var data = {email: $scope.user.email};
+        if(form.$valid){
+          $http.post('api/users/forgot', data)
+            .success(function(data){
+              $scope.successMessage = data;
+            })
+            .error(function(err){
+              $scope.errors.other = err;
+            })
+        }
+        $state.go('confirmation');
+    };
+
+
+
+    $scope.newPasswordReset = function(form){
+      $scope.submitted = true;
+
+      if(form.$valid){
+        var data = {password: $scope.user.password, passwordConfirm: $scope.user.passwordConfirm};
+        $http.post('/api/users/reset/' + $stateParams.token, data)
+            .success(function(data, err){
+
+            })
+            .error(function(err){
+                console.log(err)
+                $scope.errors.other = err;
+            })
+            console.log(data);
+
+      }
+
+      $scope.successMessage = "Your password has been successfully reset!";
+    };
+
   });

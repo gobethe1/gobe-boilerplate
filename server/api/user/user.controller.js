@@ -1,14 +1,19 @@
 'use strict';
+var async             = require('async');
 
 var User = require('./user.model');
 var Group = require('../group/group.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var crypto = require('crypto');
 var _ = require('lodash');
 var stripeKey = process.env.STRIPE_API_KEY;
 var plan = process.env.PLAN;
 var stripe = require("stripe")(stripeKey);
+var SENDGRID_API_KEY  = process.env.SENDGRID_API_KEY;
+var sendgrid          = require('sendgrid')(SENDGRID_API_KEY);
+var gobeEmailAddress  = 'hello@getgobe.com';
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -54,7 +59,7 @@ exports.createSubscription = function(req, res, next){
             user.stripeData = customer.subscriptions.data;
             user.stripeDiscount = customer.discount;
             user.activeSubscription = true;
-            
+
             user.save(function(err) {
               if (err){return validationError(res, err)}
               else{
@@ -136,6 +141,105 @@ exports.me = function(req, res, next) {
     res.json(user);
   });
 };
+
+/**
+* Reset Password
+*/
+
+exports.resetPassword = function(req, res, next) {
+  async.waterfall([
+    function(done) {
+      crypto.randomBytes(20, function(err, buf) {
+        var token = buf.toString('hex');
+        done(err, token);
+      });
+    },
+    function(token, done) {
+      User.findOne({ email: req.body.email }, function(err, user) {
+        if (!user) {
+          return res.status(404).send('This email is not registered.');
+        }
+
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+        user.save(function(err) {
+          done(err, token, user);
+        });
+      });
+    },
+    function(token, user, done) {
+        var email = new sendgrid.Email({
+                to: user.email,
+                from: gobeEmailAddress,
+                subject: 'Reset Password',
+                html: '<h1></h1>',
+            });
+
+            var resetlink = 'http://localhost:9000/reset/' + token;
+            console.log('token: ', token)
+            console.log("resetlink: ", resetlink)
+            console.log('request header host: ', req.headers.host)
+
+
+            email.addFilter('templates', 'template_id', '05d029a6-21df-4373-a8fb-00280cdf85f1');
+            email.setSubstitutions({"%resetlink%": [resetlink]})
+
+            sendgrid.send(email, function(err, json) {
+             if (err) { return console.error(err); }
+             console.log(json);
+            });
+      }
+  ], function(err) {
+    if (err) return next(err);
+    res.redirect('/reset');
+  });
+};
+
+exports.acceptToken = function(req, res, next){
+  async.waterfall([
+    function(done) {
+      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+        if (!user) {
+          return res.status(404).send('Password reset token is invalid or has expired.');
+        }
+        else{
+          user.password = req.body.password;
+          user.passwordConfirm = req.body.passwordConfirm;
+          user.resetPasswordToken = undefined;
+          user.resetPasswordExpires = undefined;
+
+            user.save(function(err) {
+              if(user.authenticate(req.body.password)){
+                   if (err) return validationError(res, err);
+                   done(err, user)
+                }
+            });
+          }
+      });
+    },
+    function(user, done) {
+            var email = new sendgrid.Email({
+                to: user.email,
+                from: gobeEmailAddress,
+                subject: 'Your password has been reset',
+                html: '<h1></h1>',
+            });
+
+            email.addFilter('templates', 'template_id', 'df24931d-0b49-434b-bd9e-e7179134e928');
+            // email.setSubstitutions({"%resetlink": [resetlink]})
+
+            sendgrid.send(email, function(err, json) {
+             if (err) { return console.error(err); }
+             console.log(json);
+            });
+
+    }
+  ], function(err) {
+    res.redirect('/');
+  });
+};
+
 
 /**
  * Authentication callback

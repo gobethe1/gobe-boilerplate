@@ -15,5 +15,7 @@ router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 router.post('/subscription', controller.createSubscription);
 router.get('/:id/customer', controller.retrieveCustomer);
+router.post('/forgot', controller.resetPassword);
+router.post('/reset/:token', controller.acceptToken);
 
 module.exports = router;

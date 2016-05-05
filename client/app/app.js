@@ -11,7 +11,8 @@ angular.module('gobeApp', [
   'angularPayments',
   'rzModule',
   'google.places',
-  'config'
+  'config',
+  'validation.match'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider, ENV) {
     var $window = $windowProvider.$get();

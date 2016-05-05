@@ -26,6 +26,8 @@ var UserSchema = new Schema({
   stripeData: [],
   position: String,
   hashedPassword: String,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
   provider: String,
   salt: String,
   facebook: {},
@@ -49,6 +51,15 @@ UserSchema
   .get(function() {
     return this._password;
   });
+
+UserSchema
+  .virtual('passwordConfirm')
+  .get(function() {
+    return this._passwordConfirm;
+  })
+  .set(function(value) {
+    this._passwordConfirm = value;
+});
 
 // Public profile information
 UserSchema
