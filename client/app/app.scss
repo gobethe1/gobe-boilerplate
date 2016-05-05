@@ -129,6 +129,10 @@ li.current-location{
   margin-bottom: 5vh;
 }
 
+// fa icon styling pasasword reset confirm
+.fa-unlock-alt, .envelope-icon {
+  font-size: 8em;
+}
 
 // SUB NAV STYLING
 
@@ -273,6 +277,11 @@ button.btn-transparent {
   }
   .navbar-toggle{
     margin-right: 0px;
+  }
+
+  .fa-unlock-alt, .envelope-icon {
+    font-size: 6em;
+    margin-top: 10%
   }
 }
 @media only screen and (max-width: $screen-sm) {

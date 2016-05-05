@@ -35,6 +35,11 @@ angular.module('gobeApp')
         templateUrl: 'app/account/settings/forgot-password.html',
         controller: 'SettingsCtrl'
       })
+      .state('confirmation', {
+        url: '/confirmation',
+        templateUrl: 'app/account/settings/forgot-password-confirmation.html',
+        controller: 'SettingsCtrl'
+      })
       .state('reset', {
         url: '/reset/:token',
         templateUrl: 'app/account/settings/reset-password.html',
