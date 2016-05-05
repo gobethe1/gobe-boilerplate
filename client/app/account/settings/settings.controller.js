@@ -22,28 +22,9 @@ angular.module('gobeApp')
       }
 		};
 
-    // $scope.passwordReset = function(form){
-    //     $scope.submitted = true;
-    //     var data = {email: $scope.user.email};
-    //     if(form.$valid){
-    //        $scope.spinner = true;
-    //       $http.post('api/users/forgot', data)
-    //         .success(function(data){
-    //           $scope.successMessage = data;
-    //           $scope.spinner = false;
-    //           $location.path('/login');
-    //         })
-    //         .error(function(err){
-    //           $scope.errors.other = err;
-    //           $scope.spinner= false;
-    //         })
-    //     }
-    //     $state.go('login');
-    // };
-
 
     $scope.passwordReset = function(form){
-        // $scope.submitted = true;
+        $scope.submitted = true;
         var data = {email: $scope.user.email};
         if(form.$valid){
           $http.post('api/users/forgot', data)
@@ -61,24 +42,18 @@ angular.module('gobeApp')
       $scope.submitted = true;
 
       if(form.$valid){
-        console.log($stateParams.token)
         var data = {password: $scope.user.password, passwordConfirm: $scope.user.passwordConfirm};
         $http.post('/api/users/reset/' + $stateParams.token, data)
             .success(function(data){
-              console.log(data)
               //on success send success message
-              $scope.successMessage = data;
-              $location.path('/login');
-
-              // $scope.spinner = false;
+              $scope.successMessage = "You're in!";
+              console.log($scope.successMessage);
             })
             .error(function(err){
                 console.log(err)
                 $scope.errors.other = err;
-                // $scope.spinner = false;
             })
 
       }
-        $state.go('login');
     };
   });

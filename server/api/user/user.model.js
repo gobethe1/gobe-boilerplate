@@ -52,6 +52,15 @@ UserSchema
     return this._password;
   });
 
+UserSchema
+  .virtual('passwordConfirm')
+  .get(function() {
+    return this._passwordConfirm;
+  })
+  .set(function(value) {
+    this._passwordConfirm = value;
+});
+
 // Public profile information
 UserSchema
   .virtual('profile')
