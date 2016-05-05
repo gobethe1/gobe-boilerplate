@@ -46,7 +46,7 @@ angular.module('gobeApp')
         $http.post('/api/users/reset/' + $stateParams.token, data)
             .success(function(data){
               //on success send success message
-              $scope.successMessage = "You're in!";
+              $scope.successMessage = data;
               console.log($scope.successMessage);
             })
             .error(function(err){
