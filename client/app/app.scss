@@ -256,9 +256,11 @@ button.btn-transparent {
    outline: 0;
 }
 
-.forgot-password button, input {
-  margin-top: 5%;
-  margin-bottom: 7%;
+.forgot-password {
+  button, input {
+    margin-top: 5%;
+    margin-bottom: 7%;
+  }
 }
 
 // font-awesome styling
