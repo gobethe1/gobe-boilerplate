@@ -13,8 +13,8 @@ var stripe            = require("stripe")(stripeKey);
 var SENDGRID_API_KEY  = process.env.SENDGRID_API_KEY;
 var sendgrid          = require('sendgrid')(SENDGRID_API_KEY);
 var gobeEmailAddress  = 'hello@getgobe.com';
-var gobeStaging       = 'https://gobethe1-staging.herokuapp.com/reset/';
-var localhost         = 'http://localhost:9000/reset';
+var resetlink       = process.env.RESET_PW_LINK;
+
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -177,7 +177,7 @@ exports.resetPassword = function(req, res, next) {
                 html: '<h1></h1>',
             });
 
-            var resetlink = gobeStaging + token;
+            var resetlink = resetlink + token;
             console.log('user: ', user.email)
             console.log('token: ', token)
             console.log("resetlink: ", resetlink)
@@ -233,7 +233,6 @@ exports.acceptToken = function(req, res, next){
             });
 
             email.addFilter('templates', 'template_id', 'df24931d-0b49-434b-bd9e-e7179134e928');
-            // email.setSubstitutions({"%resetlink": [resetlink]})
 
             sendgrid.send(email, function(err, json) {
              if (err) { return console.error(err); }
