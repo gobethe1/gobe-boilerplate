@@ -1,19 +1,20 @@
 'use strict';
 var async             = require('async');
-
-var User = require('./user.model');
-var Group = require('../group/group.model');
-var passport = require('passport');
-var config = require('../../config/environment');
-var jwt = require('jsonwebtoken');
-var crypto = require('crypto');
-var _ = require('lodash');
-var stripeKey = process.env.STRIPE_API_KEY;
-var plan = process.env.PLAN;
-var stripe = require("stripe")(stripeKey);
+var User              = require('./user.model');
+var Group             = require('../group/group.model');
+var passport          = require('passport');
+var config            = require('../../config/environment');
+var jwt               = require('jsonwebtoken');
+var crypto            = require('crypto');
+var _                 = require('lodash');
+var stripeKey         = process.env.STRIPE_API_KEY;
+var plan              = process.env.PLAN;
+var stripe            = require("stripe")(stripeKey);
 var SENDGRID_API_KEY  = process.env.SENDGRID_API_KEY;
 var sendgrid          = require('sendgrid')(SENDGRID_API_KEY);
 var gobeEmailAddress  = 'hello@getgobe.com';
+var gobeStaging       = 'https://gobethe1-staging.herokuapp.com/reset';
+var localhost         = 'http://localhost:9000/reset';
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -176,7 +177,7 @@ exports.resetPassword = function(req, res, next) {
                 html: '<h1></h1>',
             });
 
-            var resetlink = 'http://localhost:9000/reset/' + token;
+            var resetlink = gobeStaging + token;
             console.log('token: ', token)
             console.log("resetlink: ", resetlink)
             console.log('request header host: ', req.headers.host)
