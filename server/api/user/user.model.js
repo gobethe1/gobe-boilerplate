@@ -1,9 +1,10 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var crypto = require('crypto');
+var mongoose  = require('mongoose');
+var Schema    = mongoose.Schema;
+var crypto    = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
+var _         = require('lodash');
 
 var UserSchema = new Schema({
   name: String,
@@ -52,14 +53,14 @@ UserSchema
     return this._password;
   });
 
-UserSchema
-  .virtual('passwordConfirm')
-  .get(function() {
-    return this._passwordConfirm;
-  })
-  .set(function(value) {
-    this._passwordConfirm = value;
-});
+// UserSchema
+//   .virtual('passwordConfirm')
+//   .get(function() {
+//     return this._passwordConfirm;
+//   })
+//   .set(function(value) {
+//     this._passwordConfirm = value;
+// });
 
 // Public profile information
 UserSchema

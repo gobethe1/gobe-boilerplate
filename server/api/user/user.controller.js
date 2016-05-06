@@ -9,7 +9,7 @@ var crypto            = require('crypto');
 var _                 = require('lodash');
 var stripeKey         = process.env.STRIPE_API_KEY;
 var plan              = process.env.PLAN;
-var resetlink         = process.env.RESET_PW_LINK;
+var urlLink           = process.env.RESET_PW_LINK;
 var stripe            = require("stripe")(stripeKey);
 var SENDGRID_API_KEY  = process.env.SENDGRID_API_KEY;
 var sendgrid          = require('sendgrid')(SENDGRID_API_KEY);
@@ -164,6 +164,7 @@ exports.resetPassword = function(req, res, next) {
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
+
         user.save(function(err) {
           done(err, token, user);
         });
@@ -177,7 +178,7 @@ exports.resetPassword = function(req, res, next) {
                 html: '<h1></h1>',
             });
 
-            var resetlink = resetlink + token;
+            var resetlink = urlLink + token;
             console.log('user: ', user.email)
             console.log('token: ', token)
             console.log("resetlink: ", resetlink)
@@ -190,15 +191,15 @@ exports.resetPassword = function(req, res, next) {
             sendgrid.send(email, function(err, json) {
              if (err) { return console.error(err); }
              console.log(json);
+             done('done');
             });
 
-        done('done');
 
       },
 
   ], function(err) {
     if (err) return next(err);
-    res.redirect('/reset');
+    res.redirect('/forgot');
   });
 };
 

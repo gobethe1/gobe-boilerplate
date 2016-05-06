@@ -27,7 +27,7 @@ angular.module('gobeApp')
         $scope.submitted = true;
         var data = {email: $scope.user.email};
         if(form.$valid){
-          $http.post('api/users/forgot', data)
+          $http.post('/api/users/forgot', data)
             .success(function(data){
               $scope.successMessage = data;
             })
