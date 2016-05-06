@@ -13,7 +13,7 @@ var stripe            = require("stripe")(stripeKey);
 var SENDGRID_API_KEY  = process.env.SENDGRID_API_KEY;
 var sendgrid          = require('sendgrid')(SENDGRID_API_KEY);
 var gobeEmailAddress  = 'hello@getgobe.com';
-var gobeStaging       = 'https://gobethe1-staging.herokuapp.com/reset';
+var gobeStaging       = 'https://gobethe1-staging.herokuapp.com/forgot';
 var localhost         = 'http://localhost:9000/reset';
 
 var validationError = function(res, err) {
