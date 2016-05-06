@@ -29,7 +29,7 @@ angular.module('gobeApp')
         if(form.$valid){
           $http.post('/api/users/forgot', data)
             .success(function(data){
-              $scope.successMessage = data;
+              // $scope.successMessage = "Password successfully changed";
             })
             .error(function(err){
               $scope.errors.other = err;
@@ -46,18 +46,18 @@ angular.module('gobeApp')
       if(form.$valid){
         var data = {password: $scope.user.password, passwordConfirm: $scope.user.passwordConfirm};
         $http.post('/api/users/reset/' + $stateParams.token, data)
-            .success(function(data, err){
-
+            .then(function(data) {
+              console.log('hello in the promise!')
+              // console.log($location.path)
+              $scope.successMessage = true;
             })
-            .error(function(err){
-                console.log(err)
-                $scope.errors.other = err;
+            .catch(function(){
+              $scope.errors.other = "Your password reset link is either invalid or has expired.";
+              console.log($scope.errors.other)
             })
-            console.log(data);
 
       }
 
-      $scope.successMessage = "Your password has been successfully reset!";
     };
 
   });

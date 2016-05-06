@@ -236,8 +236,8 @@ exports.acceptToken = function(req, res, next){
             email.addFilter('templates', 'template_id', 'df24931d-0b49-434b-bd9e-e7179134e928');
 
             sendgrid.send(email, function(err, json) {
-             if (err) { return console.error(err); }
-             console.log(json);
+              if (err) { return console.error(err); }
+              else {res.status(200).send('Your password has been successfully changed!')}      ;
             });
 
     }
