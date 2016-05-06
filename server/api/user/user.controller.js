@@ -178,6 +178,7 @@ exports.resetPassword = function(req, res, next) {
             });
 
             var resetlink = gobeStaging + token;
+            console.log('user: ', user.email)
             console.log('token: ', token)
             console.log("resetlink: ", resetlink)
             console.log('request header host: ', req.headers.host)
@@ -190,7 +191,11 @@ exports.resetPassword = function(req, res, next) {
              if (err) { return console.error(err); }
              console.log(json);
             });
-      }
+
+        done('done');
+
+      },
+
   ], function(err) {
     if (err) return next(err);
     res.redirect('/reset');
