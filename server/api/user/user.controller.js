@@ -9,11 +9,11 @@ var crypto            = require('crypto');
 var _                 = require('lodash');
 var stripeKey         = process.env.STRIPE_API_KEY;
 var plan              = process.env.PLAN;
+var resetlink         = process.env.RESET_PW_LINK;
 var stripe            = require("stripe")(stripeKey);
 var SENDGRID_API_KEY  = process.env.SENDGRID_API_KEY;
 var sendgrid          = require('sendgrid')(SENDGRID_API_KEY);
 var gobeEmailAddress  = 'hello@getgobe.com';
-var resetlink       = process.env.RESET_PW_LINK;
 
 
 var validationError = function(res, err) {
