@@ -40,7 +40,7 @@ angular.module('gobeApp')
       })
       .state('profile.edit', {
         url: '/edit',
-        templateUrl: 'app/profile/profile-edit.html',
+        templateUrl: 'app/volunteer/volunteer-signup.html',
         controller: 'VolunteerCtrl'
       })
       .state('profile.event', {

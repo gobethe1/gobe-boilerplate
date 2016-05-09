@@ -48,13 +48,13 @@ exports.create = function (req, res, next) {
 // Updates an existing user in the DB.
 exports.update = function(req, res) {
   var userId = req.user._id;
-  console.log(req.body)
+
   User.findById(userId, function (err, user) {
+    console.log('err: ', err)
     if (err) { return handleError(res, err); }
     if(!user) { return res.status(404).send('Not Found'); }
     var updated = _.merge(user, req.body);
     updated.matchZipCodeArr = req.body.matchZipCodeArr;
-    user.markModified('matchZipCodeArr');
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       console.log("htting inside update user save")
