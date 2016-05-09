@@ -28,7 +28,9 @@ angular.module('gobeApp')
         Auth.createUser({
           email: $scope.user.email,
           password: $scope.user.password,
-          position: $scope.user.position
+          position: $scope.user.position,
+          firstName: $scope.user.firstName,
+          lastName: $scope.user.lastName
         })
         .then( function() {
           if($scope.user.position === "group"){
