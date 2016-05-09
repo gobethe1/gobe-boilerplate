@@ -6,7 +6,7 @@ angular.module('gobeApp')
     $scope.errors = {};
     $scope.tab = 1;
     $scope.zipCode = "99999";
-    $scope.user.position = "group";
+    $scope.user.position = "volunteer";
 
     // console.log($scope.tab)
 
@@ -37,7 +37,7 @@ angular.module('gobeApp')
               $location.path('/group/list');
             }
            else if($scope.user.position === 'volunteer'){
-            $location.path('volunteer/profile');
+            $location.path('/volunteer/signup');
            }
         })
         .catch( function(err) {

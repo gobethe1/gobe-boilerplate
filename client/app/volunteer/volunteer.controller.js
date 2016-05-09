@@ -52,7 +52,7 @@ angular.module('gobeApp')
                         }).then(function(){
                             User.update($scope.currentUser,
                               function(data){
-                                $state.go('volunteer.profile')
+                                $state.go('profile.details')
                                 }),
                                 function(err){
                                  $scope.updateUserError = "Looks like something went wrong! Please try again"

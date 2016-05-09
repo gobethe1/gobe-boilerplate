@@ -1,7 +1,26 @@
-<div class="row">
+<!-- <div class="row">
 	<div class="col-xs-12 col-sm-12">
 		<h5><strong>Subscription Status:</strong> {{checkStatus()}}</h5>
 		<h5><strong>Subscription Renewal:</strong> {{checkRenewal()}} </h5>
 		<h5><strong>Email:</strong> {{user.email}}</h5>
 	</div>
-</div>
+</div> -->
+
+  <uib-accordion close-others="oneAtATime">
+      <uib-accordion-group heading="Your Info" template-url="app/group/custom-accordion-template.html">
+        <div class="row">
+          <div class="col-xs-2 col-xs-offset-1">
+            <i class="fa fa-user fa-5x" aria-hidden="true"></i>
+          </div>
+          <div class="col-xs-8 pull-left">
+            <p><label>Name:</label> {{user.firstName}} {{user.lastName}}</p>
+            <p><label>Phone:</label> {{user.phoneNumber}}</p>
+            <p><label>Email:</label> {{user.email}}</p>
+            <p><label>Location:</label> {{user.address}}</p>
+            <p><label>Distance:</label> {{user.matchRadius}} miles</p>
+            <p><label>Subscription:</label> {{checkStatus()}} miles</p>
+            <p><label>subscription Status:</label> {{checkRenewal()}} miles</p>
+          </div>
+        </div>
+      </uib-accordion-group>
+  </uib-accordion>
