@@ -1,17 +1,27 @@
-  <div class="row">
-    <div class="col-sm-6 col-md-6 col-xs-12">
-      <h2>Thank You!</h2>
-      <h4>Thank you for joining the movement and making a difference for veterans and their communities!</h4>
-      <h5><strong>Email:</strong> {{currentUser.email}}</h5>
-    </div>
-    <div class="col-sm-6 col-md-6 col-xs-12">
-    </div>
-  </div>
+<!-- edit group -->
+<!-- <div class="row"> -->
+<!--   <div class="col-sm-12 col-xs-12 text-right">
+    <a ng-if="!confirm" ui-sref="group.edit({id: group._id, name: group.organizationName})">Edit User</a>
+  </div> -->
+<!-- </div> -->
+<!-- end edit group -->
+  <br>
 
-<div class="row">
-  <div class="col-sm-6 col-xs-12">
-   
-
-  </div>
-</div>
-
+  <!-- group info -->
+  <uib-accordion close-others="oneAtATime">
+      <uib-accordion-group heading="Your Info" template-url="app/group/custom-accordion-template.html">
+        <div class="row">
+          <div class="col-xs-2 col-xs-offset-1">
+            <i class="fa fa-user fa-5x" aria-hidden="true"></i>
+          </div>
+          <div class="col-xs-8 pull-left">
+            <p><label>Name:</label> {{currentUser.firstName}} {{currentUser.lastName}}</p>
+            <p><label>Phone:</label> {{currentUser.phoneNumber}}</p>
+            <p><label>Email:</label> {{currentUser.email}}</p>
+            <p><label>Location:</label> {{currentUser.address}}</p>
+            <p><label>Distance:</label> {{currentUser.matchRadius}} miles</p>
+          </div>
+        </div>
+      </uib-accordion-group>
+  </uib-accordion>
+  <!-- end group info -->

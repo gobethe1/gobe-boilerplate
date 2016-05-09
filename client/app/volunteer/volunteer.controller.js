@@ -4,10 +4,6 @@ angular.module('gobeApp')
   .controller('VolunteerCtrl', function ($scope, currentUser, User, $stateParams, $http, $state) {
      $scope.currentUser = currentUser;
      $scope.currentUser.address;
-
-     console.log('currentUser: ', currentUser)
-     console.log('currentUser id: ', currentUser._id)
-
      $scope.zipCodeSlider = {
         value: 5,
         options: {
