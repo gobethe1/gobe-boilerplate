@@ -4,6 +4,8 @@ angular.module('gobeApp')
   .controller('VolunteerCtrl', function ($scope, currentUser, User, $stateParams, $http, $state) {
      $scope.currentUser = currentUser;
      $scope.currentUser.address;
+
+     console.log('current user address: ', $scope.currentUser.address)
      $scope.zipCodeSlider = {
         value: 5,
         options: {
@@ -17,7 +19,7 @@ angular.module('gobeApp')
       };
 
     var checkAddress = function(){
-        $scope.currentUser.address    = $scope.currentUser.address.formatted_address;
+        $scope.currentUser.address    = $scope.currentUser.address.formatted_address || $scope.currentUser.address;
         var fullAddress               = $scope.currentUser.address;
         var addressArray              = fullAddress.split(',');
         var stateAndZip               = addressArray[addressArray.length - 2].split(' ');
@@ -31,9 +33,9 @@ angular.module('gobeApp')
     $scope.updateUser = function updateUser(form) {
         $scope.currentUser = $scope.currentUser;
         $scope.currentUser.matchRadius = $scope.zipCodeSlider.value;
-        $scope.currentUser.previousEmailList = $scope.currentUser.emailList;
         $scope.submitted = true;
         checkAddress();
+
            if(form.$valid){
               $http({  method: "GET",
                       url: 'https://www.zipcodeapi.com/rest/' + zipCodeApiKey + '/radius.json/' + $scope.currentUser.zipCode + '/' + $scope.currentUser.matchRadius + '/mile',
