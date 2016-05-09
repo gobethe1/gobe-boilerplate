@@ -38,6 +38,11 @@ angular.module('gobeApp')
         templateUrl: 'app/profile/profile-details.html',
         controller: 'ProfileCtrl'
       })
+      .state('profile.edit', {
+        url: '/edit',
+        templateUrl: 'app/profile/profile-edit.html',
+        controller: 'VolunteerCtrl'
+      })
       .state('profile.event', {
         url: '/event',
         abstract: true,
