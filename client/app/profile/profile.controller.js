@@ -2,12 +2,12 @@
 
 angular.module('gobeApp')
   .controller('ProfileCtrl', function ($scope, $filter, currentUser, Auth, Path, customerInfo) {
-    
-    $scope.user = currentUser;
-    $scope.isAdmin = Auth.isAdmin;
-    $scope.path = Path.transitionToPath;
+
+    $scope.user      = currentUser;
+    $scope.isAdmin   = Auth.isAdmin;
+    $scope.path      = Path.transitionToPath;
     var customerInfo = customerInfo;
-    
+
     if(customerInfo){
     	var trialEnd = new Date(customerInfo.trial_end * 1000);
     	var currentPeriodEnd = new Date(customerInfo.current_period_end * 1000);
@@ -23,7 +23,7 @@ angular.module('gobeApp')
 	      }
 	      else{
 	      	return "Inactive";
-	      }	
+	      }
 	  }
 	  else{
 	  	return "None";
@@ -41,11 +41,11 @@ angular.module('gobeApp')
     			return "Renews on "	+ $filter('date')(currentPeriodEnd, "MM-dd-yyyy");
     		}
     		else{
-    		   return "Inactive"; 
+    		   return "Inactive";
     		}
     	}
     	else{
-    	  return "None";	
+    	  return "None";
     	}
 
     }
