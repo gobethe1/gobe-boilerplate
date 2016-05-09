@@ -18,6 +18,12 @@ angular.module('gobeApp')
           id:'me'
         }
       },
+      update: {
+        method: 'POST',
+        params: {
+          id: 'update'
+        }
+      },
       createSubscription: {
         method: 'POST',
         params: {

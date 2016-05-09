@@ -13,12 +13,16 @@ angular.module('gobeApp')
         	}
         }
       })
-
+      .state('volunteer.signup', {
+        url: '/signup',
+        templateUrl: 'app/volunteer/volunteer-signup.html',
+        controller: 'VolunteerCtrl',
+      })
       .state('volunteer.profile', {
         url: '/profile',
         templateUrl: 'app/volunteer/volunteer-profile.html',
         controller: 'VolunteerCtrl',
-       
+
       });
 
       $urlRouterProvider.otherwise('/');

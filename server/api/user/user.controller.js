@@ -45,6 +45,42 @@ exports.create = function (req, res, next) {
   });
 };
 
+// Updates an existing user in the DB.
+exports.update = function(req, res) {
+  var userId = req.user._id;
+  console.log(req.body)
+  User.findById(userId, function (err, user) {
+    if (err) { return handleError(res, err); }
+    if(!user) { return res.status(404).send('Not Found'); }
+    var updated = _.merge(user, req.body);
+    updated.matchZipCodeArr = req.body.matchZipCodeArr;
+    user.markModified('matchZipCodeArr');
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      console.log("htting inside update user save")
+      return res.status(200).json(user);
+    });
+
+  });
+};
+
+exports.changePassword = function(req, res, next) {
+  var userId = req.user._id;
+
+  User.findById(userId, function (err, user) {
+    if(user.authenticate(oldPass)) {
+      user.password = newPass;
+      user.save(function(err) {
+        if (err) return validationError(res, err);
+        res.status(200).send('OK');
+      });
+    } else {
+      res.status(403).send('Forbidden');
+    }
+  });
+};
+
+
 /* Create new stripe customer subscription */
 exports.createSubscription = function(req, res, next){
   stripe.customers.create({
@@ -71,6 +107,7 @@ exports.createSubscription = function(req, res, next){
       }
   });
 };
+
 
 /* Retrieve Stripe Customer information */
 exports.retrieveCustomer = function(req, res, next){

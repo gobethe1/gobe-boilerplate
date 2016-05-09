@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-sm-12 col-xs-12 text-center">
+    <label>Add location to view opportunities in your area.</label>
+    <br>
+    <i class="fa fa-map-marker fa-5x" aria-hidden="true"></i>
+    <br>
+
+  </div>
+
+  <br>
+  <form class="form" name="form" ng-submit="updateUser(form)" novalidate>
+
+    <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 text-center">
+      <!-- address -->
+      <div class="form-group" ng-class="{'has-success': form.address.$valid && submitted,
+                                           'has-error': form.address.$invalid && submitted }">
+         <label>Your location</label>
+         <input type="text" g-places-autocomplete name="address"
+                placeholder="Enter address, business name, landmark"
+                ng-model="currentUser.address" class="form-control" required>
+      </div>
+
+      <p class="text-danger" ng-show="form.address.$error.minlength && submitted">
+          Please enter a complete address.
+      </p>
+      <!-- end address -->
+
+      <!-- zip code slider -->
+      <div>
+          <label>Select the distance you are willing to travel</label>
+          <rzslider rz-slider-model="zipCodeSlider.value" rz-slider-options="zipCodeSlider.options"></rzslider>
+      </div>
+      <!-- end zip code slider -->
+
+
+
+      <!-- <div> -->
+        <div class="text-left">
+          <p class="text-danger">{{addGroupError}}</p>
+        </div>
+
+        <div class="col-xs-6 col-offset-3 col-sm-6 col-offset-3 pull-right text-right">
+          <button class="btn btn-lg" type="submit" ng-submit="updateUser()"
+          ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}">
+            Next
+          </button>
+        </div>
+      <!-- </div> -->
+    </div>
+  </form>
+</div>

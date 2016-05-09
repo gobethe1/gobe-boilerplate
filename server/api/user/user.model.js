@@ -15,11 +15,14 @@ var UserSchema = new Schema({
   groupId: {type: mongoose.Schema.Types.ObjectId,
                ref: 'Group'
            },
-  zipCode: String,
   role: {
     type: String,
     default: 'user'
   },
+  address: String,
+  zipCode: String,
+  matchRadius: Number,
+  matchZipCodeArr: Array,
   legacyUser: {type: Boolean, default: false},
   activeSubscription: {type: Boolean, default: false},
   stripeCustomerId: String,
