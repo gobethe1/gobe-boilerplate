@@ -21,6 +21,7 @@ var UserSchema = new Schema({
   },
   address: String,
   zipCode: String,
+  phoneNumber: String,
   matchRadius: Number,
   matchZipCodeArr: Array,
   legacyUser: {type: Boolean, default: false},

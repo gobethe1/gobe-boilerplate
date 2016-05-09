@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('VolunteerCtrl', function ($scope, currentUser, User, $stateParams, $http) {
+  .controller('VolunteerCtrl', function ($scope, currentUser, User, $stateParams, $http, $state) {
      $scope.currentUser = currentUser;
      $scope.currentUser.address;
 
@@ -56,11 +56,10 @@ angular.module('gobeApp')
                         }).then(function(){
                             User.update($scope.currentUser,
                               function(data){
-                                //  $scope.currentUser.groupId = data._id
-                                //  $state.go('group.show', {id: data._id})
+                                $state.go('volunteer.profile')
                                 }),
                                 function(err){
-                                //  $scope.addGroupError = "Looks like something went wrong! Please try again"
+                                 $scope.updateUserError = "Looks like something went wrong! Please try again"
                                 }
                         })
 

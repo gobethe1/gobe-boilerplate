@@ -10,7 +10,7 @@
   <br>
   <form class="form" name="form" ng-submit="updateUser(form)" novalidate>
 
-    <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 text-center">
+    <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
       <!-- address -->
       <div class="form-group" ng-class="{'has-success': form.address.$valid && submitted,
                                            'has-error': form.address.$invalid && submitted }">
@@ -32,11 +32,21 @@
       </div>
       <!-- end zip code slider -->
 
+      <!-- phone number -->
+      <div class="form-group" ng-class="{'has-success': form.phoneNumber.$valid && submitted,
+                                           'has-error': form.phoneNumber.$invalid && submitted }">
+         <label>Phone Number (optional)</label>
+         <input class="form-control" type="text"
+                ui-mask="(999) 999-9999"
+                ng-model="currentUser.phoneNumber">
+      </div>
+      <!-- end phone number -->
+
 
 
       <!-- <div> -->
         <div class="text-left">
-          <p class="text-danger">{{addGroupError}}</p>
+          <p class="text-danger">{{updateUserError}}</p>
         </div>
 
         <div class="col-xs-6 col-offset-3 col-sm-6 col-offset-3 pull-right text-right">
