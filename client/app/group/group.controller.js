@@ -4,15 +4,15 @@ angular.module('gobeApp')
   .controller('GroupCtrl', [ '$scope', '$http', '$state', 'Group', 'groupModel', '$stateParams', 'currentUser', 'Auth', '$uibModal',
     function ($scope, $http, $state, Group, groupModel, $stateParams, currentUser, Auth, $uibModal) {
 
-    $scope.listGroups = groupModel;
-    $scope.newGroup = {};
+    $scope.listGroups         = groupModel;
+    $scope.newGroup           = {};
     $scope.newGroup.emailList = [];
-    $scope.emailList = $scope.newGroup.emailList;
-    $scope.hover = true;
-    $scope.currentUser = currentUser;
-    $scope.newGroup.ownedBy = currentUser._id;
-    $scope.newGroup.email   = currentUser.email;
-    $scope.isAdmin = Auth.isAdmin();
+    $scope.emailList          = $scope.newGroup.emailList;
+    $scope.hover              = true;
+    $scope.currentUser        = currentUser;
+    $scope.newGroup.ownedBy   = currentUser._id;
+    $scope.newGroup.email     = currentUser.email;
+    $scope.isAdmin            = Auth.isAdmin();
     $scope.zipCodeSlider = {
       value: 5,
       options: {

@@ -6,6 +6,12 @@ angular.module('gobeApp')
     $scope.user      = currentUser;
     $scope.isAdmin   = Auth.isAdmin;
     $scope.path      = Path.transitionToPath;
+
+    var splitAddress = $scope.user.address.split(',');
+    $scope.shortAddress = splitAddress[0] + ', ' + splitAddress[1];
+
+
+    console.log($scope.user.address)
     var customerInfo = customerInfo;
 
     if(customerInfo){

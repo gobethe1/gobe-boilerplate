@@ -4,10 +4,11 @@ angular.module('gobeApp')
   .controller('VolunteerCtrl', function ($scope, currentUser, User, $stateParams, $http, $state) {
      $scope.currentUser = currentUser;
      $scope.currentUser.address;
+     var value = $scope.currentUser.matchRadius || 5;
 
      console.log('current user address: ', $scope.currentUser.address)
      $scope.zipCodeSlider = {
-        value: 5,
+        value: value,
         options: {
           floor: 5,
           ceil: 50,
@@ -31,10 +32,10 @@ angular.module('gobeApp')
     var newArr = [];
 
     $scope.updateUser = function updateUser(form) {
+        checkAddress();
         $scope.currentUser = $scope.currentUser;
         $scope.currentUser.matchRadius = $scope.zipCodeSlider.value;
         $scope.submitted = true;
-        checkAddress();
 
            if(form.$valid){
               $http({  method: "GET",

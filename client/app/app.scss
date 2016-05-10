@@ -404,6 +404,13 @@ rzslider .rz-bar.rz-selection {
     text-decoration: none;
 }
 
+.signup-form  {
+  input, label {
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';

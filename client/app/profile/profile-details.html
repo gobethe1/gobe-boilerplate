@@ -12,14 +12,23 @@
           <div class="col-xs-2 col-xs-offset-1">
             <i class="fa fa-user fa-5x" aria-hidden="true"></i>
           </div>
-          <div class="col-xs-8 pull-left">
-            <p><label>Name:</label>  {{user.firstName}} {{user.lastName}}</p>
-            <p><label>Phone:</label>  {{user.phoneNumber}}</p>
-            <p><label>Email:</label>  {{user.email}}</p>
-            <p><label>Location:</label>  {{user.address}}</p>
-            <p><label>Distance:</label>  {{user.matchRadius}} miles</p>
-            <p><label>Subscription:</label>  {{checkStatus()}}</p>
-            <p><label>Subscription Status:</label>  {{checkRenewal()}}</p>
+          <div class="col-xs-2 pull-left">
+            <p>Name</p>
+            <p>Phone</p>
+            <p>Email</p>
+            <p>Location</p>
+            <p>Distance</p>
+            <p>Subscription</p>
+            <p>Status</p>
+          </div>
+          <div class="col-xs-6 pull-left">
+            <p>{{user.firstName}} {{user.lastName}}</p>
+            <p>{{user.phoneNumber}}</p>
+            <p>{{user.email}}</p>
+            <p>{{shortAddress}}</p>
+            <p>{{user.matchRadius}} miles</p>
+            <p>{{checkStatus()}}</p>
+            <p>{{checkRenewal()}}</p>
           </div>
         </div>
       </uib-accordion-group>
