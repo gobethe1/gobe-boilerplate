@@ -1,5 +1,47 @@
+		<!-- group or individual radio buttons -->
+		<div class="form-group">
+			{{newEvent.groupOnly}}
+
+			  <label>Select type of volunteer</label><br>
+
+			  <div class="row">
+				  <i class="fa fa-users fa-2x text-center col-xs-2 col-sm-2" aria-hidden="true"></i>
+				  <i class="fa fa-user fa-2x text-center col-xs-2 col-sm-2" aria-hidden="true"></i>
+			  </div>
+			  <div class="row">
+					<label class="radio-inline">
+
+					  <input name="groupOnlyYes" ng-model="newEvent.groupOnly" ng-value="true" type="radio">
+					  <span class="c-indicator"></span>
+					  Group Only
+					</label>
+					<label class="radio-inline">
+					  <input name="groupOnlyNo" ng-model="newEvent.groupOnly" ng-value="false" type="radio">
+					  <span class="c-indicator"></span>
+					  Individuals
+					</label>
+			  </div>
+
+		</div>
+		<!-- end group or individual radio buttons -->
+
 		<!-- add cause type -->
-		<div class="form-group" ng-class="{ 'has-success': form.causeType.$valid && submitted,
+		<!-- cause types if groupOnly event -->
+		<div class="form-group" ng-if="newEvent.groupOnly === true" ng-class="{ 'has-success': form.causeType.$valid && submitted,
+                                        'has-error': form.causeType.$invalid && submitted }">
+			<label>Select Cause</label>
+		  <select class="form-control"
+		  		name="causeType"
+		      ng-model="newEvent.causeType"
+		      ng-options="obj as obj for obj in groupCauseArray;"
+		      required
+		      >
+		    <option value="" disabled selected>Choose Cause</option>
+		  </select>
+		</div>
+
+		<!-- cause types if not group only -->
+		<div class="form-group" ng-if="newEvent.groupOnly === false" ng-class="{ 'has-success': form.causeType.$valid && submitted,
                                         'has-error': form.causeType.$invalid && submitted }">
 			<label>Select Cause</label>
 		  <select class="form-control"

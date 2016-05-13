@@ -123,8 +123,8 @@ function matchZipCode(event, host){
       function(done) {
         Group.find({ matchZipCodeArr: {$elemMatch: {$eq: event.zipCode} }}, function(err, group) {
           if (!group) {
-            // console.log(err)
-            // return res.status(404).send('There are no zipcode matches.');
+            console.log(err)
+            return res.status(404).send('There are no zipcode matches.');
           }
            done(err, group);
         });

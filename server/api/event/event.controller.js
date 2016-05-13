@@ -52,13 +52,24 @@ exports.update = function(req, res) {
 
 // send out matching event to groups and save event
 exports.send = function(req, res) {
+  // console.log(req.body)
   Event.create(req.body, function(err, event) {
     if(err) { return handleError(res, err); }
-    eventEmailer.matchZipCode(event, req.headers.host);
+    // if no error and grouponly
+    console.log('event: ', event)
+    if(event.groupOnly === true) {
+      console.log('firing false true');
+     eventEmailer.matchZipCode(event, req.headers.host);
+    }
+    // if no error and !grouponly
+    else{
+      console.log('firing false false');
+    }
     return res.status(201).json(event);
   });
 };
 
+// send out matching event to groups when updating an event
 exports.sendupdate = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   Event.findById(req.params.id, function (err, event) {
@@ -68,7 +79,14 @@ exports.sendupdate = function(req, res) {
     updated.availability = req.body.availability;
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      eventEmailer.matchZipCode(event, req.headers.host);
+      if(updated.groupOnly === true) {
+        console.log('firing false true')
+        eventEmailer.matchZipCode(event, req.headers.host);
+      }
+      else {
+        console.log('firing false false')
+      }
+      // eventEmailer.matchZipCode(event, req.headers.host);
       return res.status(200).json(event);
     });
   });

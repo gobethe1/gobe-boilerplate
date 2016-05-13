@@ -5,16 +5,17 @@ angular.module('gobeApp')
     'currentUser', 'Auth', 'Path', '$uibModal',
     function ($scope, $state, $stateParams, Event, eventModel, currentUser, Auth, Path, $uibModal) {
     // console.log(currentUser)
-  	$scope.listEvents = eventModel;
-    $scope.hover = true;
-    $scope.newEvent = {};
-    $scope.newEvent.availability = {};
-    $scope.newEvent.address = {};
-    $scope.isAdmin = Auth.isAdmin;
+  	$scope.listEvents             = eventModel;
+    $scope.hover                  = true;
+    $scope.newEvent               = {};
+    $scope.newEvent.availability  = {};
+    $scope.newEvent.address       = {};
+    $scope.isAdmin                = Auth.isAdmin;
     $scope.activeSubscription     = Auth.activeSubscription;
-    $scope.path = Path.transitionToPath;
-    $scope.showLink = 'event.show';
-    $scope.causeArray = ["Homeless Move-in", "Other"];
+    $scope.path                   = Path.transitionToPath;
+    $scope.showLink               = 'event.show';
+    $scope.groupCauseArray        = ["Homeless Move-in", "Other"];
+    $scope.causeArray             = ["Other"];
 
     // event list sorting filters
     $scope.sort = {};

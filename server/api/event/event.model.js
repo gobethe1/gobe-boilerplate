@@ -12,6 +12,7 @@ var EventSchema = new Schema({
              ref: 'User'
         },
   eventName: String,
+  groupOnly: {type: Boolean, default: false},
   firstName: String,
   lastName: String,
   phoneNumber: String,
