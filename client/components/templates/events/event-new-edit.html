@@ -124,6 +124,16 @@
       </div>
 			<!-- end address -->
 
+			<!-- number of volunteers -->
+			<div class="form-group" ng-if="newEvent.groupOnly === false" ng-class="{ 'has-success': form.numberOfVolunteers.$valid && submitted,
+			                                     'has-error': form.numberOfVolunteers.$invalid && submitted }">
+        <label>Number of Volunteers</label>
+        <input type="text" name="numberOfVolunteers" minlength="1" maxlength="3" ng-model="newEvent.numberOfVolunteers"
+        class="form-control"
+         required/>
+      </div>
+			<!-- end number of volunteers -->
+
 			<!-- gender age-->
 			<div class="row" ng-if="newEvent.causeType === 'Homeless Move-in'">
 				<div class="col-sm-6 col-xs-9">

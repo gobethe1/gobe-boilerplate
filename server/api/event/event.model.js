@@ -13,6 +13,7 @@ var EventSchema = new Schema({
         },
   eventName: String,
   groupOnly: {type: Boolean, default: false},
+  numberOfVolunteers: String,
   firstName: String,
   lastName: String,
   phoneNumber: String,
