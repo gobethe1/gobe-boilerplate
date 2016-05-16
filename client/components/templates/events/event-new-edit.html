@@ -4,17 +4,21 @@
 
 			  <label>Select type of volunteer</label><br>
 
-			  <div class="row">
+			  <div class="row radio-icons">
 				  <i class="fa fa-users fa-2x text-center col-xs-2 col-sm-2" aria-hidden="true"></i>
+
 				  <i class="fa fa-user fa-2x text-center col-xs-2 col-sm-2" aria-hidden="true"></i>
 			  </div>
-			  <div class="row">
-					<label class="radio-inline">
+
+			  <div class="row group-individual">
+
+					<label class="radio-inline group-only">
 
 					  <input name="groupOnlyYes" ng-model="newEvent.groupOnly" ng-value="true" type="radio">
 					  <span class="c-indicator"></span>
 					  Group Only
 					</label>
+
 					<label class="radio-inline">
 					  <input name="groupOnlyNo" ng-model="newEvent.groupOnly" ng-value="false" type="radio">
 					  <span class="c-indicator"></span>
@@ -26,6 +30,7 @@
 		<!-- end group or individual radio buttons -->
 
 		<!-- add cause type -->
+
 		<!-- cause types if groupOnly event -->
 		<div class="form-group" ng-if="newEvent.groupOnly === true" ng-class="{ 'has-success': form.causeType.$valid && submitted,
                                         'has-error': form.causeType.$invalid && submitted }">

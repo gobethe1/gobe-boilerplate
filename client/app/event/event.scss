@@ -114,6 +114,11 @@ button.btn.save-later{
     }
 }
 
+.group-individual {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .active-sub{
   border-bottom: 5px solid $bg-blue;
   text-align: center;
@@ -134,6 +139,11 @@ button.btn.save-later{
   padding-bottom: 5px;
 }
 
+.radio-icons i {
+  margin-left: 3%;
+  margin-right: 0%;
+}
+
 @media only screen and (max-width: $screen-sm) {
   .status-bar{
       padding: 6px 25px;
@@ -142,8 +152,28 @@ button.btn.save-later{
        float: none;
      }
   }
+
+  .radio-icons i {
+    margin-right: 3%;
+  }
+
+  .group-only {
+    margin-right: 4%;
+  }
+
   .event-show-info-margin-top{
     margin-top:40px;
   }
 
+}
+
+@media only screen and (max-width: $screen-xs) {
+  .radio-icons i {
+    margin-left: 9%;
+    margin-right: 9%;
+  }
+
+  .group-only {
+    margin-right: 15%;
+  }
 }

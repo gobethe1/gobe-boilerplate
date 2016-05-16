@@ -40,6 +40,7 @@ var EventSchema = new Schema({
   notes: String,
   description: String,
   host: String,
+  confirmIndividuals: Array,
   confirmGroup: {type: mongoose.Schema.Types.ObjectId, ref: 'Group', default:null},
   confirmDate: Date,
   confirmTime: String,

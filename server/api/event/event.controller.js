@@ -38,8 +38,11 @@ exports.update = function(req, res) {
     if(!event) { return res.status(404).send('Not Found'); }
     var updated = _.merge(event, req.body);
     updated.availability = req.body.availability;
+    updated.confirmIndividuals = req.body.confirmIndividuals;
+    event.markModified('confirmIndividuals');
     event.markModified('confirmedEmails');
     event.markModified('rejectedEmails');
+
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       if((event.published) && ((event.confirmGroup !== null) && (event.confirmedEmails.length === 0))){
@@ -52,18 +55,20 @@ exports.update = function(req, res) {
 
 // send out matching event to groups and save event
 exports.send = function(req, res) {
-  // console.log(req.body)
+  console.log(req.body)
   Event.create(req.body, function(err, event) {
     if(err) { return handleError(res, err); }
     // if no error and grouponly
-    console.log('event: ', event)
     if(event.groupOnly === true) {
       console.log('firing false true');
-     eventEmailer.matchZipCode(event, req.headers.host);
+      eventEmailer.matchZipCode(event, req.headers.host);
     }
     // if no error and !grouponly
     else{
+      console.log('event: ', event)
       console.log('firing false false');
+      console.log('event match individual: ', eventEmailer.matchZipCodeIndividual(event, req.headers.host))
+      // eventEmailer.matchZipCodeIndividual(event, req.headers.host);
     }
     return res.status(201).json(event);
   });
@@ -84,7 +89,8 @@ exports.sendupdate = function(req, res) {
         eventEmailer.matchZipCode(event, req.headers.host);
       }
       else {
-        console.log('firing false false')
+        console.log('firing false false');
+        // eventEmailer.matchZipCodeIndividual(event, req.headers.host);
       }
       // eventEmailer.matchZipCode(event, req.headers.host);
       return res.status(200).json(event);

@@ -20,6 +20,16 @@ angular.module('gobeApp')
      }
     }
   })
+  .state('confirm.individual', {
+    url: '/individual/:event_id/:user_id',
+    templateUrl: 'app/confirm/confirm-individual.html',
+    controller: 'ConfirmEventCtrl',
+    resolve:{
+     eventConfirm: function(Event, $stateParams){
+       return Event.get({id: $stateParams.event_id}).$promise;
+     }
+    }
+  })
 
   .state('confirm.volunteer', {
     url: '/volunteer/:group_id/:event_id/:email/:response',
