@@ -65,10 +65,10 @@ exports.send = function(req, res) {
     }
     // if no error and !grouponly
     else{
-      console.log('event: ', event)
+      // console.log('event: ', event)
       console.log('firing false false');
-      console.log('event match individual: ', eventEmailer.matchZipCodeIndividual(event, req.headers.host))
-      // eventEmailer.matchZipCodeIndividual(event, req.headers.host);
+      // console.log('event match individual: ', eventEmailer.matchZipCodeIndividual(event, req.headers.host));
+      eventEmailer.matchZipCodeIndividual(event, req.headers.host);
     }
     return res.status(201).json(event);
   });
@@ -90,7 +90,7 @@ exports.sendupdate = function(req, res) {
       }
       else {
         console.log('firing false false');
-        // eventEmailer.matchZipCodeIndividual(event, req.headers.host);
+        eventEmailer.matchZipCodeIndividual(event, req.headers.host);
       }
       // eventEmailer.matchZipCode(event, req.headers.host);
       return res.status(200).json(event);

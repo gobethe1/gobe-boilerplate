@@ -97,7 +97,6 @@ function matchZipCode(event, host){
 
 // replaces matchZipCode
 function matchZipCodeIndividual(event, host){
-  console.log('event in matchindividual async: ', event);
 
   async.waterfall([
       function(done) {
@@ -107,21 +106,20 @@ function matchZipCodeIndividual(event, host){
             // console.log(err)
             // return res.status(404).send('There are no zipcode matches.');
           }
-           console.log('user: ', user)
+           console.log('user inside find: ', user.length)
            done(err, user);
         });
       },
 
       function(user, done) {
-        console.log('users from find: ', user)
+
         user.map(function(value){
             console.log('value in user map: ', value)
             var link = 'http://' + host + '/confirm/individual/' + event._id + '/' + value._id;
             var capFirstName = _.capitalize(value.firstName);
             var eventName = _.capitalize(event.firstName) || _.capitalize(event.eventName);
             var eventDescription = event.description  || homelessMoveinDescription;
-            var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey
-            console.log("email", value.email)
+            var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey;
 
             var email = new sendgrid.Email({
                 to: value.email,
@@ -129,10 +127,6 @@ function matchZipCodeIndividual(event, host){
                 subject: 'Are You Available?',
                 html: '<h1></h1>',
             });
-
-            console.log('email: ', email)
-            console.log('capFirstName: ', capFirstName)
-
 
             email.addFilter('templates', 'template_id', 'bc764a16-9e00-4cae-b42e-5e6fb11d282f');
             email.setSubstitutions({"%capFirstName%": [capFirstName], "%eventName%": [eventName], "%link%":[link], "%eventDescription%": [eventDescription] })
