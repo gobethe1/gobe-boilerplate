@@ -1,3 +1,5 @@
+<!-- event show before event has been matched -->
+
 <div class="table-responsive" ng-if="!event.confirmGroup">
     <table class="table table-sm">
       <thead>
@@ -24,10 +26,6 @@
         </tr>
       </thead>
         <tbody>
-<!--           <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
-              <th>What is this cause about?</th>
-              <td></td>
-          </tr> -->
           <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
               ng-hide="event.causeType !== 'Homeless Move-in'">
               <th>Client Phone Number:</th>
@@ -135,8 +133,10 @@
   </div>
   </div>
 </div>
+<!-- end event show before event has been accepted -->
 
 
+<!-- event show once cause has been accepted / matched -->
 <div ng-if="event.confirmGroup">
   <uib-accordion close-others="oneAtATime">
       <uib-accordion-group heading="Event Info" template-url="app/group/custom-accordion-template.html">
@@ -152,12 +152,12 @@
           You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!</p>
         </div>
         <!-- end move-in description -->
+
         <!-- other description -->
         <div ng-show="event.causeType !== 'Homeless Move-in'">
           <p>{{event.description}}</p>
         </div>
         <!-- end other description -->
-        <!-- <p ng-if="!isAdmin()">To get started, simply select <strong>Accept Cause</strong>.</p> -->
 
           <th class="col-sm-6 col-xs-6">
           </th>
@@ -165,10 +165,6 @@
         </tr>
       </thead>
         <tbody>
-<!--           <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
-              <th>What is this cause about?</th>
-              <td></td>
-          </tr> -->
           <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
               ng-hide="event.causeType !== 'Homeless Move-in'">
               <th>Client Phone Number:</th>
@@ -251,40 +247,28 @@
     </table>
       </uib-accordion-group>
   </uib-accordion>
-  <!-- end group info -->
 
-  <!-- team members -->
+
+<!-- volunteers accordion tab -->
   <uib-accordion close-others="oneAtATime">
       <uib-accordion-group heading="Volunteers" template-url="app/group/custom-accordion-template.html">
 
-      <div class="row">
-        <div class="row event-list-sub-nav">
-
-        </div>
-        <div class="col-sm-4 text-center" ng-class="{'active':isActiveTab(0)}">
+      <!-- volunteer tabs based on confirmed, rejected, invited -->
+      <div class="row event-list-sub-nav">
+        <div class="col-sm-4 text-center" ng-class="{'active-sub':isActiveTab(0)}">
           <a ng-click="changeTab(0)">Attending</a>
-          {{tab}}
         </div>
-        <div class="col-sm-4 text-center" ng-class="{'active':isActiveTab(1)}">
-          <a ng-click="changeTab(1)">Can't Make It</a>
-          {{tab}}
-        </div>
-        <div class="col-sm-4 text-center" ng-class="{'active':isActiveTab(2)}">
+        <div class="col-sm-4 text-center" ng-class="{'active-sub':isActiveTab(2)}">
           <a ng-click="changeTab(2)">Invited</a>
-          {{tab}}
         </div>
-
+        <div class="col-sm-4 text-center" ng-class="{'active-sub':isActiveTab(1)}">
+          <a ng-click="changeTab(1)">Can't Make It</a>
+        </div>
       </div>
-
       <br>
+      <!-- end volunteer list tab -->
 
-
-<!--       <div ng-show="isActiveTab(0)" ng-repeat="email in confirmedEmails">
-        {{email}}
-      </div>
-      <div ng-show="isActiveTab(1)" ng-repeat="email in rejectedEmails" >
-        {{email}}
-      </div> -->
+      <!-- email list based on active tab selected -->
       <ul class="list-unstyled event-list">
         <li ng-if="isActiveTab(0)" ng-repeat="email in confirmedEmails">
           {{email}}
@@ -296,6 +280,7 @@
           {{email}}
         </li>
       </ul>
+      <!-- end email list based on active tab selected -->
 
       </uib-accordion-group>
   </uib-accordion>
