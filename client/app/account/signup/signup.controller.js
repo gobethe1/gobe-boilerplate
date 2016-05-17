@@ -37,7 +37,7 @@ angular.module('gobeApp')
               $location.path('/group/list');
             }
            else if($scope.user.position === 'volunteer'){
-            $location.path('/volunteer/signup');
+              $location.path('/volunteer/signup');
            }
         })
         .catch( function(err) {

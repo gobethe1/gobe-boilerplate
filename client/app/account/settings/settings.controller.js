@@ -5,7 +5,7 @@ angular.module('gobeApp')
     $scope.errors = {};
     $scope.stateParams = $stateParams;
 
-    console.log($scope.stateParams)
+    // console.log($scope.stateParams)
 
     $scope.changePassword = function(form) {
       $scope.submitted = true;

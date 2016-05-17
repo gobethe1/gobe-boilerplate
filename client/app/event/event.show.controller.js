@@ -1,7 +1,7 @@
 angular.module('gobeApp')
   .controller('EventShowCtrl', function ($scope, $stateParams, Event, eventShow, Group, eventGroup, Auth) {
 
-    console.log('group id: ', eventGroup._id)
+    // console.log('group id: ', eventGroup._id)
     $scope.event           = eventShow;
     $scope.invitedEmails   = eventGroup.emailList;
     $scope.confirmedEmails = $scope.event.confirmedEmails;

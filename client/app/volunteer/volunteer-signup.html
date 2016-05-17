@@ -1,4 +1,5 @@
 <div class="row signup-form">
+
   <div class="col-sm-12 col-xs-12 text-center">
     <label>Add location to view opportunities in your area.</label>
     <br>
@@ -8,6 +9,39 @@
   <form class="form" name="form" ng-submit="updateUser(form)" novalidate>
 
     <div class="col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+      <!-- first and last name -->
+          <div class="row">
+            <div class="col-md-6 col-xs-6">
+             <div class="form-group" ng-class="{ 'has-success': form.firstName.$valid && submitted,
+                                                'has-error': form.firstName.$invalid && submitted }">
+               <label>First Name</label>
+               <input type="text" name="firstName" ng-model="currentUser.firstName"
+                      class="form-control" placeholder="First Name" required>
+              </div>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <div class="form-group" ng-class="{ 'has-success': form.lastName.$valid && submitted,
+                                                   'has-error': form.lastName.$invalid  && submitted }">
+                 <label>Last Name</label>
+                 <input type="text" name="lastName" ng-model="currentUser.lastName"
+                        class="form-control" placeholder="Last Name" required>
+              </div>
+            </div>
+          </div>
+          <!-- end name -->
+          <!-- email -->
+          <div class="form-group" ng-class="{ 'has-success': form.organizerEmail.$valid && submitted,
+                                               'has-error': form.organizerEmail.$invalid && submitted }">
+            <label>Email</label>
+            <input type="text" name="email" ng-model="currentUser.email"
+                   class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+                   required/>
+              <p class="text-danger" ng-if="form.email.$error.pattern && submitted">
+                Please enter a valid email.
+              </p>
+           </div>
+          <!-- end email -->
+
       <!-- address -->
       <div class="form-group" ng-class="{'has-success': form.address.$valid && submitted,
                                            'has-error': form.address.$invalid && submitted }">

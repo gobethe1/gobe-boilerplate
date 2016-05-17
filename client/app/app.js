@@ -16,7 +16,7 @@ angular.module('gobeApp', [
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider, ENV) {
     var $window = $windowProvider.$get();
-    $window.Stripe.setPublishableKey(ENV.stripePublishKey)
+    $window.Stripe.setPublishableKey(ENV.stripePublishKey);
 
 
     $urlRouterProvider

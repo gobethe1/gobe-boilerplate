@@ -1,17 +1,54 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('ProfileCtrl', function ($scope, $filter, currentUser, Auth, Path, customerInfo) {
+  .controller('ProfileCtrl', function ($scope, $filter, User, currentUser, Auth, Path, customerInfo, $state, $http) {
 
     $scope.user      = currentUser;
     $scope.isAdmin   = Auth.isAdmin;
     $scope.path      = Path.transitionToPath;
 
-    var splitAddress = $scope.user.address.split(',');
-    $scope.shortAddress = splitAddress[0] + ', ' + splitAddress[1];
+    console.log($scope.user.address, $scope.user.firstName, $scope.user.lastName)
+
+    var checkProfile = function(){
+        if($scope.user.address !== undefined) {
+            var splitAddress = ($scope.user.address.split(','));
+            $scope.shortAddress = splitAddress[0] + ', ' + splitAddress[1];
+        }
+    }
+    checkProfile();
+
+     $scope.currentUser = currentUser;
+     $scope.currentUser.address;
+     var value = $scope.currentUser.matchRadius || 5;
+
+     // console.log('current user address: ', $scope.currentUser.address)
+     $scope.zipCodeSlider = {
+        value: value,
+        options: {
+          floor: 5,
+          ceil: 50,
+          showSelectionBar: true,
+          translate: function(value) {
+             return value + ' mi';
+           }
+        }
+      };
+
+    var checkAddress = function(){
+        $scope.currentUser.address    = $scope.currentUser.address.formatted_address || $scope.currentUser.address;
+        var fullAddress               = $scope.currentUser.address;
+        var addressArray              = fullAddress.split(',');
+        var stateAndZip               = addressArray[addressArray.length - 2].split(' ');
+        var zip                       = stateAndZip[2];
+        $scope.currentUser.zipCode    = zip;
+    };
+
+    var zipCodeApiKey = "js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4";
+    var newArr = [];
 
 
-    console.log($scope.user.address)
+
+    // console.log($scope.user.address)
     var customerInfo = customerInfo;
 
     if(customerInfo){
@@ -55,5 +92,42 @@ angular.module('gobeApp')
     	}
 
     }
+
+    $scope.updateUser = function updateUser(form) {
+        checkAddress();
+        $scope.currentUser = $scope.currentUser;
+        $scope.currentUser.matchRadius = $scope.zipCodeSlider.value;
+        $scope.submitted = true;
+
+           if(form.$valid){
+              $http({  method: "GET",
+                      url: 'https://www.zipcodeapi.com/rest/' + zipCodeApiKey + '/radius.json/' + $scope.currentUser.zipCode + '/' + $scope.currentUser.matchRadius + '/mile',
+                      headers: {Authorization: undefined}
+                     }).then
+                        (function(response){
+                            console.log(response.data)
+                            var data = response.data;
+                            data.zip_codes.map(function(value){
+                            newArr.push(value.zip_code);
+                          })
+                            console.log("newArr")
+                            console.log(newArr)
+                            $scope.currentUser.matchZipCodeArr = newArr;
+                            console.log('newarr: ', $scope.currentUser.matchZipCodeArr);
+                        }).then(function(){
+                            User.update($scope.currentUser,
+                              function(data){
+                                $state.go('profile.details')
+                                }),
+                                function(err){
+                                 $scope.updateUserError = "Looks like something went wrong! Please try again"
+                                }
+                        })
+
+               }
+         else{
+             document.body.scrollTop = document.documentElement.scrollTop = 0;
+         }
+    };
 
   });

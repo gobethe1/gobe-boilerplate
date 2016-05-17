@@ -6,7 +6,7 @@ angular.module('gobeApp')
      $scope.currentUser.address;
      var value = $scope.currentUser.matchRadius || 5;
 
-     console.log('current user address: ', $scope.currentUser.address)
+     // console.log('current user address: ', $scope.currentUser.address)
      $scope.zipCodeSlider = {
         value: value,
         options: {

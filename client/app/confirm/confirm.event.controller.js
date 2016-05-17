@@ -3,7 +3,7 @@
 angular.module('gobeApp')
   .controller('ConfirmEventCtrl', function ($scope, $state, $stateParams, Event, eventConfirm) {
 
-    console.log('confirm email: ', $scope.confirmEmail);
+    // console.log('confirm email: ', $scope.confirmEmail);
 
     if(!eventConfirm.confirmGroup){
       $scope.event                  = eventConfirm;

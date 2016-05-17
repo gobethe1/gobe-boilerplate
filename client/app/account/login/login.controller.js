@@ -23,6 +23,13 @@ angular.module('gobeApp')
           password: $scope.user.password
         })
         .then( function() {
+          // if($scope.user.address){
+          //   // console.log('no address available');
+          //   // $location.path('/volunteer/signup');
+          // }
+          // else {
+          //   console.log('address in');
+          // }
           // Logged in, redirect to home
           $location.path('/redirect');
         })
