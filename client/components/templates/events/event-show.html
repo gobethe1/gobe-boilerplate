@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive" ng-if="!event.confirmGroup">
     <table class="table table-sm">
       <thead>
         <tr>
@@ -135,4 +135,174 @@
   </div>
   </div>
 </div>
+
+
+<div ng-if="event.confirmGroup">
+  <uib-accordion close-others="oneAtATime">
+      <uib-accordion-group heading="Event Info" template-url="app/group/custom-accordion-template.html">
+              <table class="table table-sm">
+      <thead>
+        <tr>
+        <h3>{{event.firstName | capitalize}} {{event.lastName | capitalize}} {{event.eventName}} needs help in your area.</h3>
+
+        <strong><p>What is this cause about?</strong></p>
+        <!-- move in description -->
+        <div ng-hide="event.causeType !== 'Homeless Move-in'">
+          <p>Someone just moved off the streets and it’s time to party! This person now lives in your selected volunteer area and you can help make a difference by welcoming them home! Simply, select organize cause and it will send the invites to the rest of your group.
+          You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!</p>
+        </div>
+        <!-- end move-in description -->
+        <!-- other description -->
+        <div ng-show="event.causeType !== 'Homeless Move-in'">
+          <p>{{event.description}}</p>
+        </div>
+        <!-- end other description -->
+        <!-- <p ng-if="!isAdmin()">To get started, simply select <strong>Accept Cause</strong>.</p> -->
+
+          <th class="col-sm-6 col-xs-6">
+          </th>
+          <th class="col-sm-6 col-xs-6">
+        </tr>
+      </thead>
+        <tbody>
+<!--           <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
+              <th>What is this cause about?</th>
+              <td></td>
+          </tr> -->
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
+              <th>Client Phone Number:</th>
+              <td>{{event.phoneNumber | tel}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)">
+              <th>{{createLabel(event.causeType, 'address')}} Address:</th>
+              <td>{{event.address}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
+              <th>Move in Zip:</th>
+              <td>{{event.zipCode}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
+              <th>Date Moved In:</th>
+              <td>{{event.availability.moveInDate | date:"MM/dd/yyyy" }}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
+              <th>Gender:</th>
+              <td>{{event.gender | capitalize }}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
+              <th>Age:</th>
+              <td>{{event.age}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
+              <th>Confirmed Date:</th>
+              <td>{{event.confirmDate | date:"MM/dd/yyyy" }}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-hide="event.causeType !== 'Homeless Move-in'">
+              <th>Confirmed Time:</th>
+              <td>{{event.confirmTime}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-hide="eventNew.causeType !== 'Homeless Move-in'">
+              <th>Registry Url:</th>
+              <td>{{event.registryUrl}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-hide="eventNew.causeType !== 'Homeless Move-in'">
+              <th>Notes:</th>
+              <td>{{event.notes}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-show="eventNew.causeType !== 'Homeless Move-in'">
+              <th>Organizer:</th>
+              <td>{{event.organizerFirstName}} {{event.organizerLastName}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-show="eventNew.causeType !== 'Homeless Move-in'">
+              <th>Email:</th>
+              <td>{{event.organizerEmail}}</td>
+          </tr>
+
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+              ng-show="eventNew.causeType !== 'Homeless Move-in'">
+              <th>Phone Number:</th>
+              <td>{{event.organizerPhoneNumber}}</td>
+          </tr>
+
+        </tbody>
+
+    </table>
+      </uib-accordion-group>
+  </uib-accordion>
+  <!-- end group info -->
+
+  <!-- team members -->
+  <uib-accordion close-others="oneAtATime">
+      <uib-accordion-group heading="Volunteers" template-url="app/group/custom-accordion-template.html">
+
+      <div class="row">
+        <div class="row event-list-sub-nav">
+
+        </div>
+        <div class="col-sm-4 text-center" ng-class="{'active':isActiveTab(0)}">
+          <a ng-click="changeTab(0)">Attending</a>
+          {{tab}}
+        </div>
+        <div class="col-sm-4 text-center" ng-class="{'active':isActiveTab(1)}">
+          <a ng-click="changeTab(1)">Can't Make It</a>
+          {{tab}}
+        </div>
+        <div class="col-sm-4 text-center" ng-class="{'active':isActiveTab(2)}">
+          <a ng-click="changeTab(2)">Invited</a>
+          {{tab}}
+        </div>
+
+      </div>
+
+      <br>
+
+
+<!--       <div ng-show="isActiveTab(0)" ng-repeat="email in confirmedEmails">
+        {{email}}
+      </div>
+      <div ng-show="isActiveTab(1)" ng-repeat="email in rejectedEmails" >
+        {{email}}
+      </div> -->
+      <ul class="list-unstyled event-list">
+        <li ng-if="isActiveTab(0)" ng-repeat="email in confirmedEmails">
+          {{email}}
+        </li>
+        <li ng-if="isActiveTab(1)" ng-repeat="email in rejectedEmails">
+          {{email}}
+        </li>
+        <li ng-if="isActiveTab(2)" ng-repeat="email in invitedEmails">
+          {{email}}
+        </li>
+      </ul>
+
+      </uib-accordion-group>
+  </uib-accordion>
+  <!-- end team members -->
+</div>
+
+
+
+
 

@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('ConfirmEventCtrl', function ($scope, $state, $stateParams, Event, eventConfirm, userConfirm) {
-    console.log('user confirm: ', userConfirm)
-    $scope.confirmEmail = $scope.userConfirm.email;
+  .controller('ConfirmEventCtrl', function ($scope, $state, $stateParams, Event, eventConfirm) {
+
     console.log('confirm email: ', $scope.confirmEmail);
 
     if(!eventConfirm.confirmGroup){
