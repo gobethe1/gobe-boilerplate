@@ -22,29 +22,29 @@ angular.module('gobeApp')
 
     var checkMatchedArray = function(events){
         eventModel.forEach(function(event){
-          
-          if (event.published && !event.confirmGroup && groupShow.matchZipCodeArr.indexOf(event.zipCode) !== -1){
+
+          if (event.published && !event.confirmGroup && event.groupOnly && groupShow.matchZipCodeArr.indexOf(event.zipCode) !== -1){
              $scope.matchedArray.push(event);
           }
-          
+
           else if(event.published && (event.confirmGroup === groupId)) {
             // console.log("event confirmDate", event.confirmDate, typeof event.confirmDate)
             // console.log("event confirmDate as Date object", new Date(event.confirmDate))
-            
+
             var confirmDate = new Date(event.confirmDate);
-            
+
             // console.log("Date.now", Date.now())
             // console.log("new Date", new Date)
             // console.log("hitting acceptedCurrentArray", event)
             // console.log("confirmDate < new Date", (confirmDate < new Date))
-          
+
             if(confirmDate < new Date){
                 $scope.acceptedPastArray.push(event);
             }
             else if(confirmDate > new Date){
                 $scope.acceptedCurrentArray.push(event);
             }
-          
+
           } else {
             return null;
           }

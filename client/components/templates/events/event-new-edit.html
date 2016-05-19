@@ -23,15 +23,12 @@
 					  Individuals
 					</label>
 			  </div>
-
 		</div>
 		<!-- end group or individual radio buttons -->
 
 		<!-- add cause type -->
-
 		<!-- cause types if groupOnly event -->
-		<div class="form-group" ng-if="newEvent.groupOnly === true" ng-class="{ 'has-success': form.causeType.$valid && submitted,
-                                        'has-error': form.causeType.$invalid && submitted }">
+		<div class="form-group" ng-if="newEvent.groupOnly === true" ng-class="{'has-success': form.causeType.$valid && submitted, 'has-error': form.causeType.$invalid && submitted }">
 			<label>Select Cause</label>
 		  <select class="form-control"
 		  		name="causeType"
@@ -44,8 +41,7 @@
 		</div>
 
 		<!-- cause types if not group only -->
-		<div class="form-group" ng-if="newEvent.groupOnly === false" ng-class="{ 'has-success': form.causeType.$valid && submitted,
-                                        'has-error': form.causeType.$invalid && submitted }">
+		<div class="form-group" ng-if="newEvent.groupOnly === false" ng-class="{ 'has-success': form.causeType.$valid && submitted,'has-error': form.causeType.$invalid && submitted }">
 			<label>Select Cause</label>
 		  <select class="form-control"
 		  		name="causeType"
@@ -58,7 +54,7 @@
 		</div>
 		<!-- end cause type -->
 
-		<!-- ng-if once cause type is selected -->
+		<!-- ng-if to show other form fields once cause type is selected -->
 		<div ng-if="newEvent.causeType">
 
 			<!-- veteran section -->
@@ -106,9 +102,10 @@
 		      </div>
 				<!-- end phone number -->
 			</div>
+			<!-- end client name -->
+
 			<!-- event name -->
-			<div class="form-group" ng-if="newEvent.causeType === 'Other'" ng-class="{ 'has-success': form.eventName.$valid && submitted,
-			                                     'has-error': form.eventName.$invalid && submitted }">
+			<div class="form-group" ng-if="newEvent.causeType === 'Other'" ng-class="{ 'has-success': form.eventName.$valid && submitted,'has-error': form.eventName.$invalid && submitted }">
         <label>Event Name</label>
         <input type="text" name="eventName" ng-model="newEvent.eventName" class="form-control"
          required/>
@@ -116,8 +113,7 @@
 			<!-- end event name -->
 
 			<!-- address -->
-			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,
-			                                     'has-error': form.address.$invalid && submitted }">
+			<div class="form-group" ng-class="{ 'has-success': form.address.$valid && submitted,'has-error': form.address.$invalid && submitted }">
         <label>{{createLabel(newEvent.causeType)}} Address</label>
         <input type="text" g-places-autocomplete  name="address" ng-model="newEvent.address" placeholder="Enter address, business name, landmark"
         			 class="form-control" required/>
@@ -125,8 +121,7 @@
 			<!-- end address -->
 
 			<!-- number of volunteers -->
-			<div class="form-group" ng-if="newEvent.groupOnly === false" ng-class="{ 'has-success': form.numberOfVolunteers.$valid && submitted,
-			                                     'has-error': form.numberOfVolunteers.$invalid && submitted }">
+			<div class="form-group" ng-if="newEvent.groupOnly === false" ng-class="{ 'has-success': form.numberOfVolunteers.$valid && submitted,'has-error': form.numberOfVolunteers.$invalid && submitted}">
         <label>Number of Volunteers</label>
         <input type="text" name="numberOfVolunteers" minlength="1" maxlength="3" ng-model="newEvent.numberOfVolunteers"
         class="form-control"
@@ -177,9 +172,10 @@
 		          </span>
 		        </p>
 			</div>
+			<!-- end date move-in -->
 
 			<!-- date one and time -->
-			<label ng-if="newEvent.causeType === 'Other'">Pick 3 dates so Volunteers can choose</label>
+			<label ng-if="newEvent.causeType === 'Other'">Pick a date for your event</label>
 			<label ng-if="newEvent.causeType === 'Homeless Move-in'">Please Choose 3 Available Dates and Times</label><br>
 			<label>Date & Time 1</label>
 			<div class="row">
@@ -219,85 +215,85 @@
 			</div>
 			<!-- end date one and time -->
 
-			<!-- date two and time -->
-			<label>Date & Time 2</label>
-			<div class="row">
-				<div class="col-xs-12 col-sm-5">
-					<div class="form-group" ng-class="{ 'has-success': form.datetwo.$valid && submitted,
-		                                               'has-error': form.datetwo.$invalid && submitted }">
-		        <p class="input-group">
-		          <input type="text" class="form-control" name="datetwo" uib-datepicker-popup="{{format}}" ng-model="newEvent.availability.secondDate" is-open="popup3.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-		          <span class="input-group-btn">
-		            <button type="button" class="btn btn-default" ng-click="open3()"><i class="glyphicon glyphicon-calendar"></i></button>
-		          </span>
-	        	</p>
+			<!-- date 2 & 3 show only if homeless move-in -->
+			<div ng-if="newEvent.causeType === 'Homeless Move-in'">
+				<!-- date two and time -->
+					<label>Date & Time 2</label>
+					<div class="row">
+						<div class="col-xs-12 col-sm-5">
+							<div class="form-group" ng-class="{ 'has-success': form.datetwo.$valid && submitted,
+				                                               'has-error': form.datetwo.$invalid && submitted }">
+				        <p class="input-group">
+				          <input type="text" class="form-control" name="datetwo" uib-datepicker-popup="{{format}}" ng-model="newEvent.availability.secondDate" is-open="popup3.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				          <span class="input-group-btn">
+				            <button type="button" class="btn btn-default" ng-click="open3()"><i class="glyphicon glyphicon-calendar"></i></button>
+				          </span>
+			        	</p>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-7">
+							<div class="form-group" ng-class="{ 'has-success': newEvent.availability.secondDateTime[0] && newEvent.availability.secondDateTime[1] &&                                    newEvent.availability.secondDateTime[2] && submitted,
+							                                    'has-error': !newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2] && submitted }">
+								<label class="checkbox-inline">
+								  <input name="morning" ng-model="newEvent.availability.secondDateTime[0]" type="checkbox"  ng-required="!newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2]">
+								  <span class="c-indicator"></span>
+								  Morning<br> 8-12
+								</label>
+								<label class="checkbox-inline">
+								  <input name="afternoon" ng-model="newEvent.availability.secondDateTime[1]" type="checkbox"  ng-required="!newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2]">
+								  <span class="c-indicator"></span>
+								 Afternoon<br> 12-5
+								</label>
+								<label class="checkbox-inline">
+								  <input name="evening" ng-model="newEvent.availability.secondDateTime[2]" type="checkbox" ng-required="!newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2]">
+								  <span class="c-indicator">
+								 Evening<br> 5-10
+								</span>
+								</label>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="col-xs-12 col-sm-7">
-					<div class="form-group" ng-class="{ 'has-success': newEvent.availability.secondDateTime[0] && newEvent.availability.secondDateTime[1] &&                                    newEvent.availability.secondDateTime[2] && submitted,
-					                                    'has-error': !newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2] && submitted }">
-						<label class="checkbox-inline">
-						  <input name="morning" ng-model="newEvent.availability.secondDateTime[0]" type="checkbox"  ng-required="!newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2]">
-						  <span class="c-indicator"></span>
-						  Morning<br> 8-12
-						</label>
-						<label class="checkbox-inline">
-						  <input name="afternoon" ng-model="newEvent.availability.secondDateTime[1]" type="checkbox"  ng-required="!newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2]">
-						  <span class="c-indicator"></span>
-						 Afternoon<br> 12-5
-						</label>
-						<label class="checkbox-inline">
-						  <input name="evening" ng-model="newEvent.availability.secondDateTime[2]" type="checkbox" ng-required="!newEvent.availability.secondDateTime[0] && !newEvent.availability.secondDateTime[1] && !newEvent.availability.secondDateTime[2]">
-						  <span class="c-indicator">
-						 Evening<br> 5-10
-						</span>
-						</label>
+				<!-- end date two and time -->
+				<!-- date three and time -->
+					<label>Date & Time 3</label>
+					<div class="row">
+						<div class="col-xs-12 col-sm-5">
+							<div class="form-group" ng-class="{ 'has-success': form.datethree.$valid && submitted,
+				                                               'has-error': form.datethree.$invalid && submitted }">
+				       	<p class="input-group">
+				          <input type="text" class="form-control" name="datethree" uib-datepicker-popup="{{format}}" ng-model="newEvent.availability.thirdDate" is-open="popup4.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				          <span class="input-group-btn">
+				            <button type="button" class="btn btn-default" ng-click="open4()"><i class="glyphicon glyphicon-calendar"></i></button>
+				          </span>
+		        		</p>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-7">
+							<div class="form-group" ng-class="{ 'has-success': newEvent.availability.thirdDateTime[0] && newEvent.availability.thirdDateTime[1] && 										newEvent.availability.thirdDateTime[2] && submitted,
+							                                    'has-error': !newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2] && submitted }">
+								<label class="checkbox-inline">
+								  <input name="morning" ng-model="newEvent.availability.thirdDateTime[0]" value="Morning 8am-12pm" type="checkbox"  ng-required="!newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2]">
+								  <span class="c-indicator"></span>
+								  Morning<br> 8-12
+								</label>
+								<label class="checkbox-inline">
+								  <input name="afternoon" ng-model="newEvent.availability.thirdDateTime[1]" value="Afternoon 12pm-5pm" type="checkbox" ng-required="!newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2]">
+								  <span class="c-indicator"></span>
+								 Afternoon<br> 12-5
+								</label>
+								<label class="checkbox-inline">
+								  <input name="evening" ng-model="newEvent.availability.thirdDateTime[2]" value="Evening 5pm-10pm" type="checkbox" ng-required="!newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2]">
+								  <span class="c-indicator"></span>
+								 Evening<br> 5-10
+								</label>
+							</div>
+						</div>
 					</div>
-				</div>
+				<!-- end date three and time -->
 			</div>
-			<!-- end date two and time -->
-
-
-			<!-- date three and time -->
-			<label>Date & Time 3</label>
-			<div class="row">
-				<div class="col-xs-12 col-sm-5">
-					<div class="form-group" ng-class="{ 'has-success': form.datethree.$valid && submitted,
-		                                               'has-error': form.datethree.$invalid && submitted }">
-		       	<p class="input-group">
-		          <input type="text" class="form-control" name="datethree" uib-datepicker-popup="{{format}}" ng-model="newEvent.availability.thirdDate" is-open="popup4.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-		          <span class="input-group-btn">
-		            <button type="button" class="btn btn-default" ng-click="open4()"><i class="glyphicon glyphicon-calendar"></i></button>
-		          </span>
-        		</p>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-7">
-					<div class="form-group" ng-class="{ 'has-success': newEvent.availability.thirdDateTime[0] && newEvent.availability.thirdDateTime[1] && 										newEvent.availability.thirdDateTime[2] && submitted,
-					                                    'has-error': !newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2] && submitted }">
-						<label class="checkbox-inline">
-						  <input name="morning" ng-model="newEvent.availability.thirdDateTime[0]" value="Morning 8am-12pm" type="checkbox"  ng-required="!newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2]">
-						  <span class="c-indicator"></span>
-						  Morning<br> 8-12
-						</label>
-						<label class="checkbox-inline">
-						  <input name="afternoon" ng-model="newEvent.availability.thirdDateTime[1]" value="Afternoon 12pm-5pm" type="checkbox" ng-required="!newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2]">
-						  <span class="c-indicator"></span>
-						 Afternoon<br> 12-5
-						</label>
-						<label class="checkbox-inline">
-						  <input name="evening" ng-model="newEvent.availability.thirdDateTime[2]" value="Evening 5pm-10pm" type="checkbox" ng-required="!newEvent.availability.thirdDateTime[0] && !newEvent.availability.thirdDateTime[1] && !newEvent.availability.thirdDateTime[2]">
-						  <span class="c-indicator"></span>
-						 Evening<br> 5-10
-						</label>
-					</div>
-				</div>
-			</div>
-			<!-- end date three and time -->
 
 			<!-- registry url -->
-			<div class="form-group" ng-class="{ 'has-success': form.registryUrl.$valid && submitted,
-			                                    'has-error': form.registryUrl.$invalid && submitted }">
+			<div class="form-group" ng-class="{ 'has-success': form.registryUrl.$valid && submitted,'has-error': form.registryUrl.$invalid && submitted }">
 			   <label ng-if="newEvent.causeType === 'Homeless Move-in'">Registry Url</label>
 			   <label ng-if="newEvent.causeType !== 'Homeless Move-in'">
 			   	Share a link with volunteers to learn more about the cause - checklists, your website, social link, etc.</label>
@@ -314,8 +310,7 @@
 			   <textarea type="text" rows="3" name="notes" ng-model="newEvent.notes" class="form-control"
 			   placeholder="Any special requests, are there any age restrictions for volunteers, does the client have any children or pets or interests"></textarea>
 			</div>
-			<div class="form-group" ng-if="newEvent.causeType === 'Other'" ng-class="{ 'has-success': form.description.$valid && submitted,
-			                                          								   'has-error': form.description.$invalid && submitted }">
+			<div class="form-group" ng-if="newEvent.causeType === 'Other'" ng-class="{ 'has-success': form.description.$valid && submitted,'has-error': form.description.$invalid && submitted }">
 			   <label>Event Description</label>
 			   <textarea type="text" name="description" rows="3" ng-model="newEvent.description" class="form-control" required></textarea>
 			</div>

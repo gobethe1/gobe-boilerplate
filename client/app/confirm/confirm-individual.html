@@ -2,110 +2,19 @@
   <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-hide="showTimes || sorryTaken || confirmed">
     <h4 class="text-center">Schedule Party</h4>
     <p>When can you help out?</p>
-    <br>
 
-    <form name="form" ng-submit="confirmIndividualTime(form)" novalidate>
-    <div class="form-group col-xs-11 col-offset-xs-1" >
-        <!-- date time one  -->
-        <div class="row" ng-class="{'has-error': form.dateone.$invalid && submitted}">
-         <div class="col-xs-6 col-sm-6">
-        <label class="radio">
-          <input name="dateone" ng-model="event.confirmDate" value="{{event.availability.firstDate}}"
-          ng-change="resetTime('dateOne')"
-          ng-required="!event.confirmDate"
-          type="radio">
-          <span class="c-indicator"></span>
-          {{event.availability.firstDate | date:"MMMM, d, yyyy" }}
-        </label>
-       </div>
-
-       <div class="col-xs-6 col-sm-6" ng-class="{'has-error': !event.confirmTime && submitted}">
-        <select class="form-control"
-            ng-model="event.confirmTimeOne"
-            name="timeone"
-            ng-change="event.confirmTime = event.confirmTimeOne"
-            ng-options="obj as obj for obj in checkTime(event.availability.firstDateTime);">
-          <option value="" disabled selected>Choose Time</option>
-        </select>
-      </div>
-      </div>
-      <!-- end date time one -->
-
-      <br>
-      <!-- date time two -->
-      <div class="row" ng-class="{ 'has-error': form.datetwo.$invalid && submitted}">
-         <div class="col-xs-6 col-sm-6">
-         <label class="radio">
-          <input name="datetwo" ng-model="event.confirmDate" value="{{event.availability.secondDate}}"
-            ng-change="resetTime('dateTwo')" type="radio"
-            ng-required="!event.confirmDate">
-          <span class="c-indicator"></span>
-          {{event.availability.secondDate | date:"MMMM, d, yyyy" }}
-        </label>
-      </div>
-       <div class="col-xs-6 col-sm-6" ng-class="{'has-error': !event.confirmTime && submitted}">
-        <select class="form-control"
-            type="radio"
-            ng-model="event.confirmTimeTwo"
-            ng-change="event.confirmTime = event.confirmTimeTwo"
-            ng-options="obj as obj for obj in checkTime(event.availability.secondDateTime);"
-            >
-          <option value="" disabled selected>Choose Time</option>
-        </select>
-       </div>
+   <!--  <form name="form" ng-click="confirmGroupTime(form)" novalidate> -->
+      This is a form
+        <!-- rsvp -->
+        <div class="text-right">
+          <button class="btn btn-lg" type="submit">
+            Send RSVP
+          </button>
         </div>
-      <!-- end date time two -->
-      <br>
-      <!-- date time three -->
-      <div class="row" ng-class="{'has-error': form.datethree.$invalid && submitted}">
-         <div class="col-xs-6 col-sm-6">
-        <label class="radio">
-          <input name="datethree" ng-model="event.confirmDate" value="{{event.availability.thirdDate}}"
-            ng-change="resetTime('dateThree')" type="radio"
-              ng-required="!event.confirmDate">
-          <span class="c-indicator"></span>
-          {{event.availability.thirdDate | date:"MMMM, d, yyyy" }}
-        </label>
-      </div>
-       <div class="col-xs-6 col-sm-6" ng-class="{'has-error': !event.confirmTime && submitted}">
-        <select class="form-control"
-        type="radio"
-            ng-model="event.confirmTimeThree"
-            ng-change="event.confirmTime = event.confirmTimeThree"
-            ng-options="obj as obj for obj in checkTime(event.availability.thirdDateTime);"
-            >
-          <option value="" disabled selected>Choose Time</option>
-        </select>
-       </div>
-        </div>
-      <!-- end date time three -->
-      <br>
-      <!-- no times -->
-      <div class="row" ng-class="{'has-error': form.dateone.$invalid && submitted}">
-        <div class="col-xs-12 col-sm-12">
-          <label class="radio">
-            <input name="other" ng-model="event.confirmDate" value="null"
-              ng-change="resetTime('none')" type="radio" ng-click="showTimes = true">
-            <span class="c-indicator"></span>
-            None of these dates and times work
-          </label>
+        <!-- end rsvp -->
 
-        </div>
-      </div>
-      <!-- end no times -->
-      <br>
-
-      <!-- rsvp -->
-      <div class="text-right">
-        <button class="btn btn-lg" type="submit"
-        ng-class="{ 'btn-primary': form.$valid && event.confirmTime, 'btn-secondary': form.$invalid && !event.confirmTime}">
-          Send RSVP
-        </button>
-      </div>
-      <!-- end rsvp -->
-
-    </div>
-  </form>
+    <!-- </form> -->
+  </div>
 
 
   </div>

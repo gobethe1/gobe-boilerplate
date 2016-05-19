@@ -1,14 +1,30 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('ProfileCtrl', function ($scope, $filter, User, currentUser, Auth, Path, customerInfo, $state, $http) {
+  .controller('ProfileCtrl', function ($scope, $filter, User, currentUser, eventModel, Auth, Path, customerInfo, $state, $http) {
+    $scope.user          = currentUser;
+    $scope.events        = eventModel;
+    $scope.matchedZips   = []; // for check for matches fx
+    $scope.matchedEvents = [];
+    $scope.isAdmin       = Auth.isAdmin;
+    $scope.path          = Path.transitionToPath;
+    $scope.returnValue   = [$scope.matchedZips, $scope.matchedEvents];
+    var user             = currentUser;
 
-    $scope.user      = currentUser;
-    $scope.isAdmin   = Auth.isAdmin;
-    $scope.path      = Path.transitionToPath;
+// list available vs your causes tab
+    $scope.tab = 0;
 
-    console.log($scope.user.address, $scope.user.firstName, $scope.user.lastName)
+    $scope.changeTab = function(newTab){
+      $scope.tab = newTab;
+    };
 
+    $scope.isActiveTab = function(tab){
+      return $scope.tab === tab;
+    };
+// end list available vs your causes tab
+
+// before loading page check to see if address is set
+// or undefined to prevent controller error
     var checkProfile = function(){
         if($scope.user.address !== undefined) {
             var splitAddress = ($scope.user.address.split(','));
@@ -16,6 +32,41 @@ angular.module('gobeApp')
         }
     }
     checkProfile();
+// end profile check for address
+
+
+// check for zip code matches
+
+    var checkForMatches = function(events){
+        eventModel.forEach(function(event){
+          console.log('event: ', event)
+          console.log('user: ', user)
+          if(event.published && !event.groupOnly && user.matchZipCodeArr.indexOf(event.zipCode) !== -1){
+            console.log('true: ', event)
+            $scope.matchedZips.push(event);
+          }
+          else if(event.published && !event.groupOnly && event.confirmIndividuals.indexOf(user._id)) {
+            $scope.matchedEvents.push
+          }
+          else {
+            return null;
+          }
+
+        })
+                console.log('return value: ', $scope.returnValue)
+        return $scope.returnValue;
+
+    };
+    checkForMatches()
+// end check for zip code matches
+
+// fx to shorten address in profile details view
+    $scope.shortAddress = function(address){
+       var shortAddress = address.split(',')
+       return shortAddress[0] + ", " + shortAddress[1];
+    }
+// end fx to shorten address in profile details view
+
 
      $scope.currentUser = currentUser;
      $scope.currentUser.address;

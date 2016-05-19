@@ -23,7 +23,7 @@ angular.module('gobeApp')
   .state('confirm.individual', {
     url: '/individual/:event_id/:user_id',
     templateUrl: 'app/confirm/confirm-individual.html',
-    controller: 'ConfirmEventCtrl',
+    controller: 'ConfirmIndividualCtrl',
     resolve:{
      eventConfirm: function(Event, $stateParams){
        return Event.get({id: $stateParams.event_id}).$promise;

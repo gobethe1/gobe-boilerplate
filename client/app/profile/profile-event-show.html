@@ -4,13 +4,25 @@
 		<div ng-include="'components/templates/events/event-show.html'"></div>
 		<!-- conditional based on matched or not -->
 		<div class="row">
-		 <div class="col-xs-12 text-center">
-			<button ng-show="!event.confirmGroup"
-				ui-sref="confirm.group({event_id: event._id , group_id: group._id })"
-				class="btn btn-primary btn-lg">
-				Accept Cause
-			</button>
-		 </div>
+			<!-- button for groups -->
+			 <div class="col-xs-12 text-center">
+					<button ng-show="!event.confirmGroup"
+						ui-sref="confirm.group({event_id: event._id , group_id: group._id })"
+						class="btn btn-primary btn-lg">
+						Accept Cause
+					</button>
+			 </div>
+			 <!-- end button for group confirm -->
+
+			 <!-- button for individual confirm -->
+			 <div class="col-xs-12 text-center">
+					<button
+						ui-sref="confirm.individual({event_id: event._id , user_id: user._id })"
+						class="btn btn-primary btn-lg">
+						Accept Cause
+					</button>
+			 </div>
+			 <!-- end button for individual confirm -->
 		</div>
   </div>
 </div>

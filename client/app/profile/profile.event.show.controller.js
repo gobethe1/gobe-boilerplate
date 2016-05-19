@@ -5,7 +5,7 @@ angular.module('gobeApp')
 
     $scope.event = eventShow;
     $scope.group = userGroup;
-    
+
     if(userGroup){
       var userZipCode = userGroup.zipCode;
       $scope.matchedZipCodeId = userGroup._id;
@@ -14,7 +14,7 @@ angular.module('gobeApp')
     var timeArray = ["8am-12pm", "12pm-5pm", "5pm-8pm"];
 
     $scope.checkTime = function(time, index) {
-      
+
         if(time && (index === 0)){
           return timeArray[0];
         }
@@ -34,5 +34,9 @@ angular.module('gobeApp')
         return true;
       }
     };
+
+    $scope.confirmIndividual = function(event){
+
+    }
 
 });

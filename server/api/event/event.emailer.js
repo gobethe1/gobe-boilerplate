@@ -115,9 +115,10 @@ function matchZipCodeIndividual(event, host){
 
         user.map(function(value){
             console.log('value in user map: ', value)
-            var link = 'http://' + host + '/confirm/individual/' + event._id + '/' + value._id;
-            var capFirstName = _.capitalize(value.firstName);
-            var eventName = _.capitalize(event.firstName) || _.capitalize(event.eventName);
+            // var link = 'http://' + host + '/confirm/individual/' + event._id + '/' + value._id;
+            var link             = 'http://' + host + '/login';
+            var capFirstName     = _.capitalize(value.firstName);
+            var eventName        = _.capitalize(event.firstName) || _.capitalize(event.eventName);
             var eventDescription = event.description  || homelessMoveinDescription;
             var mapLink = 'http://maps.googleapis.com/maps/api/staticmap?center=' + event.zipCode + '&zoom=14&size=800x300&markers=' + event.zipCode + '&key=' + GoogleAPIKey;
 
