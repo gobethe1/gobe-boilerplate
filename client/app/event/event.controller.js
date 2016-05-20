@@ -20,9 +20,14 @@ angular.module('gobeApp')
     // event list sorting filters
     $scope.sort = {};
     $scope.all = {};
-    $scope.matched = {'confirmGroup': "!!", 'published': true };
+    $scope.matched = ({'confirmGroup': "!!", 'published': true }) || ({'confirmIndividual': "!!", 'published': true });
     $scope.pending =  {'published': true, 'confirmGroup': null };
     $scope.unpublished = {'published': false, 'confirmGroup': null };
+
+
+    // $scope.matched = (event.confirmGroup === !null && event.published === true) || {'confirmGroup': "!!", 'published': true };
+    // $scope.pending = (event.confirmGroup === null && event.published === true) || ;
+    // $scope.unpublished = {'published': false, 'confirmGroup': null };
 
     $scope.newEvent.availability.firstDateTime  = [false, false, false];
     $scope.newEvent.availability.secondDateTime = [false, false, false];

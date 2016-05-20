@@ -7,18 +7,22 @@ angular.module('gobeApp')
     console.log('event: ', $stateParams.event_id)
     console.log('scope event: ', $scope.event)
 
-    var confirmIndividualTime = function(){
+    $scope.confirmIndividualTime = function(form){
+      console.log('form: ', form)
+      console.log('firing confirmIndividuals')
       $scope.submitted = true;
       $scope.individual = $stateParams.user_id;
+      console.log('individual: ', $scope.individual)
       $scope.confirmIndividuals  = $scope.event.confirmIndividuals.push($scope.individual)
-
-      Event.update({id: $stateParams.event_id },
-        function(data){
-          $scope.confirmed = true;
-          }),
-          function(err){
-            $scope.addEventError = "Looks like something went wrong! Please try again"
-      }
+      // if(form.$valid){
+        Event.update({id: $stateParams.event_id }, $scope.event,
+          function(data){
+            $scope.confirmed = true;
+            }),
+            function(err){
+              $scope.addEventError = "Looks like something went wrong! Please try again"
+        }
+      // }
 
     }
 

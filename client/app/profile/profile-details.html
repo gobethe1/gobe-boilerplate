@@ -41,8 +41,8 @@
     <div class="col-sm-6 text-center" ng-class="{'active-sub':isActiveTab(0)}">
       <a ng-click="changeTab(0)">Available</a>
     </div>
-    <div class="col-sm-6 text-center" ng-class="{'active-sub':isActiveTab(2)}">
-      <a ng-click="changeTab(2)">Your Events</a>
+    <div class="col-sm-6 text-center" ng-class="{'active-sub':isActiveTab(1)}">
+      <a ng-click="changeTab(1)">Your Events</a>
     </div>
   </div>
 </div>
@@ -76,7 +76,7 @@
     </li>
 
 
-    <li ng-if="isActiveTab(1)" ng-repeat="match in matchedZips | orderBy: '-createdAt'">
+    <li ng-if="isActiveTab(1)" ng-repeat="match in matchedEvents | orderBy: '-createdAt'">
       <div class="row">
         <span class="col-sm-2 col-xs-2 text-center">
             <i class="fa fa-calendar-o fa-3x"></i>

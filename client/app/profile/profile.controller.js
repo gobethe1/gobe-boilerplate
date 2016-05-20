@@ -38,15 +38,20 @@ angular.module('gobeApp')
 // check for zip code matches
 
     var checkForMatches = function(events){
+      console.log('user: ', user)
+
+
         eventModel.forEach(function(event){
-          console.log('event: ', event)
-          console.log('user: ', user)
-          if(event.published && !event.groupOnly && user.matchZipCodeArr.indexOf(event.zipCode) !== -1){
+          var eventMatched = event.confirmIndividuals.indexOf(user._id) !== -1;
+          var zipMatched   = user.matchZipCodeArr.indexOf(event.zipCode) !== -1;
+          console.log('if 1:', event.firstName, (event.published && !event.groupOnly && eventMatched))
+          console.log('if 2: ', event.firstName, (event.published && !event.groupOnly && zipMatched && !eventMatched))
+          if(event.published && !event.groupOnly && eventMatched && zipMatched) {
+            $scope.matchedEvents.push(event);
+          }
+          else if(event.published && !event.groupOnly && zipMatched && !eventMatched){
             console.log('true: ', event)
             $scope.matchedZips.push(event);
-          }
-          else if(event.published && !event.groupOnly && event.confirmIndividuals.indexOf(user._id)) {
-            $scope.matchedEvents.push
           }
           else {
             return null;

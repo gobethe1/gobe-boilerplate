@@ -4,7 +4,7 @@ angular.module('gobeApp')
   .controller('ConfirmEventCtrl', function ($scope, $state, $stateParams, Event, eventConfirm) {
 
     // console.log('confirm email: ', $scope.confirmEmail);
-
+    console.log(eventConfirm)
     if(!eventConfirm.confirmGroup){
       $scope.event                  = eventConfirm;
       $scope.event.confirmDate;
@@ -81,25 +81,6 @@ angular.module('gobeApp')
 
     }
 
-    $scope.confirmIndividualTime = function(form){
-      console.log('form: ', form)
-      $scope.submitted = true;
-      $scope.individual = $stateParams.user_id;
-      console.log('confirm individual: ', $scope.individual)
-      $scope.confirmIndividuals  = $scope.event.confirmIndividuals.push($scope.individual)
-      console.log('confirm individuals: ', $scope.confirmIndividuals)
-
-      if(form.$valid && $scope.event.confirmTime){
-        Event.update({id: $stateParams.event_id }, $scope.event,
-          function(data){
-            $scope.confirmed = true;
-            }),
-            function(err){
-              $scope.addEventError = "Looks like something went wrong! Please try again"
-            }
-      }
-
-    }
 
 
 

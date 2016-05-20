@@ -31,68 +31,70 @@
 			</div>
 			<!-- end date time one -->
 
-			<br>
-			<!-- date time two -->
-			<div class="row" ng-class="{ 'has-error': form.datetwo.$invalid && submitted}">
-   			 <div class="col-xs-6 col-sm-6">
-			   <label class="radio">
-				  <input name="datetwo" ng-model="event.confirmDate" value="{{event.availability.secondDate}}"
-				    ng-change="resetTime('dateTwo')" type="radio"
-				    ng-required="!event.confirmDate">
-				  <span class="c-indicator"></span>
-				 	{{event.availability.secondDate | date:"MMMM, d, yyyy" }}
-				</label>
-			</div>
-			 <div class="col-xs-6 col-sm-6" ng-class="{'has-error': !event.confirmTime && submitted}">
-			  <select class="form-control"
-			      type="radio"
-			      ng-model="event.confirmTimeTwo"
-			      ng-change="event.confirmTime = event.confirmTimeTwo"
-			      ng-options="obj as obj for obj in checkTime(event.availability.secondDateTime);"
-			      >
-			    <option value="" disabled selected>Choose Time</option>
-			  </select>
-			 </div>
-		    </div>
-			<!-- end date time two -->
-			<br>
-			<!-- date time three -->
-			<div class="row" ng-class="{'has-error': form.datethree.$invalid && submitted}">
-			   <div class="col-xs-6 col-sm-6">
-				<label class="radio">
-				  <input name="datethree" ng-model="event.confirmDate" value="{{event.availability.thirdDate}}"
-				    ng-change="resetTime('dateThree')" type="radio"
-				      ng-required="!event.confirmDate">
-				  <span class="c-indicator"></span>
-				 	{{event.availability.thirdDate | date:"MMMM, d, yyyy" }}
-				</label>
-			</div>
-			 <div class="col-xs-6 col-sm-6" ng-class="{'has-error': !event.confirmTime && submitted}">
-			  <select class="form-control"
-			  type="radio"
-			      ng-model="event.confirmTimeThree"
-			      ng-change="event.confirmTime = event.confirmTimeThree"
-			      ng-options="obj as obj for obj in checkTime(event.availability.thirdDateTime);"
-			      >
-			    <option value="" disabled selected>Choose Time</option>
-			  </select>
-			 </div>
-		    </div>
-			<!-- end date time three -->
-			<br>
-			<!-- no times -->
-			<div class="row" ng-class="{'has-error': form.dateone.$invalid && submitted}">
-				<div class="col-xs-12 col-sm-12">
-					<label class="radio">
-					  <input name="other" ng-model="event.confirmDate" value="null"
-					    ng-change="resetTime('none')" type="radio" ng-click="showTimes = true">
-					  <span class="c-indicator"></span>
-					 	None of these dates and times work
-					</label>
+			<div ng-if="event.causeType === 'Homeless Move-in'">
+					<br>
+					<!-- date time two -->
+					<div class="row" ng-class="{ 'has-error': form.datetwo.$invalid && submitted}">
+		   			 <div class="col-xs-6 col-sm-6">
+					   <label class="radio">
+						  <input name="datetwo" ng-model="event.confirmDate" value="{{event.availability.secondDate}}"
+						    ng-change="resetTime('dateTwo')" type="radio"
+						    ng-required="!event.confirmDate">
+						  <span class="c-indicator"></span>
+						 	{{event.availability.secondDate | date:"MMMM, d, yyyy" }}
+						</label>
+					</div>
+					 <div class="col-xs-6 col-sm-6" ng-class="{'has-error': !event.confirmTime && submitted}">
+					  <select class="form-control"
+					      type="radio"
+					      ng-model="event.confirmTimeTwo"
+					      ng-change="event.confirmTime = event.confirmTimeTwo"
+					      ng-options="obj as obj for obj in checkTime(event.availability.secondDateTime);"
+					      >
+					    <option value="" disabled selected>Choose Time</option>
+					  </select>
+					 </div>
+				    </div>
+					<!-- end date time two -->
+					<br>
+					<!-- date time three -->
+					<div class="row" ng-class="{'has-error': form.datethree.$invalid && submitted}">
+					   <div class="col-xs-6 col-sm-6">
+						<label class="radio">
+						  <input name="datethree" ng-model="event.confirmDate" value="{{event.availability.thirdDate}}"
+						    ng-change="resetTime('dateThree')" type="radio"
+						      ng-required="!event.confirmDate">
+						  <span class="c-indicator"></span>
+						 	{{event.availability.thirdDate | date:"MMMM, d, yyyy" }}
+						</label>
+					</div>
+					 <div class="col-xs-6 col-sm-6" ng-class="{'has-error': !event.confirmTime && submitted}">
+					  <select class="form-control"
+					  type="radio"
+					      ng-model="event.confirmTimeThree"
+					      ng-change="event.confirmTime = event.confirmTimeThree"
+					      ng-options="obj as obj for obj in checkTime(event.availability.thirdDateTime);"
+					      >
+					    <option value="" disabled selected>Choose Time</option>
+					  </select>
+					 </div>
+				    </div>
+					<!-- end date time three -->
+					<br>
+					<!-- no times -->
+					<div class="row" ng-class="{'has-error': form.dateone.$invalid && submitted}">
+						<div class="col-xs-12 col-sm-12">
+							<label class="radio">
+							  <input name="other" ng-model="event.confirmDate" value="null"
+							    ng-change="resetTime('none')" type="radio" ng-click="showTimes = true">
+							  <span class="c-indicator"></span>
+							 	None of these dates and times work
+							</label>
 
-				</div>
+						</div>
+					</div>
+					<!-- end no times -->
 			</div>
-			<!-- end no times -->
 			<br>
 
 				<!-- event address -->
@@ -138,7 +140,7 @@
 			the next volunteer opportunity.</p>
 
 	</div>
-	 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="sorryTaken">	 	
+	 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="sorryTaken">
 		<h4>The party’s already started!</h4>
 		<p>We’re inspired by your enthusiasm to make a change, however another group already grabbed their party hats. If they cancel, you will be the first to know!</p>
 		<p>There are always ways to make change happen so please keep an eye out for more opportunities coming your way.</p>
