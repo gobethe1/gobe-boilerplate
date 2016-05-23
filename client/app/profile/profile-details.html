@@ -89,8 +89,9 @@
           </a>
           <p><i class="fa fa-map-marker"></i> {{shortAddress(match.address)}}</p>
         </span>
+        <!-- ui-sref="event.show({id: match._id}) -->
         <span class="col-sm-2 col-xs-2">
-            <a ui-sref="profile.event.show({id: match._id, name: (match.eventName || match.firstName)})">
+            <a ui-sref="event.show({id: match._id, name: (match.eventName || match.firstName)})">
               <i class="fa fa-angle-right fa-3x"></i>
             </a>
         </span>

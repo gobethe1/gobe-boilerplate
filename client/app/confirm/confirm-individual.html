@@ -1,14 +1,12 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-hide="showTimes || sorryTaken || confirmed">
-    <h4 class="text-center">Schedule Party</h4>
-    <p>When can you help out?</p>
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 text-center" ng-hide="showTimes || sorryTaken || confirmed">
 
     <form name="form" ng-click="confirmIndividualTime(form)" novalidate>
-      This is a form
+      <p>Confirm your attendance to {{event.eventName}}</p>
         <!-- rsvp -->
 
-        <div class="text-right">
-          <button class="btn btn-lg" type="submit">
+        <div>
+          <button class="btn btn-lg btn-primary" type="submit">
             Send RSVP
           </button>
         </div>
@@ -17,24 +15,10 @@
     </form>
   </div>
 
-
-  </div>
-   <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="showTimes">
-    <h4>Thank You</h4>
-    <p>New dates in your area are constantly being added. We'll keep you in the loop of
-      the next volunteer opportunity.</p>
-
-  </div>
-   <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="sorryTaken">
-    <h4>The party’s already started!</h4>
-    <p>We’re inspired by your enthusiasm to make a change, however another group already grabbed their party hats. If they cancel, you will be the first to know!</p>
-    <p>There are always ways to make change happen so please keep an eye out for more opportunities coming your way.</p>
-  </div>
-   <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" ng-show="confirmed">
-
-
-    <h4>Get ready to make a change!</h4>
-    <p>We are sending you an email with the event details.</p>
-    <p><a href="{{event.registryUrl}}">{{ (event.registryUrl).replace("https://", "")}}</a></p>
-  </div>
 </div>
+
+<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 text-center" ng-show="submitted">
+  <i class="fa fa-check-square-o fa-5x"></i>
+  <p>You are confirmed! We are sending you an email with the event details. You can also view them on your home page.</p>
+</div>
+

@@ -82,10 +82,13 @@
                       <p>{{match.confirmDate | date:"MM/dd" }}</p>
                   </span>
                   <span class="col-sm-8 col-xs-8 group-show-mid-col">
-                        <h5 class="group-show"><strong>
+
+                        <h5 class="group-show">
+                        <strong>
                           {{match.firstName | capitalize }} {{match.lastName | capitalize }} {{match.eventName}}
-                        </strong></h5>
-                    </a>
+                        </strong>
+                        </h5>
+
                     <p><i class="fa fa-map-marker"></i>  {{shortAddress(match.address)}}</p>
                   </span>
                   <span class="col-sm-2 col-xs-2">
@@ -107,7 +110,7 @@
                           <h5 class="group-show"><strong>
                             {{match.firstName | capitalize }} {{match.lastName | capitalize }} {{match.eventName}}
                           </strong></h5>
-                      </a>
+
                       <p><i class="fa fa-map-marker"></i>  {{shortAddress(match.address)}}</p>
                     </span>
                     <span class="col-sm-2 col-xs-2">

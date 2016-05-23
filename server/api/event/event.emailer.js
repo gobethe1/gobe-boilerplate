@@ -129,7 +129,7 @@ function matchZipCodeIndividual(event, host){
                 html: '<h1></h1>',
             });
 
-            email.addFilter('templates', 'template_id', 'bc764a16-9e00-4cae-b42e-5e6fb11d282f');
+            email.addFilter('templates', 'template_id', 'd9eae8d0-0318-41af-ad2c-0158e1cad6bf');
             email.setSubstitutions({"%capFirstName%": [capFirstName], "%eventName%": [eventName], "%link%":[link], "%eventDescription%": [eventDescription] })
 
             sendgrid.send(email, function(err, json) {

@@ -1,6 +1,5 @@
-<!-- event show before event has been matched -->
-
-<div class="table-responsive" ng-if="!event.confirmGroup">
+<!-- event show before event has been matched for group-->
+<div class="table-responsive" ng-if="!event.confirmGroup && event.groupOnly">
     <table class="table table-sm">
       <thead>
         <tr>
@@ -137,7 +136,7 @@
 
 
 <!-- event show once cause has been accepted / matched -->
-<div ng-if="event.confirmGroup">
+<div ng-if="event.confirmGroup || !checkIndividual()">
   <uib-accordion close-others="oneAtATime">
       <uib-accordion-group heading="Event Info" template-url="app/group/custom-accordion-template.html">
               <table class="table table-sm">
@@ -247,11 +246,13 @@
     </table>
       </uib-accordion-group>
   </uib-accordion>
+<!-- end event shot once group cause has been accepted / matched -->
 
 
 <!-- volunteers accordion tab -->
   <uib-accordion close-others="oneAtATime">
       <uib-accordion-group heading="Volunteers" template-url="app/group/custom-accordion-template.html">
+
 
       <!-- volunteer tabs based on confirmed, rejected, invited -->
       <div class="row event-list-sub-nav">
@@ -269,7 +270,7 @@
       <!-- end volunteer list tab -->
 
       <!-- email list based on active tab selected -->
-      <ul class="list-unstyled event-list">
+      <ul class="list-unstyled event-list" ng-if="event.groupOnly">
         <li ng-if="isActiveTab(0)" ng-repeat="email in confirmedEmails">
           {{email}}
         </li>
@@ -286,6 +287,57 @@
   </uib-accordion>
   <!-- end team members -->
 </div>
+
+<!-- event show before event has been matched for indivudal -->
+<div ng-if="checkIndividual() && !event.groupOnly">
+  <h1>{{event.eventName}}</h1>
+  <p><strong>What is this cause about?</strong></p>
+  <p>{{event.description}}</p>
+  <br>
+
+      <div class="row">
+        <div class="col-xs-2">
+          <i class="fa fa-user fa-3x" aria-hidden="true"></i>
+
+        </div>
+        <div class="col-xs-6 col-sm-offet-1 event-individual-show">
+          <p><strong>Organizer Info</strong></p>
+          <p>{{event.eventName}}</p>
+          <p>{{event.organizerFirstName}} {{event.organizerLastName}}</p>
+          <p>Phone: {{event.organizerPhoneNumber}}</p>
+          <p>Email: {{event.organizerEmail}}</p>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-2">
+          <i class="fa fa-map-marker fa-3x" aria-hidden="true"></i>
+
+        </div>
+        <div class="col-xs-6 col-sm-offet-1 event-individual-show">
+          <p><strong>Location</strong></p>
+          <p>{{event.address}}</p>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-2">
+          <i class="fa fa-calendar-o fa-3x" aria-hidden="true"></i>
+
+        </div>
+        <div class="col-xs-6 col-sm-offet-1 event-individual-show">
+          <p><strong>Date & Time</strong></p>
+          <p>{{event.availability.firstDate |date:"MM/dd/yyyy"}}</p>
+          <span ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
+            {{$first ? '' : $last ? ' , ' : ', '}}{{checkTime(time, $index)}}
+          </span>
+        </div>
+      </div>
+      <br>
+</div>
+<!-- event show after event has been matched for indivudal -->
+
+
 
 
 

@@ -3,9 +3,17 @@ angular.module('gobeApp')
 
     // console.log('group id: ', eventGroup._id)
     $scope.event           = eventShow;
-    $scope.invitedEmails   = eventGroup.emailList;
-    $scope.confirmedEmails = $scope.event.confirmedEmails;
-    $scope.rejectedEmails  = $scope.event.rejectedEmails;
+
+    var checkIfGroup = function(){
+      if(event.groupOnly){
+        $scope.invitedEmails   = eventGroup.emailList || "";
+        $scope.confirmedEmails = $scope.event.confirmedEmails;
+        $scope.rejectedEmails  = $scope.event.rejectedEmails;
+      }
+    }
+    checkIfGroup()
+
+    //still need to write logic to save and sort emails to show for individual events
 
    $scope.tab = 0;
 
@@ -21,7 +29,8 @@ angular.module('gobeApp')
       $scope.group = eventGroup;
     }
 
-
+    // console.log('events:', events)
+    // console.log('auth:', $scope.currentUser)
 
 
     var timeArray = ["8am-12pm", "12pm-5pm", "5pm-8pm"];

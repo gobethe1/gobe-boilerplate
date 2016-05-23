@@ -44,13 +44,12 @@ angular.module('gobeApp')
         eventModel.forEach(function(event){
           var eventMatched = event.confirmIndividuals.indexOf(user._id) !== -1;
           var zipMatched   = user.matchZipCodeArr.indexOf(event.zipCode) !== -1;
-          console.log('if 1:', event.firstName, (event.published && !event.groupOnly && eventMatched))
-          console.log('if 2: ', event.firstName, (event.published && !event.groupOnly && zipMatched && !eventMatched))
+
           if(event.published && !event.groupOnly && eventMatched && zipMatched) {
             $scope.matchedEvents.push(event);
           }
           else if(event.published && !event.groupOnly && zipMatched && !eventMatched){
-            console.log('true: ', event)
+            // console.log('true: ', event)
             $scope.matchedZips.push(event);
           }
           else {

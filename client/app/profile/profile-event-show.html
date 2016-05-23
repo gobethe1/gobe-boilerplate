@@ -15,7 +15,7 @@
 			 <!-- end button for group confirm -->
 
 			 <!-- button for individual confirm -->
-			 <div class="col-xs-12 text-center" ng-if="event.!groupOnly">
+			 <div class="col-xs-12 text-center" ng-if="!event.groupOnly">
 					<button
 						ui-sref="confirm.individual({event_id: event._id , user_id: user._id })"
 						class="btn btn-primary btn-lg">
