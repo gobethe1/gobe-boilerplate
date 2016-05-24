@@ -2,7 +2,7 @@
 <!-- edit group -->
 <div class="row">
   <div class="col-sm-12 col-xs-12 text-right">
-    <a ng-if="!confirm" ui-sref="group.edit({id: group._id, name: group.organizationName})">Edit group</a>
+    <a ng-if="!confirm" ui-sref="group.edit({id: group._id, name: group.organizationName})">Edit</a>
   </div>
 </div>
 <!-- end edit group -->
@@ -10,7 +10,7 @@
 
   <!-- group info -->
   <uib-accordion close-others="oneAtATime">
-      <uib-accordion-group heading="Group Info" template-url="app/group/custom-accordion-template.html">
+      <uib-accordion-group heading="Group Info" ng-init="isOpen = true" is-open="isOpen"  template-url="app/group/custom-accordion-template.html">
           <p><strong>Contact Information:</strong><br>
               {{group.firstName | capitalize }} {{group.lastName | capitalize}} <br>
               Phone: {{group.phoneNumber | tel}}<br>
@@ -27,7 +27,7 @@
 
   <!-- team members -->
   <uib-accordion close-others="oneAtATime">
-      <uib-accordion-group heading="Team Members" template-url="app/group/custom-accordion-template.html">
+      <uib-accordion-group heading="Team Members" ng-init="isOpen = true" is-open="isOpen"  template-url="app/group/custom-accordion-template.html">
           <p ng-repeat="email in group.emailList track by $index">{{email}}</p>
       </uib-accordion-group>
   </uib-accordion>

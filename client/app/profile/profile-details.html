@@ -2,28 +2,29 @@
 <!-- edit group -->
 <div class="row">
   <div class="col-sm-12 col-xs-12 text-right">
-    <a ui-sref="profile.edit({id: currentUser.id, name: currentUser.firstName})">Edit User</a>
+    <a ui-sref="profile.edit({id: currentUser.id, name: currentUser.firstName})">Edit</a>
   </div>
 </div>
+<br>
 <!-- end edit group -->
 
 <uib-accordion close-others="oneAtATime">
-    <uib-accordion-group heading="Your Info" template-url="app/group/custom-accordion-template.html">
+    <uib-accordion-group heading="Your Info" ng-init="isOpen = true" is-open="isOpen" template-url="app/group/custom-accordion-template.html">
       <div class="row">
         <div class="col-xs-2 col-xs-offset-1">
           <i class="fa fa-user fa-5x" aria-hidden="true"></i>
         </div>
         <div class="col-xs-2 pull-left">
-          <p>Name</p>
-          <p>Phone</p>
-          <p>Email</p>
-          <p>Location</p>
-          <p>Distance</p>
-          <p>Subscription</p>
-          <p>Status</p>
+          <p>Name:</p>
+          <p>Phone:</p>
+          <p>Email:</p>
+          <p>Location:</p>
+          <p>Distance:</p>
+          <p>Subscription:</p>
+          <p>Status:</p>
         </div>
         <div class="col-xs-6 pull-left">
-          <p>{{user.firstName}} {{user.lastName}}</p>
+          <p>{{userName}}</p>
           <p>{{user.phoneNumber}}</p>
           <p>{{user.email}}</p>
           <p>{{shortAddress}}</p>
