@@ -289,7 +289,7 @@
 </div>
 
 <!-- event show before event has been matched for indivudal -->
-<div ng-if="checkIndividual() && !event.groupOnly">
+<div ng-if="checkIndividual() && !event.groupOnly" class="individual-show">
   <h1>{{event.eventName}}</h1>
   <p><strong>What is this cause about?</strong></p>
   <p>{{event.description}}</p>
@@ -297,10 +297,10 @@
 
       <div class="row">
         <div class="col-xs-2 text-center">
-          <i class="fa fa-user fa-3x individual-show" aria-hidden="true"></i>
+          <i class="fa fa-user fa-3x" aria-hidden="true"></i>
 
         </div>
-        <div class="col-xs-6 col-sm-offet-1 event-individual-show">
+        <div class="col-xs-6 col-sm-offet-1">
           <p><strong>Organizer Info</strong></p>
           <p>{{event.eventName}}</p>
           <p>{{event.organizerFirstName}} {{event.organizerLastName}}</p>
@@ -311,10 +311,10 @@
       <br>
       <div class="row">
         <div class="col-xs-2 text-center">
-          <i class="fa fa-map-marker fa-3x individual-show" aria-hidden="true"></i>
+          <i class="fa fa-map-marker fa-3x" aria-hidden="true"></i>
 
         </div>
-        <div class="col-xs-6 col-sm-offet-1 event-individual-show">
+        <div class="col-xs-6 col-sm-offet-1">
           <p><strong>Location</strong></p>
           <p>{{event.address}}</p>
         </div>
@@ -322,10 +322,10 @@
       <br>
       <div class="row">
         <div class="col-xs-2 text-center">
-          <i class="fa fa-calendar-o fa-3x individual-show" aria-hidden="true"></i>
+          <i class="fa fa-calendar-o fa-3x" aria-hidden="true"></i>
 
         </div>
-        <div class="col-xs-6 col-sm-offet-1 event-individual-show">
+        <div class="col-xs-6 col-sm-offet-1">
           <p><strong>Date & Time</strong></p>
           <p>{{event.availability.firstDate |date:"MM/dd/yyyy"}}</p>
           <span ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
