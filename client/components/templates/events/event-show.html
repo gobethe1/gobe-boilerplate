@@ -223,13 +223,13 @@
               <td>{{event.notes}}</td>
           </tr>
 
-          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup) || !event.groupOnly"
               ng-show="eventNew.causeType !== 'Homeless Move-in'">
               <th>Organizer:</th>
               <td>{{event.organizerFirstName}} {{event.organizerLastName}}</td>
           </tr>
 
-          <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup) || !event.groupOnly"
               ng-show="eventNew.causeType !== 'Homeless Move-in'">
               <th>Email:</th>
               <td>{{event.organizerEmail}}</td>
@@ -240,8 +240,33 @@
               <th>Phone Number:</th>
               <td>{{event.organizerPhoneNumber}}</td>
           </tr>
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup) || !event.groupOnly"
+              ng-show="eventNew.causeType !== 'Homeless Move-in'">
+              <th>Address:</th>
+              <td>
+                <p>{{event.address}}</p></p>
+              </td>
+          </tr>
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup) || !event.groupOnly"
+              ng-show="eventNew.causeType !== 'Homeless Move-in'">
+              <th>Date:</th>
+              <td>
+                <p>{{event.availability.firstDate |date:"MM/dd/yyyy"}}</p>
+              </td>
+          </tr>
+          <tr ng-show="isAdmin() || (group._id === event.confirmGroup) || !event.groupOnly"
+              ng-show="eventNew.causeType !== 'Homeless Move-in'">
+              <th>Time:</th>
+              <td>
+                <span ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
+                  {{$first ? '' : $last ? ' , ' : ', '}}{{checkTime(time, $index)}}
+                </span>
+              </td>
+          </tr>
 
         </tbody>
+
+
 
     </table>
       </uib-accordion-group>
