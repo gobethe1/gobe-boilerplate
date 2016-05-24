@@ -9,7 +9,7 @@ angular.module('gobeApp')
     $scope.isAdmin       = Auth.isAdmin;
     $scope.path          = Path.transitionToPath;
     $scope.returnValue   = [$scope.matchedZips, $scope.matchedEvents];
-    $scope.userName      = ($scope.user.firstName + $scope.user.lastName) || "NA";
+    $scope.userName      = ($scope.user.firstName + ' ' + $scope.user.lastName) || "NA";
     var user             = currentUser;
 
 // list available vs your causes tab
