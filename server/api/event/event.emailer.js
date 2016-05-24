@@ -215,7 +215,6 @@ function volunteerMatch(event, host){
 		});
 }
 
-
 // replaces detailsToEventCreator
 function detailsToEventCreator(event, host){
 
@@ -272,7 +271,6 @@ function detailsToEventCreator(event, host){
 			  if (err) return (err);
 			});
 }
-
 
 // replaces detailsToGroupLeader
 function detailsToGroupLeader(event, host){
