@@ -56,7 +56,7 @@ angular.module('gobeApp')
         //       return null;
         //     }
         //   }
-        // }
+        }
       })
 
        .state('event.edit', {
