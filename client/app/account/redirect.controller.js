@@ -13,6 +13,6 @@ angular.module('gobeApp')
       $state.go('group.list'); //group.new
     }
     else if(currentUser.position === "volunteer"){
-      $state.go('volunteer.profile');
+      $state.go('profile.details');
     }
   });
