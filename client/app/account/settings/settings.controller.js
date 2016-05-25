@@ -5,8 +5,6 @@ angular.module('gobeApp')
     $scope.errors = {};
     $scope.stateParams = $stateParams;
 
-    // console.log($scope.stateParams)
-
     $scope.changePassword = function(form) {
       $scope.submitted = true;
       if(form.$valid) {
@@ -47,8 +45,6 @@ angular.module('gobeApp')
         var data = {password: $scope.user.password, passwordConfirm: $scope.user.passwordConfirm};
         $http.post('/api/users/reset/' + $stateParams.token, data)
             .then(function(data) {
-              console.log('hello in the promise!')
-              // console.log($location.path)
               $scope.successMessage = true;
             })
             .catch(function(){

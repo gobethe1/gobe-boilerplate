@@ -59,9 +59,9 @@ angular.module('gobeApp')
 
     // console.log('return value: ', $scope.returnValue)
     checkMatchedArray();
-    console.log('matchedArray: ', $scope.matchedArray)
-    console.log('acceptedPastArray', $scope.acceptedPastArray)
-    console.log('acceptedCurrentArray', $scope.acceptedCurrentArray)
+    // console.log('matchedArray: ', $scope.matchedArray)
+    // console.log('acceptedPastArray', $scope.acceptedPastArray)
+    // console.log('acceptedCurrentArray', $scope.acceptedCurrentArray)
     // console.log('accepted matched: ', $scope.acceptedMatchedArray)
     // console.log('checkMatchedArray: ', checkMatchedArray())
     // console.log('pastArray: ', $scope.pastArray, 'currentArray: ', $scope.currentArray)
