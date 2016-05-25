@@ -26,7 +26,7 @@ angular.module('gobeApp')
 
 
     // console.log('listEvents: ', $scope.listEvents[6].confirmIndividuals)?
-    console.log('matched: ', $scope.matched)
+    // console.log('matched: ', $scope.matched)
 
 
     // $scope.matched = (event.confirmGroup === !null && event.published === true) || {'confirmGroup': "!!", 'published': true };

@@ -43,15 +43,14 @@ angular.module('gobeApp')
                       headers: {Authorization: undefined}
                      }).then
                         (function(response){
-                            console.log(response.data)
                             var data = response.data;
                             data.zip_codes.map(function(value){
                             newArr.push(value.zip_code);
                           })
-                            console.log("newArr")
-                            console.log(newArr)
-                            $scope.currentUser.matchZipCodeArr = newArr;
-                            console.log('newarr: ', $scope.currentUser.matchZipCodeArr);
+                            // console.log("newArr")
+                            // console.log(newArr)
+                            // $scope.currentUser.matchZipCodeArr = newArr;
+                            // console.log('newarr: ', $scope.currentUser.matchZipCodeArr);
                         }).then(function(){
                             User.update($scope.currentUser,
                               function(data){

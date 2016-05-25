@@ -25,6 +25,7 @@ angular.module('gobeApp')
 // end list available vs your causes tab
 
 // before loading page check to see if address is set
+
 // or undefined to prevent controller error
     var checkProfile = function(){
         if($scope.user.address !== undefined) {
@@ -39,8 +40,6 @@ angular.module('gobeApp')
 // check for zip code matches
 
     var checkForMatches = function(events){
-      console.log('user: ', user)
-
 
         eventModel.forEach(function(event){
           var eventMatched = event.confirmIndividuals.indexOf(user._id) !== -1;
@@ -58,7 +57,7 @@ angular.module('gobeApp')
           }
 
         })
-                console.log('return value: ', $scope.returnValue)
+
         return $scope.returnValue;
 
     };
