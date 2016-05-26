@@ -38,122 +38,131 @@ angular.module('gobeApp')
     $scope.newEvent.availability.thirdDateTime  = [false, false, false];
     $scope.newEvent.userId                      = currentUser._id;
 
-    // check user id fx
-    $scope.checkEventFilter = function(event){
-      if($scope.isAdmin()){
-        return {};
-      }
-      else {
-        return event.userId === currentUser._id;
-      }
-    };
+  // check user id fx
+  $scope.checkEventFilter = function(event){
+    if($scope.isAdmin()){
+      return {};
+    }
+    else {
+      return event.userId === currentUser._id;
+    }
+  };
 
-    var checkAddress = function(){
-        $scope.newEvent.address   = $scope.newEvent.address.formatted_address;
-        var fullAddress           = $scope.newEvent.address;
-        var addressArray          = fullAddress.split(',');
-        var stateAndZip           = addressArray[addressArray.length - 2].split(' ');
-        var zip                   = stateAndZip[2];
-        $scope.newEvent.zipCode   = zip;
-    };
+  var checkAddress = function(){
+      $scope.newEvent.address   = $scope.newEvent.address.formatted_address;
+      var fullAddress           = $scope.newEvent.address;
+      var addressArray          = fullAddress.split(',');
+      var stateAndZip           = addressArray[addressArray.length - 2].split(' ');
+      var zip                   = stateAndZip[2];
+      $scope.newEvent.zipCode   = zip;
+  };
 
-    // payment modal
-    $scope.openPaymentModal = function() {
-    var modalInstance = $uibModal.open({
-        templateUrl: 'components/modal/stripe.html',
-        controller: 'ModalCtrl',
-        resolve: {
-          currentUser: ['Auth', function(Auth){
-             return Auth.getCurrentUser().$promise;
-          }]
-        }
-      });
-    };
+  $scope.checkIfEventCreator = function(event, currentUser){
+    if(event._id === currentUser._id){
+      return true;
+    }
+    else {
+      return false;
+    }
+  };
 
-    $scope.confirmGroupStatus = function(event){
-      if(!event.confirmGroup){
-        return false;
+  // payment modal
+  $scope.openPaymentModal = function() {
+  var modalInstance = $uibModal.open({
+      templateUrl: 'components/modal/stripe.html',
+      controller: 'ModalCtrl',
+      resolve: {
+        currentUser: ['Auth', function(Auth){
+           return Auth.getCurrentUser().$promise;
+        }]
       }
-      else if(event.confirmGroup){
-        return true;
-      }
-    };
+    });
+  };
 
-    $scope.cancelClient = function cancelClient(form){
-      if(form.$pristine){
+  $scope.confirmGroupStatus = function(event){
+    if(!event.confirmGroup){
+      return false;
+    }
+    else if(event.confirmGroup){
+      return true;
+    }
+  };
+
+  $scope.cancelClient = function cancelClient(form){
+    if(form.$pristine){
+      $state.go('event.list');
+    } else {
+      if(confirm("Are you sure you want to cancel? All changes will be lost.")){
         $state.go('event.list');
-      } else {
-        if(confirm("Are you sure you want to cancel? All changes will be lost.")){
-          $state.go('event.list');
-        }
       }
-    };
+    }
+  };
 
-    $scope.addEvent = function addEvent(){
-      $scope.newEvent.published = false;
-      $scope.submitted = false;
+  $scope.addEvent = function addEvent(){
+    $scope.newEvent.published = false;
+    $scope.submitted = false;
+    checkAddress();
+
+    Event.save($scope.newEvent, function(data){
+      $state.go('event.list');
+    }),
+    function(err){
+      $scope.addEventError = "Looks like something went wrong! Please try again"
+    }
+  };
+
+  $scope.publishEvent = function publishEvent(form) {
+
+      $scope.newEvent.published = true;
+      $scope.submitted          = true;
       checkAddress();
 
-      Event.save($scope.newEvent, function(data){
-        $state.go('event.list');
-      }),
-      function(err){
-        $scope.addEventError = "Looks like something went wrong! Please try again"
-      }
-    };
-
-    $scope.publishEvent = function publishEvent(form) {
-
-        $scope.newEvent.published = true;
-        $scope.submitted          = true;
-        checkAddress();
-
-           if(form.$valid){
-               Event.send($scope.newEvent,
-                 function(data){
-                    $state.go('event.list')
-                   }),
-                   function(err){
-                   	$scope.publishEventError = "Looks like something went wrong! Please try again"
-                   }
+         if(form.$valid){
+             Event.send($scope.newEvent,
+               function(data){
+                  $state.go('event.list')
+                 }),
+                 function(err){
+                 	$scope.publishEventError = "Looks like something went wrong! Please try again"
                  }
-           else{
-               document.body.scrollTop = document.documentElement.scrollTop = 0;
-           }
+               }
+         else{
+             document.body.scrollTop = document.documentElement.scrollTop = 0;
+         }
+  };
+
+
+  $scope.deleteEvent = function deleteEvent(id){
+    if(confirm('Are you sure you want to delete this client?')){
+      angular.forEach($scope.listEvents, function(e, i) {
+         if (e._id === id) {
+           $scope.listEvents.splice(i, 1);
+         }
+       });
+
+      Event.remove({id: id });
     };
+  }
 
-
-    $scope.deleteEvent = function deleteEvent(id){
-      if(confirm('Are you sure you want to delete this client?')){
-        angular.forEach($scope.listEvents, function(e, i) {
-           if (e._id === id) {
-             $scope.listEvents.splice(i, 1);
-           }
-         });
-
-        Event.remove({id: id });
-      };
-    }
-
-    $scope.createLabel = function(eventName, label){
-        if(eventName === 'Homeless Move-in' && (label === 'Zipcode' || label === 'Date' || label === 'address')){
-          return 'Move-in'
-        }
-        else if(label === 'Notes' ){
-          if(eventName === 'Homeless Move-in'){
-            return  "Notes (optional)"
-          }
-          else{
-            return "Event Description"
-          }
-        }
-        else if(eventName === 'Homeless Move-in'){
-            return 'Client';
+  $scope.createLabel = function(eventName, label){
+      if(eventName === 'Homeless Move-in' && (label === 'Zipcode' || label === 'Date' || label === 'address')){
+        return 'Move-in'
+      }
+      else if(label === 'Notes' ){
+        if(eventName === 'Homeless Move-in'){
+          return  "Notes (optional)"
         }
         else{
-          return 'Event';
+          return "Event Description"
         }
-    }
+      }
+      else if(eventName === 'Homeless Move-in'){
+          return 'Client';
+      }
+      else{
+        return 'Event';
+      }
+  }
 
   $scope.clear = function() {
     $scope.dt = null;

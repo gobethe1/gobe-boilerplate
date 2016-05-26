@@ -122,10 +122,10 @@ angular.module('gobeApp')
 	      else{
 	      	return "Inactive";
 	      }
-	  }
-	  else{
-	  	return "None";
-	  }
+  	  }
+  	  else{
+  	  	return "None";
+  	  }
     }
 
     $scope.checkRenewal = function(){
@@ -145,7 +145,6 @@ angular.module('gobeApp')
     	else{
     	  return "None";
     	}
-
     }
 
     $scope.updateUser = function updateUser(form) {

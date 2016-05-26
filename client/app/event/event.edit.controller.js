@@ -2,7 +2,9 @@
 
 angular.module('gobeApp')
   .controller('EventEditCtrl', function ($scope, $state, $stateParams, Event, eventEdit) {
-
+    console.log('event: ', eventEdit)
+    $scope.showMeetupAddress = (eventEdit.causeType === 'Homeless Move-in') && eventEdit.confirmGroup;
+    console.log('show meetup: ', $scope.showMeetupAddress)
 
     $scope.newEvent = eventEdit;
     if ($scope.newEvent.availability.moveInDate){
@@ -22,12 +24,18 @@ angular.module('gobeApp')
     };
 
     var checkAddress = function(){
-        $scope.newEvent.address   = $scope.newEvent.address.formatted_address || $scope.newEvent.address;
-        var fullAddress           = $scope.newEvent.address;
-        var addressArray          = fullAddress.split(',');
-        var stateAndZip           = addressArray[addressArray.length - 2].split(' ');
-        var zip                   = stateAndZip[2];
-        $scope.newEvent.zipCode   = zip;
+        $scope.newEvent.address         = $scope.newEvent.address.formatted_address || $scope.newEvent.address;
+        var fullAddress                 = $scope.newEvent.address;
+        var addressArray                = fullAddress.split(',');
+        var stateAndZip                 = addressArray[addressArray.length - 2].split(' ');
+        var zip                         = stateAndZip[2];
+        $scope.newEvent.zipCode         = zip;
+        $scope.newEvent.meetupAddress   = $scope.newEvent.meetupAddress.formatted_address || $scope.newEvent.meetupAddress;
+        var fullMeetupAddress           = $scope.newEvent.meetupAddress;
+        var meetupAddressArray          = fullMeetupAddress.split(',');
+        var meetupStateAndZip           = meetupAddressArray[meetupAddressArray.length - 2].split(' ');
+        var meetupZip                   = meetupStateAndZip[2];
+        $scope.newEvent.zipCode         = meetupZip;
     };
 
     $scope.updateEvent = function updateEvent(){
@@ -52,6 +60,7 @@ angular.module('gobeApp')
       $scope.submitted = true;
       $scope.newEvent.published = true;
       checkAddress();
+      // console.log(form)
          if(form.$valid){
              Event.sendupdate({id: $stateParams.id }, data,
                function(data){

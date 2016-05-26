@@ -163,7 +163,7 @@
               <th class="col-sm-6 col-xs-6">
             </tr>
           </thead>
-          <tbody>
+          <tbody class="event-show">
             <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
                 ng-hide="event.causeType !== 'Homeless Move-in'">
                 <th>Client Phone Number:</th>
@@ -173,6 +173,12 @@
             <tr ng-show="isAdmin() || (group._id === event.confirmGroup)">
                 <th>{{createLabel(event.causeType, 'address')}} Address:</th>
                 <td>{{event.address}}</td>
+            </tr>
+
+            <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"
+                ng-hide="event.causeType !== 'Homeless Move-in'">
+                <th>Meetup Address:</th>
+                <td>{{event.meetupAddress}}</td>
             </tr>
 
             <tr ng-show="isAdmin() || (group._id === event.confirmGroup)"

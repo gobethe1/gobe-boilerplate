@@ -120,6 +120,14 @@
       </div>
 			<!-- end address -->
 
+			<!-- meetup address -->
+			<div class="form-group" ng-class="{ 'has-success': form.meetupAddress.$valid && submitted,'has-error': form.meetupAddress.$invalid && submitted }" ng-if="showMeetupAddress">
+        <label>Meetup Address</label>
+        <input type="text" g-places-autocomplete  name="meetupaddress" ng-model="newEvent.meetupAddress" placeholder="Enter the meetup location for your group"
+        			 class="form-control" required/>
+      </div>
+			<!-- end meetup address -->
+
 			<!-- number of volunteers -->
 			<div class="form-group" ng-if="newEvent.groupOnly === false" ng-class="{ 'has-success': form.numberOfVolunteers.$valid && submitted,'has-error': form.numberOfVolunteers.$invalid && submitted}">
         <label>Number of Volunteers</label>
