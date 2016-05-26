@@ -98,10 +98,13 @@ angular.module('gobeApp')
     }
   };
 
-  $scope.addEvent = function addEvent(){
+  $scope.addEvent = function addEvent(form){
     $scope.newEvent.published = false;
     $scope.submitted = false;
-    checkAddress();
+
+    if($scope.newEvent.address != null){
+      checkAddress();
+    }
 
     Event.save($scope.newEvent, function(data){
       $state.go('event.list');
