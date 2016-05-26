@@ -12,6 +12,7 @@
           You will also be responsible for putting together a Welcome Home Kit. Make sure to tell each member what they are responsible for. And get ready to party!</p>
         </div>
         <!-- end move-in description -->
+
         <!-- other description -->
         <div ng-show="event.causeType !== 'Homeless Move-in'">
           <p>{{event.description}}</p>
@@ -24,119 +25,119 @@
           <th class="col-sm-6 col-xs-6">
         </tr>
       </thead>
-        <tbody>
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
-              ng-hide="event.causeType !== 'Homeless Move-in'">
-              <th>Client Phone Number:</th>
-              <td>{{event.phoneNumber | tel}}</td>
-          </tr>
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
-              <th>{{createLabel(event.causeType, 'address')}} Address:</th>
-              <td>{{event.address}}</td>
-          </tr>
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
-              ng-hide="event.causeType !== 'Homeless Move-in'">
-              <th>Move in zip:</th>
-              <td>{{event.zipCode}}</td>
-          </tr>
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
-              ng-hide="event.causeType !== 'Homeless Move-in'">
-              <th>Gender:</th>
-              <td>{{event.gender | capitalize }}</td>
-          </tr>
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
-              ng-hide="event.causeType !== 'Homeless Move-in'">
-              <th>Age:</th>
-              <td>{{event.age}}</td>
-          </tr>
+      <tbody>
+        <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+            ng-hide="event.causeType !== 'Homeless Move-in'">
+            <th>Client Phone Number:</th>
+            <td>{{event.phoneNumber | tel}}</td>
+        </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)">
+            <th>{{createLabel(event.causeType, 'address')}} Address:</th>
+            <td>{{event.address}}</td>
+        </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+            ng-hide="event.causeType !== 'Homeless Move-in'">
+            <th>Move in zip:</th>
+            <td>{{event.zipCode}}</td>
+        </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+            ng-hide="event.causeType !== 'Homeless Move-in'">
+            <th>Gender:</th>
+            <td>{{event.gender | capitalize }}</td>
+        </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+            ng-hide="event.causeType !== 'Homeless Move-in'">
+            <th>Age:</th>
+            <td>{{event.age}}</td>
+        </tr>
 
-          <tr ng-show="isAdmin()"
-              ng-hide="event.causeType !== 'Homeless Move-in'">
-              <th>Date moved in:</th>
-              <td>{{event.availability.moveInDate | date:"MM/dd/yyyy" }}</td>
-          </tr>
+        <tr ng-show="isAdmin()"
+            ng-hide="event.causeType !== 'Homeless Move-in'">
+            <th>Date moved in:</th>
+            <td>{{event.availability.moveInDate | date:"MM/dd/yyyy" }}</td>
+        </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
-              <th>Date 1:</th>
-              <td>{{event.availability.firstDate | date:"MM/dd/yyyy"}}</td>
-          </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
+            <th>Date 1:</th>
+            <td>{{event.availability.firstDate | date:"MM/dd/yyyy"}}</td>
+        </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
-            <th></th>
-            <td class="time">
-              <span ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
-                   {{$first ? '' : $last ? ' , ' : ', '}}{{checkTime(time, $index)}}
-             </span>
-            </td>
-          </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
+          <th></th>
+          <td class="time">
+            <span ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
+                 {{$first ? '' : $last ? ' , ' : ', '}}{{checkTime(time, $index)}}
+           </span>
+          </td>
+        </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
-              <th>Date 2:</th>
-              <td>{{event.availability.secondDate | date:"MM/dd/yyyy"}}</td>
-          </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
+            <th>Date 2:</th>
+            <td>{{event.availability.secondDate | date:"MM/dd/yyyy"}}</td>
+        </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
-            <th></th>
-            <td class="time">
-              <span ng-repeat="time in event.availability.secondDateTime track by $index" ng-if="time">
-                 {{$first ? '' : $last ? ' , ' : ', '}}{{checkTime(time, $index)}} </span>
-            </td>
-          </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
+          <th></th>
+          <td class="time">
+            <span ng-repeat="time in event.availability.secondDateTime track by $index" ng-if="time">
+               {{$first ? '' : $last ? ' , ' : ', '}}{{checkTime(time, $index)}} </span>
+          </td>
+        </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
-              <th>Date 3:</th>
-              <td>{{event.availability.thirdDate | date:"MM/dd/yyyy"}}</td>
-          </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
+            <th>Date 3:</th>
+            <td>{{event.availability.thirdDate | date:"MM/dd/yyyy"}}</td>
+        </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
-            <th></th>
-            <td class="time">
-             <span ng-repeat="time in event.availability.thirdDateTime track by $index" ng-if="time">
-               {{$first ? '' : $last ? ', ' : ', '}}{{checkTime(time, $index)}} </span>
-            </td>
-          </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId !== event.confirmGroup)">
+          <th></th>
+          <td class="time">
+           <span ng-repeat="time in event.availability.thirdDateTime track by $index" ng-if="time">
+             {{$first ? '' : $last ? ', ' : ', '}}{{checkTime(time, $index)}} </span>
+          </td>
+        </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
-              ng-hide="eventNew.causeType !== 'Homeless Move-in'">
-              <th>Registry Url:</th>
-              <td>{{event.registryUrl}}</td>
-          </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+            ng-hide="eventNew.causeType !== 'Homeless Move-in'">
+            <th>Registry Url:</th>
+            <td>{{event.registryUrl}}</td>
+        </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
-              ng-hide="eventNew.causeType !== 'Homeless Move-in'">
-              <th>Notes:</th>
-              <td>{{event.notes}}</td>
-          </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+            ng-hide="eventNew.causeType !== 'Homeless Move-in'">
+            <th>Notes:</th>
+            <td>{{event.notes}}</td>
+        </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
-              ng-show="eventNew.causeType !== 'Homeless Move-in'">
-              <th>Organizer:</th>
-              <td>{{event.organizerFirstName}} {{event.organizerLastName}}</td>
-          </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+            ng-show="eventNew.causeType !== 'Homeless Move-in'">
+            <th>Organizer:</th>
+            <td>{{event.organizerFirstName}} {{event.organizerLastName}}</td>
+        </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
-              ng-show="eventNew.causeType !== 'Homeless Move-in'">
-              <th>Email:</th>
-              <td>{{event.organizerEmail}}</td>
-          </tr>
+        <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+            ng-show="eventNew.causeType !== 'Homeless Move-in'">
+            <th>Email:</th>
+            <td>{{event.organizerEmail}}</td>
+        </tr>
 
-          <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
-              ng-show="eventNew.causeType !== 'Homeless Move-in'">
-              <th>Phone Number:</th>
-              <td>{{event.organizerPhoneNumber}}</td>
-          </tr>
-
-        </tbody>
+        <tr ng-show="isAdmin() || (matchedZipCodeId === event.confirmGroup)"
+            ng-show="eventNew.causeType !== 'Homeless Move-in'">
+            <th>Phone Number:</th>
+            <td>{{event.organizerPhoneNumber}}</td>
+        </tr>
+      </tbody>
 
     </table>
-  </div>
-  </div>
+
 </div>
 <!-- end event show before event has been accepted -->
 
-
+<!-- OK -->
 <!-- event show once cause has been accepted / matched -->
-<div ng-if="event.confirmGroup || !checkIndividual()" class="event-show">
+<div ng-if="event.confirmGroup" class="event-show">
+
+  <!-- event info accordion -->
   <uib-accordion close-others="oneAtATime">
       <uib-accordion-group heading="Event Info" ng-init="isOpen = true" is-open="isOpen"  template-url="app/group/custom-accordion-template.html">
         <table class="table table-sm">
@@ -269,10 +270,9 @@
         </table>
       </uib-accordion-group>
   </uib-accordion>
-<!-- end event shot once group cause has been accepted / matched -->
+  <!-- end event info accordion -->
 
-
-<!-- volunteers accordion tab -->
+  <!-- volunteers accordion tab -->
   <uib-accordion close-others="oneAtATime">
       <uib-accordion-group heading="Volunteers" ng-init="isOpen = true" is-open="isOpen"  template-url="app/group/custom-accordion-template.html">
 
@@ -310,6 +310,8 @@
   </uib-accordion>
   <!-- end team members -->
 </div>
+<!-- end event shot once group cause has been accepted / matched -->
+
 
 <!-- event show before event has been matched for indivudal -->
 <div ng-if="checkIndividual() && !event.groupOnly" class="individual-show">
