@@ -66,9 +66,14 @@ angular.module('gobeApp')
 
 // fx to shorten address in profile details view
     $scope.shortAddress = function(address){
-       var shortAddress = address.split(',')
+      if(user.address != null){
+       var shortAddress = user.address.split(',')
        return shortAddress[0] + ", " + shortAddress[1];
+      }
+      else return '';
     }
+
+    $scope.callAddress = $scope.shortAddress();
 // end fx to shorten address in profile details view
 
 
