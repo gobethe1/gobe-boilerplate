@@ -38,9 +38,12 @@ angular.module('gobeApp')
         $scope.newEvent.zipCode         = meetupZip;
     };
 
-    $scope.updateEvent = function updateEvent(){
+    $scope.updateEvent = function updateEvent(form){
       $scope.submitted = false;
-      checkAddress();
+
+      if($scope.newEvent.address != null){
+        checkAddress();
+      }
       var data = $scope.newEvent;
       // console.log('new event published');
       // console.log($scope.newEvent.published)

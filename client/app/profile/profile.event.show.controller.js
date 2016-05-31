@@ -37,7 +37,7 @@ angular.module('gobeApp')
     };
 
     $scope.checkIndividual = function(event){
-      if(($scope.confirmIndividuals.indexOf(currentUser._id)) == -1) {  //if not in array
+      if(($scope.confirmIndividuals.indexOf(currentUser._id)) != -1) {  //if not in array
         return true
       } else {
         return false;

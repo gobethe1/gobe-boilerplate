@@ -49,13 +49,20 @@ angular.module('gobeApp')
   };
 
   var checkAddress = function(){
-      $scope.newEvent.address   = $scope.newEvent.address.formatted_address;
+      $scope.newEvent.address   = $scope.newEvent.address.formatted_address || $scope.newEvent.address;
       var fullAddress           = $scope.newEvent.address;
       var addressArray          = fullAddress.split(',');
       var stateAndZip           = addressArray[addressArray.length - 2].split(' ');
       var zip                   = stateAndZip[2];
       $scope.newEvent.zipCode   = zip;
+        // $scope.newEvent.meetupAddress   = $scope.newEvent.meetupAddress.formatted_address || $scope.newEvent.meetupAddress;
+        // var fullMeetupAddress           = $scope.newEvent.meetupAddress;
+        // var meetupAddressArray          = fullMeetupAddress.split(',');
+        // var meetupStateAndZip           = meetupAddressArray[meetupAddressArray.length - 2].split(' ');
+        // var meetupZip                   = meetupStateAndZip[2];
+        // $scope.newEvent.zipCode         = meetupZip;
   };
+
 
   $scope.checkIfEventCreator = function(event, currentUser){
     if(event._id === currentUser._id){
@@ -115,7 +122,6 @@ angular.module('gobeApp')
   };
 
   $scope.publishEvent = function publishEvent(form) {
-
       $scope.newEvent.published = true;
       $scope.submitted          = true;
       checkAddress();

@@ -4,6 +4,7 @@ angular.module('gobeApp')
   .controller('ProfileCtrl', function ($scope, $filter, User, currentUser, eventModel, Auth, Path, customerInfo, $state, $http) {
     $scope.user          = currentUser;
     $scope.events        = eventModel;
+    var events           = eventModel;
     $scope.matchedZips   = []; // for check for matches fx
     $scope.matchedEvents = [];
     $scope.isAdmin       = Auth.isAdmin;
@@ -11,6 +12,9 @@ angular.module('gobeApp')
     $scope.returnValue   = [$scope.matchedZips, $scope.matchedEvents];
     $scope.userName      = ($scope.user.firstName + ' ' + $scope.user.lastName) || "NA";
     var user             = currentUser;
+
+
+    console.log('this is linked!')
 
 // list available vs your causes tab
     $scope.tab = 0;
@@ -38,30 +42,34 @@ angular.module('gobeApp')
 
 
 // check for zip code matches
-
     var checkForMatches = function(events){
 
         eventModel.forEach(function(event){
-          var eventMatched = event.confirmIndividuals.indexOf(user._id) !== -1;
+          var eventMatched = event.confirmIndividuals.indexOf(user._id) != -1;
           var zipMatched   = user.matchZipCodeArr.indexOf(event.zipCode) !== -1;
+          var baseRequirement = event.published && !event.groupOnly;
 
-          if(event.published && !event.groupOnly && eventMatched && zipMatched) {
+          if(baseRequirement && eventMatched && zipMatched) {
+            console.log('matched: ', event)
             $scope.matchedEvents.push(event);
           }
-          else if(event.published && !event.groupOnly && zipMatched && !eventMatched){
-            // console.log('true: ', event)
+          else if(baseRequirement && zipMatched && !eventMatched){
+            console.log('true: ', event)
             $scope.matchedZips.push(event);
           }
           else {
+            console.log('failed')
             return null;
           }
 
         })
 
-        return $scope.returnValue;
+        // return $scope.returnValue;
 
     };
-    checkForMatches()
+    checkForMatches(events)
+
+
 // end check for zip code matches
 
 // fx to shorten address in profile details view

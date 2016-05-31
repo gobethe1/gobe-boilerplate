@@ -49,7 +49,7 @@ angular.module('gobeApp')
                           })
                             // console.log("newArr")
                             // console.log(newArr)
-                            // $scope.currentUser.matchZipCodeArr = newArr;
+                            $scope.currentUser.matchZipCodeArr = newArr;
                             // console.log('newarr: ', $scope.currentUser.matchZipCodeArr);
                         }).then(function(){
                             User.update($scope.currentUser,
