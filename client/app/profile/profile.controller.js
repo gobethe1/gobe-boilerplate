@@ -48,12 +48,6 @@ angular.module('gobeApp')
           var eventMatched = event.confirmIndividuals.indexOf(user._id) != -1;
           var zipMatched   = user.matchZipCodeArr.indexOf(event.zipCode) !== -1;
           var baseRequirement = event.published && !event.groupOnly;
-          console.log('zip matched expression: ', user.matchZipCodeArr.indexOf(event.zipCode) !== -1)
-          console.log('event: ', event)
-          console.log('event matched: ', eventMatched)
-          console.log('zip matched: ', zipMatched)
-          console.log('if 1:', event.firstName || event.eventName, (event.published && !event.groupOnly && eventMatched))
-          console.log('if 2: ', event.firstName || event.eventName, (event.published && !event.groupOnly && zipMatched && !eventMatched))
 
           if(baseRequirement && eventMatched && zipMatched) {
             console.log('matched: ', event)
@@ -73,10 +67,8 @@ angular.module('gobeApp')
         // return $scope.returnValue;
 
     };
-    console.log(checkForMatches(events))
+    checkForMatches(events)
 
-        console.log($scope.matchedEvents)
-        console.log($scope.matchedZips)
 
 // end check for zip code matches
 
