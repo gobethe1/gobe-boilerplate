@@ -314,7 +314,7 @@
 
 
 <!-- event show before event has been matched for indivudal -->
-<div ng-if="checkIndividual() && !event.groupOnly" class="individual-show">
+<div ng-if="!checkIndividual() && !event.groupOnly" class="individual-show">
   <h1>{{event.eventName}}</h1>
   <p><strong>What is this cause about?</strong></p>
   <p>{{event.description}}</p>
