@@ -11,6 +11,8 @@ angular.module('gobeApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.activeSubscription =  Auth.activeSubscription;
 
+    console.log('this is linked!')
+
     //filters
     var groupId                 = groupShow._id;
     $scope.matchedZipCode       =  {'confirmGroup': groupId, 'published': true};
@@ -22,12 +24,13 @@ angular.module('gobeApp')
 
     var checkMatchedArray = function(events){
         eventModel.forEach(function(event){
+        var baseRequirement = event.published && event.groupOnly;
 
-          if (event.published && !event.confirmGroup && event.groupOnly && groupShow.matchZipCodeArr.indexOf(event.zipCode) !== -1){
+          if (baseRequirement && !event.confirmGroup && groupShow.matchZipCodeArr.indexOf(event.zipCode) !== -1){
              $scope.matchedArray.push(event);
           }
 
-          else if(event.published && (event.confirmGroup === groupId)) {
+          else if(baseRequirement && (event.confirmGroup === groupId)) {
             // console.log("event confirmDate", event.confirmDate, typeof event.confirmDate)
             // console.log("event confirmDate as Date object", new Date(event.confirmDate))
 

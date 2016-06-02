@@ -49,6 +49,8 @@ exports.update = function(req, res) {
     var updated = _.merge(group, req.body);
     updated.emailList = req.body.emailList;
     updated.previousEmailList = req.body.previousEmailList;
+    updated.matchZipCodeArr = req.body.matchZipCodeArr;
+    group.markModified('matchZipCodeArr');
     group.markModified('previousEmailList');
     group.markModified('emailList');
 

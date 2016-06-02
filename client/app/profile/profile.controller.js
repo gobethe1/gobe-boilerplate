@@ -14,7 +14,7 @@ angular.module('gobeApp')
     var user             = currentUser;
 
 
-    console.log('this is linked!')
+    // console.log('this is linked!')
 
 // list available vs your causes tab
     $scope.tab = 0;
@@ -45,20 +45,20 @@ angular.module('gobeApp')
     var checkForMatches = function(events){
 
         eventModel.forEach(function(event){
-          var eventMatched = event.confirmIndividuals.indexOf(user._id) != -1;
+          var eventMatched = event.confirmIndividuals.indexOf(user._id) !== -1;
           var zipMatched   = user.matchZipCodeArr.indexOf(event.zipCode) !== -1;
           var baseRequirement = event.published && !event.groupOnly;
 
           if(baseRequirement && eventMatched && zipMatched) {
-            console.log('matched: ', event)
+            // console.log('matched: ', event)
             $scope.matchedEvents.push(event);
           }
           else if(baseRequirement && zipMatched && !eventMatched){
-            console.log('true: ', event)
+            // console.log('true: ', event)
             $scope.matchedZips.push(event);
           }
           else {
-            console.log('failed')
+            // console.log('failed')
             return null;
           }
 
