@@ -1,0 +1,24 @@
+.btn {
+  &:hover, &:focus {
+  color: $bg-blue;
+
+  }
+}
+
+.signup-buttons {
+  background-color: $white;
+  color: $bg-blue;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-color: $bg-blue;
+}
+
+.active-signup {
+  background-color: $bg-blue;
+  color: $white;
+  &:hover, &:focus {
+    color: $white;
+  }
+}
