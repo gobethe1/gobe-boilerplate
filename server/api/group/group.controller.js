@@ -41,7 +41,7 @@ exports.create = function(req, res) {
 
 // Updates an existing group in the DB.
 exports.update = function(req, res) {
-
+  console.log('req: ', req.body)
   if(req.body._id) { delete req.body._id; }
   Group.findById(req.params.id, function (err, group) {
     if (err) { return handleError(res, err); }
@@ -53,7 +53,7 @@ exports.update = function(req, res) {
     group.markModified('matchZipCodeArr');
     group.markModified('previousEmailList');
     group.markModified('emailList');
-
+    console.log('updated: ', updated)
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       console.log("htting inside update group save")
