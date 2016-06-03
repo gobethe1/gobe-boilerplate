@@ -1,3 +1,20 @@
 .volunteer-confirm h5{
 	font-weight:bolder;
 }
+
+.confirm-signup-btn {
+  padding-top: 10%;
+  button {
+    margin-bottom: 3%;
+  }
+  a {
+    text-decoration: underline;
+    color: $black;
+  }
+  .btn {
+    &:hover {
+      color: $white;
+      background-color: $bg-blue;
+    }
+  }
+}
