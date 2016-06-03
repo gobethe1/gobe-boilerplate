@@ -5,16 +5,25 @@
       Tell us what you're doing here!</h4>
 
     <!-- volunteering tab -->
-    <button class="col-sm-8 col-sm-offset-2 col-xs-12 btn btn-large signup-buttons" ng-click="changeTab(1)"
+    <button class="col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 btn btn-large signup-buttons" ng-click="changeTab(1)"
             ng-class="{'active-signup':isActiveTab(1)}">
       Hi, I'm here to volunteer for causes in my area!
     </button>
 
     <!-- groups tab -->
-    <button class="col-sm-8 col-sm-offset-2 col-xs-12 btn btn-large signup-buttons" ng-click="changeTab(2)"
+    <button class="col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 btn btn-large signup-buttons" ng-click="changeTab(2)"
             ng-class="{'active-signup':isActiveTab(2)}">
       Hi, I'm here to find volunteers for my events!
     </button>
+
+      <!-- group form -->
+    <div ng-if="tab === 2" class="col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 signup-next text-right">
+      <button class="btn btn-lg btn-primary" type="submit" ui-sref="event.list"
+      >
+        Next
+      </button>
+    </div>
+  <!-- end group form -->
   </div>
   <!-- end path / form selection sectionc -->
 
@@ -117,7 +126,5 @@
   </form>
   <!-- end volunteer form -->
 
-  <!-- group form -->
 
-  <!-- end group form -->
 </div>
