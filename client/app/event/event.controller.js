@@ -38,6 +38,7 @@ angular.module('gobeApp')
     $scope.newEvent.availability.thirdDateTime  = [false, false, false];
     $scope.newEvent.userId                      = currentUser._id;
 
+    console.log('new event', $scope.newEvent.address)
   // check user id fx
   $scope.checkEventFilter = function(event){
     if($scope.isAdmin()){
@@ -109,9 +110,9 @@ angular.module('gobeApp')
     $scope.newEvent.published = false;
     $scope.submitted = false;
 
-    if($scope.newEvent.address != null){
-      checkAddress();
-    }
+    // if($scope.newEvent.address !== null){
+    //   checkAddress();
+    // }
 
     Event.save($scope.newEvent, function(data){
       $state.go('event.list');
@@ -124,7 +125,10 @@ angular.module('gobeApp')
   $scope.publishEvent = function publishEvent(form) {
       $scope.newEvent.published = true;
       $scope.submitted          = true;
-      checkAddress();
+
+      if($scope.newEvent.address !== null) {
+        checkAddress();
+      }
 
          if(form.$valid){
              Event.send($scope.newEvent,

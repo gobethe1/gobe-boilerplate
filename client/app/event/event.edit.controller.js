@@ -41,9 +41,10 @@ angular.module('gobeApp')
     $scope.updateEvent = function updateEvent(form){
       $scope.submitted = false;
 
-      if($scope.newEvent.address != null){
+      if($scope.newEvent.address !== null){
         checkAddress();
       }
+
       var data = $scope.newEvent;
       // console.log('new event published');
       // console.log($scope.newEvent.published)

@@ -43,7 +43,13 @@ angular.module('gobeApp')
       return Group.get({id: $stateParams.group_id}).$promise;
      }
     }
-  });
+  })
+
+  .state('confirm.signup', {
+    url: '/signup',
+    templateUrl: 'app/confirm/confirm-signup.html',
+    controller: 'ConfirmCtrl'
+  })
 
 
 
