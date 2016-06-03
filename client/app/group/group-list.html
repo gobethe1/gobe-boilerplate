@@ -9,8 +9,15 @@
        <!-- end admin -->
   </div>
 </div>
-
 <div class="row">
+
+  <div ng-if= "(listGroups | filter:groupUserFilter) < 1" class="col-sm-12 col-xs-12 group-list-text text-center">
+    <h3>NO GROUPS ADDED</h3>
+    <i class="fa fa-users fa-5x" aria-hidden="true"></i>
+    <h4>Manage a volunteer group? Add it here by clicking the add group button above.</h4>
+    <h4>No sure what to do? Check the feedback tab for more info.</h4>
+  </div>
+
   <div class="col-sm-12 col-xs-12">
     <br>
     <ul class="list-unstyled event-list">

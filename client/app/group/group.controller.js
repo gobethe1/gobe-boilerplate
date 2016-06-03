@@ -5,6 +5,7 @@ angular.module('gobeApp')
     function ($scope, $http, $state, Group, groupModel, $stateParams, currentUser, Auth, $uibModal) {
 
     $scope.listGroups         = groupModel;
+    console.log('list groups lengths: ', $scope.listGroups.length)
     $scope.newGroup           = {};
     $scope.newGroup.emailList = [];
     $scope.emailList          = $scope.newGroup.emailList;
