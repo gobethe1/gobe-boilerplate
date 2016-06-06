@@ -10,12 +10,12 @@ angular.module('gobeApp')
     $scope.tab = 0;
 
     $scope.changeTab = function(newTab){
-      console.log('change tab')
+      // console.log('change tab')
       $scope.tab = newTab;
     };
 
     $scope.isActiveTab = function(tab){
-      console.log('tab #: ', tab)
+      // console.log('tab #: ', tab)
       return $scope.tab === tab;
     };
 // end list available vs your causes tab
