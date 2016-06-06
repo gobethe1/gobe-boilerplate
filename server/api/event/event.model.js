@@ -28,6 +28,7 @@ var EventSchema = new Schema({
   age: Number,
   causeType: String,
   veteran: Boolean,
+  dateTimes: Array,
   availability: {
     moveInDate: Date,
     firstDate: Date,

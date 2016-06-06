@@ -4,7 +4,6 @@ angular.module('gobeApp')
   .controller('EventCtrl', ['$scope', '$state', '$stateParams', 'Event', 'eventModel',
     'currentUser', 'Auth', 'Path', '$uibModal',
     function ($scope, $state, $stateParams, Event, eventModel, currentUser, Auth, Path, $uibModal) {
-    // console.log(currentUser)
   	$scope.listEvents             = eventModel;
     $scope.hover                  = true;
     $scope.newEvent               = {};
@@ -16,6 +15,7 @@ angular.module('gobeApp')
     $scope.showLink               = 'event.show';
     $scope.groupCauseArray        = ["Homeless Move-in", "Other"];
     $scope.causeArray             = ["Other"];
+    $scope.time = 'NotSet';
 
     // event list sorting filters
     $scope.sort = {};
@@ -25,20 +25,24 @@ angular.module('gobeApp')
     $scope.unpublished = {'published': false, 'confirmGroup': null };
 
 
-    // console.log('listEvents: ', $scope.listEvents[6].confirmIndividuals)?
-    // console.log('matched: ', $scope.matched)
-
-
-    // $scope.matched = (event.confirmGroup === !null && event.published === true) || {'confirmGroup': "!!", 'published': true };
-    // $scope.pending = (event.confirmGroup === null && event.published === true) || ;
-    // $scope.unpublished = {'published': false, 'confirmGroup': null };
-
     $scope.newEvent.availability.firstDateTime  = [false, false, false];
     $scope.newEvent.availability.secondDateTime = [false, false, false];
     $scope.newEvent.availability.thirdDateTime  = [false, false, false];
     $scope.newEvent.userId                      = currentUser._id;
 
-    console.log('new event', $scope.newEvent.address)
+
+  $scope.dateTimeArr = [];
+  console.log('times: ', $scope.dateTimeArr)
+
+  $scope.add = function(){
+    console.log('fire inside')
+    $scope.dateTimeArr.push({
+      date: "",
+      timeStart: "",
+      timeEnd: ""
+    });
+  };
+
   // check user id fx
   $scope.checkEventFilter = function(event){
     if($scope.isAdmin()){
@@ -56,12 +60,6 @@ angular.module('gobeApp')
       var stateAndZip           = addressArray[addressArray.length - 2].split(' ');
       var zip                   = stateAndZip[2];
       $scope.newEvent.zipCode   = zip;
-        // $scope.newEvent.meetupAddress   = $scope.newEvent.meetupAddress.formatted_address || $scope.newEvent.meetupAddress;
-        // var fullMeetupAddress           = $scope.newEvent.meetupAddress;
-        // var meetupAddressArray          = fullMeetupAddress.split(',');
-        // var meetupStateAndZip           = meetupAddressArray[meetupAddressArray.length - 2].split(' ');
-        // var meetupZip                   = meetupStateAndZip[2];
-        // $scope.newEvent.zipCode         = meetupZip;
   };
 
 
@@ -96,6 +94,7 @@ angular.module('gobeApp')
     }
   };
 
+  // cancel cause creation / form entry
   $scope.cancelClient = function cancelClient(form){
     if(form.$pristine){
       $state.go('event.list');
@@ -106,13 +105,10 @@ angular.module('gobeApp')
     }
   };
 
+  // add event but will not trigger emails
   $scope.addEvent = function addEvent(form){
     $scope.newEvent.published = false;
     $scope.submitted = false;
-
-    // if($scope.newEvent.address !== null){
-    //   checkAddress();
-    // }
 
     Event.save($scope.newEvent, function(data){
       $state.go('event.list');
@@ -122,6 +118,7 @@ angular.module('gobeApp')
     }
   };
 
+  // publish an event to send emails if matches found
   $scope.publishEvent = function publishEvent(form) {
       $scope.newEvent.published = true;
       $scope.submitted          = true;
