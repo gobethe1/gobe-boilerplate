@@ -11,6 +11,7 @@ angular.module('gobeApp')
     $scope.path          = Path.transitionToPath;
     $scope.returnValue   = [$scope.matchedZips, $scope.matchedEvents];
     $scope.userName      = ($scope.user.firstName + ' ' + $scope.user.lastName) || "NA";
+    $scope.phoneNumber   = $scope.user.phoneNumber || "NA";
     var user             = currentUser;
 
 

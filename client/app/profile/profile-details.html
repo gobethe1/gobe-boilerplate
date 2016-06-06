@@ -10,11 +10,11 @@
 
 <uib-accordion close-others="oneAtATime">
     <uib-accordion-group heading="Your Info" ng-init="isOpen = true" is-open="isOpen" template-url="app/group/custom-accordion-template.html">
-      <div class="row">
-        <div class="col-xs-2 col-xs-offset-1">
-          <i class="fa fa-user fa-5x" aria-hidden="true"></i>
+      <div class="row detail-rows">
+        <div class="col-xs-2 col-sm-2 col-sm-offset-1 col-md-2">
+          <i class="fa fa-user fa-4x" aria-hidden="true"></i>
         </div>
-        <div class="col-xs-2 pull-left">
+        <div class="col-xs-4 col-sm-2 col-md-2">
           <p>Name:</p>
           <p>Phone:</p>
           <p>Email:</p>
@@ -23,9 +23,9 @@
           <p>Subscription:</p>
           <p>Status:</p>
         </div>
-        <div class="col-xs-6 pull-left">
+        <div class="col-xs-6 col-sm-6 col-md-6 pull-right">
           <p>{{userName}}</p>
-          <p>{{user.phoneNumber}}</p>
+          <p>{{phoneNumber}}</p>
           <p>{{user.email}}</p>
           <p>{{callAddress}}</p>
           <p>{{user.matchRadius}} miles</p>
