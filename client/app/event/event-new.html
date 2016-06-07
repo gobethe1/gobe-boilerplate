@@ -40,28 +40,8 @@
 
 </form>
 
-			<!-- end date move-in -->
-			<div ng-repeat="dt in dateTimeArr">
-				<!-- date -->
-				<label>Date</label>
-	        <p class="input-group">
-	          <input type="text" class="form-control" name="datetwo" uib-datepicker-popup="{{format}}" ng-model="dt.date" is-open="popup3.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-	          <span class="input-group-btn">
-	            <button type="button" class="btn btn-default" ng-click="open3()"><i class="glyphicon glyphicon-calendar"></i></button>
-	          </span>
-	      	</p>
-	      <!-- time -->
-	      <label>Time</label>
-		      <br>
-		      <div class="row">
-		      	<div class="col-sm-12">
-				    	<time-picker ng-model="dt.startTime"></time-picker>
-				    	<time-picker ng-model="dt.endTime"></time-picker>
-		      	</div>
-		      </div>
 
-			</div>
-			<button class="btn btn-primary" ng-click="add()">CLICK ME</button>
+
 
 
 

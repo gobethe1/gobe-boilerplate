@@ -17,6 +17,8 @@ angular.module('gobeApp')
     $scope.causeArray             = ["Other"];
     $scope.time = 'NotSet';
 
+    console.log($scope.listEvents)
+
     // event list sorting filters
     $scope.sort = {};
     $scope.all = {};
@@ -107,6 +109,7 @@ angular.module('gobeApp')
 
   // add event but will not trigger emails
   $scope.addEvent = function addEvent(form){
+    $scope.newEvent.dateTimes = $scope.dateTimeArr;
     $scope.newEvent.published = false;
     $scope.submitted = false;
 
@@ -120,6 +123,7 @@ angular.module('gobeApp')
 
   // publish an event to send emails if matches found
   $scope.publishEvent = function publishEvent(form) {
+      $scope.newEvent.dateTimes = $scope.dateTimeArr;
       $scope.newEvent.published = true;
       $scope.submitted          = true;
 
@@ -213,6 +217,10 @@ angular.module('gobeApp')
     $scope.popup4.opened = true;
   };
 
+  $scope.open5 = function(){
+    $scope.popup5.opened = true;
+  }
+
 
   $scope.setDate = function(year, month, day) {
     $scope.dt = new Date(year, month, day);
@@ -235,6 +243,10 @@ angular.module('gobeApp')
   };
 
   $scope.popup4 = {
+    opened: false
+  };
+
+  $scope.popup5 = {
     opened: false
   };
 

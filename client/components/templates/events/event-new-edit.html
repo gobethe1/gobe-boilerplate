@@ -168,6 +168,30 @@
 			</div>
 			<!-- gender age-->
 
+	<!-- dates for individual event -->
+	<div ng-if="newEvent.causeType !== 'Homeless Move-in'">
+		<div ng-repeat="dt in dateTimeArr">
+			<!-- date -->
+			<label>Date</label>
+	      <p class="input-group">
+	        <input type="text" class="form-control" name="dt" uib-datepicker-popup="{{format}}" ng-model="dt.date" is-open="popup5.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+	        <span class="input-group-btn">
+	          <button type="button" class="btn btn-default" ng-click="open5()"><i class="glyphicon glyphicon-calendar"></i></button>
+	        </span>
+	    	</p>
+	    <!-- time -->
+	    <label>Time</label>
+	      <br>
+	      <div class="row">
+			    	<time-picker ng-model="dt.startTime"></time-picker>
+			    	<time-picker ng-model="dt.endTime"></time-picker>
+	      </div>
+		</div>
+		<button type="button" class="btn btn-primary add-time-btn" ng-click="add()">Add Date & Time</button>
+	</div>
+
+	<!-- dates for homeless move-in events -->
+	<div ng-if="newEvent.causeType === 'Homeless Move-in'">
 			<!-- date movedin -->
 			<div class="form-group" ng-if="newEvent.causeType === 'Homeless Move-in'"
 				  ng-class="{ 'has-success': form.moveindate.$valid && submitted,
@@ -224,7 +248,7 @@
 			<!-- end date one and time -->
 
 			<!-- date 2 & 3 show only if homeless move-in -->
-			<div ng-if="newEvent.causeType === 'Homeless Move-in'">
+			<div>
 				<!-- date two and time -->
 					<label>Date & Time 2</label>
 					<div class="row">
@@ -299,6 +323,8 @@
 					</div>
 				<!-- end date three and time -->
 			</div>
+	</div>
+
 
 			<!-- registry url -->
 			<div class="form-group" ng-class="{ 'has-success': form.registryUrl.$valid && submitted,'has-error': form.registryUrl.$invalid && submitted }">

@@ -20,8 +20,8 @@ angular.module('gobeApp')
       ];
 
     },
-    template: '<select name="timepicker" id="timePicker" class="form-control col-sm-6">\
+    template: '<div class="col-sm-6"><select name="timepicker" id="timePicker" class="form-control">\
     <option value="{{time}}" ng-repeat="time in timings">{{time}}</option>\
-    </select>'
+    </select></div>'
   };
 });
