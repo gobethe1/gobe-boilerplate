@@ -169,26 +169,39 @@
 			<!-- gender age-->
 
 	<!-- dates for individual event -->
-	<div ng-if="newEvent.causeType !== 'Homeless Move-in'">
-		<div ng-repeat="dt in dateTimeArr">
-			<!-- date -->
-			<label>Date</label>
-	      <p class="input-group">
-	        <input type="text" class="form-control" name="dt" uib-datepicker-popup="{{format}}" ng-model="dt.date" is-open="popup5.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-	        <span class="input-group-btn">
-	          <button type="button" class="btn btn-default" ng-click="open5()"><i class="glyphicon glyphicon-calendar"></i></button>
-	        </span>
-	    	</p>
-	    <!-- time -->
-	    <label>Time</label>
-	      <br>
-	      <div class="row">
-			    	<time-picker ng-model="dt.startTime"></time-picker>
-			    	<time-picker ng-model="dt.endTime"></time-picker>
-	      </div>
+
+	dt: 	{{newEvent.dateTimes}}
+	{{time}}
+	<div>
+		<div ng-if="newEvent.causeType !== 'Homeless Move-in'">
+			<ul class="list-unstyled" ng-repeat="dt in newEvent.dateTimes track by $index">
+				<li>
+					<!-- date -->
+					<label>Date</label>
+			      <p class="input-group">
+			        <input type="text" class="form-control" name="dt" uib-datepicker-popup="{{format}}" ng-model="newEvent.dateTimes[$index].date" is-open="popup5.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+			        <span class="input-group-btn">
+			          <button type="button" class="btn btn-default" ng-click="open5()"><i class="glyphicon glyphicon-calendar"></i></button>
+			        </span>
+			    	</p>
+			    <!-- time -->
+			    <label>Time</label>
+			      <br>
+			      <div class="row">
+				    	<time-picker ng-model="newEvent.dateTimes[$index].startTime"></time-picker>
+
+				    	<time-picker ng-model="newEvent.dateTimes[$index].endTime"></time-picker>
+
+			      </div>
+				</li>
+			</ul>
 		</div>
+
+
 		<button type="button" class="btn btn-primary add-time-btn" ng-click="add()">Add Date & Time</button>
-	</div>
+		</div>
+
+
 
 	<!-- dates for homeless move-in events -->
 	<div ng-if="newEvent.causeType === 'Homeless Move-in'">

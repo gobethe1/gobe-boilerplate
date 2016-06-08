@@ -15,7 +15,6 @@ angular.module('gobeApp')
     $scope.showLink               = 'event.show';
     $scope.groupCauseArray        = ["Homeless Move-in", "Other"];
     $scope.causeArray             = ["Other"];
-    $scope.time = 'NotSet';
 
     console.log($scope.listEvents)
 
@@ -33,15 +32,17 @@ angular.module('gobeApp')
     $scope.newEvent.userId                      = currentUser._id;
 
 
-  $scope.dateTimeArr = [];
-  console.log('times: ', $scope.dateTimeArr)
+  $scope.newEvent.dateTimes = [];
+  console.log('times: ', $scope.newEvent.dateTimes)
 
   $scope.add = function(){
     console.log('fire inside')
-    $scope.dateTimeArr.push({
-      date: "",
-      timeStart: "",
-      timeEnd: ""
+    // var index = $scope.dateTimeArr.length + 1;
+    // console.log($scope.dateTimeArr.length)
+    $scope.newEvent.dateTimes.push({
+      date: null,
+      startTime: '',
+      endTime: ''
     });
   };
 
@@ -109,7 +110,7 @@ angular.module('gobeApp')
 
   // add event but will not trigger emails
   $scope.addEvent = function addEvent(form){
-    $scope.newEvent.dateTimes = $scope.dateTimeArr;
+
     $scope.newEvent.published = false;
     $scope.submitted = false;
 
@@ -123,7 +124,7 @@ angular.module('gobeApp')
 
   // publish an event to send emails if matches found
   $scope.publishEvent = function publishEvent(form) {
-      $scope.newEvent.dateTimes = $scope.dateTimeArr;
+    console.log('date times to model: ', $scope.newEvent.dateTimes)
       $scope.newEvent.published = true;
       $scope.submitted          = true;
 

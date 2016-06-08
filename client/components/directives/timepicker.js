@@ -3,6 +3,9 @@ angular.module('gobeApp')
   return {
     restrict: 'E',
     require: 'ngModel',
+    scope: {
+        ngModel: '='
+    },
     replace: true,
     link: function(scope, element, attrs) {
       scope.timings = [' 7:00 am', ' 7:30 am', ' 8:00 am',
@@ -18,9 +21,8 @@ angular.module('gobeApp')
         ' 2:30 am', ' 3:00 am', ' 3:30 am', ' 4:00 am',
         ' 4:30 am', ' 5:00 am', ' 5:30 am', ' 6:00 am', ' 6:30 am'
       ];
-
     },
-    template: '<div class="col-sm-6"><select name="timepicker" id="timePicker" class="form-control">\
+    template: '<div class="col-sm-6"><select ng-model="ngModel" name="timepicker" id="timePicker" class="form-control">\
     <option value="{{time}}" ng-repeat="time in timings">{{time}}</option>\
     </select></div>'
   };

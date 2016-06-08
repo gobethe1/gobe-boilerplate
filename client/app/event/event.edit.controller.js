@@ -6,7 +6,10 @@ angular.module('gobeApp')
     $scope.showMeetupAddress = (eventEdit.causeType === 'Homeless Move-in') && eventEdit.confirmGroup;
     console.log('show meetup: ', $scope.showMeetupAddress)
 
+
+
     $scope.newEvent = eventEdit;
+
     if ($scope.newEvent.availability.moveInDate){
       $scope.newEvent.availability.moveInDate = new Date($scope.newEvent.availability.moveInDate);
     };
@@ -22,6 +25,20 @@ angular.module('gobeApp')
     if($scope.newEvent.availability.thirdDate){
       $scope.newEvent.availability.thirdDate =  new Date($scope.newEvent.availability.thirdDate);
     };
+
+    $scope.newEvent.dateTimes = $scope.newEvent.dateTimes;
+
+    // $scope.newEvent.dateTimes = [];
+    // $scope.add = function(){
+    //   console.log('fire inside')
+    //   // var index = $scope.dateTimeArr.length + 1;
+    //   // console.log($scope.dateTimeArr.length)
+    //   $scope.newEvent.dateTimes.push({
+    //     date: null,
+    //     startTime: '',
+    //     endTime: ''
+    //   });
+    // };
 
     var checkAddress = function(){
         $scope.newEvent.address         = $scope.newEvent.address.formatted_address || $scope.newEvent.address;
