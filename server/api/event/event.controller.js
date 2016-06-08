@@ -37,9 +37,14 @@ exports.update = function(req, res) {
   Event.findById(req.params.id, function (err, event) {
     if (err) { return handleError(res, err); }
     if(!event) { return res.status(404).send('Not Found'); }
+
     var updated = _.merge(event, req.body);
+    updated.dateTimes    = req.body.dateTimes;
     updated.availability = req.body.availability;
     updated.confirmIndividuals = req.body.confirmIndividuals;
+    updated.confirmIndividuals = req.body.confirmIndividuals;
+
+    event.markModified('dateTimes');
     event.markModified('confirmIndividuals');
     event.markModified('confirmedEmails');
     event.markModified('rejectedEmails');
@@ -87,6 +92,8 @@ exports.sendupdate = function(req, res) {
     if(!event) { return res.status(404).send('Not Found'); }
     var updated = _.merge(event, req.body);
     updated.availability = req.body.availability;
+    updated.dateTimes    = req.body.dateTimes;
+    event.markModified('dateTimes');
 
     updated.save(function (err) {
       if (err) { return handleError(res, err); }

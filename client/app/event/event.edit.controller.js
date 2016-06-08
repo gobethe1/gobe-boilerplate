@@ -26,19 +26,32 @@ angular.module('gobeApp')
       $scope.newEvent.availability.thirdDate =  new Date($scope.newEvent.availability.thirdDate);
     };
 
-    $scope.newEvent.dateTimes = $scope.newEvent.dateTimes;
+    // newDateTimes = [];
+    $scope.newEvent.dateTimes.forEach(function(dt){
+      console.log(dt)
+      if(dt.date){
+        dt.date =  new Date(dt.date);
 
-    // $scope.newEvent.dateTimes = [];
-    // $scope.add = function(){
-    //   console.log('fire inside')
-    //   // var index = $scope.dateTimeArr.length + 1;
-    //   // console.log($scope.dateTimeArr.length)
-    //   $scope.newEvent.dateTimes.push({
-    //     date: null,
-    //     startTime: '',
-    //     endTime: ''
-    //   });
-    // };
+      };
+    })
+
+
+    // $scope.newEvent.dateTimes.forEach(function(dt){
+    //   dt.date = new Date($scope.dt.date)
+    // })
+
+
+    // $scope.newEvent.dateTimes = []
+    $scope.add = function(){
+      console.log('fire inside')
+      // var index = $scope.dateTimeArr.length + 1;
+      // console.log($scope.dateTimeArr.length)
+      $scope.newEvent.dateTimes.push({
+        date: null,
+        startTime: '',
+        endTime: ''
+      });
+    };
 
     var checkAddress = function(){
         $scope.newEvent.address         = $scope.newEvent.address.formatted_address || $scope.newEvent.address;
@@ -47,12 +60,14 @@ angular.module('gobeApp')
         var stateAndZip                 = addressArray[addressArray.length - 2].split(' ');
         var zip                         = stateAndZip[2];
         $scope.newEvent.zipCode         = zip;
-        $scope.newEvent.meetupAddress   = $scope.newEvent.meetupAddress.formatted_address || $scope.newEvent.meetupAddress;
-        var fullMeetupAddress           = $scope.newEvent.meetupAddress;
-        var meetupAddressArray          = fullMeetupAddress.split(',');
-        var meetupStateAndZip           = meetupAddressArray[meetupAddressArray.length - 2].split(' ');
-        var meetupZip                   = meetupStateAndZip[2];
-        $scope.newEvent.zipCode         = meetupZip;
+        // if($scope.newEvent.meetupAddress !== null){
+        //   $scope.newEvent.meetupAddress   = $scope.newEvent.meetupAddress.formatted_address || $scope.newEvent.meetupAddress || '';
+        //   var fullMeetupAddress           = $scope.newEvent.meetupAddress;
+        //   var meetupAddressArray          = fullMeetupAddress.split(',');
+        //   var meetupStateAndZip           = meetupAddressArray[meetupAddressArray.length - 2].split(' ');
+        //   var meetupZip                   = meetupStateAndZip[2];
+        //   $scope.newEvent.zipCode         = meetupZip;
+        // }
     };
 
     $scope.updateEvent = function updateEvent(form){
