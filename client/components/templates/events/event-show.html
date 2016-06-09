@@ -356,6 +356,11 @@
           <span ng-repeat="time in event.availability.firstDateTime track by $index" ng-if="time">
             {{$first ? '' : $last ? ' , ' : ', '}}{{checkTime(time, $index)}}
           </span>
+          <span ng-repeat="dt in event.dateTimes track by $index">
+            <ul class="list-unstyled date-list">
+              <li>{{dt.date | date:"MM/dd/yyyy"}}: {{dt.startTime}} - {{dt.endTime}} </li>
+            </ul>
+          </span>
         </div>
       </div>
       <br>

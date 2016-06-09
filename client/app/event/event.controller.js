@@ -16,8 +16,6 @@ angular.module('gobeApp')
     $scope.groupCauseArray        = ["Homeless Move-in", "Other"];
     $scope.causeArray             = ["Other"];
 
-    console.log($scope.listEvents)
-
     // event list sorting filters
     $scope.sort = {};
     $scope.all = {};
@@ -33,12 +31,8 @@ angular.module('gobeApp')
 
 
   $scope.newEvent.dateTimes = [];
-  console.log('times: ', $scope.newEvent.dateTimes)
-
   $scope.add = function(){
     console.log('fire inside')
-    // var index = $scope.dateTimeArr.length + 1;
-    // console.log($scope.dateTimeArr.length)
     $scope.newEvent.dateTimes.push({
       date: null,
       startTime: '',

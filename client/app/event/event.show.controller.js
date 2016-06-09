@@ -13,6 +13,8 @@ angular.module('gobeApp')
     }
     checkIfGroup()
 
+    console.log($scope.event.dateTimes)
+
     //still need to write logic to save and sort emails to show for individual events
 
    $scope.tab = 0;

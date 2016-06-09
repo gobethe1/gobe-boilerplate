@@ -31,21 +31,20 @@ angular.module('gobeApp')
       console.log(dt)
       if(dt.date){
         dt.date =  new Date(dt.date);
-
-      };
+      }
+      if(dt.startTime !== ''){
+        dt.startTime = dt.startTime;
+      }
+      if(dt.endTime !== ''){
+        dt.endTime = dt.endTime;
+      }
     })
 
-
-    // $scope.newEvent.dateTimes.forEach(function(dt){
-    //   dt.date = new Date($scope.dt.date)
-    // })
 
 
     // $scope.newEvent.dateTimes = []
     $scope.add = function(){
       console.log('fire inside')
-      // var index = $scope.dateTimeArr.length + 1;
-      // console.log($scope.dateTimeArr.length)
       $scope.newEvent.dateTimes.push({
         date: null,
         startTime: '',
