@@ -196,6 +196,10 @@ angular.module('gobeApp')
 
   $scope.toggleMin();
 
+  $scope.open = function(dt) {
+    dt.opened = true;
+  };
+
   $scope.open1 = function() {
     $scope.popup1.opened = true;
   };
@@ -207,14 +211,6 @@ angular.module('gobeApp')
   $scope.open3 = function() {
     $scope.popup3.opened = true;
   };
-
-  $scope.open4 = function() {
-    $scope.popup4.opened = true;
-  };
-
-  $scope.open5 = function(){
-    $scope.popup5.opened = true;
-  }
 
 
   $scope.setDate = function(year, month, day) {
@@ -237,13 +233,6 @@ angular.module('gobeApp')
     opened: false
   };
 
-  $scope.popup4 = {
-    opened: false
-  };
-
-  $scope.popup5 = {
-    opened: false
-  };
 
   var tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);

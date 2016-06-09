@@ -179,9 +179,9 @@
 					<!-- date -->
 					<label>Date</label>
 			      <p class="input-group">
-			        <input type="text" class="form-control" name="dt" uib-datepicker-popup="{{format}}" ng-model="newEvent.dateTimes[$index].date" is-open="popup5.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+			        <input type="text" class="form-control" name="dt" uib-datepicker-popup="{{format}}" ng-model="newEvent.dateTimes[$index].date" is-open="dt.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
 			        <span class="input-group-btn">
-			          <button type="button" class="btn btn-default" ng-click="open5()"><i class="glyphicon glyphicon-calendar"></i></button>
+			          <button type="button" class="btn btn-default" ng-click="open(dt)"><i class="glyphicon glyphicon-calendar"></i></button>
 			        </span>
 			    	</p>
 			    <!-- time -->
