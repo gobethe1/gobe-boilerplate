@@ -59,14 +59,15 @@ angular.module('gobeApp')
         var stateAndZip                 = addressArray[addressArray.length - 2].split(' ');
         var zip                         = stateAndZip[2];
         $scope.newEvent.zipCode         = zip;
-        // if($scope.newEvent.meetupAddress !== null){
-        //   $scope.newEvent.meetupAddress   = $scope.newEvent.meetupAddress.formatted_address || $scope.newEvent.meetupAddress || '';
-        //   var fullMeetupAddress           = $scope.newEvent.meetupAddress;
-        //   var meetupAddressArray          = fullMeetupAddress.split(',');
-        //   var meetupStateAndZip           = meetupAddressArray[meetupAddressArray.length - 2].split(' ');
-        //   var meetupZip                   = meetupStateAndZip[2];
-        //   $scope.newEvent.zipCode         = meetupZip;
-        // }
+        // console.log('meetup: ', $scope.newEvent.meetupAddress)
+        if($scope.newEvent.meetupAddress){
+          $scope.newEvent.meetupAddress   = $scope.newEvent.meetupAddress.formatted_address || $scope.newEvent.meetupAddress;
+          var fullMeetupAddress           = $scope.newEvent.meetupAddress;
+          var meetupAddressArray          = fullMeetupAddress.split(',');
+          var meetupStateAndZip           = meetupAddressArray[meetupAddressArray.length - 2].split(' ');
+          var meetupZip                   = meetupStateAndZip[2];
+          $scope.newEvent.zipCode         = meetupZip;
+        }
     };
 
     $scope.updateEvent = function updateEvent(form){
