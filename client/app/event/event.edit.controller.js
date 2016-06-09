@@ -2,9 +2,7 @@
 
 angular.module('gobeApp')
   .controller('EventEditCtrl', function ($scope, $state, $stateParams, Event, eventEdit) {
-    console.log('event: ', eventEdit)
     $scope.showMeetupAddress = (eventEdit.causeType === 'Homeless Move-in') && eventEdit.confirmGroup;
-    console.log('show meetup: ', $scope.showMeetupAddress)
 
 
 
@@ -26,9 +24,8 @@ angular.module('gobeApp')
       $scope.newEvent.availability.thirdDate =  new Date($scope.newEvent.availability.thirdDate);
     };
 
-    // newDateTimes = [];
+    //loop through dateTimes array to assign new value from form
     $scope.newEvent.dateTimes.forEach(function(dt){
-      console.log(dt)
       if(dt.date){
         dt.date =  new Date(dt.date);
       }
@@ -40,11 +37,8 @@ angular.module('gobeApp')
       }
     })
 
-
-
-    // $scope.newEvent.dateTimes = []
-    $scope.add = function(){
-      console.log('fire inside')
+    // add date time button fx
+    $scope.addDt= function(){
       $scope.newEvent.dateTimes.push({
         date: null,
         startTime: '',

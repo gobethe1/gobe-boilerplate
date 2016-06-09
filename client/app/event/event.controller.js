@@ -30,8 +30,9 @@ angular.module('gobeApp')
     $scope.newEvent.userId                      = currentUser._id;
 
 
+  // add date time button fx
   $scope.newEvent.dateTimes = [];
-  $scope.add = function(){
+  $scope.addDt = function(){
     console.log('fire inside')
     $scope.newEvent.dateTimes.push({
       date: null,

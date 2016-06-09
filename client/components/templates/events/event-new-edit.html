@@ -169,9 +169,6 @@
 			<!-- gender age-->
 
 	<!-- dates for individual event -->
-
-	dt: 	{{newEvent.dateTimes}}
-	{{time}}
 	<div>
 		<div ng-if="newEvent.causeType !== 'Homeless Move-in'">
 			<ul class="list-unstyled" ng-repeat="dt in newEvent.dateTimes track by $index">
@@ -198,7 +195,7 @@
 		</div>
 
 
-		<button type="button" class="btn btn-primary add-time-btn" ng-click="add()">Add Date & Time</button>
+		<button type="button" class="btn btn-primary add-time-btn" ng-click="addDt()">Add Date & Time</button>
 		</div>
 
 
