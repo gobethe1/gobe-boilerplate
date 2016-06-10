@@ -12,6 +12,7 @@ var UserSchema = new Schema({
   lastName: String,
   groupName: String,
   email: { type: String, lowercase: true },
+  photo: String,
   groupId: {type: mongoose.Schema.Types.ObjectId,
                ref: 'Group'
            },

@@ -12,7 +12,8 @@ angular.module('gobeApp', [
   'rzModule',
   'google.places',
   'config',
-  'validation.match'
+  'validation.match',
+  'ngFileUpload'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider, ENV) {
     var $window = $windowProvider.$get();

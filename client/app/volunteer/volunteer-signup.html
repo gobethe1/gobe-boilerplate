@@ -1,4 +1,23 @@
-<div class="row volunteer-signup">
+        <form  ng-submit="upload(form)" name="upload">
+                Single Image with validations
+            <input
+               type="file"
+               ngf-select
+               ng-model="currentUser.photo"
+               name="file"
+               ngf-pattern="'image/*'"
+               accept="image/*"
+               ngf-max-size="20MB"
+               />
+            Image thumbnail: <img style="width:100px;" ngf-thumbnail="file || '/thumb.jpg'"/>
+<!--             <i ng-show="upload_form.file.$error.required">*required</i><br>
+            <i ng-show="upload_form.file.$error.maxSize">File too large
+            {{up.file.size / 1000000|number:1}}MB: max 20M</i> -->
+            <button type="submit" ng-click="upload()">submit</button>
+            <p>{{up.progress}}</p>
+        </form>
+
+<!-- <div class="row volunteer-signup">
   <!-- path / form selection sectionc -->
   <div class="col-sm-12 col-xs-12 text-center">
     <h4 class="text-center">Welcome to GoBe! <br>
@@ -16,115 +35,137 @@
       <p>Hi, I'm here to find volunteers for my events!</p>
     </button>
 
-      <!-- group form -->
+    <!-- group form -->
     <div ng-if="tab === 2" class="col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 signup-next text-right">
       <button class="btn btn-lg btn-primary" type="submit" ui-sref="event.list"
       >
         Next
       </button>
     </div>
-  <!-- end group form -->
-  </div>
-  <!-- end path / form selection sectionc -->
-
-  <!-- volunteer form -->
-  <form ng-if="tab === 1" class="form" name="form" ng-submit="updateUser(form)" novalidate>
-    <div class="col-sm-12 col-xs-12 text-center">
-      <h5>Yay! We are happy you are joining us and look forward to helping you make
-        a difference in your community.</h5>
-      <i class="fa fa-map-marker fa-5x" aria-hidden="true"></i>
-      <h5>To match with opportunities we are going to need your address.
-        Enter it below.</h5>
+    <!-- end group form -->
     </div>
+    <!-- end path / form selection sectionc -->
 
-    <div class="col-sm-12 col-xs-12">
-      <!-- first and last name -->
-          <div class="row">
-            <div class="col-md-6 col-xs-6">
-             <div class="form-group" ng-class="{ 'has-success': form.firstName.$valid && submitted,
-                                                'has-error': form.firstName.$invalid && submitted }">
-               <label>First Name</label>
-               <input type="text" name="firstName" ng-model="currentUser.firstName"
-                      class="form-control" placeholder="First Name" required>
+    <!-- volunteer form -->
+    <form ng-if="tab === 1" class="form" name="form" ng-submit="updateUser(form)" novalidate>
+      <div class="col-sm-12 col-xs-12 text-center">
+        <h5>Yay! We are happy you are joining us and look forward to helping you make
+          a difference in your community.</h5>
+        <i class="fa fa-map-marker fa-5x" aria-hidden="true"></i>
+        <h5>To match with opportunities we are going to need your address.
+          Enter it below.</h5>
+      </div>
+
+      <div class="col-sm-12 col-xs-12">
+        <!-- first and last name -->
+            <div class="row">
+              <div class="col-md-6 col-xs-6">
+               <div class="form-group" ng-class="{ 'has-success': form.firstName.$valid && submitted,
+                                                  'has-error': form.firstName.$invalid && submitted }">
+                 <label>First Name</label>
+                 <input type="text" name="firstName" ng-model="currentUser.firstName"
+                        class="form-control" placeholder="First Name" required>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-6">
+                <div class="form-group" ng-class="{ 'has-success': form.lastName.$valid && submitted,
+                                                     'has-error': form.lastName.$invalid  && submitted }">
+                   <label>Last Name</label>
+                   <input type="text" name="lastName" ng-model="currentUser.lastName"
+                          class="form-control" placeholder="Last Name" required>
+                </div>
               </div>
             </div>
-            <div class="col-md-6 col-xs-6">
-              <div class="form-group" ng-class="{ 'has-success': form.lastName.$valid && submitted,
-                                                   'has-error': form.lastName.$invalid  && submitted }">
-                 <label>Last Name</label>
-                 <input type="text" name="lastName" ng-model="currentUser.lastName"
-                        class="form-control" placeholder="Last Name" required>
-              </div>
+            <!-- end name -->
+
+            <!-- email -->
+            <div class="form-group" ng-class="{ 'has-success': form.organizerEmail.$valid && submitted,
+                                                 'has-error': form.organizerEmail.$invalid && submitted }">
+              <label>Email</label>
+              <input type="text" name="email" ng-model="currentUser.email"
+                     class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+                     required/>
+                <p class="text-danger" ng-if="form.email.$error.pattern && submitted">
+                  Please enter a valid email.
+                </p>
+             </div>
+            <!-- end email -->
+
+            <!-- photo upload -->
+         <h5>Profile Picture</h5>
+ <!--          <input type="file" ng-model="headShot" ngf-max-size="4MB" ngf-select="uploadFiles($file, $invalidFiles, 'headShot')" accept="jpg,.jpeg, .png">
+          </input> -->
+          <div class="col-sm-12 col-xs-12">
+            <div class="row">
+               <button class="btn btn-lg pull-right" ngf-select ng-model="currentUser.photo" accept="image/*">
+            Select Picture</button>
             </div>
+
+            <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
+                 class="cropArea">
+                <img-crop image="picFile  | ngfDataUrl"
+                result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
+                </img-crop>
+            </div>
+           <div>
+                <img ng-src="{{croppedDataUrl}}" />
+            </div>
+            <button ng-click="upload(croppedDataUrl, picFile.name)">Submit</button>
           </div>
-          <!-- end name -->
-          <!-- email -->
-          <div class="form-group" ng-class="{ 'has-success': form.organizerEmail.$valid && submitted,
-                                               'has-error': form.organizerEmail.$invalid && submitted }">
-            <label>Email</label>
-            <input type="text" name="email" ng-model="currentUser.email"
-                   class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
-                   required/>
-              <p class="text-danger" ng-if="form.email.$error.pattern && submitted">
-                Please enter a valid email.
-              </p>
-           </div>
-          <!-- end email -->
+            <!-- end photo upload -->
 
-      <!-- address -->
-      <div class="form-group" ng-class="{'has-success': form.address.$valid && submitted,
-                                           'has-error': form.address.$invalid && submitted }">
-         <label>Your location</label>
-         <input type="text" g-places-autocomplete name="address"
-                placeholder="Enter address, business name, landmark"
-                ng-model="currentUser.address" class="form-control" required>
-      </div>
-
-      <p class="text-danger" ng-show="form.address.$error.minlength && submitted">
-          Please enter a complete address.
-      </p>
-      <!-- end address -->
-
-      <!-- zip code slider -->
-      <div>
-          <h5>What is the distance you are willing to travel?</h5>
-          <rzslider rz-slider-model="zipCodeSlider.value" rz-slider-options="zipCodeSlider.options"></rzslider>
-      </div>
-      <!-- end zip code slider -->
-
-      <!-- phone marker -->
-      <div class="text-center">
-        <i class="fa fa-mobile fa-5x" aria-hidden="true"></i>
-      </div>
-      <!-- end phone marker -->
-
-      <!-- phone number -->
-      <div class="form-group" ng-class="{'has-success': form.phoneNumber.$valid && submitted,
-                                           'has-error': form.phoneNumber.$invalid && submitted }">
-         <label>Phone number</label>
-         <input class="form-control" type="text"
-                ui-mask="(999) 999-9999"
-                ng-model="currentUser.phoneNumber">
-      </div>
-      <!-- end phone number -->
-
-
-
-      <!-- <div> -->
-        <div class="text-left">
-          <p class="text-danger">{{updateUserError}}</p>
+        <!-- address -->
+        <div class="form-group" ng-class="{'has-success': form.address.$valid && submitted,
+                                             'has-error': form.address.$invalid && submitted }">
+           <label>Your location</label>
+           <input type="text" g-places-autocomplete name="address"
+                  placeholder="Enter address, business name, landmark"
+                  ng-model="currentUser.address" class="form-control" required>
         </div>
 
-        <div class="col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 pull-right text-right">
-          <button class="btn btn-lg" type="submit" ng-submit="updateUser()"
-          ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}">
-            Next
-          </button>
+        <p class="text-danger" ng-show="form.address.$error.minlength && submitted">
+            Please enter a complete address.
+        </p>
+        <!-- end address -->
+
+        <!-- zip code slider -->
+        <div>
+            <h5>What is the distance you are willing to travel?</h5>
+            <rzslider rz-slider-model="zipCodeSlider.value" rz-slider-options="zipCodeSlider.options"></rzslider>
         </div>
-      <!-- </div> -->
-    </div>
-  </form>
-  <!-- end volunteer form -->
+        <!-- end zip code slider -->
+
+        <!-- phone marker -->
+        <div class="text-center">
+          <i class="fa fa-mobile fa-5x" aria-hidden="true"></i>
+        </div>
+        <!-- end phone marker -->
+
+        <!-- phone number -->
+        <div class="form-group" ng-class="{'has-success': form.phoneNumber.$valid && submitted,
+                                             'has-error': form.phoneNumber.$invalid && submitted }">
+           <label>Phone number</label>
+           <input class="form-control" type="text"
+                  ui-mask="(999) 999-9999"
+                  ng-model="currentUser.phoneNumber">
+        </div>
+        <!-- end phone number -->
 
 
-</div>
+
+        <!-- <div> -->
+          <div class="text-left">
+            <p class="text-danger">{{updateUserError}}</p>
+          </div>
+
+          <div class="col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 pull-right text-right">
+            <button class="btn btn-lg" type="submit" ng-submit="updateUser()"
+            ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}">
+              Next
+            </button>
+          </div>
+        <!-- </div> -->
+      </div>
+    </form>
+    <!-- end volunteer form -->
+<!-- </div> -->

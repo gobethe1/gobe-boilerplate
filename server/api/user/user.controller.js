@@ -14,7 +14,60 @@ var stripe            = require("stripe")(stripeKey);
 var SENDGRID_API_KEY  = process.env.SENDGRID_API_KEY;
 var sendgrid          = require('sendgrid')(SENDGRID_API_KEY);
 var gobeEmailAddress  = 'hello@getgobe.com';
+var multer            = require('multer');
 
+var storage = multer.diskStorage({ //multers disk storage settings
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        var datetimestamp = Date.now();
+        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+    }
+});
+
+var upload = multer({ //multer settings
+                    storage: storage
+             }).single('file');
+
+
+exports.uploadPhoto = function (req, res, next) {
+  console.log('firing upload');
+  upload(req, res, function (err) {
+    if (err) return next(err)
+
+
+  })
+}
+//upload file
+// exports.uploadFile = function(req, res) {
+//   var file = req.files.file;
+//   var unique = req.body.unique
+
+//   fs.readFile(file.path, function (err, data) {
+//     if (err) throw err;
+//        AWS.config.update({accessKeyId: AWS_ACCESS_KEY , secretAccessKey: AWS_SECRET_KEY });
+//        AWS.config.region = 'us-west-1';
+//        var s3 = new AWS.S3();
+//        var params = {
+//            Key: unique + file.originalFilename,
+//            Bucket: AWS_S3_BUCKET,
+//            Body: data,
+//            ContentType: file.type
+//        };
+
+//        s3.putObject(params, function(err, data) {
+//          if(err) {
+//            console.log(err.message,err.code);
+//            return false;
+//          }
+//          else {
+//            console.log('File Uploaded Successfully', 'Done');
+//          }
+//        })
+
+//   })
+// }
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
