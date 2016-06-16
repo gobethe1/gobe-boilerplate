@@ -5,8 +5,14 @@ angular.module('gobeApp')
      $scope.currentUser = currentUser;
      $scope.currentUser.address;
      var value = $scope.currentUser.matchRadius || 5;
+     var s3Link = 'https://s3-us-west-1.amazonaws.com/gobe-test-photos/'
+             console.log('matchRadius: ', $scope.currentUser.zipCode)
+
+
+
 
     $scope.upload = function (file) {
+      $scope.url = s3Link + file.name;
       console.log('file: ', file)
         file.upload = Upload.upload({
             arrayKey: '', // default is '[i]'
@@ -50,6 +56,8 @@ angular.module('gobeApp')
         }
       };
 
+      console.log($scope.zipCodeSlider.value)
+
     var checkAddress = function(){
         $scope.currentUser.address    = $scope.currentUser.address.formatted_address || $scope.currentUser.address;
         var fullAddress               = $scope.currentUser.address;
@@ -65,10 +73,12 @@ angular.module('gobeApp')
 
 
     $scope.updateUser = function updateUser(form) {
-        // checkAddress();
+        checkAddress();
+        $scope.currentUser.photo = $scope.url;
         $scope.currentUser = $scope.currentUser;
         $scope.currentUser.matchRadius = $scope.zipCodeSlider.value;
         $scope.submitted = true;
+        console.log('matchRadius: ', $scope.currentUser.matchRadius)
            // console.log('form: ', form)
            // console.log('file: ', $scope.file)
            // if (form.file.$valid && $scope.file) {

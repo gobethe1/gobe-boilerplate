@@ -76,7 +76,12 @@
 
             <!-- photo upload -->
             <h5>Profile Picture</h5>
-            <div class="button" ngf-select="upload($file)">Upload on file select</div>
+
+            <div class="button" ngf-select="upload($file)">Upload on file select
+
+            </div>
+            <img class="profile-photo" ngf-src="url">
+
 <!--              Single Image with validations
             <div class="button" ngf-select ng-model="currentUser.photo" name="file" ngf-pattern="'image/*'"
               ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"

@@ -5,7 +5,7 @@ var controller = require('./user.controller');
 var config = require('../../config/environment');
 var auth = require('../../auth/auth.service');
 var multer = require('multer');
-var upload = multer({ dest: './uploads' })
+var upload = multer({ dest: 'uploads' })
 
 var router = express.Router();
 
