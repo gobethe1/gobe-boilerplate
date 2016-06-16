@@ -1,21 +1,3 @@
-        <form  ng-submit="upload(form)" name="upload">
-                Single Image with validations
-            <input
-               type="file"
-               ngf-select
-               ng-model="currentUser.photo"
-               name="file"
-               ngf-pattern="'image/*'"
-               accept="image/*"
-               ngf-max-size="20MB"
-               />
-            Image thumbnail: <img style="width:100px;" ngf-thumbnail="file || '/thumb.jpg'"/>
-<!--             <i ng-show="upload_form.file.$error.required">*required</i><br>
-            <i ng-show="upload_form.file.$error.maxSize">File too large
-            {{up.file.size / 1000000|number:1}}MB: max 20M</i> -->
-            <button type="submit" ng-click="upload()">submit</button>
-            <p>{{up.progress}}</p>
-        </form>
 
 <!-- <div class="row volunteer-signup">
   <!-- path / form selection sectionc -->
@@ -91,27 +73,14 @@
              </div>
             <!-- end email -->
 
-            <!-- photo upload -->
-         <h5>Profile Picture</h5>
- <!--          <input type="file" ng-model="headShot" ngf-max-size="4MB" ngf-select="uploadFiles($file, $invalidFiles, 'headShot')" accept="jpg,.jpeg, .png">
-          </input> -->
-          <div class="col-sm-12 col-xs-12">
-            <div class="row">
-               <button class="btn btn-lg pull-right" ngf-select ng-model="currentUser.photo" accept="image/*">
-            Select Picture</button>
-            </div>
 
-            <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
-                 class="cropArea">
-                <img-crop image="picFile  | ngfDataUrl"
-                result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
-                </img-crop>
-            </div>
-           <div>
-                <img ng-src="{{croppedDataUrl}}" />
-            </div>
-            <button ng-click="upload(croppedDataUrl, picFile.name)">Submit</button>
-          </div>
+            <!-- photo upload -->
+            <h5>Profile Picture</h5>
+            <div class="button" ngf-select="upload($file)">Upload on file select</div>
+<!--              Single Image with validations
+            <div class="button" ngf-select ng-model="currentUser.photo" name="file" ngf-pattern="'image/*'"
+              ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+              ngf-resize="{width: 100, height: 100}">Select</div> -->
             <!-- end photo upload -->
 
         <!-- address -->
