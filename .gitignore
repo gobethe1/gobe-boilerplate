@@ -13,4 +13,4 @@ server.key
 server.pass.key
 www_getgobe_com.ca-bundle
 www_getgobe_com.crt
-.uploads
+# uploads
