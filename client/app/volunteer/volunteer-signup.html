@@ -40,105 +40,93 @@
 
       <div class="col-sm-12 col-xs-12">
         <!-- first and last name -->
-            <div class="row">
-              <div class="col-md-6 col-xs-6">
-               <div class="form-group" ng-class="{ 'has-success': form.firstName.$valid && submitted,
-                                                  'has-error': form.firstName.$invalid && submitted }">
-                 <label>First Name</label>
-                 <input type="text" name="firstName" ng-model="currentUser.firstName"
-                        class="form-control" placeholder="First Name" required>
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-6">
-                <div class="form-group" ng-class="{ 'has-success': form.lastName.$valid && submitted,
-                                                     'has-error': form.lastName.$invalid  && submitted }">
-                   <label>Last Name</label>
-                   <input type="text" name="lastName" ng-model="currentUser.lastName"
-                          class="form-control" placeholder="Last Name" required>
-                </div>
+          <div class="row">
+            <div class="col-md-6 col-xs-6">
+             <div class="form-group" ng-class="{ 'has-success': form.firstName.$valid && submitted,
+                                                'has-error': form.firstName.$invalid && submitted }">
+               <label>First Name</label>
+               <input type="text" name="firstName" ng-model="currentUser.firstName"
+                      class="form-control" placeholder="First Name" required>
               </div>
             </div>
-            <!-- end name -->
-
-            <!-- email -->
-            <div class="form-group" ng-class="{ 'has-success': form.organizerEmail.$valid && submitted,
-                                                 'has-error': form.organizerEmail.$invalid && submitted }">
-              <label>Email</label>
-              <input type="text" name="email" ng-model="currentUser.email"
-                     class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
-                     required/>
-                <p class="text-danger" ng-if="form.email.$error.pattern && submitted">
-                  Please enter a valid email.
-                </p>
-             </div>
-            <!-- end email -->
-
-
-            <!-- photo upload -->
-            <h5>Profile Picture</h5>
-
-            <div class="button" ngf-select="upload($file)">Upload on file select
-
+            <div class="col-md-6 col-xs-6">
+              <div class="form-group" ng-class="{ 'has-success': form.lastName.$valid && submitted,
+                                                   'has-error': form.lastName.$invalid  && submitted }">
+                 <label>Last Name</label>
+                 <input type="text" name="lastName" ng-model="currentUser.lastName"
+                        class="form-control" placeholder="Last Name" required>
+              </div>
             </div>
-            <img class="profile-photo" ngf-src="url">
+          </div>
+        <!-- end name -->
 
-<!--              Single Image with validations
-            <div class="button" ngf-select ng-model="currentUser.photo" name="file" ngf-pattern="'image/*'"
-              ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-              ngf-resize="{width: 100, height: 100}">Select</div> -->
-            <!-- end photo upload -->
+        <!-- email -->
+          <div class="form-group" ng-class="{ 'has-success': form.organizerEmail.$valid && submitted,
+                                               'has-error': form.organizerEmail.$invalid && submitted }">
+            <label>Email</label>
+            <input type="text" name="email" ng-model="currentUser.email"
+                   class="form-control" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+                   required/>
+              <p class="text-danger" ng-if="form.email.$error.pattern && submitted">
+                Please enter a valid email.
+              </p>
+           </div>
+        <!-- end email -->
+
 
         <!-- address -->
-        <div class="form-group" ng-class="{'has-success': form.address.$valid && submitted,
-                                             'has-error': form.address.$invalid && submitted }">
-           <label>Your location</label>
-           <input type="text" g-places-autocomplete name="address"
-                  placeholder="Enter address, business name, landmark"
-                  ng-model="currentUser.address" class="form-control" required>
-        </div>
+          <div class="form-group" ng-class="{'has-success': form.address.$valid && submitted,
+                                               'has-error': form.address.$invalid && submitted }">
+            <label>Your location</label>
+            <input type="text" g-places-autocomplete name="address"
+                    placeholder="Enter address, business name, landmark"
+                    ng-model="currentUser.address" class="form-control" required>
 
-        <p class="text-danger" ng-show="form.address.$error.minlength && submitted">
-            Please enter a complete address.
-        </p>
+            <p class="text-danger" ng-show="form.address.$error.minlength && submitted">
+                Please enter a complete address.
+            </p>
+          </div>
         <!-- end address -->
 
         <!-- zip code slider -->
-        <div>
-            <h5>What is the distance you are willing to travel?</h5>
-            <rzslider rz-slider-model="zipCodeSlider.value" rz-slider-options="zipCodeSlider.options"></rzslider>
-        </div>
-        <!-- end zip code slider -->
+          <div>
+              <h5>What is the distance you are willing to travel?</h5>
+              <rzslider rz-slider-model="zipCodeSlider.value" rz-slider-options="zipCodeSlider.options"></rzslider>
+          </div>
+        <!-- end szip code slider -->
 
         <!-- phone marker -->
-        <div class="text-center">
-          <i class="fa fa-mobile fa-5x" aria-hidden="true"></i>
-        </div>
+          <div class="text-center">
+            <i class="fa fa-mobile fa-5x" aria-hidden="true"></i>
+          </div>
         <!-- end phone marker -->
 
         <!-- phone number -->
-        <div class="form-group" ng-class="{'has-success': form.phoneNumber.$valid && submitted,
-                                             'has-error': form.phoneNumber.$invalid && submitted }">
-           <label>Phone number</label>
-           <input class="form-control" type="text"
-                  ui-mask="(999) 999-9999"
-                  ng-model="currentUser.phoneNumber">
-        </div>
+          <div class="form-group" ng-class="{'has-success': form.phoneNumber.$valid && submitted,
+                                               'has-error': form.phoneNumber.$invalid && submitted }">
+             <label>Phone number</label>
+             <input class="form-control" type="text"
+                    ui-mask="(999) 999-9999"
+                    ng-model="currentUser.phoneNumber">
+          </div>
         <!-- end phone number -->
 
 
+        <!-- submit button -->
+          <div>
+            <div class="text-left">
+              <p class="text-danger">{{updateUserError}}</p>
+            </div>
 
-        <!-- <div> -->
-          <div class="text-left">
-            <p class="text-danger">{{updateUserError}}</p>
+            <div class="col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 pull-right text-right">
+              <button class="btn btn-lg" type="submit" ng-submit="updateUser()"
+              ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}">
+                Next
+              </button>
+            </div>
           </div>
+        <!-- end submit button -->
 
-          <div class="col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 pull-right text-right">
-            <button class="btn btn-lg" type="submit" ng-submit="updateUser()"
-            ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}">
-              Next
-            </button>
-          </div>
-        <!-- </div> -->
       </div>
     </form>
     <!-- end volunteer form -->

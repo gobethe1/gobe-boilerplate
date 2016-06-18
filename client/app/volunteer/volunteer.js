@@ -18,6 +18,11 @@ angular.module('gobeApp')
         templateUrl: 'app/volunteer/volunteer-signup.html',
         controller: 'VolunteerCtrl',
       })
+      .state('volunteer.photo', {
+        url: '/photo',
+        templateUrl: 'app/volunteer/volunteer-photo.html',
+        controller: 'VolunteerCtrl',
+      })
       .state('volunteer.profile', {
         url: '/profile',
         templateUrl: 'app/volunteer/volunteer-profile.html',

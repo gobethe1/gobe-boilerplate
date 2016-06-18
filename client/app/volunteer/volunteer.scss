@@ -40,3 +40,11 @@
 .profile-photo {
   max-width: 50%;
 }
+
+.skip-now, .photo-placeholder {
+  color: $bg-blue;
+}
+
+.skip-now {
+  text-decoration: underline;
+}
