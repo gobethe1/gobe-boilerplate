@@ -13,7 +13,8 @@ angular.module('gobeApp', [
   'google.places',
   'config',
   'validation.match',
-  'ngFileUpload'
+  'ngFileUpload',
+  'ngImgCrop'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider, ENV) {
     var $window = $windowProvider.$get();

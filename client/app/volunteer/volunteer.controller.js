@@ -8,24 +8,46 @@ angular.module('gobeApp')
      var s3Link = 'https://s3-us-west-1.amazonaws.com/gobe-test-photos/'
      // console.log('matchRadius: ', $scope.currentUser.zipCode)
 
-    // upload photo fx
-      $scope.upload = function (file) {
-        var fileName = new Date();
-        $scope.url = s3Link + file.name;
-        console.log('file: ', file)
-          file.upload = Upload.upload({
-              arrayKey: '', // default is '[i]'
-              url: 'api/users/uploads',
-              data: {file: file}
-          }).then(function (resp) {
-              console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-          }, function (resp) {
-              console.log('Error status: ' + resp.status);
-          }, function (evt) {
-              var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-              console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-          });
+    $scope.myImage = '';
+    $scope.myCroppedImage = '';
+    $scope.showPhoto = true;
+
+    var handleFileSelect=function(evt) {
+      $scope.showPhoto = false;
+      var file = evt.currentTarget.files[0];
+      console.log('file: ', file)
+      var reader = new FileReader();
+
+      reader.onload = function (evt) {
+        $scope.$apply(function($scope){
+          $scope.myImage = evt.target.result;
+        });
       };
+      reader.readAsDataURL(file);
+
+    };
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+
+    // upload photo fx
+      // $scope.upload = function (file) {
+      //   var fileName = new Date();
+
+      //   $scope.url = s3Link + file.name;
+      //   console.log('file: ', file)
+      //     file.upload = Upload.upload({
+      //         arrayKey: '', // default is '[i]'
+      //         url: 'api/users/uploads',
+      //         data: {file: file}
+      //     }).then(function (resp) {
+      //         console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+      //     }, function (resp) {
+      //         console.log('Error status: ' + resp.status);
+      //     }, function (evt) {
+      //         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+      //         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+      //     });
+      // };
     // end upload photo fx
 
 
