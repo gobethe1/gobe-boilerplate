@@ -12,7 +12,7 @@
           <div>
             <h4>Add a picture so we can quickly identify you at events!</h4>
             <i ng-if="!picFile && !photo" class="fa fa-user fa-5x" aria-hidden="true"></i>
-            <img class="avatar" ng-if="photo && !picFile" ng-src="{{photo}}">
+            <img class="avatar-edit-page" ng-if="photo && !picFile" ng-src="{{photo}}">
             <br>
           </div>
 
@@ -35,7 +35,7 @@
         <!-- area for original file -->
           <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
                class="cropArea">
-              <img-crop image="picFile  | ngfDataUrl"
+              <img-crop result-image-size="200" image="picFile  | ngfDataUrl"
               result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
               </img-crop>
           </div>
