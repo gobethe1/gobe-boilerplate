@@ -12,7 +12,10 @@ angular.module('gobeApp')
     $scope.returnValue   = [$scope.matchedZips, $scope.matchedEvents];
     $scope.userName      = ($scope.user.firstName + ' ' + $scope.user.lastName) || "NA";
     $scope.phoneNumber   = $scope.user.phoneNumber || "NA";
+    $scope.photo         = $scope.user.photo;
+    console.log($scope.user.photo)
     var user             = currentUser;
+
 
 
     // console.log('this is linked!')

@@ -50,28 +50,46 @@
 }
 
 .cropArea {
+  margin-right: auto;
+  margin-left: auto;
   background: #E4E4E4;
   overflow: hidden;
-  width:500px;
-  height:350px;
+  width:300px;
+  height:150px;
 }
 
-.btn-file {
-    position: relative;
+@media only screen and (max-width: $screen-xs) {
+  .cropArea {
+    margin-right: auto;
+    margin-left: auto;
+    background: #E4E4E4;
     overflow: hidden;
+    width:250px;
+    height:100px;
+  }
 }
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
+
+@media only screen and (min-width: $screen-sm) and (max-width: $screen-sm) {
+  .cropArea {
+    margin-right: auto;
+    margin-left: auto;
+    background: #E4E4E4;
+    overflow: hidden;
+    width:300px;
+    height:150px;
+  }
 }
+
+@media only screen and (min-width: $screen-md) and (max-width: $screen-lg){
+  .cropArea {
+    margin-right: auto;
+    margin-left: auto;
+    background: #E4E4E4;
+    overflow: hidden;
+    width:450px;
+    height:350px;
+  }
+}
+
+
+

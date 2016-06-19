@@ -19,3 +19,20 @@
     word-break: break-word
   }
 }
+
+.avatar {
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: $screen-md) {
+  .avatar {
+    width: 120%;
+    height: 120%;
+  }
+  .last-div-details {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}

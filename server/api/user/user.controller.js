@@ -17,50 +17,70 @@ var SENDGRID_API_KEY  = process.env.SENDGRID_API_KEY;
 var sendgrid          = require('sendgrid')(SENDGRID_API_KEY);
 var gobeEmailAddress  = 'hello@getgobe.com';
 var AWS               = require('aws-sdk');
-var AWS_ACCESS_KEY_ID    = process.env.AMZ_ACCESS_KEY_ID;
+var AWS_ACCESS_KEY_ID        = process.env.AMZ_ACCESS_KEY_ID;
 var AWS_SECRET_ACCESS_KEY    = process.env. AMZ_ACCESS_SECRET_KEY;
-var AWS_S3_BUCKET     = process.env.AMZ_S3_BUCKET;
+var AWS_S3_BUCKET            = process.env.AMZ_S3_BUCKET;
+var s3Link                   = 'https://s3-us-west-1.amazonaws.com/gobe-test-photos/'
 
 exports.uploadPhoto = function(req, res){
-  console.log('file: ', req.file)
+  console.log('file: ', req.body)
   console.log('firing')
   var file = req.file
+  var id = file.originalname.split('.');
+  console.log('id: ', id)
+  var userId = id[0];
+  console.log('userid: ', userId)
 
-  fs.readFile(file.path, function (err, data) {
-    console.log('file: ', file)
-    console.log('mimetype: ', file.mimetype)
-    console.log('file type:', file.type)
+    fs.readFile(file.path, function (err, data) {
+      console.log('file: ', file)
+      console.log('mimetype: ', file.mimetype)
+      console.log('file type:', file.type)
 
-    if (err) throw err;
-       AWS.config.update({accessKeyId: AWS_ACCESS_KEY_ID, secretAccessKey: AWS_SECRET_ACCESS_KEY });
-       AWS.config.region = 'us-west-1';
-      console.log(AWS.config)
+      if (err) throw err;
+         AWS.config.update({accessKeyId: AWS_ACCESS_KEY_ID, secretAccessKey: AWS_SECRET_ACCESS_KEY });
+         AWS.config.region = 'us-west-1';
+        console.log(AWS.config)
 
-       var s3 = new AWS.S3({
-          sslEnabled: true,
-          accessKeyId: AWS_ACCESS_KEY_ID,
-          secretAccessKey: AWS_SECRET_ACCESS_KEY
-        });
+         var s3 = new AWS.S3({
+            sslEnabled: true,
+            accessKeyId: AWS_ACCESS_KEY_ID,
+            secretAccessKey: AWS_SECRET_ACCESS_KEY
+          });
 
-       var params = {
-           Key: file.originalname,
-           Bucket: AWS_S3_BUCKET,
-           Body: data, //buffer
-           ContentType: file.mimetype
-       };
+         var params = {
+             Key: file.originalname,
+             Bucket: AWS_S3_BUCKET,
+             Body: data, //buffer
+             ContentType: file.mimetype
+         };
 
-       s3.putObject(params, function(err, data) {
-         if(err) {
-           console.log(err.message,err.code);
-           return false;
-         }
-         else {
-           console.log('File Uploaded Successfully', 'Done');
-         }
-       })
-    // });
+         s3.putObject(params, function(err, data) {
+           if(err) {
+             console.log(err.message,err.code);
+             return false;
+           }
+           else {
+             console.log('File Uploaded Successfully', 'Done');
+           }
+         })
+    })
 
-  })
+    User.findById(userId, function (err, user) {
+      console.log('user in user save: ', user)
+      console.log('req body?: ', req.body)
+      console.log('err: ', err)
+      if (err) { return handleError(res, err); }
+
+      user.photo = s3Link + file.originalname
+
+      user.save(function (err) {
+        if (err) { return handleError(res, err); }
+        console.log("user photo saved / updated successfully");
+      });
+
+  });
+
+
 }
 
 

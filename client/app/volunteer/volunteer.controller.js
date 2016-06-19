@@ -6,29 +6,35 @@ angular.module('gobeApp')
      $scope.currentUser.address;
      var value = $scope.currentUser.matchRadius || 5;
      var s3Link = 'https://s3-us-west-1.amazonaws.com/gobe-test-photos/'
-     // console.log('matchRadius: ', $scope.currentUser.zipCode)
 
-    $scope.myImage = '';
-    $scope.myCroppedImage = '';
-    $scope.showPhoto = true;
 
-    var handleFileSelect=function(evt) {
-      $scope.showPhoto = false;
-      var file = evt.currentTarget.files[0];
-      console.log('file: ', file)
-      var reader = new FileReader();
 
-      reader.onload = function (evt) {
-        $scope.$apply(function($scope){
-          $scope.myImage = evt.target.result;
+    $scope.upload = function (dataUrl, name) {
+      // console.log('name: ', name)
+      var splitName = name.split('.');
+      var fileExtension = splitName[splitName.length - 1];
+      var name = $scope.currentUser._id + '.' + Date.now() + '.' + fileExtension;
+      // console.log('name after: ', name)
+      $scope.url = s3Link + name;
+        Upload.upload({
+            url: 'api/users/uploads',
+            data: {
+                file: Upload.dataUrltoBlob(dataUrl, name)
+              }
+        }).then(function (response) {
+            $timeout(function () {
+                $scope.result = response.data;
+            });
+        }, function (response) {
+            if (response.status > 0) $scope.errorMsg = response.status
+                + ': ' + response.data;
+        }, function (evt) {
+            $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
         });
-      };
-      reader.readAsDataURL(file);
+        $state.go('profile.details')
 
-    };
-    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
-
-
+    }
+    // end upload photo fx
     // upload photo fx
       // $scope.upload = function (file) {
       //   var fileName = new Date();
@@ -80,17 +86,17 @@ angular.module('gobeApp')
 
       console.log($scope.zipCodeSlider.value)
 
-    var checkAddress = function(){
-        $scope.currentUser.address    = $scope.currentUser.address.formatted_address || $scope.currentUser.address;
-        var fullAddress               = $scope.currentUser.address;
-        var addressArray              = fullAddress.split(',');
-        var stateAndZip               = addressArray[addressArray.length - 2].split(' ');
-        var zip                       = stateAndZip[2];
-        $scope.currentUser.zipCode    = zip;
-    };
+      var checkAddress = function(){
+          $scope.currentUser.address    = $scope.currentUser.address.formatted_address || $scope.currentUser.address;
+          var fullAddress               = $scope.currentUser.address;
+          var addressArray              = fullAddress.split(',');
+          var stateAndZip               = addressArray[addressArray.length - 2].split(' ');
+          var zip                       = stateAndZip[2];
+          $scope.currentUser.zipCode    = zip;
+      };
 
-    var zipCodeApiKey = "js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4";
-    var newArr = [];
+      var zipCodeApiKey = "js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4";
+      var newArr = [];
 
 
 
@@ -101,11 +107,6 @@ angular.module('gobeApp')
         $scope.currentUser.matchRadius = $scope.zipCodeSlider.value;
         $scope.submitted = true;
         console.log('matchRadius: ', $scope.currentUser.matchRadius)
-           // console.log('form: ', form)
-           // console.log('file: ', $scope.file)
-           // if (form.file.$valid && $scope.file) {
-           //    $scope.upload($scope.file);
-           //  }
 
            if(form.$valid){
               $http({  method: "GET",

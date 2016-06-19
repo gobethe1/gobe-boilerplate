@@ -1,63 +1,66 @@
-<form class="form" name="form" ng-submit="updateUser(form)" novalidate>
-  <div class="col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 text-center">
-    <!-- skip for now -->
-    <div>
-      <a ui-sref="profile.details" class="pull-right skip-now">Skip for now</a>
-      <br>
-      <br>
+<form class="form" name="form" ng-submit="upload(form)" novalidate>
+    <div class="col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 text-center">
+        <!-- skip for now -->
+          <div>
+            <a ui-sref="profile.details" class="pull-right skip-now">Skip for now</a>
+            <br>
+            <br>
+          </div>
+        <!-- skip for now end -->
+
+        <!-- user icon -->
+          <div>
+            <h4>Add a picture so we can quickly identify you at events!</h4>
+            <i ng-if="!picFile" class="fa fa-user fa-5x" aria-hidden="true"></i>
+            <br>
+          </div>
+        <!-- end user icon -->
+
+        <!-- cropped image -->
+          <div>
+            <img ng-if="picFile" ng-src="{{croppedDataUrl}}" />
+          </div>
+        <!-- end croped image -->
+
+        <!-- button to upload -->
+          <div>
+            <a class="skip-now" ngf-select ng-model="picFile" accept="image/*">
+            Add an image</a>
+          </div>
+        <!-- end upload button -->
+
+        <!-- area for original file -->
+          <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
+               class="cropArea">
+              <img-crop image="picFile  | ngfDataUrl"
+              result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
+              </img-crop>
+          </div>
+        <!-- end area for original file -->
+
+
+        <!-- progress bar -->
+          <div>
+            <span class="progress" ng-show="progress >= 0">
+              <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+            </span>
+            <span ng-show="result">Upload Successful</span>
+            <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+          </div>
+        <!-- end progress bar -->
+
+
+        <!-- next step button -->
+          <div class="row">
+            <div class="pull-right text-right">
+              <!-- submit cropped photo -->
+                <button class="btn btn-primary" ng-if="picFile" ng-click="upload(croppedDataUrl, picFile.name)">Submit</button>
+              <!-- end submit cropped photo -->
+            </div>
+          </div>
+          <br>
+        <!-- end next step button -->
+
+
     </div>
-    <!-- skip for now end -->
-
-    <h4>Add an image so the organizers can quickly verify you at events!</h4>
-    <div class="col-sm-12">
-      <i ng-if="showPhoto" class="fa fa-user fa-5x photo-placeholder" aria-hidden="true"></i>
-      <p>Cropped Image:</p>
-      <img ng-if="!showPhoto" ng-src="{{myCroppedImage}}"/>
-    </div>
-
-    <div class="col-sm-12">
-        <p>Select an image file: </p>
-        <label class="btn btn-primary btn-file">
-          Upload a Photo
-          <input class="input-group" title=" " type="file" id="fileInput"/>
-        </label>
-        <br>
-    </div>
-
-    <div class="row">
-        <div class="cropArea">
-          <img-crop image="myImage" result-image="myCroppedImage">
-          </img-crop>
-        </div>
-    </div>
-
-    <!-- photo upload -->
-<!--       <div class="text-center">
-        <img class="profile-photo" ngf-src="url">
-        <i ng-if="!url" class="fa fa-user fa-5x photo-placeholder" aria-hidden="true"></i>
-        <div>
-          <a ngf-select="upload($file)">
-            Add an iamge
-          </a>
-        </div>
-      </div> -->
-    <!-- end photo -->
-
-    <!-- submit button -->
-      <div class="row">
-        <div class="text-left">
-          <p class="text-danger">{{updateUserError}}</p>
-        </div>
-
-        <div class="pull-right text-right">
-          <button class="btn btn-lg" type="submit" ng-submit="updateUser()"
-          ng-class="{ 'btn-primary': form.$valid, 'btn-secondary': form.$invalid}">
-            View Causes
-          </button>
-        </div>
-      </div>
-      <br>
-    <!-- end submit button -->
-
-  </div>
 </form>
