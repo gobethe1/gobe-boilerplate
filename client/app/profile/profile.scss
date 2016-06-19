@@ -26,10 +26,17 @@
   border-radius: 50%;
 }
 
-@media only screen and (max-width: $screen-md) {
+.avatar-edit {
+  margin-left: 15%;
+}
+
+@media only screen and (max-width: $screen-sm) {
   .avatar {
-    width: 120%;
-    height: 120%;
+    width: 130%;
+    height: 130%;
+  }
+  .avatar-edit {
+    margin-left: 10%;
   }
   .last-div-details {
     padding-left: 0px;

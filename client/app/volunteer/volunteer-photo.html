@@ -11,9 +11,12 @@
         <!-- user icon -->
           <div>
             <h4>Add a picture so we can quickly identify you at events!</h4>
-            <i ng-if="!picFile" class="fa fa-user fa-5x" aria-hidden="true"></i>
+            <i ng-if="!picFile && !photo" class="fa fa-user fa-5x" aria-hidden="true"></i>
+            <img class="avatar" ng-if="photo && !picFile" ng-src="{{photo}}">
             <br>
           </div>
+
+
         <!-- end user icon -->
 
         <!-- cropped image -->

@@ -4,11 +4,12 @@ angular.module('gobeApp')
   .controller('VolunteerCtrl', function ($scope, currentUser, $timeout, Upload, $window, User, $stateParams, $http, $state) {
      $scope.currentUser = currentUser;
      $scope.currentUser.address;
+    $scope.photo         = $scope.currentUser.photo;
      var value = $scope.currentUser.matchRadius || 5;
      var s3Link = 'https://s3-us-west-1.amazonaws.com/gobe-test-photos/'
 
 
-
+    // photo upload
     $scope.upload = function (dataUrl, name) {
       // console.log('name: ', name)
       var splitName = name.split('.');
@@ -34,27 +35,7 @@ angular.module('gobeApp')
         $state.go('profile.details')
 
     }
-    // end upload photo fx
-    // upload photo fx
-      // $scope.upload = function (file) {
-      //   var fileName = new Date();
-
-      //   $scope.url = s3Link + file.name;
-      //   console.log('file: ', file)
-      //     file.upload = Upload.upload({
-      //         arrayKey: '', // default is '[i]'
-      //         url: 'api/users/uploads',
-      //         data: {file: file}
-      //     }).then(function (resp) {
-      //         console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-      //     }, function (resp) {
-      //         console.log('Error status: ' + resp.status);
-      //     }, function (evt) {
-      //         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-      //         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-      //     });
-      // };
-    // end upload photo fx
+    // end photo upload
 
 
     // list available vs your causes tab
