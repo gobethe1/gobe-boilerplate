@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('ProfileCtrl', function ($scope, $filter, User, currentUser, eventModel, Auth, Path, customerInfo, $state, $http) {
+  .controller('ProfileCtrl', function ($scope, $filter, User, currentUser, eventModel, Auth, Path, customerInfo, $state, $http, $location) {
     $scope.user          = currentUser;
     $scope.events        = eventModel;
     var events           = eventModel;
@@ -15,6 +15,18 @@ angular.module('gobeApp')
     $scope.photo         = $scope.user.photo;
     console.log($scope.user.photo)
     var user             = currentUser;
+
+    // console.log($location.path())
+
+    // $scope.checkEditProfilePath = function(){
+    //   if($location.path() === '/profile/edit') {
+    //     return $scope.profileEdit === true && $scope.tab === 1;
+    //   }
+    //   else{
+    //     return $scope.profileEdit === true && $scope.tab === 1;
+    //   }
+    // }
+
 
 
 

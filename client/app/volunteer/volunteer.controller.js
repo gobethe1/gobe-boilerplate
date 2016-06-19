@@ -3,8 +3,8 @@
 angular.module('gobeApp')
   .controller('VolunteerCtrl', function ($scope, currentUser, $timeout, Upload, $window, User, $stateParams, $http, $state) {
      $scope.currentUser = currentUser;
+     $scope.photo       = $scope.currentUser.photo;
      $scope.currentUser.address;
-    $scope.photo         = $scope.currentUser.photo;
      var value = $scope.currentUser.matchRadius || 5;
      var s3Link = 'https://s3-us-west-1.amazonaws.com/gobe-test-photos/'
 
@@ -32,8 +32,8 @@ angular.module('gobeApp')
         }, function (evt) {
             $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
         });
-        $state.go('profile.details')
 
+        $state.go('profile.details')
     }
     // end photo upload
 
