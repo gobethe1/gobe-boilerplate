@@ -6,7 +6,7 @@ angular.module('gobeApp')
      $scope.photo       = $scope.currentUser.photo;
      $scope.currentUser.address;
      var value = $scope.currentUser.matchRadius || 5;
-     var s3Link = 'https://s3-us-west-1.amazonaws.com/gobe-test-photos/'
+     var s3Link = 'https://s3-us-west-1.amazonaws.com/gobe-user-avatar/'
 
 
     // photo upload
