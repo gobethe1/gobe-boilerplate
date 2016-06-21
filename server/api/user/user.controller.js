@@ -20,7 +20,7 @@ var AWS               = require('aws-sdk');
 var AWS_ACCESS_KEY_ID        = process.env.AMZ_ACCESS_KEY_ID;
 var AWS_SECRET_ACCESS_KEY    = process.env. AMZ_ACCESS_SECRET_KEY;
 var AWS_S3_BUCKET            = process.env.AMZ_S3_BUCKET;
-var s3Link                   = 'https://s3-us-west-1.amazonaws.com/gobe-test-photos/'
+var s3Link                   = process.env.s3Link;
 
 exports.uploadPhoto = function(req, res){
   console.log('file: ', req.body)
