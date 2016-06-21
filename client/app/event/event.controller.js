@@ -105,7 +105,7 @@ angular.module('gobeApp')
 
   // add event but will not trigger emails
   $scope.addEvent = function addEvent(form){
-
+    console.log(form)
     $scope.newEvent.published = false;
     $scope.submitted = false;
 
@@ -213,6 +213,9 @@ angular.module('gobeApp')
     $scope.popup3.opened = true;
   };
 
+  $scope.open4 = function() {
+    $scope.popup4.opened = true;
+  };
 
   $scope.setDate = function(year, month, day) {
     $scope.dt = new Date(year, month, day);
@@ -231,6 +234,14 @@ angular.module('gobeApp')
   };
 
   $scope.popup3 = {
+    opened: false
+  };
+
+  $scope.popup4 = {
+    opened: false
+  };
+
+  $scope.popup5 = {
     opened: false
   };
 
