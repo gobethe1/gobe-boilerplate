@@ -13,22 +13,27 @@ angular.module('gobeApp')
     $scope.userName      = ($scope.user.firstName + ' ' + $scope.user.lastName) || "NA";
     $scope.phoneNumber   = $scope.user.phoneNumber || "NA";
     $scope.photo         = $scope.user.photo;
-    console.log($scope.user.photo)
     var user             = currentUser;
+    $scope.tab = 0;
 
-    // console.log($location.path())
+    console.log($location.path())
 
-    // $scope.checkEditProfilePath = function(){
-    //   if($location.path() === '/profile/edit') {
-    //     return $scope.profileEdit === true && $scope.tab === 1;
-    //   }
-    //   else{
-    //     return $scope.profileEdit === true && $scope.tab === 1;
-    //   }
-    // }
+    $scope.showNewUserFlow = true;
+
+    var checkEditProfilePath = function(){
+      if($location.path() === '/profile/edit') {
+        $scope.tab = 1;
+        return $scope.showNewUserFlow = false;
+      }
+      else{
+        return $scope.showNewUserFlow = true;
+      }
+    }
+    // checkEditProfilePath()
+    console.log(checkEditProfilePath())
 
 // list available vs your causes tab
-    $scope.tab = 0;
+
 
     $scope.changeTab = function(newTab){
       $scope.tab = newTab;
