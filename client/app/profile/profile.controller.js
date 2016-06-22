@@ -27,11 +27,6 @@ angular.module('gobeApp')
     //   }
     // }
 
-
-
-
-    // console.log('this is linked!')
-
 // list available vs your causes tab
     $scope.tab = 0;
 
@@ -84,9 +79,8 @@ angular.module('gobeApp')
 
     };
     checkForMatches(events)
-
-
 // end check for zip code matches
+
 
 // fx to shorten address in profile details view
     $scope.shortAddress = function(address){
@@ -96,7 +90,6 @@ angular.module('gobeApp')
       }
       else return '';
     }
-
     $scope.callAddress = $scope.shortAddress();
 // end fx to shorten address in profile details view
 
@@ -132,14 +125,18 @@ angular.module('gobeApp')
 
 
 
-    // console.log($scope.user.address)
+  // console.log($scope.user.address)
     var customerInfo = customerInfo;
 
+  // check trial days left
     if(customerInfo){
     	var trialEnd = new Date(customerInfo.trial_end * 1000);
     	var currentPeriodEnd = new Date(customerInfo.current_period_end * 1000);
-	}
+	 }
 
+   // end check trial days left
+
+  // check user account type status
     $scope.checkStatus = function(){
       if(customerInfo){
 	      if(customerInfo.status === "trialing"){
@@ -156,7 +153,9 @@ angular.module('gobeApp')
   	  	return "None";
   	  }
     }
+  // end check user account type status
 
+  // check stripe renewal / free-trial
     $scope.checkRenewal = function(){
     	if(customerInfo){
     		if(customerInfo.status === "trialing"){
@@ -175,7 +174,9 @@ angular.module('gobeApp')
     	  return "None";
     	}
     }
+  // end check stripe renewal
 
+  // update user
     $scope.updateUser = function updateUser(form) {
         checkAddress();
         $scope.currentUser = $scope.currentUser;
@@ -212,5 +213,5 @@ angular.module('gobeApp')
              document.body.scrollTop = document.documentElement.scrollTop = 0;
          }
     };
-
+  // end update user
   });
