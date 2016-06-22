@@ -8,7 +8,7 @@ angular.module('gobeApp')
     $scope.hover                  = true;
     $scope.newEvent               = {};
     $scope.newEvent.availability  = {};
-    $scope.newEvent.address       = {};
+    $scope.newEvent.address       = '';
     $scope.isAdmin                = Auth.isAdmin;
     $scope.activeSubscription     = Auth.activeSubscription;
     $scope.path                   = Path.transitionToPath;
@@ -104,8 +104,8 @@ angular.module('gobeApp')
   };
 
   // add event but will not trigger emails
-  $scope.addEvent = function addEvent(form){
-    console.log(form)
+  $scope.addEvent = function addEvent(){
+    $scope.newEvent
     $scope.newEvent.published = false;
     $scope.submitted = false;
 

@@ -23,12 +23,14 @@ exports.show = function(req, res) {
 
 // Creates a new event in the DB.
 exports.create = function(req, res) {
-  req.body.host = req.headers.host
+  // req.body.host = req.headers.host
   Event.create(req.body, function(err, event) {
     if(err) { return handleError(res, err); }
     return res.status(201).json(event);
   });
 };
+
+
 
 // Updates an existing event in the DB.
 exports.update = function(req, res) {
