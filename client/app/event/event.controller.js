@@ -221,7 +221,7 @@ angular.module('gobeApp')
     $scope.dt = new Date(year, month, day);
   };
 
-  $scope.formats = ['MM/dd/yyyy'];
+  $scope.formats = ['yyyy/MM/dd'];
   $scope.format = $scope.formats[0];
   $scope.altInputFormats = ['M!/d!/yyyy'];
 

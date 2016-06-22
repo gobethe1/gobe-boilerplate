@@ -16,7 +16,7 @@ angular.module('gobeApp')
     var user             = currentUser;
     $scope.tab = 0;
 
-    console.log($location.path())
+    // console.log($location.path())
 
     $scope.showNewUserFlow = true;
 
@@ -29,8 +29,8 @@ angular.module('gobeApp')
         return $scope.showNewUserFlow = true;
       }
     }
-    // checkEditProfilePath()
-    console.log(checkEditProfilePath())
+    checkEditProfilePath()
+    // console.log(checkEditProfilePath())
 
 // list available vs your causes tab
 

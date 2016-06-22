@@ -208,7 +208,7 @@
 	                                               'has-error': form.moveindate.$invalid && submitted }">
 				  <label>Move-in Date</label>
 			        <p class="input-group">
-			          <input type="text" class="form-control" name="moveindate" uib-datepicker-popup="{{format}}" ng-model="newEvent.availability.moveInDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+			          <input type="text" class="form-control" name="moveindate" uib-datepicker-popup ng-model="newEvent.availability.moveInDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
 			          <span class="input-group-btn">
 			            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
 			          </span>
