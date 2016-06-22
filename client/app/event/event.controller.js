@@ -15,7 +15,6 @@ angular.module('gobeApp')
     $scope.showLink               = 'event.show';
     $scope.groupCauseArray        = ["Homeless Move-in", "Other"];
     $scope.causeArray             = ["Other"];
-    console.log('event: ', event)
 
     // event list sorting filters
     $scope.sort = {};
@@ -23,12 +22,6 @@ angular.module('gobeApp')
     $scope.matched = {'confirmGroup': ''};
     $scope.pending =  {'published': true};
     $scope.unpublished = {'published': false};
-
-    console.log('matched: ', $scope.matched)
-    console.log('pending: ', $scope.pending)
-    console.log('unpub: ', $scope.unpublished)
-    console.log('all: ', $scope.all)
-
 
     $scope.newEvent.availability.firstDateTime  = [false, false, false];
     $scope.newEvent.availability.secondDateTime = [false, false, false];
@@ -56,8 +49,6 @@ angular.module('gobeApp')
       return event.userId === currentUser._id;
     }
   };
-
-  console.log('check event filteR: ', $scope.checkEventFilter(event))
 
 
   var checkAddress = function(){

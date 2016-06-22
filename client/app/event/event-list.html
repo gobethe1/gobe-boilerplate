@@ -14,7 +14,6 @@
 </div>
 
 <!-- matched / pending / etc bar -->
-
 <div ng-show="(listEvents | filter:checkEventFilter).length < 1" class="col-sm-12 col-xs-12 group-list-text text-center">
   <h3>NO CAUSES ADDED</h3>
   <i class="fa fa-heart fa-5x" aria-hidden="true"></i>
@@ -22,7 +21,7 @@
   <h4>No sure what to do? Check the feedback tab for more info.</h4>
 </div>
 <br>
-<!--  -->
+
 <div ng-show="(listEvents | filter:checkEventFilter).length >= 1" class="container">
   <div class="row" ng-show="activeSubscription() || isAdmin()">
     <div class="col-sm-6 col-xs-12">
