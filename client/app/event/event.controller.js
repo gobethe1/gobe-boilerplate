@@ -105,9 +105,13 @@ angular.module('gobeApp')
 
   // add event but will not trigger emails
   $scope.addEvent = function addEvent(){
-    $scope.newEvent
+
     $scope.newEvent.published = false;
     $scope.submitted = false;
+
+    if($scope.newEvent.address !== '') {
+      checkAddress()
+    }
 
     Event.save($scope.newEvent, function(data){
       $state.go('event.list');
