@@ -13,27 +13,27 @@ angular.module('gobeApp')
     $scope.userName      = ($scope.user.firstName + ' ' + $scope.user.lastName) || "NA";
     $scope.phoneNumber   = $scope.user.phoneNumber || "NA";
     $scope.photo         = $scope.user.photo;
-    console.log($scope.user.photo)
     var user             = currentUser;
+    $scope.tab = 0;
 
     // console.log($location.path())
 
-    // $scope.checkEditProfilePath = function(){
-    //   if($location.path() === '/profile/edit') {
-    //     return $scope.profileEdit === true && $scope.tab === 1;
-    //   }
-    //   else{
-    //     return $scope.profileEdit === true && $scope.tab === 1;
-    //   }
-    // }
+    $scope.showNewUserFlow = true;
 
-
-
-
-    // console.log('this is linked!')
+    var checkEditProfilePath = function(){
+      if($location.path() === '/profile/edit') {
+        $scope.tab = 1;
+        return $scope.showNewUserFlow = false;
+      }
+      else{
+        return $scope.showNewUserFlow = true;
+      }
+    }
+    checkEditProfilePath()
+    // console.log(checkEditProfilePath())
 
 // list available vs your causes tab
-    $scope.tab = 0;
+
 
     $scope.changeTab = function(newTab){
       $scope.tab = newTab;
@@ -84,9 +84,8 @@ angular.module('gobeApp')
 
     };
     checkForMatches(events)
-
-
 // end check for zip code matches
+
 
 // fx to shorten address in profile details view
     $scope.shortAddress = function(address){
@@ -96,7 +95,6 @@ angular.module('gobeApp')
       }
       else return '';
     }
-
     $scope.callAddress = $scope.shortAddress();
 // end fx to shorten address in profile details view
 
@@ -132,14 +130,18 @@ angular.module('gobeApp')
 
 
 
-    // console.log($scope.user.address)
+  // console.log($scope.user.address)
     var customerInfo = customerInfo;
 
+  // check trial days left
     if(customerInfo){
     	var trialEnd = new Date(customerInfo.trial_end * 1000);
     	var currentPeriodEnd = new Date(customerInfo.current_period_end * 1000);
-	}
+	 }
 
+   // end check trial days left
+
+  // check user account type status
     $scope.checkStatus = function(){
       if(customerInfo){
 	      if(customerInfo.status === "trialing"){
@@ -156,7 +158,9 @@ angular.module('gobeApp')
   	  	return "None";
   	  }
     }
+  // end check user account type status
 
+  // check stripe renewal / free-trial
     $scope.checkRenewal = function(){
     	if(customerInfo){
     		if(customerInfo.status === "trialing"){
@@ -175,7 +179,9 @@ angular.module('gobeApp')
     	  return "None";
     	}
     }
+  // end check stripe renewal
 
+  // update user
     $scope.updateUser = function updateUser(form) {
         checkAddress();
         $scope.currentUser = $scope.currentUser;
@@ -212,5 +218,5 @@ angular.module('gobeApp')
              document.body.scrollTop = document.documentElement.scrollTop = 0;
          }
     };
-
+  // end update user
   });

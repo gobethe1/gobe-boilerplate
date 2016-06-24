@@ -23,23 +23,23 @@ var AWS_S3_BUCKET            = process.env.AMZ_S3_BUCKET;
 var s3Link                   = process.env.s3Link;
 
 exports.uploadPhoto = function(req, res){
-  console.log('file: ', req.body)
-  console.log('firing')
+  // console.log('firing')
+  // console.log('file: ', req.body)
   var file = req.file
   var id = file.originalname.split('.');
-  console.log('id: ', id)
+  // console.log('id: ', id)
   var userId = id[0];
-  console.log('userid: ', userId)
+  // console.log('userid: ', userId)
 
-    fs.readFile(file.path, function (err, data) {
-      console.log('file: ', file)
-      console.log('mimetype: ', file.mimetype)
-      console.log('file type:', file.type)
+  fs.readFile(file.path, function (err, data) {
+      // console.log('file: ', file)
+      // console.log('mimetype: ', file.mimetype)
+      // console.log('file type:', file.type)
 
       if (err) throw err;
          AWS.config.update({accessKeyId: AWS_ACCESS_KEY_ID, secretAccessKey: AWS_SECRET_ACCESS_KEY });
          AWS.config.region = 'us-west-1';
-        console.log(AWS.config)
+         console.log(AWS.config)
 
          var s3 = new AWS.S3({
             sslEnabled: true,
@@ -61,25 +61,21 @@ exports.uploadPhoto = function(req, res){
            }
            else {
              console.log('File Uploaded Successfully', 'Done');
-           }
-         })
+         }
+      })
     })
 
     User.findById(userId, function (err, user) {
-      console.log('user in user save: ', user)
-      console.log('req body?: ', req.body)
-      console.log('err: ', err)
-      if (err) { return handleError(res, err); }
-
-      user.photo = s3Link + file.originalname
-
-      user.save(function (err) {
+        // console.log('user in user save: ', user)
+        // console.log('req body?: ', req.body)
+        // console.log('err: ', err)
         if (err) { return handleError(res, err); }
-        console.log("user photo saved / updated successfully");
-      });
+        user.photo = s3Link + file.originalname;
 
-  });
-
+          user.save(function (err) {
+            console.log("user photo saved / updated successfully");
+          });
+        })
 
 }
 

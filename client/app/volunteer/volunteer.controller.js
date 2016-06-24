@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('gobeApp')
-  .controller('VolunteerCtrl', function ($scope, currentUser, $timeout, Upload, $window, User, $stateParams, $http, $state) {
+  .controller('VolunteerCtrl', function ($scope, currentUser, $timeout, Upload, $window, User, $stateParams, $http, $state, $location) {
      $scope.currentUser = currentUser;
      $scope.photo       = $scope.currentUser.photo;
      $scope.currentUser.address;
      var value = $scope.currentUser.matchRadius || 5;
      var s3Link = 'https://s3-us-west-1.amazonaws.com/gobe-user-avatar/'
-
 
     // photo upload
     $scope.upload = function (dataUrl, name) {
@@ -33,7 +32,10 @@ angular.module('gobeApp')
             $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
         });
 
-        $state.go('profile.details')
+      $timeout(function() {
+        $scope.$emit($scope.currentUser.photo = $scope.url)
+        $state.go('profile.details');
+      }, 1000);
     }
     // end photo upload
 
@@ -42,17 +44,30 @@ angular.module('gobeApp')
     $scope.tab = 0;
 
     $scope.changeTab = function(newTab){
-      // console.log('change tab')
       $scope.tab = newTab;
     };
 
     $scope.isActiveTab = function(tab){
-      // console.log('tab #: ', tab)
       return $scope.tab === tab;
     };
+
+      // check if user just logged in or merely editing
+        $scope.showNewUserFlow = true;
+        var checkEditProfilePath = function(){
+          if($location.path() === '/profile/edit') {
+            $scope.tab = 1;
+            return $scope.showNewUserFlow = false;
+          }
+          else{
+            $scope.tab = 0;
+            return $scope.showNewUserFlow = true;
+          }
+        }
+        checkEditProfilePath()
+      // end user check
     // end list available vs your causes tab
 
-     // console.log('current user address: ', $scope.currentUser.address)
+    // zip code radius logic
      $scope.zipCodeSlider = {
         value: value,
         options: {
@@ -64,8 +79,6 @@ angular.module('gobeApp')
            }
         }
       };
-
-      console.log($scope.zipCodeSlider.value)
 
       var checkAddress = function(){
           $scope.currentUser.address    = $scope.currentUser.address.formatted_address || $scope.currentUser.address;
@@ -79,6 +92,7 @@ angular.module('gobeApp')
       var zipCodeApiKey = "js-WcPJ12XU5oJLwX3Y0aENthT6mWnK3Ol00bJ1dGVj5F4CC8ACifqMwkSShfDk3Yk4";
       var newArr = [];
 
+    // end zip code radius logic
 
 
     $scope.updateUser = function updateUser(form) {

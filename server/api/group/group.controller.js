@@ -26,6 +26,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Group.create(req.body, function(err, group) {
     if(err) { return handleError(res, err); }
+
     User.findById(req.body.ownedBy, function(err, user){
       if (err) { return handleError(res, err); }
         var updated = _.merge(user, {groupId: group._id})

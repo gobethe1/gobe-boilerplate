@@ -8,7 +8,7 @@ angular.module('gobeApp')
     $scope.hover                  = true;
     $scope.newEvent               = {};
     $scope.newEvent.availability  = {};
-    $scope.newEvent.address       = {};
+    $scope.newEvent.address       = '';
     $scope.isAdmin                = Auth.isAdmin;
     $scope.activeSubscription     = Auth.activeSubscription;
     $scope.path                   = Path.transitionToPath;
@@ -19,10 +19,9 @@ angular.module('gobeApp')
     // event list sorting filters
     $scope.sort = {};
     $scope.all = {};
-    $scope.matched = {'confirmGroup': "!!", 'published': true };
-    $scope.pending =  {'published': true, 'confirmGroup': null };
-    $scope.unpublished = {'published': false, 'confirmGroup': null };
-
+    $scope.matched = {'confirmGroup': ''};
+    $scope.pending =  {'published': true, 'confirmGroup': null};
+    $scope.unpublished = {'published': false};
 
     $scope.newEvent.availability.firstDateTime  = [false, false, false];
     $scope.newEvent.availability.secondDateTime = [false, false, false];
@@ -50,6 +49,7 @@ angular.module('gobeApp')
       return event.userId === currentUser._id;
     }
   };
+
 
   var checkAddress = function(){
       $scope.newEvent.address   = $scope.newEvent.address.formatted_address || $scope.newEvent.address;
@@ -104,10 +104,14 @@ angular.module('gobeApp')
   };
 
   // add event but will not trigger emails
-  $scope.addEvent = function addEvent(form){
+  $scope.addEvent = function addEvent(){
 
     $scope.newEvent.published = false;
     $scope.submitted = false;
+
+    if($scope.newEvent.address !== '') {
+      checkAddress()
+    }
 
     Event.save($scope.newEvent, function(data){
       $state.go('event.list');
@@ -213,12 +217,15 @@ angular.module('gobeApp')
     $scope.popup3.opened = true;
   };
 
+  $scope.open4 = function() {
+    $scope.popup4.opened = true;
+  };
 
   $scope.setDate = function(year, month, day) {
     $scope.dt = new Date(year, month, day);
   };
 
-  $scope.formats = ['MM/dd/yyyy'];
+  $scope.formats = ['yyyy/MM/dd'];
   $scope.format = $scope.formats[0];
   $scope.altInputFormats = ['M!/d!/yyyy'];
 
@@ -231,6 +238,14 @@ angular.module('gobeApp')
   };
 
   $scope.popup3 = {
+    opened: false
+  };
+
+  $scope.popup4 = {
+    opened: false
+  };
+
+  $scope.popup5 = {
     opened: false
   };
 
