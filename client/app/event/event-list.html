@@ -13,6 +13,10 @@
   </div>
 </div>
 
+<!-- search bar -->
+<br>
+<input ng-model="q" id="search" class="form-control" placeholder="search">
+
 <!-- matched / pending / etc bar -->
 <div ng-show="(listEvents | filter:checkEventFilter).length < 1" class="col-sm-12 col-xs-12 group-list-text text-center">
   <h3>NO CAUSES ADDED</h3>

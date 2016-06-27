@@ -14,7 +14,8 @@ angular.module('gobeApp', [
   'config',
   'validation.match',
   'ngFileUpload',
-  'ngImgCrop'
+  'ngImgCrop',
+  'angularUtils.directives.dirPagination'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $windowProvider, ENV) {
     var $window = $windowProvider.$get();
