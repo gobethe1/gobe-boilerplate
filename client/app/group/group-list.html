@@ -9,8 +9,13 @@
        <!-- end admin -->
   </div>
 </div>
-<div class="row">
 
+<!-- search bar -->
+<br>
+<input ng-model="q" id="search" class="form-control" placeholder="search">
+
+
+<div class="row">
   <div ng-if="(listGroups | filter:groupUserFilter) < 1" class="col-sm-12 col-xs-12 group-list-text text-center">
     <h3>NO GROUPS ADDED</h3>
     <i class="fa fa-users fa-5x" aria-hidden="true"></i>
@@ -21,7 +26,23 @@
   <div class="col-sm-12 col-xs-12">
     <br>
     <ul class="list-unstyled event-list">
-      <li ng-repeat="group in listGroups | filter:groupUserFilter"
+      <li dir-paginate="group in listGroups | filter: q | itemsPerPage: 5 | filter:groupUserFilter">
+        <div class="row">
+          <span class="col-sm-11 col-xs-10">
+            <a ui-sref="group.show({id: group._id, name: group.organizationName})">
+              <h4>{{group.organizationName}}, {{group.firstName | capitalize }} {{group.lastName | capitalize }}</h4>
+            </a>
+          </span>
+          <span class="col-sm-1 col-xs-1">
+            <a ng-click="deleteGroup(group._id)" ng-class="{'hidden-sm': hover, 'hidden-md': hover, 'hidden-lg': hover}">
+              <i class="fa fa-times"></i>
+            </a>
+          </span>
+        </div>
+        <hr>
+      </li>
+
+<!--       <li ng-repeat="group in listGroups | filter:groupUserFilter"
           ng-mouseenter="hover = false"
           ng-mouseleave="hover = true">
         <div class="row">
@@ -37,10 +58,11 @@
           </span>
         </div>
         <hr>
-      </li>
+      </li> -->
     </ul>
   </div>
-
+  <!-- page pagination at the bottom -->
+  <dir-pagination-controls> </dir-pagination-controls>
 </div>
 
 
